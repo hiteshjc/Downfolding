@@ -1,0 +1,1244 @@
+\documentclass[aip,jcp,twocolumn,10pt]{revtex4-1}
+\usepackage{dcolumn}
+\usepackage{bm}
+\usepackage{color}
+\usepackage[english]{babel}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{times}   %% Times Roman font
+\usepackage{esint}
+\usepackage{subfigure}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=false,colorlinks=true,citecolor=blue,urlcolor=blue,linkcolor=red]{hyperref}
+
+\makeatletter
+
+\@ifundefined{textcolor}{}
+{%
+ \definecolor{BLACK}{gray}{0}
+ \definecolor{WHITE}{gray}{1}
+ \definecolor{RED}{rgb}{1,0,0}
+ \definecolor{GREEN}{rgb}{0,1,0}
+ \definecolor{BLUE}{rgb}{0,0,1}
+ \definecolor{CYAN}{cmyk}{1,0,0,0}
+ \definecolor{MAGENTA}{cmyk}{0,1,0,0}
+ \definecolor{YELLOW}{cmyk}{0,0,1,0}
+}
+
+\@ifundefined{date}{}{\date{}}
+\AtBeginDocument{
+  \def\labelitemi{\(\rhd\)}
+}
+\makeatother
+
+\setlength{\belowcaptionskip}{-7pt}
+\newcommand{\SAVE}[1]{}
+\newcommand{\HJC}[1]{{\color{RED}{\bf HJC: #1}}}
+\newcommand{\Ncal}{{\mathcal N}}
+\newcommand{\T}{{\mathbf{T}}}
+\newcommand{\Jbq}{{J_{bq}}}
+\newcommand{\Jbl}{{J_{bl}}}
+
+\begin{document}
+\renewcommand\abstractname{}
+
+\title{Low Energy Effective Hamiltonians from \emph{ab-initio} wavefunctions}
+\author{Hitesh J. Changlani}
+\affiliation{Department of Physics, University of Illinois at Urbana-Champaign, 1110 West Green St, Urbana IL 61801, USA}
+\author{Huihuo Zheng}
+\affiliation{Department of Physics, University of Illinois at Urbana-Champaign, 1110 West Green St, Urbana IL 61801, USA}
+\author{Lucas K. Wagner}
+\affiliation{Department of Physics, University of Illinois at Urbana-Champaign, 1110 West Green St, Urbana IL 61801, USA}
+\date{\today}
+
+\begin{abstract}
+We propose a way of obtaining effective low energy Hubbard-like Hamiltonians from \emph{ab initio} 
+Quantum Monte Carlo calculations for molecular and extended systems. 
+The Hamiltonian parameters are fit to best match the \emph{ab-initio} 
+two-body density matrices (computed in a localized basis) 
+and energies of the ground and various excited states. 
+For benzene (a finite system), we find 
+good agreement with experimentally available energies 
+without using any experimental inputs. 
+For graphene, a two dimensional solid (extended system) 
+with periodic boundary conditions, we find the effective onsite 
+Hubbard $U^{*}/t$ to be $1.1 \pm 0.1$, comparable to 
+a recent estimate based on the constrained-RPA approximation. For molecules, such 
+parameterizations enable calculation of excited states that are usually not 
+accessible within ground state approaches. For solids, the effective 
+Hamiltonian enables large scale calculations using techniques 
+designed for lattice models.  
+\end{abstract}
+
+\maketitle
+\section{Introduction}
+\label{sec:introduction}
+Reliably simulating quantum systems remains a challenge 
+for the physics and chemistry communities. Calculations on real materials 
+are primarily carried out with density functional theory (DFT), 
+which in principle is exact, but in practice is limited by the quality of the exchange functional. 
+On the other hand are approximate model Hamiltonians (such as the Hubbard model~\cite{Hubbard}), 
+which describe the low energy physics solely in terms of the valence electrons and 
+are crucial to our understanding of physical phenomena such 
+as antiferromagnetism and high temperature superconductivity. 
+However, transitioning from actual materials to an effective Hamiltonian on a lattice relies 
+on physical insight and/or fits to experimental data, and this notion is not always rigorously well justified.~\footnote{
+While terms introduced in a lattice model are often very well motivated by the 
+underlying physics and the symmetries of the problem, 
+the magnitude (and sometimes even sign) the couplings is unknown.}
+ 
+This effective reduction of the complexity of the calculation is known as "downfolding" 
+and is commonly carried out using DFT-based approaches~\cite{Pavirini,Dasgupta}. 
+These methods use the electronic band structure to generate a tight binding model, 
+but are generally silent on the role of interactions (i.e. two and higher body terms). 
+Incorrect estimation of the strength of the interactions 
+in the case of systems with strong electron-electron correlations leads to 
+outcomes in clear violations of experiments. For example, the local density 
+approximation (LDA) predicts undoped LaCu$_2$O$_4$ 
+to be metallic instead of insulating, requiring adhoc inputs for 
+the downfolding procedure~\cite{Kent_Hubbard}. 
+Other schemes for magnetic systems involve fitting DFT energies for 
+various spin configurations to effective Heisenberg~\cite{Valenti_kagome} 
+and bilinear-biquadratic models~\cite{Spaldin}.    
+
+Once an effective Hamiltonian in the \emph{reduced} Hilbert space 
+is obtained, it can be used to perform a lattice-model calculation 
+on a \emph{much} bigger system. Many techniques such as the density matrix 
+renormalization group (DMRG)~\cite{dmrg_white}, tensor networks~\cite{tps_nishino,Vidal_MERA,
+TPS_review,Changlani_CPS,Neuscamman_CPS,mezzacapo,Marti}, 
+dynamical field theory (DMFT), density matrix embedding (DMET)~\cite{DMET_2012,Chen_DMET} 
+and lattice quantum Monte Carlo (QMC) methods~\cite{Sandvik_loops,Blankenbecler,Alavi_FCIQMC,SQMC} 
+have been developed to deal with such model Hamiltonians. 
+This multi-step modeling procedure is needed since the \emph{ab-initio} 
+calculations for a given system size are, in general, much more 
+computationally expensive than the equivalent lattice calculations. 
+Large sizes are crucial to study finite size effects, and in turn 
+theoretically establish the presence of a phase. For example, in the case of 
+frustrated magnetic systems, many nearly-degenerate states exist some of which can be 
+stabilized only on very large unit cells~\cite{Marston_Zeng}. 
+In addition, excited states and dynamical correlation functions have traditionally 
+been difficult in \emph{ab-initio} approaches, 
+but have seen progress for lattice model methods~\cite{Daley_tDMRG, White_tDMRG}.
+
+Various efforts have been taken to develop accurate downfolding 
+methods. For example, Aryasetiawan et al.~\cite{Aryasetiawan} 
+have laid out a post-DFT framework for obtaining 
+static and frequency dependent Hamiltonians using the 
+constrained-RPA approach. While the method has been applied to 
+a wide range of systems~\cite{Imada1,Imada2,Arya1,Arya2,Wehling_graphene}, 
+it is only recently~\cite{RPA_Troyer} that its accuracy is being rigorously checked. 
+Other approaches include traditional Lowdin downfolding 
+within a stochastic approach~\cite{Tenno} and 
+canonical transformation theory~\cite{White_CT,Yanai_CT}, 
+also being actively pursued as quantum chemistry 
+methods~\footnote{A special case of canonical transformation theory is 
+the Schrieffer-Wolf transformation~\cite{Schrieffer_Wolff} used in the 
+BCS theory of superconductivity}.  
+
+In this paper, we apply the \emph{ab-initio} 
+Quantum Monte Carlo (QMC) approach~\cite{Ceperley_Alder,Foulkes_review}, 
+one of the most accurate and highly scalable wavefunction based electronic-structure 
+methods. The QMC method works directly in the continuum and 
+explicitly introduces correlation into the Slater determinant obtained 
+from DFT or Hartree Fock calculations. For energies of eigenstates, obtained 
+by stochastic projection, the only systematic error is in the assumption of the 
+nodes of the many-body wavefunction: in practice, 
+this approximation is estimated to miss $ 5 - 10 \%$ 
+of the correlation energy. Correlation functions and density matrices are generally 
+less accurate, but good wavefunctions can bring down the errors significantly. 
+For arbitrary wavefunctions which can be evaluated in polynomial time, 
+the \emph{only} error is purely statistical and 
+can be brought down to arbitrarily small values by increased sampling.
+
+While all results presented here utilize data generated from 
+\emph{ab-initio} QMC, the idea of fitting data from many-body wavefunctions to models applies 
+to other methods as well. Information from many-body wavefunctions detects 
+inadequacies of a proposed model: the deviations suggest the form of additional missing terms. 
+Crucially, a wavefunction-based method does not differentiate between kinetic 
+and potential energy terms: all terms are treated the same way. 
+The approach is complementary to semi-empirical methods that 
+fit models solely to available energy spectra. 
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=1\linewidth]{./effham.pdf}
+\caption{Schematic for downfolding. The full Hamiltonian H is defined in the space of active (partially occupied), 
+core (mostly occupied) and virtual (mostly unoccupied) orbitals. The objective is to map the physics 
+of the original system to that of the effective one $\tilde{H}$ defined only in the active space.}
+\label{fig:effham} 
+\end{figure}	
+
+In the rest of this paper, we develop and demonstrate our downfolding formalism. 
+Since the concepts require an understanding 
+of the \emph{ab-initio} calculations, we begin by discussing important details of the methods used.
+Then, a set of criteria for a low-energy effective Hamiltonian are 
+established and the fitting procedure is motivated and 
+explained. We test our proposed ideas for the benzene molecule: 
+a 30 electron problem is downfolded to a 6 electron one by describing the system with 
+a single-band extended Hubbard model. The energy gaps of this model Hamiltonian 
+are compared to experimentally available energies \emph{without} 
+using any additional external inputs. 
+As an example of application to solid materials, 
+the question of the strength of Coulomb correlations in graphene is addressed. 
+Using periodic unit cells, along with a consideration of finite size effects, 
+we estimate that the effective onsite interaction is $U^{*}/t = 1.1 \pm 0.1 $, 
+in the same range as a recently reported estimate~\cite{Schuler_graphene} 
+based on the constrained-RPA method. Finally, we conclude by proposing 
+future directions and potential applications of the method introduced. 
+
+\section{Methods}
+In the present section we discuss the various methods we used to generate our data. 
+While most of our discussion is specific to QMC, 
+the measures used can also be calculated in 
+almost any other wavefunction-based quantum chemistry method. 
+The reader interest in the main ideas may skip this section and directly proceed 
+to the next one. 
+
+All the \emph{ab-initio} QMC calculations were carried 
+out with the QWalk package~\cite{QWALK}.
+   
+\subsection{Variational and Fixed Node Diffusion Quantum Monte Carlo}
+\emph{Ab-initio} Quantum Monte Carlo comprises of a suite of methods that efficiently sample 
+the phase space of $N$ electrons each moving in 3-dimensional real space. 
+When the wavefunction as a function of $3N$ coordinates is known, the phase space
+can be sampled with the variational Monte Carlo (VMC) using Metropolis algorithms.
+For ground state calculations, the Diffusion Monte Carlo (DMC) method, 
+based on imaginary time evolution of the Schroedinger equation, is formally exact but in practice severely 
+limited by the numerical sign problem. This problem ceases to exist if one knew the exact location 
+of the nodes (zeroes) of the many-body wavefunction. Thus, the optimal 
+strategy for very accurate calculations is 
+to generate a good trial wavefunction, and optimize its parameters to 
+minimize its variational energy. Then use this wavefunction to "fix the nodes" (which may 
+only approximately correspond to the exact nodes) and perform a DMC calculation under this constraint.  
+This last variant is called the fixed node DMC (FN-DMC) method and is known to be 
+very accurate for a large variety of systems. While some more details are discussed here, 
+we refer the interested reader to Ref.~\cite{Foulkes_review} for an exhaustive 
+review of concepts and applications.
+
+A typical QMC calculation was carried out as follows. 
+First, perform DFT calculations with the B3LYP~\cite{B3LYP} or 
+PBE functionals~\cite{PBE} using the GAMESS software~\cite{GAMESS} 
+for molecules or the CRYSTAL code~\cite{CRYSTAL} for solids.  
+The lowest energy DFT orbitals provide the Slater determinant part of the trial 
+wavefunction. For molecules, a multi-determinantal wavefunction is generated by performing 
+a CI-Singles Doubles calculation from the reference Slater determinant. 
+Once this is done, a Jastrow factor is introduced, resulting in the ansatz,
+\begin{equation}
+	\psi_T (r_1,r_2,....r_N) = \mathcal{J} \sum_{i} d_i D_i
+\end{equation} 
+When we desire eigenstates, the full wavefunction 
+(i.e. parameters in the Jastrow $\mathcal{J}$ 
+and the coefficients $d_i$ of the determinants $D_i$ 
+are optimized to get the best possible variational energy within the ansatz chosen) 
+using a technique introduced by Umrigar and coworkers~\cite{Umrigar_optimization} 
+with an efficient implementation for calculating observables 
+by Clark et al.~\cite{Clark_multidet}.
+
+The variational energy is calculated via Metropolis sampling of $|\psi_T|^{2}$, 
+\begin{equation} 
+ E_{VMC} \equiv \frac{ \langle \psi_T | H | \psi_T \rangle} {\langle \psi_T | \psi_T \rangle} = \frac{ \int |\psi_T ({\bf{R}})|^2 \frac{H \psi_T({\bf{R}})}{\psi_T({\bf{R}})} \;\;\; d{\bf{R}} } { \int |\psi_T ({\bf{R}})|^2 d {\bf{R}}}
+\end{equation}
+where $\bf{R}$ is a compact notation for the 3-N 
+coordinates $(r_1,r_2,....r_N)$ and $H \psi_T({\bf{R}})/\psi_T({\bf{R}})$ is the "local energy". 
+With this trial wavefunction, we perform Diffusion Monte Carlo 
+calculations under the fixed node constraint, (FN-DMC) 
+to get the projected estimate of the energy, 
+\begin{equation}
+E_{DMC} \equiv \frac{ \langle \psi_T | H | \psi \rangle} {\langle \psi | \psi_T \rangle} = \frac{ \int \psi_T ({\bf{R}}) \psi({\bf{R}}) \frac{H \psi_T({\bf{R}})}{\psi_T({\bf{R}})} d {\bf{R}} }{ \int \psi_T ({\bf{R}}) \psi ({\bf{R}}) d {\bf{R}}}
+\end{equation}
+where $\psi \equiv \exp (-\beta H) \psi_T$ is obtained by a stochastic projection 
+of $\psi_T$ under the constraint that $\psi$ and $\psi_T$ have the same sign everywhere. 
+Thus, at the cost of a biased answer, one works with the positive definite 
+distribution $\psi \psi_T$ without a Monte Carlo sign problem. (This bias 
+is not a problem when eigenstates are not needed: the mixed distribution 
+corresponds to some positive-definite sampling function.  We then view the 
+"energy" as not an eigen-energy, but simply as an expectation value over this mixed distribution which can be 
+calculated to arbitrary accuracy. This interpretation will be useful for the 
+effective Hamiltonian construction discussed in a later section.)   
+
+We now discuss measurements in the QMC methods. The two estimators that are computed for a generic operator $\hat{O}$ 
+are the "pure" (VMC) and mixed (projected) estimators, 
+\begin{equation}
+         \langle \hat{O} \rangle_{VMC} \equiv \frac{ \langle \psi_T | O | \psi_T \rangle} {\langle \psi_T | \psi_T \rangle} 
+\;\;\;\; \langle \hat{O} \rangle_{mix} \equiv \frac{ \langle \psi_T | O | \psi   \rangle} {\langle \psi_T | \psi\rangle}
+\end{equation}
+The projected estimator of an operator is equal to the pure estimator 
+only in two limits: (1) when $\psi_T$ is the exact wavefunction or (2) when the 
+operator commutes with the Hamiltonian. Thus, when dealing with eigenstates 
+it has been shown by Ceperley that it is accurate to use the "extrapolated" 
+estimator,
+\begin{equation}
+	\langle \hat{O} \rangle_{\text{extrap}}  = 2 \langle \hat{O} \rangle_{\text{mix}} - \langle \hat{O} \rangle_{\text{VMC}}
+\end{equation}
+For good wavefunctions, all these estimators must approach the same value: practically, 
+however, when very high accuracy is needed, one may not be in this regime. 
+
+For the purpose of construction of effective Hamiltonians, the operators measured are the two-body reduced density matrix (2-RDM) 
+elements, 
+\begin{widetext}
+\begin{eqnarray}
+	\rho_{ijkl} &\equiv& \langle c_{i}^{\dagger} c_{j}^{\dagger} c_l c_k \rangle = \sum_{ a \neq b} \int \phi^{*}_k (r'_a) \phi^{*}_l (r'_b) \phi_i(r_a) \phi_j(r_b) \Psi^{*}({\bf{R}''_{ab}})~\Psi ({\bf{R}}) dr'_a dr'_b d {\bf{R}}
+\label{eq:2rdm}
+\end{eqnarray}
+\end{widetext}
+where $ {\bf{R}''_{ab}} = (r_1,r_2, r'_a..., r'_b,....r_N)$ is the set of coordinates with 
+the many-body wavefunction and $\phi_i(r)$ 
+are pre-decided one-particle wavefunctions (orbitals) indexed by compact 
+label $i (j,k,l)$ which accounts for space and spin. 
+The mixed estimator equivalent of Eq.~\eqref{eq:2rdm} 
+is obtained much like that for the energy. 
+More details of this computation 
+have been previously discussed elsewhere by one of us~\cite{Wagner_JCP}. The chosen set of orbitals 
+is often the Wannier-like localized functions: this property 
+makes it convenient to define Hubbard-like models. 
+We explain their construction next. 
+
+\subsection{Localized orbitals}
+\label{subsec:wannier}
+Localized orbitals often provide an intuitive way of understanding an electronic 
+system in terms of electron hops and on-site or inter-site repulsions. 
+Thus, many works have been devoted to this subject: ranging from the Linearized Muffin-Tin 
+Orbital (LMTO) method~\cite{Andersen} to the maximally localized Wannier 
+function construction~\cite{Marzari_Wf}. 
+Orbital localization has also been widely discussed 
+in the quantum chemistry literature. 
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=\linewidth]{./benzene_graphene.pdf}
+\caption{(Left) One of the six symmetry equivalent $\pi$ orbitals in the 
+benzene molecule obtained by localizing three bonding 
+and three anti-bonding orbitals. The 1-RDM computed within QMC 
+confirms that the $1 s$-like and the $2p - \sigma$ orbitals 
+(not shown) are close to fully occupied. 
+Hence only the half filled $\pi$ orbitals are used to fit a Hubbard-like Hamiltonian. 
+(Right) Representative localized orbitals for the $4\times4$ unit cell of graphene.}
+\label{fig:orbs} 
+\end{figure}	
+
+The idea is to first select a set of orbitals 
+in a certain energy window: for solids bands close to the Fermi level, for 
+molecules these are orbitals that are partially occupied. 
+Then, a \emph{unitary} transformation is performed to optimize a 
+pre-decided metric for localization.
+In this work, we minimize the 
+spread,
+\begin{equation}
+S = \sum_{n} \left( \langle \phi_n | r^2 | \phi_n \rangle - \langle \phi_n | {\bf{r}} | \phi_n \rangle^{2} \right)
+\end{equation} 
+where $\phi_n(r)$ are the desired localized orbitals related to the chosen set of 
+orbitals $\Phi_i(r)$ by a unitary transformation: 
+$\phi_n (r) = \sum_{i} U_{ni} \Phi_i(r)$  
+
+For some systems, as we will see in the case of benzene and graphene, 
+it is necessary to include unoccupied 
+(virtual) orbitals to get well-localized orbitals of the right symmetry~\cite{Hansen}.
+Thus the construction of localized orbitals is not a black-box procedure.
+(For example, a variant could be to take an arbitrary subset of \emph{all} 
+orbitals and demand localization of a smaller subset.)
+
+\subsection{Lattice model calculations}
+The lattice model calculations for Hubbard models of 
+benzene and graphene at half-filling were carried out with a combination of our own codes 
+and the freely available QUEST determinantal Quantum Monte Carlo package~\cite{QUEST}. 
+For the honeycomb lattice half-filled Hubbard model, the determinantal QMC 
+method is sign problem free and the results are \emph{exact} up to statistical errors.
+A time step of 0.1 was chosen and $\beta$ (the imaginary time) was set to 20 for every calculation. 
+The lattice-QMC calculations were performed with 5000 sweeps, with an additional 
+2000 sweeps being used for equilibration.
+
+\section{Criteria for a low energy effective Hamiltonian}
+\label{sec:demands}
+Our aim is to obtain a low energy effective Hamiltonian defined in 
+the active space of electrons which is preferably (but not necessarily) 
+described in terms of localized orbitals. In this basis, the criteria any 
+effective low energy model Hamiltonian must satisfy are,
+\begin{itemize}
+\item (a) The reduced density matrices (RDM) of the ground and excited states (computed in a basis) 
+          obtained from the \emph{ab-initio} calculation must match with that of the model calculation. 
+
+\item (b) The energy spectra of the \emph{ab-initio} and model systems must match in the energy window of interest. 
+
+\item(c) The model must be simple enough and must contain the essential physics to avoid overparameterization and overfitting. 
+\end{itemize}
+
+The concept of matching RDMs, criterion (a), 
+has previously appeared in related contexts~\cite{Acioli,Zhou_Ceperley, Changlani_percolation} 
+and in work by one of us~\cite{Wagner_JCP}. Most physical properties, 
+such as the charge and spin structure factors, are functions of the 2-RDM.
+Practically, it may be computationally expensive to get 
+high-order RDMs: in this study we use the matching condition only on the 
+2-RDM $\rho_{ijkl} \equiv \langle c_i^{\dagger} c_j^{\dagger} c_l c_k \rangle$ where $i,j,k,l$ are orbital indices 
+(including space and spin)~\footnote{Note that good quantum numbers such as 
+total spin and angular momentum of a pure state are functions of the \emph{full} 
+2-RDM (if the Hamiltonian has those same symmetries) and not the \emph{partial} ones we use for matching.}.
+This criterion automatically ensures that 
+the combined number of electrons occupying the orbitals 
+is equal to those in the model Hamiltonian. (If any 
+input state does not satisfy the condition of 
+expected electron number, then it can not be described by the effective Hamiltonian.)  
+
+The importance of excited state energies 
+used in the fitting, criterion (b), is easily highlighted by the fact that 
+the wavefunctions (and hence their two-body density matrices) 
+are invariant to many kinds of terms that enter the Hamiltonian.
+For example, the transformation, 
+\begin{equation}
+	H' \rightarrow H + \alpha S^2 + \beta n + \gamma S^2 n 
+\end{equation}
+is, by construction, consistent with all the 2-RDM data 
+for any $\alpha$, $\beta$, $\gamma$ 
+for systems which have spin symmetry and conserve particle number.
+Imposing certain "physical constraints" on the form of the 
+interactions can eliminate the need for this criterion. 
+To give a concrete example, consider wavefunction data 
+generated from the ground state of an unfrustrated 
+Heisenberg Hamiltonian in a bipartite lattice~\footnote{A bipartite 
+lattice is one with two sublattices $A$ and $B$ with 
+only $A-B$ connections but no $A-A$ or $B-B$ ones.}, 
+$ H = J \sum_{\langle i,j \rangle}\bar{S}_i \cdot \bar{S_j}.$ 
+where $\langle i,j \rangle$ refer to nearest neighbor pairs.
+Then adding $\alpha S^2$ gives the same correlators (density matrices) 
+of the ground state, as long as $\alpha$ is small enough to not cause 
+energy crossings i.e. not make an original 
+excited state the new ground state. This additional 
+term has the effect of introducing long range Heisenberg couplings. 
+Moreover, the effective Hamiltonian is not unique: 
+the Lieb-Mattis model~\cite{LM} $H = S_A \dot S_B$ 
+(where $A$ and $B$ refer to sublattice spins), is also 
+known to reproduce the low-energy limit of the Heisenberg model. 
+Thus, imposing the requirement that the Hamiltonian has the 
+nearest-neighbor form constrains $\alpha$ to zero and picks 
+one particular model. Similar arguments should 
+apply to long-range Hubbard models in homogenous 
+systems where a physical constraint is that density-density 
+interaction must decrease monontonically with distance between orbitals. 
+
+While having many excited states from \emph{ab-initio} calculations 
+is desirable, we note that certain methods only work best for 
+determining ground states in symmetry sectors. 
+In the case of FN-DMC, 
+some other excited states can also be achieved by fixing their 
+nodal structure (which is different from that of the ground state). 
+Our practical experience suggests that attempts to obtain 
+eigenstates were often associated with broken symmetries. 
+This happens for a variety of reasons: choice of DFT orbitals, 
+contamination of the spin-structure by the 
+Jastrow and/or incomplete optimization. 
+These limitations suggest that it is 
+important to reduce the dependence of the desired 
+method only on eigenstates. Instead, our philosophy is to 
+use the \emph{available} information from arbitrary 
+low-energy states to our advantage. 
+(Moreover, if \emph{all} eigenstates were known, the utility of 
+generating an effective Hamiltonian might be diluted anyway.)
+  
+Given a finite amount of data, we note that criteria (a) and (b) 
+do not always uniquely determine an effective Hamiltonian, 
+even within the ansatz chosen. For example, one may demand that 
+the cross expectation values of certain operators 
+(say $\langle \psi_1 | c_i^{\dagger} c_j | \psi_2 \rangle$) 
+between the \emph{ab-initio} and model calculations must match. 
+This information could also be added as an 
+additional criterion for matching. 
+
+Finally, it is important to build confidence 
+in this Hamiltonian by comparing its outputs with respect 
+to data not used in the fitting. 
+To partly remedy this, we propose the 
+heuristic criterion (c). As is the case with many situations 
+involving fititng, we desire 
+the minimal model that explains the data to 
+some reasonable accuracy. This has the effect of making such a 
+model Hamiltonian useful in other situations i.e. transferable.
+
+\section{Hubbard interactions as fitting parameters}
+\label{sec:fitting}
+What is the meaning of the Hubbard $U$ (and other interactions)?
+Is there a fundamental definition or are they fit parameters to a chosen model? 
+We take the latter viewpoint and thinking this way helps reconcile 
+widely varying estimates that exist in the literature. 
+
+%A common expression for the generalized-two body interaction is taken to be, 
+%\begin{equation}
+% V_{ijkl} = \int  \phi_i (r) \phi_j (r')  W (r,r') \phi_k (r) \phi_l (r')
+%\end{equation}
+%where the modified interaction $W(r,r')$ is obtained from a model for screening 
+%relating it to the bare Coulomb interaction $V(r,r')$. 
+The Hubbard $U$ depends on the energy range 
+over which one is interested in estimating it. It is an 
+"effective interaction" that encodes the effect of many others 
+which would otherwise be needed in a completely static model.
+Even in the low frequency static limit, estimates 
+of the Hubbard $U$ can vary over large factors~\cite{Fei_Lin} 
+(of the order of $2$ or more): this is partly attributed to insensitivity 
+of correlation-functions in the ground state to its precise value. 
+Any inaccuracy in the \emph{ab-initio} calculation reflects as 
+large changes in the estimated $U$. This point 
+will become clearer in later sections of the paper.
+ 
+In the fitting approach, the idea is to use a sufficiently 
+large data set such that the proposed Hamiltonian has "learnt" most 
+relevant features of the low-energy physics, after which the parameters 
+are used for understanding other properties. 
+This reconstruction depends on the kind of data input to the method 
+and the presence of linear dependencies. 
+We present a formulation which puts the statements above 
+on a more rigorous mathematical footing.
+
+\subsection{Fitting procedure: $Ax=E$ method}
+\label{sec:AxE}
+Consider a set of \emph{ab-initio} 
+energies $E_s$ (in general, expectation values of the Hamiltonian) 
+and corresponding 1 and 2 body RDMs $\langle c_i^{\dagger} c_j \rangle_s$ 
+$\langle c_i^{\dagger}c_j^{\dagger} c_l c_k \rangle_s$ 
+for various \emph{arbitrary} low-energy states characterized by index $s$. 
+Assume a model 2-body Hamiltonian parameterized by (yet unknown) 
+renormalized parameters $t_{ij}$ (one body part) 
+and $V_{i,j,k,l}$ (2-body part) along with a constant term $C$, 
+the total number of parameters being $N_p$. Then for each state $s$, 
+we have the equation, 
+\begin{equation}
+	E_s = \langle H \rangle_s = C + \sum_{ij} t_{ij} \langle c_i^{\dagger} c_j \rangle + \sum_{ijkl} V_{ijkl} \langle c_i^{\dagger}c_j^{\dagger} c_l c_k \rangle  
+\end{equation}
+where we have made the assumption that the chosen set of orbitals 
+is capable of explaining all energy differences. The constant $C$ is from energetic contributions 
+of all other orbitals which are (almost) decoupled from the chosen set.  
+ 
+We then perform calculations for 
+$M$ (possibly random) low-energy states which are not necessarily eigenstates.  
+The objective is to explore various parts 
+of the low-energy Hilbert space which show variations in the 2-RDM elements. 
+Since the same parameters describe all $M$ states, they must 
+satisfy the linear set of equations, 
+\begin{eqnarray}
+\left(
+\begin{array}{c}
+E_1 \\
+E_2 \\
+E_3 \\
+... \\
+... \\
+... \\
+... \\
+E_M
+\end{array}
+\right) =
+\left(
+\begin{array}{ccccc}
+1 & \langle c_i^{\dagger}c_j \rangle_{1}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{1} & .. \\
+1 & \langle c_i^{\dagger}c_j \rangle_{2}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{2} & .. \\
+1 & \langle c_i^{\dagger}c_j \rangle_{3}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{3} & .. \\
+1 & \langle c_i^{\dagger}c_j \rangle_{4}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{4} & .. \\
+1 & ....                                  & .. & ..                                                    & .. \\
+1 & ....                                  & .. & ..                                                    & .. \\
+1 & \langle c_i^{\dagger}c_j \rangle_{M}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{M} & .. \\
+\end{array}
+\right) \left(
+\begin{array}{c}
+C           \\
+t_{ij}      \\
+..          \\
+V_{ijkl}    \\
+..
+\end{array}
+\right)
+\end{eqnarray}
+which can be written more compactly as,
+\begin{equation}
+	{\bf{E}} = A {\bf{x}}
+\end{equation}
+where $ {\bf{E}} \equiv (E_1,E_2,...E_M)^{T}$ 
+is the $M$ dimensional vector of energies, $A$ is the $M \times N_p$ matrix composed 
+of density matrix elements and $ {\bf{x}} \equiv (C,t_{ij}....V_{ijkl}...)^T$ 
+is a $N_p$ dimensional vector of parameters.
+This problem is overdetermined for $M>N_p$, which is the regime we expect to work in.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=1\linewidth]{./hamfit.pdf}
+\caption{Methods employed for downfolding involving Hamiltonian parameter fitting (a) Matching 
+the reduced density matrices (RDMs) of energy-eigenstates 
+(b) The "\emph{Ax=E}" method uses RDMs and energies of arbitrary states. }
+\label{fig:hamfit} 
+\end{figure}	
+
+
+In the case of any imperfection in the model (which is the most common case), 
+the equality will not hold exactly 
+and one must then instead minimize the norm, $\mathcal{N}$,
+\begin{equation}
+	\mathcal{N} \equiv ||A\bf{x}-\bf{E}||^2
+\label{eq:norm}
+\end{equation}
+The nice property of this cost function is that it can be minimized
+in a single step by using the method of least squares, employing the singular 
+value decomposition of matrix $A$, which also encodes exact (or near-exact) linear dependences. 
+Thus, the quality of the fit can be directly judged 
+by assessing (1) the singular values of the $A$ matrix and (2) 
+the value of the cost function itself i.e. the deviations of the input and fitted energies.
+We will refer to this method as the "Ax=E" method at various points in the paper.
+
+The cost function~\eqref{eq:norm} is unlike that used when matching 
+canonical density operators,
+\begin{equation} 
+\frac{1} {Z^{m}} \exp(-\beta H^{m})  = \frac{1} {Z^{a}} \exp(-\beta H^{a})
+\label{eq:Z_Zstar}
+\end {equation}
+where indices $m$ and $a$ refer to the model and ab-initio (true) systems, $\beta$ 
+is an inverse temperature and $Z$ is the partition function
+In contrast, our "energy-weighting" function is a box-function: it weighs all the energies 
+in a given window equally. The form of the cost function (including the 
+weighting function) is unimportant in the limit of a perfect model.
+
+In summary, our approach solves 
+linear equations in terms of the unknown parameters, by using the density matrices 
+from an \emph{ab-initio} method. This concept works only when we 
+know the model Hamiltonian that describes the data, and all we want is the numerical 
+values of the parameters. Thus to verify the validity of the calculation, 
+one must use the derived parameters and calculate many-body eigenstates 
+in the model and check their correspondence with the \emph{ab-initio} 
+calculations.
+
+The matrix $A$ gives a very natural basis to understand "renormalization" effects.
+For example, consider a set of wavefunctions, that show that the correlator 
+$\langle n_0 n_3 \rangle$ does not change significantly. This would lead to the 
+corresponding column of matrix $A$ being identical (up to a scale factor) 
+to the first column of 1's. Physically, this would correspond to the coupling constant 
+$V_{03}$ being unimportant (it can take any value including 0) and its 
+effect can be completely absorbed into the constant shift term. 
+(This could also alternatively mean that the input 
+data is correlated and does not provide enough information about $V_{03}$. 
+In the case of non-zero "small variations", the value of this parameter 
+will be quite sensitive to the data set and its quality.) 
+Said differently, it is the \emph{variation}  
+in an RDM element (across states in the energy window) 
+that are important: \emph{not} their \emph{absolute} values.
+
+The utility of the wavefunction approach is apparent in this 
+formulation: the expectation values entering matrix $A$ 
+can be calculated for arbitrary wavefunctions by Monte Carlo sampling.
+We can also simply use variational Monte Carlo and corresponding energies
+for constructing the $A$ matrix, however we may not get the desired accuracy. 
+
+It is thus preferable to use the accurate FN-DMC method. In this case, one needs to modify the linear equations 
+to use projected estimators. More specifically, we have, $E= \langle {\psi_T}^{s}| H | {\psi}^s \rangle$ 
+and thus must use the projected estimates of the density matrix elements i.e. 
+$\langle {\psi_T}^s | c_i^{\dagger} c_j | {\psi}^s \rangle$ and $\langle {\psi_T}^s| c_i^{\dagger}c_j^{\dagger} c_l c_k | {\psi}^s \rangle$ 
+in the construction of the $A$ matrix. (The implicit normalization of these 
+mixed estimates by $\langle {\psi_T}^s | \psi^{s} \rangle$ is assumed.) 
+This projector formulation is also very amenable to 
+coupled-cluster calculations which also work with projected energies 
+and density matrices.
+
+There is no need to worry about the bias in FN-DMC in our formulation. 
+This is because we regard $\psi \psi_T$ as some \emph{arbitrary} positive sampling function 
+associated with a low energy state and use the \emph{same} distribution for the 
+evaluation of the density matrix elements. We are not concerned with whether 
+an exact eigenstate is being sampled or not: we just desire a linear equation 
+(for the unknown parameters) from this exercise. Thus the relationship between the FN-DMC energy 
+and the projected density matrix elements is always an \emph{exact} relationship 
+(up to errors coming in from statistics and from the 
+assumption of the form of the Hamiltonian). 
+
+\subsection{Simple application: Hubbard to Heisenberg model}
+To demonstrate our formalism for a simple example, we 
+consider the two site Hubbard model and fit information from the lowest two states 
+to a Heisenberg model. (This is not technically downfolding, as there is no reduction 
+of electron number). 
+
+We analytically solve for all four eigenstates of the Hamiltonian,
+\begin{equation}
+H = -t \sum_{ij} c_{i,\sigma}^{\dagger} c_{j,\sigma} + \text{h.c.} + U \sum_{i=1,2} n_{i,\uparrow} n_{i,\downarrow}+ V n_1 n_2
+\label{eq:two_hubbard}
+\end{equation}
+for two opposite spin electrons on two sites, where $t$ is the hopping, $U$ is the usual Hubbard term and $V$ is an inter-orbital density-density 
+interaction. 
+ 
+First notice that the triplet state $| \psi_t \rangle \equiv \frac{|\uparrow \;\; \downarrow \rangle - |\downarrow \;\; \uparrow \rangle }{\sqrt{2}} $ with energy $E_t=V$ and the state $|\psi_d \rangle \equiv \frac{|\uparrow \;\; \downarrow \rangle - |\downarrow \;\; \uparrow \rangle }{\sqrt{2}}$ with energy $E_d=U$, are exact eigenstates of the problem independent of the values of $t$ and $U$ and $V$. 
+
+To get the other two states, write the Hamiltonian in the 
+basis of $ |\psi_s \rangle \equiv \frac{1}{\sqrt{2}} \left( |\uparrow \;\; \downarrow \rangle + |\downarrow \;\; \uparrow \rangle \right) $ 
+and $ | {\psi_d}^{'} \rangle \equiv \frac{1}{\sqrt{2}} \left( |\uparrow\downarrow 0 \rangle + |0 \uparrow\downarrow \rangle \right) $, 
+\begin{eqnarray}
+H =
+\left(
+\begin{array}{cc}
+V   & -2t \\
+-2t & U    \\
+\end{array}
+\right)
+\end{eqnarray}
+Then diagonalizing it (i.e. solving the quadratic equation), we get the energies to be, 
+\begin{equation}
+E_{\pm} = \frac{U + V \pm \sqrt{(U-V)^2+16 t^2} }{2}
+\end{equation}
+
+Consider the case of $V=0$, and $U>t>0$, the usual Hubbard model. 
+The lowest energy corresponds to the singlet, $E_{-}$ and the 
+corresponding eigenvector is 
+\begin{equation}
+	| \psi_{-} \rangle = \frac{2t}{\sqrt{4t^2+{E_{-}}^2}} |\psi_s \rangle  - \frac{E_{-}}{\sqrt{4t^2+{E_{-}}^2}} |{\psi_d}^{'} \rangle
+\end{equation}
+with the next excited state being the triplet $|\psi_t \rangle$.
+
+We choose the Heisenberg form to fit to
+\begin{equation}
+	\tilde{H} = C + J S_1 \cdot S_2
+\end{equation}
+To determine the parameters $C$ and $J$, form the $2 \times 2$ $A$ matrix 
+with the lowest two energy states,
+\begin{equation}
+\left(
+\begin{array}{c}
+ E_{-} \\ 
+ E_t \\
+\end{array}
+\right)
+=
+\left(
+\begin{array}{cc}
+1   &  \frac{1} {4+(E_{-}/t)^2}	\\
+1   & -3/4                      \\
+\end{array}
+\right)
+\left(
+\begin{array}{c}
+ C \\
+ J \\
+\end{array}
+\right)
+\end{equation}
+Using derived values of $E_s$ and $E_t=0$, we get,
+\begin{equation}
+	J = \frac{E_s (4+(E_{-}/t)^2)}{4+\frac{3}{4}(E_{-}/t)^2}
+\end{equation} 
+which to lowest order in $t/U$ is $J = -4t^2/U$.
+
+Observe that the correlator for $\langle S_i \cdot S_j \rangle$ is \emph{not exactly} 1/4 
+but only \emph{approximately} so. This is expected since the fluctuations from the 
+high-energy states are not exactly zero: if it were, then it is equivalent to 
+\emph{exactly} block -diagonalizing the Hamiltonian.
+
+In terms of canonical transformations (here, equivalent to second order perturbation theory), 
+the matrix element of the effective Hamiltonian between the singly occupied states is, 
+\begin{eqnarray}
+	\langle \uparrow\downarrow | \tilde{H} | \downarrow \uparrow \rangle &=& \sum_{n} \frac{ \langle \uparrow\downarrow|H| n\rangle\langle n |H| \downarrow \uparrow \rangle } {0-E_n} \nonumber \\ 
+	                                                                     &=& \frac{-2 t^{2}}{U}
+\end{eqnarray}
+Since this matrix element must equal $J/2$ in the Heisenberg model, we arrive at the same result: 
+namely $J = -4t^{2}/U $, as expected.
+(To map a fermion model to a spin model, a Jordan-Wigner phase is often introduced 
+which is fixed as there are no charge fluctuations. In this notation the singlet is 
+$ \frac{1}{\sqrt{2}} \left( |\uparrow \;\; \downarrow \rangle - |\downarrow \;\; \uparrow \rangle \right) $, 
+the triplet is $ \frac{1}{\sqrt{2}} \left( |\uparrow \;\; \downarrow \rangle + |\downarrow \;\; \uparrow \rangle \right) $ 
+and $J=+4t^2/U$)
+
+\subsection{Long range vs on-site Hubbard models}
+Since the Hubbard $U$ is a fit parameter, its value 
+can be vastly different depending on whether other long range 
+interactions $V_{ij} n_i n_j$ are added or not. However, it is still 
+meaningful to ask how the Hubbard $U$ in a long-range model 
+and the effective $U^{*}$ in an on-site model are (approximately) 
+related. 
+
+Once again, this is most simply understood 
+for the previous example of the two-site extended 
+Hubbard model, where the $V$ term 
+simply counters $U$: we have, 
+\begin{equation}
+	U^{*} = U - V
+\end{equation}
+A more generalized condition, for arbitrary range interactions, 
+was derived~\cite{Schuler_graphene} by demanding that the canonical 
+density operator of the short range model match the exact density operator 
+as closely as possible, Eq.~\eqref{eq:Z_Zstar}. 
+%Then a Pierls-Feynman-Bogoliubov 
+%functional was defined and minimzed.
+
+\section{Benzene molecule}
+We show the workings of the described methods for the benzene molecule. 
+Our choice of system is motivated by the simplicity of the system (one band model and presence of many symmetries) 
+and the availability of experimental energies to compare to. 
+
+% Fitting method
+% Eigenstate
+% Ax=b 
+% for both ab initio and model hard to get eigenstates
+% demonstration example of fitting on-site 
+% to benzene
+% Ax=b doesnt need eigenstates
+% Here is how we use it for the same problem
+
+DFT calculations were first performed in the TZVP basis with Burkatzki-Filippi-Dolg pseudopotentials~\cite{BFD}, 
+using the molecular geometry that corresponds to a B3LYP optimized calculation. 
+These serve as a starting point for the QMC calculations, discussed in the Methods section.
+In the charge neutral sector, there are a total of 30 electrons (15 $\uparrow$  and 15 $\downarrow$ 
+for the spin-singlet state) and our objective is to downfold 
+this system to an effective one with 6 electrons (3$\uparrow$, 3 $\downarrow$). 
+
+The model Hamiltonian is defined in the space of six $\pi$ orbitals (a representative has been shown in Fig.~\ref{fig:orbs}): 
+these orbitals are not the atomic $p_z$ ones, but rather their renormalized versions.
+They were obtained by localizing the highest three occupied B3LYP orbitals 
+(from the $S=0$ ground state DFT calculation) and the lowest three virtual (unoccupied) orbitals with $\pi$ orbital symmetry: 
+a well established procedure in the literature~\cite{Hansen}.  The overall phase (i.e. plus or minus sign) 
+of these orbitals is adjusted to enable use of parameter symmetries directly when fitting.
+
+\begin{table*}[htpb]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+Spin & Charge & DFT      &   SJ-VMC      &  SJ-DMC	 &  CISDJ-VMC    &  CISDJ-DMC  & $N_\uparrow,N_\downarrow$ & Used in Fit?\tabularnewline 
+\hline							      
+ 0   & -2   & -37.4249   & -37.3899(6)   & x      	 & x             & -37.6221(8) &  x         & No \tabularnewline
+\hline							      
+ 1/2 & -1   & -37.5891   & -37.5758(6)   & x      	 & -37.5944(6)   & -37.7066(6) &  x         & No \tabularnewline
+\hline							      
+ 0   &  0   & -37.6303   & -37.6229(6)   & -37.7213(9)	 & -37.6352(6)   & -37.7259(9) & 2.96,2.96  & Yes \tabularnewline
+\hline							      
+ 1   &  0   & -37.4634   & -37.4546(6)   & -37.5555(7)	 & -37.4814(6)   & -37.5707(7) & 3.94,1.98  & Yes \tabularnewline
+     &      &            &               &          	 & -37.4561(6)   & -37.5479(6) & 3.94,1.98  & Yes \tabularnewline
+     &      &            &               &       	 & -37.4531(6)   & -37.5470(6) & 3.94,1.98  & Yes \tabularnewline
+\hline							      
+ 2   &  0   & -37.3203   & -37.2987(6)   & -37.3974(7)	 & -37.3141(6)   & -37.4020(7) & 4.92,1.00  & Yes \tabularnewline
+\hline							      
+ 3   &  0   & -37.0378   & -37.0116(4)   & -37.1074(7)	 & -37.0118(4)   & -37.1083(7) & 4.88,0.02  & No \tabularnewline
+\hline							      
+ 1/2 & +1   & -37.3881   & -37.2798(6)   & -37.3764(7)	 & -37.2993(5)   & -37.3832(6) & 2.95,1.98  & Yes \tabularnewline
+\hline							      
+ 3/2 & +1   & -37.2329   & -37.1188(5)   & -37.2142(6)	 & -37.1350(6)   & -37.2203(6) & 3.92,1.00  & Yes \tabularnewline
+\hline							      
+ 0   & +2   & -36.6949   & -36.6751(5)   & -36.7770(14)	 & -36.7095(6)   & -36.7930(15)& 1.98,1.98  & Yes \tabularnewline
+\hline							      
+ 1   & +2   & -36.7359   & -36.7220(5)   & -36.8131(6)	 & -36.7404(5)   & -36.8209(6) & 2.94,1.00  & Yes \tabularnewline
+\hline							      
+ 2   & +2   & -36.5048   & -36.4091(2)   & x             & x             & x           &            & Yes \tabularnewline
+\hline 
+\end{tabular}
+\caption{Energy of different charge and spin eigenstates from DFT and QMC methods. 
+SJ refers to the Slater Jastrow wavefunctions and CISD. All DMC calculations used a time step of 0.01 Ha$^{-1}$. 
+The states that had significantly different occupations from 
+those expected were not used in the fitting as they can not be 
+described by an effective Hamiltonian.}
+\end{center}
+\label{tab:benzene}
+\end{table*}
+
+Table~\ref{tab:benzene} shows the QMC data for various (near) eigenstates of benzene. 
+Most of these states along with many other non-eigenstates (not shown) 
+constitute our data set for fitting a model. The calculations confirm 
+the general expectation that significant energy gains are obtained by 
+improving wavefunctions going from the single-Slater-Jastrow form to the 
+multi-determinantal-Jastrow form (the determinants being selected 
+from a CISD calculation). Moreover, the DMC calculations 
+improve total energies significantly: typically, 
+these values are $2-3$ eV below the corresponding VMC value.
+
+The total electron count from the one-body density matrix is 
+assessed to verify the validity of fitting to a six-$\pi$ orbital Hamiltonian. 
+Table~\ref{tab:benzene} shows that for charge-neutral benzene, 
+the singlet state ($S=0$) has up and down electron 
+counts of 2.96 each, which are close to the expected values of 
+3,3. For the $S=2$ state, roughly $9$ eV above the ground state, 
+the deviations were slightly larger: the summed 
+occupation numbers were 4.92 and 1.0 in comparison to the 
+expected values of 5 and 1. However, for the $S=3$ state, these numbers deviate signficantly 
+from the corresponding value in the model: 
+almost by one integer. This indicates that the $S=3$ state is 
+inadequately described by the proposed Hamiltonian and hence 
+can not be used in the fitting procedure. 
+This deviation is not completely unexpected: this state being 
+$\sim 17$ eV above the ground state is a potentially "high-energy state". 
+Said differently, the active space at this energy scale 
+is radically different from that \emph{assumed} for the ground state and its 
+\emph{low-energy} excitations.
+Thus, our QMC data suggests that it is only reasonable for the effective 
+Hamiltonian concept to hold only in an energy window of the order of $10 $ eV above the ground state 
+(in the same charge sector).
+
+\subsection {On-site Hubbard model}
+
+We consider the Hubbard model for six orbitals of benzene, 
+(idential to Eq.~\eqref{eq:two_hubbard}, with $V=0$ and generalized 
+to six orbitals) where the notation $t$ will be used 
+for the nearest-neighbor hopping and $U^{*}$ is the effective 
+on-site Coulomb repulsion. 
+We will discuss multiple ways of using reduced density matrix elements
+
+\subsubsection{Hubbard $U^{*}/t$ from the 2-RDM}
+An estimate of $U^{*}/t$ is obtained 
+by directly matching the 2-RDM elements corresponding 
+to the "double occupancy" correlator ($\langle n_{\uparrow} n_{\downarrow} \rangle$) 
+of the \emph{ab-initio} and lattice-model calculations. This element equals $0.25$ 
+for the non interacting case ($U^{*}=0$) and its value reduces for $U^{*}>0$.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=1\linewidth]{./double_occupancy_benzene.pdf}
+\caption{Double occupancy of the $\pi$ orbital of benzene 
+as a function of $U^{*}/t$, computed in the half filled ground state. 
+Comparisons are made with the values from the VMC and extrapolated estimators (see text) 
+obtained from the ab-initio QMC calculation with Slater-Jastrow and CISD-Jastrow wavefunctions.}
+\label{fig:rdm_benzene} 
+\end{figure}	
+
+\begin{figure*}[htpb]
+\centering
+\includegraphics[width=0.34\linewidth]{./rdm_benzene_hubbard.pdf}
+\includegraphics[width=0.32\linewidth]{./nn_corr_benzene_hubbard.pdf}
+\includegraphics[width=0.32\linewidth]{./ss_corr_benzene_hubbard.pdf}
+\includegraphics[width=0.32\linewidth]{./err_rdm_benzene_hubbard.pdf}
+\includegraphics[width=0.32\linewidth]{./err_nn_corr_benzene_hubbard.pdf}
+\includegraphics[width=0.32\linewidth]{./err_ss_corr_benzene_hubbard.pdf}
+\caption{Comparison of ab-initio Quantum Monte Carlo 
+and Hubbard model correlation functions for 
+the half filled singlet ground state for various values of $U^{*}/t$. 
+The main panels show the  
+(a) one body density matrix (b) density-density correlators 
+(c) spin-spin correlators as a function of distance with respect to a
+reference site (d)-(f) show the errors of the corresponding model 
+correlation functions with respect to the ab-initio data. Most correlators are captured 
+adequately, except for the nearest neighbor density-density correlator.} 
+%This is taken as evidence for the need to go to longer range Hubbard interactions.}
+\label{fig:HubbardU_benzene}
+\end{figure*}	
+
+Fig.~\ref{fig:rdm_benzene} shows the dependence of 
+$\langle n_{\uparrow} n_{\downarrow} \rangle$ (computed in the ground state at half filling) 
+on $U^{*}/t$ in the Hubbard model. The plot also indicates
+the value of this correlator computed from various wavefunctions and estimators. 
+The trends are consistent with our expectations: 
+the Slater-Jastrow wavefunction (at the VMC level) underestimates 
+the strength of the effective interactions, which is partly remedied by 
+the extrapolated estimator (from DMC). However, the bias (systematic error) 
+arising from the inaccuracy from the wavefunction is still large. 
+This bias is reduced by the biggest multideterminantal-Jastrow 
+(CISD-J) wavefunction we employed: the difference between the 
+variational and extrapolated estimator is reduced (10-20\%). 
+
+The value of $U^{*}/t$ is found to be extremely sensitive to the precise value of 
+the double occupancy: a change of a few percent (i.e. from $0.23$ to $0.20$) 
+changes our estimate from $0.5$ to $1.4$ (i.e. a factor of almost $3$). In general, 
+this observation suggests that it is crucial to look at various other 
+elements of the 2-RDM and to look at alternate ways 
+of estimating Hubbard parameters.
+
+\begin{figure}[htpb]
+\centering
+\subfigure[]{\includegraphics[width=\linewidth]{./Hubbard_5.pdf}}
+\subfigure[]{\includegraphics[width=\linewidth]{./Hubbard_12.pdf}}
+\caption{Fitted vs DMC energies for the on-site 
+Hubbard model in energy windows of width 
+(a) $5$ eV (b) $12$ eV above the ground state.}
+\label{fig:Ax_b_Hubbard}
+\end{figure}	
+
+Fig.~\ref{fig:HubbardU_benzene} shows comparison of the QMC 
+nearest-neigbor one body density matrix element 
+and the density-density and spin-spin correlators and those for the Hubbard model 
+for various values of $U^{*}/t$. The value of $U^{*}/t = 1.4$ gives the smallest errors 
+for most observables, except for the nearest-neighbor
+density-density correlator which prefers values of $U^{*}/t \sim 0$. 
+In the limit that the model is perfect, all estimates must 
+yield the same value: the differences reflect an inadequacy 
+of the on-site Hubbard model in describing all the data. 
+We take this as evidence for the need for long-range interactions.
+
+\subsubsection{Hubbard $U^{*}/t$ from the Ax=E method}
+At this point, we note that the idea of "matching density matrix elements"
+is useful only for comparing \emph{exact} eigenstates. However, it is 
+difficult to construct these with very high accuracy in the \emph{ab-initio}
+calculations (and at times also for the equivalent model for large system sizes). 
+This is why we appeal to the "Ax=E" method (introduced 
+and explained in Sec.~\ref{sec:AxE}) 
+which is relatively insensitive to the nature of the states input 
+to the method: in general, \emph{any} low-energy state 
+(within some energy range of the ground state) 
+yields information about the effective Hamiltonian 
+parameters.
+
+\begin{figure*}[htpb]
+\centering
+\subfigure[]{\includegraphics[width=0.32\linewidth]{./t_var.pdf}}
+\subfigure[]{\includegraphics[width=0.32\linewidth]{./t02_var.pdf}}
+\subfigure[]{\includegraphics[width=0.32\linewidth]{./t03_var.pdf}}
+\subfigure[]{\includegraphics[width=0.32\linewidth]{./U_var.pdf}}
+\subfigure[]{\includegraphics[width=0.32\linewidth]{./V01_var.pdf}}
+\subfigure[]{\includegraphics[width=0.32\linewidth]{./V02_var.pdf}}
+\caption{Variation of RDM elements (indicated by "Var") for various states 
+after subtracting out their averaged value. These elements couple to the relevant parameters 
+in the lattice model. As is discussed in the text, we big variations are needed 
+for the parameters to be estimated, else they can be taken to be effectively zero 
+(as is observed to be the case for $t_{02}$).}
+\label{fig:variations}
+\end{figure*}	
+
+For charge-neutral benzene, we construct the $A$ matrix 
+by taking various states in $5$ and $12$ eV energy windows above the ground state. 
+As is shown in Fig.~\ref{fig:Ax_b_Hubbard}, the $5$ eV window fit 
+gives $t=2.94$ eV and $U^{*}=4.30$ ($U^{*}/t$ = 1.46) with a maximum error of 
+0.2 eV and the $12$ eV fit gave $t=3.04$ eV, $U^{*}=4.54$ eV ($U^{*}/t = 1.50$) 
+a maximum error of 0.5 eV. 
+Studying different energy windows also provides a way of monitoring 
+the "frequency dependence" of the Hubbard $U^{*}/t$. 
+
+These ratios of $U^{*}/t$ are broadly consistent 
+with that obtained from the double occupancy correlator. However, the 
+values of $t$ is different from the fitted value of $t=2.54 $ eV reported by 
+Bursill et al~\cite{Bursill}: the discrepancy could be attributed to 
+(1) errors in experimental energies used in fitting 
+(2) use of a long-range model for the interactions 
+and (3) assumption that $t$ is not renormalized 
+on going from a long range to short range model. 
+Thus, we explore the long-range model in the next section 
+as a way of obtaining a more refined model.
+
+\begin{figure*}[htpb]
+\centering
+\subfigure[]{\includegraphics[width=0.31\linewidth]{./fit_VMC.pdf}}
+\subfigure[]{\includegraphics[width=0.31\linewidth]{./fit_DMC.pdf}}
+\subfigure[]{\includegraphics[width=0.33\linewidth]{./energies_benzene.pdf}}
+\caption{Comparison of energies matched 
+for states (not necessarily eigenstates) used in the fitting procedure 
+involving their reduced density matrix elements (described in the text). 
+The panels show (a) Fitted vs VMC energies (b) Fitted vs DMC energies (c) 
+Energies of various eigenstates appearing for various model Hamiltonians 
+vs experimental energy gaps.}
+\label{fig:expt} 
+\end{figure*}	
+
+\begin{table*}[htpb]
+\label{tab:param}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Parameter  &  Bursill           &  VMC (This work) &  DMC (This work)  & $U^{*}$    &  $U^{*}$ (This work) \tabularnewline
+\hline						   
+\hline						   
+% $E_{00}$  &    -               &   -		   &   -                &  -          &  -       \tabularnewline
+%\hline						   
+ $t$        &   +2.54            &   +3.05	   &   +2.86            &  +2.54      &  +2.94   \tabularnewline
+%\hline						   
+% $T_{02}$  &    -               &   0.0	   &   0.0              &  -          &    -    \tabularnewline
+%\hline						   
+% $T_{03}$  &    -               &   -0.15	   &   -0.15            &  -          &    -    \tabularnewline
+\hline						   
+ $U$       &    +10.06           &   +12.00	   &   +10.80           &  +3.04      &  +4.30 \tabularnewline
+\hline						   
+ $V_{01}$  &    +7.18            &   +8.00	   &   +7.02            &   -         &    -    \tabularnewline
+\hline						   
+ $V_{02}$  &    +5.11            &   +4.35	   &   +5.37            &   -         &    -    \tabularnewline
+\hline						   
+ $V_{03}$  &    +4.57            &   +4.57	   &   +4.57            &   -         &    -    \tabularnewline
+\hline
+\hline
+\end{tabular}
+\caption{Model Hamiltonian parameters (in eV) from various downfolding methods.}
+\end{center}
+\end{table*}
+%In the first way, we consider a quantum state obtained from DMC
+%with energy $\omega$ and ask what $U^{*}/t$ best describes 
+%the double occupancy correlator at this spin state (remaining in 
+%the same charge sector). In the second way, we assume that 
+%the energy difference between this 
+%state and the half filled ground state is described by a Hubbard model, whose 
+%$U^{*}$ can be obtained completely from the knowledge of the density matrices
+
+\subsection {Long range Hubbard model}
+Having established the need for long-range interactions in benzene,
+(based on discrepancies with respect to the ab-initio QMC correlators and energies),
+we consider the case of the extended Hubbard (or Parisier-Pople-Parr) model.
+
+In prior work, Bursill et al~\cite{Bursill} chose the form of the 
+density-density interactions to be of the "Ohno form"
+\begin{equation}
+	V_{ij}= \frac{U}{\sqrt{1 + (\alpha r_{ij})^{2}}}
+\end{equation}
+where $\alpha$ is a fitting parameter and $r_{ij}$ is the spatial 
+separation between nuclei. This parameterization 
+has been widely used in the modelling of various organic polymers. 
+More recently Schmalz~\cite{Schmalz} has discussed 
+the accuracy of the Mataga-Nishimoto (MN) form, 
+$V_{ij}= \frac{U}{1 + \alpha r_{ij}}$. 
+Both forms insure that in the large $r_{ij}$ limit $V_{ij} \rightarrow \frac{1} {r_{ij}}$. 
+The optimal parameters for these models are obtained by fitting 
+their spectra to available experimental energies.
+However, the results from both models differ: the Ohno-form is reported to be $U=10.06 $ eV while 
+the MN form gives $U=8.32$ eV. 
+
+We repeat similar analyses as that for the short-range model, in addition
+to carefully looking at the variations in the 1- and 2-RDM matrix 
+elements, shown in Fig.~\ref{fig:variations}. We find that $t_{02}$ 
+is irrelevant in the charge-neutral sector and thus attempt to first fit 
+to a model only with the nearest neighbor $t$ along with $U$, $V_{01}$ and $V_{02}$ 
+($V_{03}$ is not needed as it simply sets the chemical ptential). 
+We find that even in the $12$ eV window the maximum error 
+between the DMC and fitted energies 
+is now reduced to 0.15 eV shown in Fig.s~\ref{fig:expt}(b)
+
+Figure~\ref{fig:expt}(c) shows a comparison of the
+experimental energies with respect to various model 
+energies. Both the Hubbard and the Ohno parameterizations 
+can be considered to have small root mean square deviations: however, 
+the fact that there are outliers with large deviations 
+is indicative of their inadequacies. Our
+long ranged fitted PPP Hamiltonian, accounts for these outliers
+and can hence be considered to be accurate.
+
+Our parameters and those of previous studies are shown in Table~\ref{tab:param}. 
+While our results are most similar to the Ohno form, there are some 
+crucial deviations (of the order of $0.3- 0.8$ eV) that 
+improve the quality of our fitted energies. We emphasize that 
+we have not provided any experimental inputs: rather we have used QMC data (energies and RDMs) 
+from multiple states to directly to do the fitting. 
+Further, we show that the fit is robust to the parameters, 
+by estimating the errors from a Jacknife analysis in addition to 
+the eigenvalues of the $A$ matrix used in our formalism.
+
+\section{Graphene Solid}
+We now consider graphene, a 2D solid of carbon atoms arranged on a honeycomb lattice. 
+Graphene is a "wonder material" and has great potential technological applications, 
+which explains the immense works devoted to understanding it thoroughly~\cite{graphene_review}.
+That said, it is only recently that systematic studies to estimate the role of 
+electron-electron interactions~\cite{Wehling_graphene,Schuler_graphene,Abbamonte} 
+have been carried out. While its long-distance properties appear to be adequately 
+described by a tight binding model, the short range features, 
+crucial to study phenomena such as magnetism, require a more refined modeling.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=1\linewidth]{./double_occupancy_graphene.pdf}
+\caption{(Left) Double occupancy of the $\pi$ orbitals of $4\times4$ graphene for QMC, Non Interacting ($U^{*}/t = 0.0 $) 
+and RPA ($U^{*}/t=1.6$). This data is best explained by a Hubbard model with $U^{*}/t=0.6$ 
+(Right) Double occupancy vs $U^{*}/t$ for $L \times L$ graphene unit cells with periodic boundary conditions for $L=2,4,6,8$.
+Very small finite size effects exist for $L \geq 4$.}
+\label{fig:doubleocc} 
+\end{figure}	
+
+\begin{figure*}[htpb]
+\centering
+%\includegraphics[width=0.32\linewidth]{./rdm_graphene_hubbard.pdf}
+\includegraphics[width=0.48\linewidth]{./nunu_graphene_hubbard.pdf}
+\includegraphics[width=0.48\linewidth]{./nund_graphene_hubbard.pdf}
+\caption{Comparison of ab-initio Quantum Monte Carlo 
+and Hubbard model correlation functions (with respect to a reference site) 
+for the half filled singlet ground state of graphene 
+for various values of $U^{*}/t$. The optimal Hubbard model overestimates 
+the attraction between electrons of opposite spins at short distances.}
+\label{fig:corrs_graphene} 
+\end{figure*}	
+
+Early studies modelled graphene as a honeycomb lattice Hubbard model 
+with a $U/t$ estimated to be $ \approx 3.8$. This would put graphene on the verge of a 
+metal-insulator transition~\cite{Sorella_Tosatti, Sorella_Nature}. 
+However, recent results by Wehling et al. realized the importance of 
+long range interactions~\cite{Wehling_graphene},
+which renormalize the on-site interaction to an effectively lower value. 
+Schuler et al.~\cite{Schuler_graphene} reported this effective $U^{*}/t \sim 1.6 \pm 0.1$. 
+This means graphene lies well in the semimetal phase of the Hubbard model. 
+
+%The approach for downfolding from a lattice model with long range interactions (hamiltonian $H$) 
+%to that with an onsite $U^{*}$ (hamiltonian $H^{*}$) 
+%used the Peierls-Feynman-Bogoliubov variational principle, 
+%which best matches the partition functions of the latter to the former. 
+%This principle is closely related to matching the reduced density matrices of the ground state 
+%in the zero temperature limit, albeit with subtle differences. 
+%In particular, mapping one lattice model to another one is not what we refer to technically 
+%refer as "downfolding" since there is no reduction of the number of electrons. 
+%It must be emphasizes that our many body QMC calculations included all the $s$-like, 
+%$\sigma$ and $\pi$ electrons of carbon. 
+%The model Hamiltonian was downfolded onto the $\pi$-like orbital space.
+Setting aside the question of uniquely determining all the long range interactions
+in graphene, we ask what $U^{*}/t$ best describes our ground state Quantum Monte Carlo data. 
+To do so, we first generated the $\pi$-like Wannier functions 
+within QWalk~\cite{QWALK}, a representative of which has been shown in Fig.~\ref{fig:orbs}. 
+Just as in the case of benzene, we used the fact 
+that the effective strength of the Coulomb interaction 
+$U^{*}/t$ is most sensitive to the 2-RDM element 
+$\langle n_{i,\uparrow} n_{i,\downarrow}\rangle$. For the $4\times4$ 
+unit cell with periodic boundary conditions, and using optimized Slater Jastrow wavefunctions, 
+the VMC value is found to be $0.238$ and the mixed estimator (DMC) value is found to be 
+$0.228$. This provided an extrapolated estimator value of $0.220 \pm 0.005$.
+
+The $U^{*}/t$ is obtained from comparisons to 
+lattice determinantal QMC calculations, which were carried out for 
+sizes ranging from $2 \times 2$ to $8 \times 8$ to check for finite-size effects. 
+As Fig.~\ref{fig:doubleocc} shows, the $2 \times 2$ unit cell is distinctly different from 
+the larger unit cells, however, the finite-size errors in the 
+double occupation correlator are negligible beyond sizes $L\geq 4$. 
+The finite size effects for other short range correlation functions (not shown) are also negligible beyond 
+$L \geq 4$.
+
+Fig.~\ref{fig:corrs_graphene} shows the 1-RDM (for either spin at half filling) and the 
+up density- down density correlator for various separations of orbitals. 
+On the scale of Fig.~\ref{fig:corrs_graphene}(a) 
+(and well within the accuracy of our calculations) the 1-RDM was captured 
+well for all values of $U^{*}/t$ in the range from 0 to 2. However, as 
+Fig.~\ref{fig:corrs_graphene}(b) shows the Hubbard model for large $U$ tends 
+to exaggerate the the effective interaction 
+between the two electron spin flavors at small separations. In particular, the 
+nearest neighbor correlator is found to be in better agreement with $U^{*}/t \sim 0$ 
+than any finite value. This, just like the case of benzene, suggests the need 
+for longer range interactions in the model. 
+There are also (extremely) small deviations between the \emph{ab-initio} QMC and the Hubbard model results 
+at longer distances: the correlations do not depend significantly on $U^{*}/t$ and 
+this data on its own does not rule out any model.
+We also note that the rapid decay of the correlation functions (on the scale of only a 
+few lattice spacings) is indicative of a large dielectric constant: however a systematic study 
+is beyond the scope of this paper.
+ 
+\section{Conclusion} 
+We have demonstrated a method where \emph{ab-initio} Quantum Monte Carlo (QMC) 
+data is used to fit simple effective Hamiltonians. We have elaborated 
+on the fitting procedures and the intricacies of the QMC method 
+needed to perform calculations. The limitations of the model 
+were judged by assessing the quality of the fitted 
+correlation functions (and more generally the 2-body density matrices) 
+and energies. We expect this promising feature of our approach 
+to be useful for constructing more refined models. 
+
+For the benzene molecule, while 
+the onsite Hubbard model with $U^{*}/t \approx 1.2$ 
+was able to capture most features of the QMC ground state data, 
+significant deviations were seen close to the bandwidth.
+Allowing for longer range interactions, improved 
+the quality of the correlation functions and the 
+agreement of the vertical excited state energies 
+with experiments. One could use this parameterization to calculate 
+low frequency response functions and to test related 
+semi-empirical methods.
+
+Since QMC calculations use 
+size-consistent wavefunctions for extended systems and 
+scale favorably, we believe the type of calculations presented 
+here will be a promising alternative to DFT-based downfolding approaches. 
+Our demonstration for the single band model of graphene 
+yielded an effective $U^{*}/t=1.1\pm0.1$ in the same 
+range as a recently reported estimate based 
+on the constrained-RPA method~\cite{Schuler_graphene}. In a future work,
+we aim to use the excited states of graphene to accurately 
+estimate its long range interactions and hence its dielectric constant. 
+In more complicated materials, where the form of the Hamiltonian is 
+possibly unclear, the form of the dominant terms can be obtained 
+from canonical transformation theory followed with an 
+accurate fit to QMC data. 
+
+Finally, we remark that previously unsolved model Hamiltonians 
+are now being accurately treated with tensor 
+networks~\cite{Stoudenmire_White_2D_DMRG, Corboz_Rice_Troyer}. 
+With parallel advances in the \emph{ab-initio} QMC simulation of high temperature 
+superconductors~\cite{Wagner_cuprates, Krogel_cuprates}, a clear future direction 
+is to deduce more refined models for these compounds, using the ideas discussed in the paper. 
+
+\section{Acknowledgement} 
+We thank  David Ceperley,  Cyrus Umrigar,  Garnet Chan,  Shiwei Zhang, 
+ Steven White,  Bryan Clark, Norm Tubman and Victor Chua 
+for discussions. We would also like to thank  Cyrus Umrigar for 
+running very useful checks against his Quantum Monte Carlo code (CHAMP) in the early stages of 
+this work. We acknowledge support from grant DOE FG02-12ER46875 (SciDAC). 
+
+\bibliographystyle{prsty}
+\bibliography{refs}
+
+\end{document}
