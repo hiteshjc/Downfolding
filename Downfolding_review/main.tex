@@ -84,28 +84,114 @@ which can be simulated using techniques specifically defined for small local Hil
 }
 
 \section{Introduction to downfolding}
-Survey of DFT based downfolding and known limitations....
-Survey of model Hamiltonians - Hubbard, Kanamori, .....
+
+\HJC{Survey of DFT based downfolding and known limitations....Survey of model Hamiltonians - Hubbard, Kanamori, .....}
+\HJC{Modify intro - this is from the paper........ }
+
+Reliably simulating quantum systems remains a challenge 
+for the physics and chemistry communities. Calculations on real materials 
+are primarily carried out with density functional theory (DFT), 
+which in principle is exact, but in practice is limited by the quality of the exchange functional. 
+On the other hand are approximate model Hamiltonians (such as the Hubbard model) 
+which describe the low energy physics solely in terms of the valence electrons and 
+are crucial to our understanding of physical phenomena such 
+as antiferromagnetism and high temperature superconductivity. 
+However, transitioning from actual materials to an effective Hamiltonian on a lattice relies 
+on physical insight and/or fits to experimental data, and this notion is not always rigorously well justified.
+%~\footnote{
+%While terms introduced in a lattice model are often very well motivated by the 
+%underlying physics and the symmetries of the problem, 
+%the magnitude (and sometimes even sign) the couplings is unknown.
+ 
+This effective reduction of the complexity of the calculation is known as "downfolding" 
+and is commonly carried out using DFT-based approaches. 
+These methods use the electronic band structure to generate a tight binding model, 
+but are generally silent on the role of interactions (i.e. two and higher body terms). 
+Incorrect estimation of the strength of the interactions 
+in the case of systems with strong electron-electron correlations leads to 
+outcomes in clear violations of experiments. For example, the local density 
+approximation (LDA) predicts undoped LaCu$_2$O$_4$ 
+to be metallic instead of insulating, requiring adhoc inputs for 
+the downfolding procedure. Other schemes for magnetic systems involve fitting DFT energies for 
+various spin configurations to effective Heisenberg and bilinear biquadratic models.    
+
+Once an effective Hamiltonian in the \emph{reduced} Hilbert space 
+is obtained, it can be used to perform a lattice-model calculation 
+on a \emph{much} bigger system. Many techniques such as the density matrix 
+renormalization group (DMRG), tensor networks, 
+dynamical field theory (DMFT), density matrix embedding (DMET) 
+and lattice quantum Monte Carlo (QMC) methods
+have been developed to deal with such model Hamiltonians. 
+This multi-step modeling procedure is needed since the \emph{ab-initio} 
+calculations for a given system size are, in general, much more 
+computationally expensive than the equivalent lattice calculations. 
+Large sizes are crucial to study finite size effects, and in turn 
+theoretically establish the presence of a phase. For example, in the case of 
+frustrated magnetic systems, many nearly-degenerate states exist some of which can be 
+stabilized only on very large unit cells. 
+In addition, excited states and dynamical correlation functions have traditionally 
+been difficult in \emph{ab-initio} approaches, 
+but have seen progress for lattice model methods.
+
+Various efforts have been taken to develop accurate downfolding 
+methods. For example, Aryasetiawan et al.
+have laid out a post-DFT framework for obtaining 
+static and frequency dependent Hamiltonians using the 
+constrained-RPA approach. While the method has been applied to 
+a wide range of systems, 
+it is only recently that its accuracy is being rigorously checked. 
+Other approaches include traditional Lowdin downfolding 
+within a stochastic approach and 
+canonical transformation theory, 
+also being actively pursued as quantum chemistry 
+methods
+%~\footnote{A special case of canonical transformation theory is 
+%the Schrieffer-Wolf transformation used in the 
+%BCS theory of superconductivity}.  
+
+In this paper, we apply the \emph{ab-initio} 
+Quantum Monte Carlo (QMC) approach~\cite{Ceperley_Alder,Foulkes_review}, 
+one of the most accurate and highly scalable wavefunction based electronic-structure 
+methods. The QMC method works directly in the continuum and 
+explicitly introduces correlation into the Slater determinant obtained 
+from DFT or Hartree Fock calculations. For energies of eigenstates, obtained 
+by stochastic projection, the only systematic error is in the assumption of the 
+nodes of the many-body wavefunction: in practice, 
+this approximation is estimated to miss $ 5 - 10 \%$ 
+of the correlation energy. Correlation functions and density matrices are generally 
+less accurate, but good wavefunctions can bring down the errors significantly. 
+For arbitrary wavefunctions which can be evaluated in polynomial time, 
+the \emph{only} error is purely statistical and 
+can be brought down to arbitrarily small values by increased sampling.
+
+While all results presented here utilize data generated from 
+\emph{ab-initio} QMC, the idea of fitting data from many-body wavefunctions to models applies 
+to other methods as well. Information from many-body wavefunctions detects 
+inadequacies of a proposed model: the deviations suggest the form of additional missing terms. 
+Crucially, a wavefunction-based method does not differentiate between kinetic 
+and potential energy terms: all terms are treated the same way. 
+The approach is complementary to semi-empirical methods that 
+fit models solely to available energy spectra. 
+
 
 \section{Criteria for Hamiltonian matching}
 
-\section{Posing the problem/Visualizing the goodness of fit/connecting to tools from data science}
+\HJC{Visualizing the goodness of fit/connecting to tools from data science}
+\HJC{Choice of norm and avoiding overfitting: $L_1$, $L_2$ or something else?}
 
-\section{Choice of norm and avoiding overfitting: $L_1$, $L_2$ or something else?}
+\section{Simple examples}
+\HJC{Choosing the optimal one body space/ Dual optimization of Hamiltonian parameters and basis sets}
+\HJC{Simple examples - lattice to lattice downfolding - Three to One band model and the "effective" d orbitals}
 
-\section{Choosing the optimal one body space/ Dual optimization of Hamiltonian parameters and basis sets}
+\section{Realistic applications - silicon, carbon, transition metals, transition metal oxides}
 
-\section{Simple examples - lattice to lattice downfolding - Three to One band model and the "effective" d orbitals}
-Consider the three band Hubbard model.... 
+\section{Prospects}
+\HJC{The need for including spin-orbit terms, need for QMC for this case}
+\HJC{Other areas: Magnetism, small energy scales}
+\HJC{Applications to non QMC methods - coupled cluster, FCI, HCI}
+\HJC{Strengths and limitations of effective Hamiltonian approach}
 
-\section{Realistic applications from one to many band models- silicon, carbon, transition metals, transition metal oxides}
-
-\section{The need for including spin-orbit terms, need for QMC for this case}
-
-\section{Prospects for other areas: Magnetism, small energy scales}
-
-\section{Applications to non QMC methods - coupled cluster, FCI, HCI}
-
-\section{Strengths and limitations of effective Hamiltonian approach}
+\bibliographystyle{prsty}
+\bibliography{refs}
 
 \end{document}
