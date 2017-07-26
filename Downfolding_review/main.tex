@@ -74,22 +74,22 @@ Argonne Leadership Computing Facility, Argonne National Laboratory, 9700 South C
 \maketitle
 
 \textbf{
-Given a realistic material with all its intrinsic complications, how does one develop simple reliable 
-models for understanding its properties? Theoretical insight has been the key driver of 
+Given a realistic material with all its intrinsic complications, how does one develop a 
+simple reliable model for understanding its properties? Theoretical insight has been the key driver of 
 this process leading to simple few-band pictures. When the interactions are comparable or much stronger than 
 the kinetic energy, it is convenient to adopt the real space lattice approach and think in terms of Hubbard or Kanamori Hamiltonians defined 
 only in terms of the low energy electrons. 
-But this is no easy task, since the effective Hamiltonian involves a considerable renormalization of parameters from the bare Coulomb values. 
-While the kinetic energy is dominated by contributions from bands or states near the Fermi level, screened 
-interactions depend on states even far away from it, leading to Hubbard U's 
-that have been traditionally hard to determine reliably. 
-Several existing approaches treat the kinetic and potential parts of the Hamiltonian differently,
-without internal checks on the accuracy of the approximations. 
-Here we discuss an approach that we have been developing that restores this democracy and 
-one that provides a transparent 
-way of obtaining effective Hamiltonians using data from many body wavefunctions, 
-and whose validity can be checked systematically.
-Estimating the effective Hamiltonian reliably is crucial for 
+But this is no easy task, since the effective Hamiltonian involves a considerable renormalization of parameters with respect 
+to the bare Coulomb values. While the kinetic energy is dominated by contributions from bands or states energetically 
+near the Fermi level, screened interactions depend on states even \emph{far} away from it, leading to Hubbard U's 
+that have been traditionally hard to reliably determine. 
+%Several existing approaches treat the kinetic and potential parts of the Hamiltonian differently,
+%without internal checks on the accuracy of the approximations. 
+Here we discuss an approach that democratically treats 
+the kinetic and potential parts of the Hamiltonian and one that provides a transparent way 
+of obtaining effective Hamiltonians using data from many body wavefunctions, 
+and whose validity can be systematically checked.
+We emphasize that estimating the effective Hamiltonian reliably is crucial for 
 several applications in physics and chemistry not only for quantitative accuracy, but also a 
 correct qualitative picture of strongly correlated materials. 
 %Bands/states far from the 
@@ -99,14 +99,14 @@ correct qualitative picture of strongly correlated materials.
 %which can be simulated using techniques specifically defined for small local Hilbert spaces.
 }
 
-\section{Introduction to downfolding}
+\section{Introduction to downfolding the many electron problem}
 
 \HJC{Survey of DFT based downfolding and known limitations....Survey of model Hamiltonians - Hubbard, Kanamori, .....}
 \HJC{Modify intro - this is from the paper........ }
 
 Physicists usually like to have an intuitive understanding of physical phenomena using simplified models. These models are expected to capture the most relevant physical degrees of freedom related to the observed phenomena. For example, at high temperature and low density when quantum effect is not significant, the ideal gas model can successfully capture the statistical properties of $10^{23}$ H$_{2}$ molecules in a box, without any detailed knowledge of the fundamental constituent of H$_{2}$. This approach is valid when we are interested in phenomena at certain energy scale (or length scale), while the degrees of freedom at other length scales which are not dynamically excited simply renormalize the dynamics of the low energy degrees of freedom. 
 
-This concept/principle has been widely employed in condensed matter physics. For example, in the past decades, there are a lot of studies on describing complex systems (high Tc Cuprate and many other transition metal oxides) using models such as Hubbard model \cite{Yanagisawa2008}, t-J model \cite{Sorella2002}, etc. However, very few studies have addressed the effectiveness of those models in describing the real complex systems. In complex systems such as high Tc cuprates, it is unclear to what extent can these models describe the reality \cite{Anderson2013}. Generally, in strongly correlated systems, the macroscopic phenomena are strongly dependent on material-specific properties, motivating the need to determine the effective Hamiltonians that can capture all necessary details. 
+This concept/principle has been widely employed in condensed matter physics. For example, in the past decades, there are a lot of studies on describing complex systems (high $T_c$ Cuprate and many other transition metal oxides) using models such as Hubbard model \cite{Yanagisawa2008}, t-J model \cite{Sorella2002}, etc. However, very few studies have addressed the effectiveness of those models in describing the real complex systems. In complex systems such as high $T_c$ cuprates, it is unclear to what extent can these models describe the reality \cite{Anderson2013}. Generally, in strongly correlated systems, the macroscopic phenomena are strongly dependent on material-specific properties, motivating the need to determine the effective Hamiltonians that can capture all necessary details. 
 
 On the other hand, the reliable simulation of systems for which the large-scale physics is not well-approximated by a non-interacting model, is a major challenge in physics, chemistry, and materials science. These systems appear to require a multi-scale approach in which the effective interactions between electrons at a small distance scale are determined, which then leads to a coarse-grained description of emergent correlated physics. This reduction of the Hilbert space is often known as ``downfolding".
 
@@ -507,25 +507,26 @@ assumption of the form of the Hamiltonian).
 
 One of the most famous examples motivating the study of lattice models 
 is the high $T_c$ cuprates. In these materials, the low energy physics is associated with the 
-copper-oxygen 2D planes, although the third dimension is associated with several interesting effects as well. 
+copper-oxygen 2D planes, although the third dimension is 
+associated with several interesting effects as well. 
 Consider the case where the copper oxide plane is undoped. To 
 write down a model effective Hamiltonian, we do not necessarily
 have to consider all the $d$ electrons of Cu and all the p
 electrons of O, rather we work with the 3-band model. The justification for the 3-band model itself would depend 
-on the downfolding from a full fledged ab-initio calculation of the type in Refs.~\cite{Wagner_Abbamonte, }
+on the downfolding from a full fledged ab-initio calculation of the type in Refs.~\cite{Wagner_Abbamonte,}, 
+but we leave that calculation for future work.
 %We can figure out which orbitals are important
 %by analyzing the effect of the Cu-O interaction on their
 %orbital energies. In $La_{2-x}Sr_{x}CuO_4$, each copper atom is surrounded
 %by four in-plane and two apical oxygens. In YBCO,
-%each copper is surrounded by five oxygens. The arrangement
-%of the oxygens in the lattice is responsible for breaking the d
+%each copper is surrounded by five oxygens. 
+Rather, we use breaking the d
 %orbital degeneracy of the isolated copper ion. 
-%It turns out that
-%the highest filled orbital has dx2-y2 character. (The choice of
+It turns out that the highest filled orbital has $d_{x^2-y^2}$ character. (The choice of
 spatial coordinates used in the remainder of the paper is such
 that the copper oxide plane is taken to be the X-Y plane). It
 is sufficient to work with a reduced basis set - the d orbital of
-Cu and the p orbitals of O.
+Cu and the $p_x$ or $p_y$ orbitals of $O$, as is shown in Fig.~.
 Since our objective is pedagogical, we will consider the cuprates from the point of view of a simplified 
 model the 3-band Hubbard model and downfold it further to a one-band model 
 To
@@ -834,7 +835,9 @@ E = C + t\sum_{\langle i, j\rangle, \sigma}( \rho_{ij}^\sigma + \rho_{ji}^\sigma
 In order to understand the screening effect of $\sigma$ electrons, we also consider a $\pi$-only graphene, where we replace the $\sigma$ electrons with constant negative charge background. The lower energy states we choose for such systems are Slater-Jastrow wave functions constructed from occupied $\pi$ Kohn-Sham orbitals; whereas for the original graphene, the wave functions are Slater-Jastrow constructed from both occupied $\sigma$ bands and occupied $\pi$ bands. 
 
 Table~\ref{tab:grpheffm} shows the final downfolding results of the three systems. The ab initio simulations are performed on a $3\times3$ cell. We have used using 25 low energy states for the downfolding. The error-bar is calculated using Jackniff method. 
-\begin{table}[ht]\caption{Downfolding parameters for graphene and hydrogen.}\label{tab:grpheffm}
+
+\begin{table}[ht]
+\label{tab:grpheffm}
 \centering
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -845,6 +848,7 @@ t & 3.61(1) & 2.99 & 3.73(1)\\
 U & 7.16(3) & 14.8(2) & 9.47(5)\\
 \hline
 \end{tabular}
+\caption{Downfolding parameters for graphene and hydrogen.}
 \end{table} 
 Fig.~\ref{fig:ne_aidmd_gh} shows fitted energies versus the \textit{ab initio} VMC energies. 
 
