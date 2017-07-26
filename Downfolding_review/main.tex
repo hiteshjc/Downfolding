@@ -53,12 +53,15 @@
 \begin{document}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 \renewcommand\abstractname{}
-\title{From real materials to model Hamiltonians: multiscale modelling of strongly correlated electronic systems 
-       with many body wavefunctions}
+\title{From real materials to model lattice Hamiltonians: multiscale modelling of strongly correlated electronic systems 
+       with information from many body wavefunctions}
 
 \author{Hitesh J. Changlani}
 \affiliation{Department of Physics and Astronomy, Johns Hopkins University, Baltimore, Maryland 21218, USA}
-\author{Brian Busemyer}
+\author{Huihuo Zheng}
+\affiliation{
+Argonne Leadership Computing Facility, Argonne National Laboratory, 9700 South Cass Avenue, Lemont, 60439, Illinois, USA}
+\author{Brian Busemeyer}
 \affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
 1110 West Green St, Urbana IL 61801, USA}
 \author{Kiel Williams}
@@ -74,19 +77,38 @@
 Given a realistic material with all its intrinsic complications, how does one develop simple reliable 
 models for understanding its properties? Theoretical insight has been the key driver of 
 this process leading to simple few-band pictures. When the interactions are comparable or much stronger than 
-the kinetic energy, it is convenient to adopt the real space lattice approach. The 
-effective Hamiltonian involves a considerable renormalization of parameters. Estimating these values 
-is important for several applications in physics and chemistry. Bands/states far from the 
-Fermi level play a significant role in the screening of Coulomb interactions leading to Hubbard U's 
-that have been traditionally hard to determine reliably. Here we discuss an approach that we 
-have been developing which builds in several safeguards and provides a way of obtaining effective Hamiltonians 
-which can be simulated using techniques specifically defined for small local Hilbert spaces.
+the kinetic energy, it is convenient to adopt the real space lattice approach and think in terms of Hubbard or Kanamori Hamiltonians defined 
+only in terms of the low energy electrons. 
+But this is no easy task, since the effective Hamiltonian involves a considerable renormalization of parameters from the bare Coulomb values. 
+While the kinetic energy is dominated by contributions from bands or states near the Fermi level, screened 
+interactions depend on states even far away from it, leading to Hubbard U's 
+that have been traditionally hard to determine reliably. 
+Several existing approaches treat the kinetic and potential parts of the Hamiltonian differently,
+without internal checks on the accuracy of the approximations. 
+Here we discuss an approach that we have been developing that restores this democracy and 
+one that provides a transparent 
+way of obtaining effective Hamiltonians using data from many body wavefunctions, 
+and whose validity can be checked systematically.
+Estimating the effective Hamiltonian reliably is crucial for 
+several applications in physics and chemistry not only for quantitative accuracy, but also a 
+correct qualitative picture of strongly correlated materials. 
+%Bands/states far from the 
+%Fermi level play a significant role in the screening of Coulomb interactions leading to Hubbard U's 
+%that have been traditionally hard to determine reliably. Here we discuss an approach that we 
+%have been developing which builds in several safeguards and provides a way of obtaining effective Hamiltonians 
+%which can be simulated using techniques specifically defined for small local Hilbert spaces.
 }
 
 \section{Introduction to downfolding}
 
 \HJC{Survey of DFT based downfolding and known limitations....Survey of model Hamiltonians - Hubbard, Kanamori, .....}
 \HJC{Modify intro - this is from the paper........ }
+
+Physicists usually like to have an intuitive understanding of physical phenomena using simplified models. These models are expected to capture the most relevant physical degrees of freedom related to the observed phenomena. For example, at high temperature and low density when quantum effect is not significant, the ideal gas model can successfully capture the statistical properties of $10^{23}$ H$_{2}$ molecules in a box, without any detailed knowledge of the fundamental constituent of H$_{2}$. This approach is valid when we are interested in phenomena at certain energy scale (or length scale), while the degrees of freedom at other length scales which are not dynamically excited simply renormalize the dynamics of the low energy degrees of freedom. 
+
+This concept/principle has been widely employed in condensed matter physics. For example, in the past decades, there are a lot of studies on describing complex systems (high Tc Cuprate and many other transition metal oxides) using models such as Hubbard model \cite{Yanagisawa2008}, t-J model \cite{Sorella2002}, etc. However, very few studies have addressed the effectiveness of those models in describing the real complex systems. In complex systems such as high Tc cuprates, it is unclear to what extent can these models describe the reality \cite{Anderson2013}. Generally, in strongly correlated systems, the macroscopic phenomena are strongly dependent on material-specific properties, motivating the need to determine the effective Hamiltonians that can capture all necessary details. 
+
+On the other hand, the reliable simulation of systems for which the large-scale physics is not well-approximated by a non-interacting model, is a major challenge in physics, chemistry, and materials science. These systems appear to require a multi-scale approach in which the effective interactions between electrons at a small distance scale are determined, which then leads to a coarse-grained description of emergent correlated physics. This reduction of the Hilbert space is often known as ``downfolding".
 
 Reliably simulating quantum systems remains a challenge 
 for the physics and chemistry communities. Calculations on real materials 
@@ -176,6 +198,298 @@ fit models solely to available energy spectra.
 
 \section{Criteria for Hamiltonian matching}
 
+Our aim is to obtain a low energy effective Hamiltonian defined in 
+the active space of electrons which is preferably (but not necessarily) 
+described in terms of localized orbitals. In this basis, the criteria any 
+effective low energy model Hamiltonian must satisfy are,
+\begin{itemize}
+\item (a) The reduced density matrices (RDM) of the ground and excited states (computed in a basis) 
+          obtained from the \emph{ab-initio} calculation must match with that of the model calculation. 
+
+\item (b) The energy spectra of the \emph{ab-initio} and model systems must match in the energy window of interest. 
+
+\item(c) The model must be simple enough and must contain the essential physics to avoid overparameterization and overfitting. 
+\end{itemize}
+
+The concept of matching RDMs, criterion (a), 
+has previously appeared in related contexts~\cite{Acioli,Zhou_Ceperley, Changlani_percolation} 
+and in work by one of us~\cite{Wagner_JCP}. Most physical properties, 
+such as the charge and spin structure factors, are functions of the 2-RDM.
+Practically, it may be computationally expensive to get 
+high-order RDMs: in this study we use the matching condition only on the 
+2-RDM $\rho_{ijkl} \equiv \langle c_i^{\dagger} c_j^{\dagger} c_l c_k \rangle$ where $i,j,k,l$ are orbital indices 
+(including space and spin)
+\HJC{Note that good quantum numbers such as 
+total spin and angular momentum of a pure state are functions of the \emph{full} 
+2-RDM (if the Hamiltonian has those same symmetries) and not the \emph{partial} ones we use for matching.}.
+This criterion automatically ensures that 
+the combined number of electrons occupying the orbitals 
+is equal to those in the model Hamiltonian. (If any 
+input state does not satisfy the condition of 
+expected electron number, then it can not be described by the effective Hamiltonian.)  
+
+The importance of excited state energies 
+used in the fitting, criterion (b), is easily highlighted by the fact that 
+the wavefunctions (and hence their two-body density matrices) 
+are invariant to many kinds of terms that enter the Hamiltonian.
+For example, the transformation, 
+\begin{equation}
+	H' \rightarrow H + \alpha S^2 + \beta n + \gamma S^2 n 
+\end{equation}
+is, by construction, consistent with all the 2-RDM data 
+for any $\alpha$, $\beta$, $\gamma$ 
+for systems which have spin symmetry and conserve particle number.
+Imposing certain "physical constraints" on the form of the 
+interactions can eliminate the need for this criterion. 
+To give a concrete example, consider wavefunction data 
+generated from the ground state of an unfrustrated 
+Heisenberg Hamiltonian in a bipartite lattice~\HJC{A bipartite 
+lattice is one with two sublattices $A$ and $B$ with 
+only $A-B$ connections but no $A-A$ or $B-B$ ones.}, 
+$ H = J \sum_{\langle i,j \rangle}\bar{S}_i \cdot \bar{S_j}.$ 
+where $\langle i,j \rangle$ refer to nearest neighbor pairs.
+Then adding $\alpha S^2$ gives the same correlators (density matrices) 
+of the ground state, as long as $\alpha$ is small enough to not cause 
+energy crossings i.e. not make an original 
+excited state the new ground state. This additional 
+term has the effect of introducing long range Heisenberg couplings. 
+Moreover, the effective Hamiltonian is not unique: 
+the Lieb-Mattis model~\cite{LM} $H = S_A \dot S_B$ 
+(where $A$ and $B$ refer to sublattice spins), is also 
+known to reproduce the low-energy limit of the Heisenberg model. 
+Thus, imposing the requirement that the Hamiltonian has the 
+nearest-neighbor form constrains $\alpha$ to zero and picks 
+one particular model. Similar arguments should 
+apply to long-range Hubbard models in homogenous 
+systems where a physical constraint is that density-density 
+interaction must decrease monontonically with distance between orbitals. 
+
+While having many excited states from \emph{ab-initio} calculations 
+is desirable, we note that certain methods only work best for 
+determining ground states in symmetry sectors. 
+In the case of FN-DMC, 
+some other excited states can also be achieved by fixing their 
+nodal structure (which is different from that of the ground state). 
+Our practical experience suggests that attempts to obtain 
+eigenstates were often associated with broken symmetries. 
+This happens for a variety of reasons: choice of DFT orbitals, 
+contamination of the spin-structure by the 
+Jastrow and/or incomplete optimization. 
+These limitations suggest that it is 
+important to reduce the dependence of the desired 
+method only on eigenstates. Instead, our philosophy is to 
+use the \emph{available} information from arbitrary 
+low-energy states to our advantage. 
+(Moreover, if \emph{all} eigenstates were known, the utility of 
+generating an effective Hamiltonian might be diluted anyway.)
+  
+Given a finite amount of data, we note that criteria (a) and (b) 
+do not always uniquely determine an effective Hamiltonian, 
+even within the ansatz chosen. For example, one may demand that 
+the cross expectation values of certain operators 
+(say $\langle \psi_1 | c_i^{\dagger} c_j | \psi_2 \rangle$) 
+between the \emph{ab-initio} and model calculations must match. 
+This information could also be added as an 
+additional criterion for matching. 
+
+Finally, it is important to build confidence 
+in this Hamiltonian by comparing its outputs with respect 
+to data not used in the fitting. 
+To partly remedy this, we propose the 
+heuristic criterion (c). As is the case with many situations 
+involving fititng, we desire 
+the minimal model that explains the data to 
+some reasonable accuracy. This has the effect of making such a 
+model Hamiltonian useful in other situations i.e. transferable.
+
+\section{Hubbard interactions as fitting parameters}
+\label{sec:fitting}
+What is the meaning of the Hubbard $U$ (and other interactions)?
+Is there a fundamental definition or are they fit parameters to a chosen model? 
+We take the latter viewpoint and thinking this way helps reconcile 
+widely varying estimates that exist in the literature. 
+
+%A common expression for the generalized-two body interaction is taken to be, 
+%\begin{equation}
+% V_{ijkl} = \int  \phi_i (r) \phi_j (r')  W (r,r') \phi_k (r) \phi_l (r')
+%\end{equation}
+%where the modified interaction $W(r,r')$ is obtained from a model for screening 
+%relating it to the bare Coulomb interaction $V(r,r')$. 
+The Hubbard $U$ depends on the energy range 
+over which one is interested in estimating it. It is an 
+"effective interaction" that encodes the effect of many others 
+which would otherwise be needed in a completely static model.
+Even in the low frequency static limit, estimates 
+of the Hubbard $U$ can vary over large factors~\cite{Fei_Lin} 
+(of the order of $2$ or more): this is partly attributed to insensitivity 
+of correlation-functions in the ground state to its precise value. 
+Any inaccuracy in the \emph{ab-initio} calculation reflects as 
+large changes in the estimated $U$. This point 
+will become clearer in later sections of the paper.
+ 
+In the fitting approach, the idea is to use a sufficiently 
+large data set such that the proposed Hamiltonian has "learnt" most 
+relevant features of the low-energy physics, after which the parameters 
+are used for understanding other properties. 
+This reconstruction depends on the kind of data input to the method 
+and the presence of linear dependencies. 
+We present a formulation which puts the statements above 
+on a more rigorous mathematical footing.
+
+\subsection{Fitting procedure: $Ax=E$ method}
+\label{sec:AxE}
+Consider a set of \emph{ab-initio} 
+energies $E_s$ (in general, expectation values of the Hamiltonian) 
+and corresponding 1 and 2 body RDMs $\langle c_i^{\dagger} c_j \rangle_s$ 
+$\langle c_i^{\dagger}c_j^{\dagger} c_l c_k \rangle_s$ 
+for various \emph{arbitrary} low-energy states characterized by index $s$. 
+Assume a model 2-body Hamiltonian parameterized by (yet unknown) 
+renormalized parameters $t_{ij}$ (one body part) 
+and $V_{i,j,k,l}$ (2-body part) along with a constant term $C$, 
+the total number of parameters being $N_p$. Then for each state $s$, 
+we have the equation, 
+\begin{equation}
+	E_s = \langle H \rangle_s = C + \sum_{ij} t_{ij} \langle c_i^{\dagger} c_j \rangle + \sum_{ijkl} V_{ijkl} \langle c_i^{\dagger}c_j^{\dagger} c_l c_k \rangle  
+\end{equation}
+where we have made the assumption that the chosen set of orbitals 
+is capable of explaining all energy differences. The constant $C$ is from energetic contributions 
+of all other orbitals which are (almost) decoupled from the chosen set.  
+ 
+We then perform calculations for 
+$M$ (possibly random) low-energy states which are not necessarily eigenstates.  
+The objective is to explore various parts 
+of the low-energy Hilbert space which show variations in the 2-RDM elements. 
+Since the same parameters describe all $M$ states, they must 
+satisfy the linear set of equations, 
+\begin{eqnarray}
+\left(
+\begin{array}{c}
+E_1 \\
+E_2 \\
+E_3 \\
+... \\
+... \\
+... \\
+... \\
+E_M
+\end{array}
+\right) =
+\left(
+\begin{array}{ccccc}
+1 & \langle c_i^{\dagger}c_j \rangle_{1}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{1} & .. \\
+1 & \langle c_i^{\dagger}c_j \rangle_{2}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{2} & .. \\
+1 & \langle c_i^{\dagger}c_j \rangle_{3}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{3} & .. \\
+1 & \langle c_i^{\dagger}c_j \rangle_{4}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{4} & .. \\
+1 & ....                                  & .. & ..                                                    & .. \\
+1 & ....                                  & .. & ..                                                    & .. \\
+1 & \langle c_i^{\dagger}c_j \rangle_{M}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{M} & .. \\
+\end{array}
+\right) \left(
+\begin{array}{c}
+C           \\
+t_{ij}      \\
+..          \\
+V_{ijkl}    \\
+..
+\end{array}
+\right)
+\end{eqnarray}
+which can be written more compactly as,
+\begin{equation}
+	{\bf{E}} = A {\bf{x}}
+\end{equation}
+where $ {\bf{E}} \equiv (E_1,E_2,...E_M)^{T}$ 
+is the $M$ dimensional vector of energies, $A$ is the $M \times N_p$ matrix composed 
+of density matrix elements and $ {\bf{x}} \equiv (C,t_{ij}....V_{ijkl}...)^T$ 
+is a $N_p$ dimensional vector of parameters.
+This problem is overdetermined for $M>N_p$, which is the regime we expect to work in.
+
+%\begin{figure}[htpb]
+%\centering
+%\includegraphics[width=1\linewidth]{./hamfit.pdf}
+%\caption{Methods employed for downfolding involving Hamiltonian parameter fitting (a) Matching 
+%the reduced density matrices (RDMs) of energy-eigenstates 
+%(b) The "\emph{Ax=E}" method uses RDMs and energies of arbitrary states. }
+%\label{fig:hamfit} 
+%\end{figure}	
+In the case of any imperfection in the model (which is the most common case), 
+the equality will not hold exactly 
+and one must then instead minimize the norm, $\mathcal{N}$,
+\begin{equation}
+	\mathcal{N} \equiv ||A\bf{x}-\bf{E}||^2
+\label{eq:norm}
+\end{equation}
+The nice property of this cost function is that it can be minimized
+in a single step by using the method of least squares, employing the singular 
+value decomposition of matrix $A$, which also encodes exact (or near-exact) linear dependences. 
+Thus, the quality of the fit can be directly judged 
+by assessing (1) the singular values of the $A$ matrix and (2) 
+the value of the cost function itself i.e. the deviations of the input and fitted energies.
+We will refer to this method as the "Ax=E" method at various points in the paper.
+
+The cost function~\eqref{eq:norm} is unlike that used when matching 
+canonical density operators,
+\begin{equation} 
+\frac{1} {Z^{m}} \exp(-\beta H^{m})  = \frac{1} {Z^{a}} \exp(-\beta H^{a})
+\label{eq:Z_Zstar}
+\end {equation}
+where indices $m$ and $a$ refer to the model and ab-initio (true) systems, $\beta$ 
+is an inverse temperature and $Z$ is the partition function
+In contrast, our "energy-weighting" function is a box-function: it weighs all the energies 
+in a given window equally. The form of the cost function (including the 
+weighting function) is unimportant in the limit of a perfect model.
+
+In summary, our approach solves 
+linear equations in terms of the unknown parameters, by using the density matrices 
+from an \emph{ab-initio} method. This concept works only when we 
+know the model Hamiltonian that describes the data, and all we want is the numerical 
+values of the parameters. Thus to verify the validity of the calculation, 
+one must use the derived parameters and calculate many-body eigenstates 
+in the model and check their correspondence with the \emph{ab-initio} 
+calculations.
+
+The matrix $A$ gives a very natural basis to understand "renormalization" effects.
+For example, consider a set of wavefunctions, that show that the correlator 
+$\langle n_0 n_3 \rangle$ does not change significantly. This would lead to the 
+corresponding column of matrix $A$ being identical (up to a scale factor) 
+to the first column of 1's. Physically, this would correspond to the coupling constant 
+$V_{03}$ being unimportant (it can take any value including 0) and its 
+effect can be completely absorbed into the constant shift term. 
+(This could also alternatively mean that the input 
+data is correlated and does not provide enough information about $V_{03}$. 
+In the case of non-zero "small variations", the value of this parameter 
+will be quite sensitive to the data set and its quality.) 
+Said differently, it is the \emph{variation}  
+in an RDM element (across states in the energy window) 
+that are important: \emph{not} their \emph{absolute} values.
+
+The utility of the wavefunction approach is apparent in this 
+formulation: the expectation values entering matrix $A$ 
+can be calculated for arbitrary wavefunctions by Monte Carlo sampling.
+We can also simply use variational Monte Carlo and corresponding energies
+for constructing the $A$ matrix, however we may not get the desired accuracy. 
+
+It is thus preferable to use the accurate FN-DMC method. In this case, one needs to modify the linear equations 
+to use projected estimators. More specifically, we have, $E= \langle {\psi_T}^{s}| H | {\psi}^s \rangle$ 
+and thus must use the projected estimates of the density matrix elements i.e. 
+$\langle {\psi_T}^s | c_i^{\dagger} c_j | {\psi}^s \rangle$ and $\langle {\psi_T}^s| c_i^{\dagger}c_j^{\dagger} c_l c_k | {\psi}^s \rangle$ 
+in the construction of the $A$ matrix. (The implicit normalization of these 
+mixed estimates by $\langle {\psi_T}^s | \psi^{s} \rangle$ is assumed.) 
+This projector formulation is also very amenable to 
+coupled-cluster calculations which also work with projected energies 
+and density matrices.
+
+There is no need to worry about the bias in FN-DMC in our formulation. 
+This is because we regard $\psi \psi_T$ as some \emph{arbitrary} positive sampling function 
+associated with a low energy state and use the \emph{same} distribution for the 
+evaluation of the density matrix elements. We are not concerned with whether 
+an exact eigenstate is being sampled or not: we just desire a linear equation 
+(for the unknown parameters) from this exercise. Thus the relationship between the FN-DMC energy 
+and the projected density matrix elements is always an \emph{exact} relationship 
+(up to errors coming in from statistics and from the 
+assumption of the form of the Hamiltonian). 
+
+
 \HJC{Visualizing the goodness of fit/connecting to tools from data science}
 \HJC{Choice of norm and avoiding overfitting: $L_1$, $L_2$ or something else?}
 
@@ -183,15 +497,378 @@ fit models solely to available energy spectra.
 \HJC{Choosing the optimal one body space/ Dual optimization of Hamiltonian parameters and basis sets}
 \HJC{Simple examples - lattice to lattice downfolding - Three to One band model and the "effective" d orbitals}
 
+\HJC{Notes on 3 band - copy pasted from pdf, tex file missing ?????}
+\subsection{Three-band Hubbard model to one band Hubbard model at half filling - \HJC{STILL EDITING, PLEASE IGNORE}}
+%In HJC’s notes from 2009, he gives a broad overview of
+%the cuprates. One of the ideas discussed is the determination
+%of the minimal model that describes the low energy theory of
+%the cuprates. In order to do so, some simple (and probably
+%intuitive) assumptions made by others, were also discussed.
+
+One of the most famous examples motivating the study of lattice models 
+is the high $T_c$ cuprates. In these materials, the low energy physics is associated with the 
+copper-oxygen 2D planes, although the third dimension is associated with several interesting effects as well. 
+Consider the case where the copper oxide plane is undoped. To 
+write down a model effective Hamiltonian, we do not necessarily
+have to consider all the $d$ electrons of Cu and all the p
+electrons of O, rather we work with the 3-band model. The justification for the 3-band model itself would depend 
+on the downfolding from a full fledged ab-initio calculation of the type in Refs.~\cite{Wagner_Abbamonte, }
+%We can figure out which orbitals are important
+%by analyzing the effect of the Cu-O interaction on their
+%orbital energies. In $La_{2-x}Sr_{x}CuO_4$, each copper atom is surrounded
+%by four in-plane and two apical oxygens. In YBCO,
+%each copper is surrounded by five oxygens. The arrangement
+%of the oxygens in the lattice is responsible for breaking the d
+%orbital degeneracy of the isolated copper ion. 
+%It turns out that
+%the highest filled orbital has dx2-y2 character. (The choice of
+spatial coordinates used in the remainder of the paper is such
+that the copper oxide plane is taken to be the X-Y plane). It
+is sufficient to work with a reduced basis set - the d orbital of
+Cu and the p orbitals of O.
+Since our objective is pedagogical, we will consider the cuprates from the point of view of a simplified 
+model the 3-band Hubbard model and downfold it further to a one-band model 
+To
+write down a model effective Hamiltonian, we do not necessarily
+have to consider all the d electrons of Cu and all the p
+electrons of O. We can figure out which orbitals are important
+by analyzing the effect of the Cu-O interaction on their
+orbital energies. In $La_{2-x}Sr_{x}CuO_4$, each copper atom is surrounded
+%by four in-plane and two apical oxygens. In YBCO,
+%each copper is surrounded by five oxygens. The arrangement
+%of the oxygens in the lattice is responsible for breaking the d
+%orbital degeneracy of the isolated copper ion. It turns out that
+%the highest filled orbital has dx2􀀀y2 character. (The choice of
+%spatial coordinates used in the remainder of the paper is such
+%that the copper oxide plane is taken to be the X-Y plane). It
+%is sufficient to work with a reduced basis set - the d orbital of
+%Cu and the p orbitals of O.
+%What happens to the additional hole when the compound
+%is doped? It is clear from ab-initio calculations and physical
+%considerations that the hole is lost from the oxygens rather
+%than the coppers. This makes the downfolding to the t-J model
+%tricky, but Zhang and Rice argued that it was possible. The
+%justification is somewhat detailed and a brief overview of it
+%has been presented in HJC’s 2009 notes.
+
+But let us begin with the three band model as mentioned by
+Zhang and Rice and also considered by Dopf, Muramatsu and
+Hanke in their QMC study. Though there are places where the
+jargon and notation is unclear, I believe most people do work
+in the hole representation directly. For mathematical convenience,
+the hole representation is apt and take the vacuum to
+be the state which comprises of Cu 3d10 and O 2p6 states. The
+orbitals and the unit cell is shown in Fig
+
+The 3 band model is given by 
+\begin{eqnarray}
+	H &=& \sum \epsilon_p n_p + \sum \epsilon_d n_d + \sum t_{pd} \text{sgn}(p_i,d_j) d_i^{\dagger} p_j \\ 
+	  && + \sum t_{pp} * \text{sgn}(p_i,p_j) p_i^{\dagger} p_j + \sum U_p n^{p}_{\uparrow} n^{p}_{\downarrow} \\ 
+	  && + \sum U_d n^{d}_{\uparrow} n^{d}_{\downarrow} + \sum U_{pd} n_p n_d 
+\end{eqnarray}
+$p,d$ are the usual orbitals of oxygen and copper and the signs are given by the sign function shown in the figure.  
+The sign convention used by us (Boxiao and me and Lucas consistently) is given in the figure, please refer Boxiao's notes for clarity.
+The 8 site unit cells and its numberings is drawn. Bond lists are provided for further scrutiny.
+
+Several people (Hybetsen et al ) have worked on parameter sets, there is no universal consensus. In the notes I present 
+data for Lucas' (electron notation) or simply "LE" set. Other sets will be analyzed in the near future. 
+
+\begin{table*}
+\setlength\extrarowheight{8pt}
+\begin{ruledtabular}
+ \begin{tabular}{cccc}
+  Parameter				&  LE = Lucas (electron)    & LH = Lucas (hole) & SH = Shiwei (hole) \\ 
+	$t_{pd}$			&  $-1.31$		    & $+1.31$        &     $+1.00$ 	       \\
+	$t_{pp}$			&  $-0.90$		    & $+0.90$        &     $+0.00$	       \\
+	$U_{pd}$			&  $+0.00$		    & $+0.00$        &     $+0.00$ 	       \\
+	$U_{d}$				&  $+8.00$		    & $+8.00$        &     $+6.00$ 	       \\
+	$U_{p}$				&  $+1.79$		    & $+1.79$        &     $+0.00$ 	       \\
+        $\epsilon_{p}$			&  $+0.00$		    & $+0.00$        &     $+3.00$          \\
+        $\epsilon_{d}$			&  $-3.50$		    & $-2.71$        &     $+0.00$          \\
+$\Delta=\epsilon_{p}-\epsilon_{d}$      &  $+3.50$		    & $+2.71$        &     $+3.00$          \\
+  \end{tabular}
+ \end{ruledtabular}
+ \caption{Parameter sets. The sign of $t_{pd}$ does not matter in either notation because this sign can be absorbed 
+into the redefinition of the d orbital itself, see discussion on particle hole transformations. 
+Nevertheless we stick to the sign conventions above, unless otherwise mentioned.}
+ \label{table:params}
+\end{table*}
+
+
+I used the above notations in my code and ask the question
+- what if we did not have the intuition of Zhang and Rice i.e.
+what if we did not know a "reasonable map" from the d-p
+orbitals to the "effective dressed" d-like orbitals that enter the
+one band model.
+To do so, I encode this transformation as,
+\begin{equation}
+	\tilde{c}_i^{\dagger} = U_{ij} c_j
+\end{equation}
+where $\tilde{c}_i$ is a transformed hole operator and $c_j$ is the bare hole
+operator. Both $c$ and its tilded version could refer to either
+$d$ or $p$ orbitals. So for a $2\times2$ unit cell, I have a $12\times12$
+unitary matrix that I am trying to optimize. Of course, I am
+interested in only a subset of the rotated orbitals for the low
+energy physics. To be more explicit, I ask if it is possible to
+obtain a "effective" ~ d orbital that is a mixture of the bare d and
+bare p orbitals. The hope is that these set of rotated orbitals
+will give me a effective 1-band Hubbard-like model in terms
+of the ~ d alone.
+I take the 3-band model provided by L. Wagner based on
+downfolding of QMC calculations. I begin with putting 1 hole
+per Cu i.e. I put in 4 holes for the 2x2 periodic cluster. This
+is the "undoped" case. As expected, my 1-body density matrix
+(a $12\times12$) matrix, calculated separately for the up and
+down electrons. Not being very intelligent about optimizing
+this unitary, I directly use the Nelder Mead method. In my
+cost function, working in the hole notation. I demand several
+things,
+1. At half filling, the rotated d orbitals are exactly half filled
+i.e. their up occupation is $1/2$
+2. At half filling, the rotated p orbitals are completely unoccupied;
+their occupation is 0.
+3. The reduced $4\times4$ matrix must respect symmetries of the
+underlying square lattice of coppers (only).
+Actually, I am just demanding a block (or partial) diagonalization
+of the one-body matrix, so there should be an efficient
+way for doing this. However, let me cut to the chase and discuss
+what I do get from my method.
+At half filling (i.e. 4 up holes and 4 down holes), I start off
+with the input (hole) 1-RDM as,
+
+%d
+%or
+%p
+%orbitals.   So for a
+%2
+%×
+%2
+%unit cell,  I have a
+%12
+%×
+%12
+unitary matrix that I am trying to optimize.  Of course, I am
+interested in only a subset of the rotated orbitals for the low
+energy physics.  To be more explicit, I ask if it is possible to
+obtain a "effective"
+d
+orbital that is a mixture of the bare d and
+bare p orbitals.  The hope is that these set of rotated orbitals
+will give me a effective 1-band Hubbard-like model in terms
+of the d
+alone.
+I take the 3-band model provided by L. Wagner based on
+downfolding of QMC calculations. I begin with putting 1 hole
+per Cu i.e.  I put in 4 holes for the 2x2 periodic cluster.  This
+is the "undoped" case.  As expected, my 1-body density ma-
+trix (a $12\times12$) matrix, calculated separately for the up and
+down electrons.  Not being very intelligent about optimizing
+this unitary,  I directly use the Nelder Mead method.  In my
+cost function, working in the hole notation. I demand several
+things,
+1. At half filling, the rotated d orbitals are exactly half filled
+i.e. their up occupation is 1/2
+2.  At half filling, the rotated p orbitals are completely un-
+occupied; their occupation is 0.
+3. The reduced $4\times4$
+matrix must respect symmetries of the
+underlying square lattice of coppers (only).
+Actually, I am just demanding a block (or partial) diagonal-
+ization of the one-body matrix, so there should be an efficient
+way for doing this.  However, let me cut to the chase and dis-
+cuss what I do get from my method.
+At half filling (i.e.
+4 up holes and 4
+down holes), I start off
+with the input (hole) 1-RDM as,
+
+We  can  now  ask  which  one  band  model  best  describes
+this 1-RDM. The only unique element is the nearest neighbor
+RDM element.  We map this renormalized
+U/t
+as a function
+of
+U
+dd
+of the three band model.
+%However, there is a possible inadequacy with the entire ap-
+%proach above. We have only considered the half-filled ground
+%state in this entire analysis, whereas all our downfolding ideas
+%are based on the same effective Hamiltonian also describing
+%the low lying excited states.
+%I can now perform the same procedure when considering
+%3
+%↑
+%and
+%3
+%↓
+%holes and I get the unitary,
+%
+
+ch is about 10-20 percent different from the unitary ob-
+tained in the half filled case.
+Thus  one  proposal  to  optimize  the  unitary  is  to  simula-
+taneously  try  to  block  diagonalize  several  1-RDMs  i.e. RDMs 
+of various excited states.  This diagonalization must
+be preferably done for eigenstate so that we can impose more
+constraints on our cost conditions.  But most importantly, the
+unitary transformation we have proposed above may not be a
+simple one-particle rotation.
+%In fact there are indications from the Zhang-Rice paper that
+%this may NOT be true at all.  This is because Zhang and Rice
+%effectively  considered  a  higher  body  tansformation.   Recall
+%that their singlet
+%ψ
+%−
+%i
+%involved a two body term.  Their modi-
+%fied kinetic energy involved a three body term. Note this three
+%body term comes in the t-J model as there are 2 number oper-
+%ators multiplying
+%d
+%†
+%i
+%d
+%j
+%Thus the t-J model is actually not even
+%a two body Hamiltonian.
+
+In this study, we apply our downfolding methods to solid systems. We will mainly consider three systems here, one dimensional hydrogen chain, graphene, and hydrogen honeycomb systems. 
+
+\subsection{One dimensional hydrogen chain (E-AIDMD)}
+Let us consider the following single band model Hamiltonian,
+\begin{eqnarray}\label{eq:h4model}
+H &=& \sum_{i}\left\{-t[c^{\dagger}_{i\sigma}c_{i+1\sigma} +h.c.]+ Vn_{i}n_{i+1} + Un_{i\uparrow}n_{i\downarrow}+ J\vec \sigma_{i}\cdot \vec \sigma_{i+1}\right\} + C\,.
+\end{eqnarray}
+Here, $c_{i}$'s are Wannier orbitals generated from Kohn-Sham orbitals. We consider the case where the interatomic distance is relatively large, such that the system could be well described by a single band.  We start from the 4-site hydrogen chain with bond length equals to 2\AA with periodic boundary condition. We construct the Wannier orbitals by a unitary transformation of the four lowest energy Kohn-Sham states obtained from DFT/PBE calculation (2 occupied and 2 unoccupied). Fig.~\ref{fig:h4orb} shows the selected Kohn-Sham orbitals and constructed Wannier orbitals. 
+\begin{figure}[hbt]
+\centering
+\subfigure[KS 1]{\includegraphics[width=0.20\linewidth]{h4_ks1.png}}\quad
+\subfigure[KS 2]{\includegraphics[width=0.20\linewidth]{h4_ks2.png}}\quad
+\subfigure[KS 3]{\includegraphics[width=0.20\linewidth]{h4_ks3.png}}\quad
+\subfigure[KS 4]{\includegraphics[width=0.20\linewidth]{h4_ks4.png}}
+\\
+\subfigure[Wannier 1]{\includegraphics[width=0.20\linewidth]{h4_wan1.png}}\quad
+\subfigure[Wannier 2]{\includegraphics[width=0.20\linewidth]{h4_wan2.png}}\quad
+\subfigure[Wannier 3]{\includegraphics[width=0.20\linewidth]{h4_wan3.png}}\quad
+\subfigure[Wannier 4]{\includegraphics[width=0.20\linewidth]{h4_wan4.png}}
+\caption{Kohn-Sham orbitals (upper panel) from DFT calculations with PBE exchange-exchange correlation functional, and Wannier orbitals (lower panel) constructed through a unitary transformation of Kohn-Sham orbitals.}\label{fig:h4orb}
+\end{figure}
+
+
+We will use the mentioned E-AIDMD method to downfold the ab initio system into the model Hamiltonian in Eq.~\eqref{eq:h4model} by matching the single-body energy spectra and the 1-body and 2-body reduced density matrices. The model Hamiltonian is solved by exact diagonization, whereas the \textit{ab initio} system is solved using diffusion Monte Carlo method with single Slater-Jastrow trial wave functions. 
+
+In our calculations, we used energies and RDMs of the following three states:
+\begin{subequations}
+\begin{eqnarray}
+S=0: \quad E = -2047.8(6) \text{mHa}; \\
+S=1: \quad E = -2038.9(5) \text{mHa}; \\
+S=2: \quad E = -1957.8(3) \text{mHa}.
+\end{eqnarray}
+\end{subequations}
+where S is the total angular moment of such the four-site hydrogen chain. In order to understand the relative importance of various two-body terms: (a) the onsite Hubbard interaction -- $\hat U$; (b) nearest neighbor Coulomb interaction -- $\hat V$; (c) nearest neighbor exchange -- $\hat J$, we compare the parameters obtained when downfolding the system to the following three different models with different two-body interactions,
+\begin{itemize}
+\item [(a)] \textbf{UVJ} model: onsite Hubbard interaction(U), nearest neighbor Coulomb (V) and exchange (J);
+\item [(b)] \textbf{UV} model: onsite Hubbard interaction(U), nearest neighbor Coulomb (V);  J is set to zero. 
+\item [(c)] \textbf{U} model: onsite Hubbard interaction(U). V and J are set to zero. 
+\end{itemize}
+
+The quality of downfolding is measured by the relative error of the two-body reduced density matrices, and the error of the eigen energies of the three states.
+\begin{eqnarray}
+R_{err} =\sqrt{\frac{\sum_{i,j,k,l}(M_{ijkl}^\text{ab initio} - M_{ijkl}^\text{model})^{2}}{\sum_{i,j,k,l}(M^\text{ab initio}_{ijkl})^{2} }}, \quad
+\Delta E = \sqrt{\sum_{i}|E_{i}^\text{ab initio} - E_{i}^{\text{model}}|^{2}}\,.
+\end{eqnarray}
+The resulting effective parameters are showed in Table.~\ref{tab:effm_hchain}. We see that all the three models can match the \textit{ab initio} data accurately. U model has relatively larger error in energy, but it is still comparable to the stochastic error from QMC (0.3 $\sim$ 0.5 mHa).
+
+\begin{table}[hbt]
+\centering
+\caption{Parameters of effective Hamiltonian [mHa], and error of RDMs and energies [mHa].}\label{tab:effm_hchain}
+\begin{tabular}{||l|c|c|c|c||c|c||}
+\hline
+Model & t & U & V & J & err(RDM) & err(energy)\\
+\hline
+\hline
+UVJ & 23.68 & 34.58 & 0.03 & -3.11 & 0.25\% & $10^{-13}$\\
+UV & 32.76 & 130.63 & 65.31 & / & 0.75\% & $10^{-13}$\\
+U & 37.45 & 114.62 & / & / & 0.26\% & $1.8$\\
+\hline
+\end{tabular}
+\end{table}
+
+%\subsection{Transferability of the model parameters to larger systems} 
+\begin{figure}[hbt]
+\centering
+\subfigure[]{\includegraphics[width=0.40\linewidth]{h4_transfer_rdm.png}}
+\subfigure[]{\includegraphics[width=0.40\linewidth]{h4_transfer_energy.png}}
+\caption{Errors of RDMs and energy for hydrogen chains with different number of sites: (a) relative error of two-body reduced density matrix; (b) error of eigen energy for $S=0$ and $S=1$ states per atom. the parameters used in model calculations are from 4-site chain.}\label{fig:h4transfer}
+\end{figure}
+In order to verify the transferability of the parameters for larger systems. We study longer chains (6-site, 8-site and 10-site) with the same interatomic distance (2\AA), and examine whether our parameters obtained from the 4-sites hydrogen chain is able to match the low energy physics of longer chains. We therefore, solve the model Hamiltonian with the parameters
+from Table.~\ref{tab:effm_hchain}, and examine the errors of the RDMs of S=0 and S=1 states. The results are
+shown in Fig.~\ref{fig:h4transfer}. As we can see, the error of the RDMs is around 10\%, indicating that the downfolding parameters from a smaller system is transferable to larger systems.
+Therefore, at $d=2$\AA, the hydrogen chain can be described by the extended Hubbard model \eqref{eq:h4model} very well. 
+
+
+\subsection{Graphene and hydrogen honeycomb lattice (NE-AIDMD)}
+Graphene has drawn much attention in the last decade because of its unusual electronic and structural properties and its potential applications in electronics~\cite{Wallace1947, Novoselov2004,NovoselovNature2005, Katsnelson2006, Geim2007, Novoselov2007, neto2009, Castro2009}. 
+Although many electronic properties of graphene can be correctly described in a noninteracting electron picture~\cite{Castro2009}, electron-electron interactions do play a central role in a wide range of phenomena that have been observed in experiments~\cite{Kotov2012}. It is also shown that the electron screening from $\sigma$ bonding is very crucial to the correlated physics of graphene, without which graphene would be an insulator instead of a semimetal \cite{Zheng2016} .
+
+In this section, we will use our downfolding technique to understand the electron correlations of graphene, especially, on how the $\sigma$ electrons affect the overall low energy physics. For comparison, we here also study the hydrogen honeycomb lattice with the same lattice constant $a=2.46$\AA, which has similar Dirac cone dispersion as graphene \cite{Zheng2016}.  We will consider the effective single-band Hubbard model, 
+\begin{eqnarray}\label{eq:hubbard}
+\hat{H} = C + t\sum_{\langle i,j\rangle}c_{i, \sigma}^\dagger c_{j, \sigma} + \text{h.c.} + U\sum_{i}n_{i, \uparrow}n_{i, \downarrow}\,. 
+\end{eqnarray}
+The low energy physics is reflected mainly on the dynamics of $\pi$ orbitals in  graphene, and $s$ orbitals in hydrogen. Naturally, we would choose c$_i$ to be the $\pi$ (or $s$) orbitals shown in Fig.~\ref{fig:wan}. Due to lack of screening because of zero density of states at Fermi level, the Coulomb interaction is still long range unlike the case in metal where the Coulomb interaction is short ranged because of the formation of electron-hole pairs. However, the effect of the long range part can be considered as a renormalization to the onsite Coulomb interaction $U$ at low energy \cite{Schuler2013, Changlani2015}. Therefore, we expect that Eq.~\eqref{eq:hubbard} is still a relatively good description of the low energy physics. 
+
+\begin{figure*}[hbt]
+  \centering  
+ % \subfigure[]{\includegraphics[clip, width=0.30\textwidth]{c_sigma.png}}
+    \subfigure[]{\includegraphics[clip, width=0.30\textwidth]{c_pi.png}}
+    \subfigure[]{\includegraphics[clip, width=0.30\textwidth]{h_wan.png}}
+       \caption{Wannier orbitals constructed from Kohn-Sham orbitals: (a) graphene $\pi$ orbitals; (b) hydrogen S orbital. }
+\label{fig:wan}
+\end{figure*}
+
+We will use the non-eigenstate AIDMD method to obtain the value of $t$ and $U$. In this way, we do not need to solve the model hamiltonian which is relatively difficult. We choose a set of Slater-Jastrow wave functions corresponding to the electron-hole excitations within the $\pi$ channel (or $s$ channel for hydrogen system). The energy expectation expressed in terms of the density matrices is, 
+\begin{eqnarray}\label{eq:en}
+E = C + t\sum_{\langle i, j\rangle, \sigma}( \rho_{ij}^\sigma + \rho_{ji}^\sigma) + U \sum_{i}M_{ii;ii}^{\uparrow,\downarrow}\,.
+\end{eqnarray}
+
+In order to understand the screening effect of $\sigma$ electrons, we also consider a $\pi$-only graphene, where we replace the $\sigma$ electrons with constant negative charge background. The lower energy states we choose for such systems are Slater-Jastrow wave functions constructed from occupied $\pi$ Kohn-Sham orbitals; whereas for the original graphene, the wave functions are Slater-Jastrow constructed from both occupied $\sigma$ bands and occupied $\pi$ bands. 
+
+Table~\ref{tab:grpheffm} shows the final downfolding results of the three systems. The ab initio simulations are performed on a $3\times3$ cell. We have used using 25 low energy states for the downfolding. The errorbar is calculated using Jackniff method. 
+\begin{table}[ht]\caption{Downfolding parameters for graphene and hydrogen.}\label{tab:grpheffm}
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+parameters [eV] & graphene & $\pi$-only graphene &hydrogen \\
+\hline
+\hline
+t & 3.61(1) & 2.99 & 3.73(1)\\
+U & 7.16(3) & 14.8(2) & 9.47(5)\\
+\hline
+\end{tabular}
+\end{table} 
+Fig.~\ref{fig:ne_aidmd_gh} shows fitted energies versus the \textit{ab initio} VMC energies. 
+
+We find that the onsite Hubbard model describes graphene and hydrogen very well. The root mean square error of the predicted energies are relatively small (see Fig.~\ref{fig:ne_aidmd_gh}). The ratio of $U/t$ is small than the semimetal-insulator transition critical value (3.8) in both graphene and hydrogen, which is consistent to the fact that both the two systems are semimetals.  The $\pi$-only graphene however has larger $U/t$, and is in the insulating phase. This clearly shows the significance of $\sigma$ electrons in renormalizing the effective onsite interactions of $\pi$ orbitals. Without such screening effect, graphene will be an insulator. This is why many previous studies incorrectly predicted graphene to be an insulator in vacuum because they consider only $\pi$ electrons with bare Coulomb interaction \cite{DrutPRL2009, DrutPRB2009,  Smith2014}.
+\begin{figure}[htb]
+\centering
+\subfigure[]{\includegraphics[width=0.30\textwidth]{grp_all_tu.pdf}}
+\subfigure[]{\includegraphics[width=0.30\textwidth]{grp_pi_tu.pdf}}
+\subfigure[]{\includegraphics[width=0.30\textwidth]{h_tu.pdf}}
+\caption{Comparison of \textit{ab initio} (x-axis) and fitted energies (y-axis) of the 3$\times$3 periodic unit cell of graphene and hydrogen lattice: (a) graphene; (b) hydrogen lattice.}\label{fig:ne_aidmd_gh}
+\end{figure}
+
+
+
 \section{Realistic applications - silicon, carbon, transition metals, transition metal oxides}
 
 \section{Prospects}
 \HJC{The need for including spin-orbit terms, need for QMC for this case}
 \HJC{Other areas: Magnetism, small energy scales}
 \HJC{Applications to non QMC methods - coupled cluster, FCI, HCI}
-\HJC{Strengths and limitations of effective Hamiltonian approach}
+HJC{Strengths and limitations of effective Hamiltonian approach}
 
-\bibliographystyle{prsty}
+\bibliographystyle{unsrt}
 \bibliography{refs}
 
 \end{document}
