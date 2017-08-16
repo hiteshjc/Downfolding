@@ -15,6 +15,7 @@
 \usepackage{esint}
 \usepackage{subfigure}
 \usepackage{verbatim}
+\usepackage{braket}
 \usepackage{footmisc}
 \usepackage[unicode=true,pdfusetitle,
  bookmarks=false,colorlinks=true,citecolor=blue,urlcolor=blue,linkcolor=red]{hyperref}
@@ -77,19 +78,19 @@ Argonne Leadership Computing Facility, Argonne National Laboratory, 9700 South C
 Given a realistic material with all its intrinsic complications, how does one develop a 
 simple reliable model for understanding its properties? Theoretical insight has been the key driver of 
 this process leading to simple few-band pictures. When the interactions are comparable or much stronger than 
-the kinetic energy, it is convenient to adopt the real space lattice approach and think in terms of Hubbard or Kanamori Hamiltonians defined 
-only in terms of the low energy electrons. 
+the kinetic energy, it is convenient to adopt the real space lattice approach and think in terms of Hubbard or Kanamori type 
+Hamiltonians involving only the low energy electrons. 
 But this is no easy task, since the effective Hamiltonian involves a considerable renormalization of parameters with respect 
 to the bare Coulomb values. While the kinetic energy is dominated by contributions from bands or states energetically 
 near the Fermi level, screened interactions depend on states even \emph{far} away from it, leading to Hubbard U's 
 that have been traditionally hard to reliably determine. 
 %Several existing approaches treat the kinetic and potential parts of the Hamiltonian differently,
 %without internal checks on the accuracy of the approximations. 
-Here we discuss an approach that democratically treats 
-the kinetic and potential parts of the Hamiltonian and one that provides a transparent way 
+Here we discuss an approach that treats 
+the kinetic and potential parts of the Hamiltonian democratically and one that provides a transparent way 
 of obtaining effective Hamiltonians using data from many body wavefunctions, 
 and whose validity can be systematically checked.
-We emphasize that estimating the effective Hamiltonian reliably is crucial for 
+We emphasize that determining the effective Hamiltonian reliably is crucial for 
 several applications in physics and chemistry not only for quantitative accuracy, but also a 
 correct qualitative picture of strongly correlated materials. 
 %Bands/states far from the 
@@ -194,7 +195,6 @@ Crucially, a wavefunction-based method does not differentiate between kinetic
 and potential energy terms: all terms are treated the same way. 
 The approach is complementary to semi-empirical methods that 
 fit models solely to available energy spectra. 
-
 
 \section{Criteria for Hamiltonian matching}
 
@@ -404,14 +404,6 @@ of density matrix elements and $ {\bf{x}} \equiv (C,t_{ij}....V_{ijkl}...)^T$
 is a $N_p$ dimensional vector of parameters.
 This problem is overdetermined for $M>N_p$, which is the regime we expect to work in.
 
-%\begin{figure}[htpb]
-%\centering
-%\includegraphics[width=1\linewidth]{./hamfit.pdf}
-%\caption{Methods employed for downfolding involving Hamiltonian parameter fitting (a) Matching 
-%the reduced density matrices (RDMs) of energy-eigenstates 
-%(b) The "\emph{Ax=E}" method uses RDMs and energies of arbitrary states. }
-%\label{fig:hamfit} 
-%\end{figure}	
 In the case of any imperfection in the model (which is the most common case), 
 the equality will not hold exactly 
 and one must then instead minimize the norm, $\mathcal{N}$,
@@ -504,6 +496,15 @@ assumption of the form of the Hamiltonian).
 %of the minimal model that describes the low energy theory of
 %the cuprates. In order to do so, some simple (and probably
 %intuitive) assumptions made by others, were also discussed.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=1\linewidth]{./three_band_figure.pdf}
+\caption{Methods employed for downfolding involving Hamiltonian parameter fitting (a) Matching 
+the reduced density matrices (RDMs) of energy-eigenstates 
+(b) The "\emph{Ax=E}" method uses RDMs and energies of arbitrary states. }
+\label{fig:hamfit} 
+\end{figure}	
 
 One of the most famous examples motivating the study of lattice models 
 is the high $T_c$ cuprates. In these materials, the low energy physics is associated with the 
@@ -782,7 +783,6 @@ The resulting effective parameters are showed in Table.~\ref{tab:effm_hchain}. W
 
 \begin{table}[hbt]
 \centering
-\caption{Parameters of effective Hamiltonian [mHa], and error of RDMs and energies [mHa].}\label{tab:effm_hchain}
 \begin{tabular}{||l|c|c|c|c||c|c||}
 \hline
 Model & t & U & V & J & err(RDM) & err(energy)\\
@@ -793,6 +793,7 @@ UV & 32.76 & 130.63 & 65.31 & / & 0.75\% & $10^{-13}$\\
 U & 37.45 & 114.62 & / & / & 0.26\% & $1.8$\\
 \hline
 \end{tabular}
+\caption{Parameters of effective Hamiltonian [mHa], and error of RDMs and energies [mHa].}\label{tab:effm_hchain}
 \end{table}
 
 %\subsection{Transferability of the model parameters to larger systems} 
@@ -853,15 +854,14 @@ U & 7.16(3) & 14.8(2) & 9.47(5)\\
 Fig.~\ref{fig:ne_aidmd_gh} shows fitted energies versus the \textit{ab initio} VMC energies. 
 
 We find that the onsite Hubbard model describes graphene and hydrogen very well. The root mean square error of the predicted energies are relatively small (see Fig.~\ref{fig:ne_aidmd_gh}). The ratio of $U/t$ is small than the semi-metal-insulator transition critical value (3.8) in both graphene and hydrogen, which is consistent to the fact that both the two systems are semi-metals.  The $\pi$-only graphene however has larger $U/t$, and is in the insulating phase. This clearly shows the significance of $\sigma$ electrons in renormalizing the effective onsite interactions of $\pi$ orbitals. Without such screening effect, graphene will be an insulator. This is why many previous studies incorrectly predicted graphene to be an insulator in vacuum because they consider only $\pi$ electrons with bare Coulomb interaction \cite{DrutPRL2009, DrutPRB2009,  Smith2014}.
-\begin{figure}[htb]
+
+\begin{figure*}[htb]
 \centering
-\subfigure[]{\includegraphics[width=0.30\textwidth]{grp_all_tu.pdf}}
-\subfigure[]{\includegraphics[width=0.30\textwidth]{grp_pi_tu.pdf}}
-\subfigure[]{\includegraphics[width=0.30\textwidth]{h_tu.pdf}}
+\includegraphics[width=0.32\textwidth]{grp_all_tu.pdf}
+\includegraphics[width=0.32\textwidth]{grp_pi_tu.pdf}
+\includegraphics[width=0.32\textwidth]{h_tu.pdf}
 \caption{Comparison of \textit{ab initio} (x-axis) and fitted energies (y-axis) of the 3$\times$3 periodic unit cell of graphene and hydrogen lattice: (a) graphene; (b) hydrogen lattice.}\label{fig:ne_aidmd_gh}
-\end{figure}
-
-
+\end{figure*}
 
 \section{Realistic applications - silicon, carbon, transition metals, transition metal oxides}
 
