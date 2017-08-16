@@ -500,9 +500,9 @@ assumption of the form of the Hamiltonian).
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=1\linewidth]{./three_band_figure.pdf}
-\caption{Methods employed for downfolding involving Hamiltonian parameter fitting (a) Matching 
-the reduced density matrices (RDMs) of energy-eigenstates 
-(b) The "\emph{Ax=E}" method uses RDMs and energies of arbitrary states. }
+\caption{Schematic for downfolding the three band Hubbard model to the one band Hubbard model. 
+The oxygen orbitals are completely eliminated to give "dressed" $d$-like orbitals of the one band model, with modified hopping 
+and interaction parameters.}
 \label{fig:hamfit} 
 \end{figure}	
 
@@ -564,13 +564,17 @@ orbitals and the unit cell is shown in Fig
 
 The 3 band model is given by 
 \begin{eqnarray}
-	H &=& \sum \epsilon_p n_p + \sum \epsilon_d n_d + \sum t_{pd} \text{sgn}(p_i,d_j) d_i^{\dagger} p_j \\ 
-	  && + \sum t_{pp} * \text{sgn}(p_i,p_j) p_i^{\dagger} p_j + \sum U_p n^{p}_{\uparrow} n^{p}_{\downarrow} \\ 
-	  && + \sum U_d n^{d}_{\uparrow} n^{d}_{\downarrow} + \sum U_{pd} n_p n_d 
+H &=& \sum \epsilon_p n_p + \sum \epsilon_d n_d + \sum t_{pd} \text{sgn}(p_i,d_j) d_i^{\dagger} p_j + \sum t_{pp} * \text{sgn}(p_i,p_j) p_i^{\dagger} p_j + \sum U_p n^{p}_{\uparrow} n^{p}_{\downarrow} + \sum U_d n^{d}_{\uparrow} n^{d}_{\downarrow} + \sum U_{pd} n_p n_d 
 \end{eqnarray}
 $p,d$ are the usual orbitals of oxygen and copper and the signs are given by the sign function shown in the figure.  
+For simplicity we consider the case where only $\epsilon_p$,$t_{pd}$ and $U_{d}$ are non zero and without loss of generality 
+set $\epsilon_d = 0$. 
 The sign convention used by us (Boxiao and me and Lucas consistently) is given in the figure, please refer Boxiao's notes for clarity.
 The 8 site unit cells and its numberings is drawn. Bond lists are provided for further scrutiny.
+The Hamiltonian we wish to downfold it to is the one band Hubbard model, 
+\begin{eqnarray}
+	\tilde{H} &=&  -\tilde{t} \;\sum_{\langle i,j \rangle} \tilde{d}_i^{\dagger} \tilde{d}_j + \tilde{U}\;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}
+\end{eqnarray}
 
 Several people (Hybetsen et al ) have worked on parameter sets, there is no universal consensus. In the notes I present 
 data for Lucas' (electron notation) or simply "LE" set. Other sets will be analyzed in the near future. 
