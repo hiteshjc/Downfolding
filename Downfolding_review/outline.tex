@@ -1,0 +1,128 @@
+\documentclass[prl,12pt,onecolumn,nofootinbib,notitlepage,english,superscriptaddress]{revtex4-1}
+\renewcommand{\rmdefault}{cmr}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{latexsym}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{times}   %% Times Roman font
+\usepackage{esint}
+\usepackage{subfigure}
+\usepackage{verbatim}
+\usepackage{braket}
+\usepackage{footmisc}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=false,colorlinks=true,citecolor=blue,urlcolor=blue,linkcolor=red]{hyperref}
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\special{papersize=\the\paperwidth,\the\paperheight}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\@ifundefined{textcolor}{}
+{%
+ \definecolor{BLACK}{gray}{0}
+ \definecolor{WHITE}{gray}{1}
+ \definecolor{RED}{rgb}{1,0,0}
+ \definecolor{GREEN}{rgb}{0,1,0}
+ \definecolor{BLUE}{rgb}{0,0,1}
+ \definecolor{CYAN}{cmyk}{1,0,0,0}
+ \definecolor{MAGENTA}{cmyk}{0,1,0,0}
+ \definecolor{YELLOW}{cmyk}{0,0,1,0}
+}
+
+\@ifundefined{date}{}{\date{}}
+\AtBeginDocument{
+  \def\labelitemi{\(\rhd\)}
+}
+\makeatother
+
+\setlength{\belowcaptionskip}{-7pt}
+\newcommand{\SAVE}[1]{}
+\newcommand{\HJC}[1]{{\color{RED}{\bf HJC: #1}}}
+\newcommand{\prlsec}[1]{\emph{#1---}}
+\newcommand{\Ncal}{{\mathcal N}}
+\newcommand{\T}{{\mathbf{T}}}
+\newcommand{\Jbq}{{J_{bq}}}
+\newcommand{\DK}[1]{{\color{BLUE}{\bf DK: #1}}}
+
+\begin{document}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand\abstractname{}
+\title{From real materials to model lattice Hamiltonians: multi-scale modelling of strongly correlated electronic systems 
+       with information from many body wavefunctions}
+
+\author{Hitesh J. Changlani}
+\affiliation{Department of Physics and Astronomy, Johns Hopkins University, Baltimore, Maryland 21218, USA}
+\author{Huihuo Zheng}
+\affiliation{
+Argonne Leadership Computing Facility, Argonne National Laboratory, 9700 South Cass Avenue, Lemont, 60439, Illinois, USA}
+\author{Brian Busemeyer}
+\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
+1110 West Green St, Urbana IL 61801, USA}
+\author{Kiel Williams}
+\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
+1110 West Green St, Urbana IL 61801, USA}
+\author{Lucas K. Wagner}
+\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
+1110 West Green St, Urbana IL 61801, USA}
+\date{\today}
+\maketitle
+
+\textbf{
+Given a realistic material with all its intrinsic complications, how does one develop a 
+simple reliable model for understanding its properties? Theoretical insight has been the key driver of 
+this process leading to simple few-band pictures. When the interactions are comparable or much stronger than 
+the kinetic energy, it is convenient to adopt the real space lattice approach and think in terms of Hubbard or Kanamori type 
+Hamiltonians involving only the low energy electrons. 
+But this is no easy task, since the effective Hamiltonian involves a considerable renormalization of parameters with respect 
+to the bare Coulomb values. While the kinetic energy is dominated by contributions from bands or states energetically 
+near the Fermi level, screened interactions depend on states even \emph{far} away from it, leading to Hubbard U's 
+that have been traditionally hard to reliably determine. 
+Here we discuss an approach that treats 
+the kinetic and potential parts of the Hamiltonian democratically and one that provides a transparent way 
+of obtaining effective Hamiltonians using data from many body wavefunctions, 
+and whose validity can be systematically checked.
+We emphasize that determining the effective Hamiltonian reliably is crucial for 
+several applications in physics and chemistry not only for quantitative accuracy, but also a 
+correct qualitative picture of strongly correlated materials. 
+}
+
+\section{Introduction to downfolding the many electron problem}
+\HJC{Brief Survey and motivations ....}
+ 
+\section{Criteria for Hamiltonian matching}
+\HJC{Discuss what metrics are being matched. Give details} 
+
+\subsection{Choice of states, issues related to 1 particle basis...}
+\HJC{Algorithms of state selection, localized orbitals...} 
+
+\subsection{Fitting procedure: $Ax=E$ method}
+\HJC{Choice of norm and avoiding over-fitting: $L_1$, $L_2$ or something else?}
+
+\section{Representative Examples}
+\subsection{Three-band Hubbard model to one band Hubbard model at half filling}
+\HJC{Hitesh working on this. Example of lattice to lattice downfolding and a concrete SIMPLE example of what it means to downfold}
+\subsection{Hydrogen Chain}
+\HJC{Huihuo working on this. Extension of explanations to ab initio problem}
+\subsection{Graphene and hydrogen honeycomb lattice}
+\HJC{Huihuo + Hitesh.. Role of screening from other oribtals etc. Highlights importance of core and virtual orbitals}
+
+\section{Future Realistic applications - silicon OR carbon OR transition metals OR transition metal oxides??}
+\HJC{Optional section ?? Depends on Kiel and Brian. }
+
+\section{Future Prospects and need for more work in the area}
+\HJC{The need for including spin-orbit terms, need for QMC for this case}
+\HJC{Other areas: Magnetism, small energy scales}
+\HJC{Applications to non QMC methods - coupled cluster, FCI, HCI}
+\HJC{Strengths and limitations of effective Hamiltonian approach}
+
+\bibliographystyle{unsrt}
+\bibliography{refs}
+
+\end{document}
