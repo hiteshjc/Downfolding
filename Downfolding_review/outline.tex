@@ -29,7 +29,7 @@
  \definecolor{BLACK}{gray}{0}
  \definecolor{WHITE}{gray}{1}
  \definecolor{RED}{rgb}{1,0,0}
- \definecolor{GREEN}{rgb}{0,1,0}
+ \definecolor{GREEN}{rgb}{0,0.6,0}
  \definecolor{BLUE}{rgb}{0,0,1}
  \definecolor{CYAN}{cmyk}{1,0,0,0}
  \definecolor{MAGENTA}{cmyk}{0,1,0,0}
@@ -45,6 +45,8 @@
 \setlength{\belowcaptionskip}{-7pt}
 \newcommand{\SAVE}[1]{}
 \newcommand{\HJC}[1]{{\color{RED}{\bf HJC: #1}}}
+\newcommand{\lucas}[1]{{\color{GREEN}{\bf LKW: #1}}}
+
 \newcommand{\prlsec}[1]{\emph{#1---}}
 \newcommand{\Ncal}{{\mathcal N}}
 \newcommand{\T}{{\mathbf{T}}}
@@ -95,9 +97,11 @@ correct qualitative picture of strongly correlated materials.
 
 \section{Introduction to downfolding the many electron problem}
 \HJC{Brief Survey and motivations ....}
+\lucas{Need more details here. What is the reason that we're writing this paper? What accuracy should we expect? } 
  
 \section{Criteria for Hamiltonian matching}
 \HJC{Discuss what metrics are being matched. Give details} 
+\lucas{Why do we choose these criteria? What are the advantages of these criteria versus say matching the spectrum? }
 
 \subsection{Choice of states, issues related to 1 particle basis...}
 \HJC{Algorithms of state selection, localized orbitals...} 
@@ -111,17 +115,27 @@ correct qualitative picture of strongly correlated materials.
 
 \subsection{Hydrogen Chain}
 \HJC{Huihuo working on this. Extension to simple ab initio problem. Issue with transferability being resolved}
+
+\lucas{I thought that Kiel was also working on this for long-range V} 
+
 \subsection{Graphene and hydrogen honeycomb lattice}
 \HJC{Huihuo + Hitesh.. Role of screening from other oribtals etc. Highlights importance of core and virtual orbitals. More or less in place...}
 
 \section{Future Realistic applications - silicon OR carbon OR transition metals OR transition metal oxides??}
-\HJC{Optional section ?? Depends on Kiel and Brian... currently no consensus... Wait 2 weeks (end of Sept, 2017)}
+\HJC{Optional section ?? Depends on Kiel and Brian... currently no consensus... Wait 2 weeks (end of Sept, 2017)} 
+
+\lucas{We will not have anything useful for TMOs here. It might be worth trying to derive a tight-binding model for Silicon. I did start this calculation if anyone would like to continue it.} 
 
 \section{Future Prospects and need for more work in the area}
 \HJC{The need for including spin-orbit terms, need for QMC for this case}
+\lucas{Isn't this beyond the scope of this article? } 
+
 \HJC{Other areas: Magnetism, small energy scales}
+\lucas{We already do magnetism with this method, right? It might be worth mentioning that it justifies the method of looking at the Neel state versus the AFM state.} 
 \HJC{Applications to non QMC methods - coupled cluster, FCI, HCI}
+
 \HJC{Strengths and limitations of effective Hamiltonian approach}
+
 
 \bibliographystyle{unsrt}
 \bibliography{refs}
