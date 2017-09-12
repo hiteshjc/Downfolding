@@ -94,26 +94,83 @@
 
  
 \section{Criteria for Hamiltonian matching}
+\begin{itemize}
+\item What principles are important for connecting a problem of many electrons to a problem of few electrons
 \HJC{Discuss what metrics are being matched. Give details} 
 \lucas{Why do we choose these criteria? What are the advantages of these criteria versus say matching the spectrum? }
+    \begin{itemize}
+    \item criterion 1 - density matrices etc
+    \item criterion 2 - energies
+    \item criterion 3 - minimal, transferable
+    \HJC {What kind of data is needed and how much is enough}
+    \end{itemize}
 
-\subsection{Choice of states, issues related to 1 particle basis...}
-\HJC{Algorithms of state selection, localized orbitals...} 
+\item Subtleties: Choice of states, issues related to 1 particle basis...
+	\begin{itemize}
+	\item choice of energy window, data selection, many body states
+	\item Static vs dynamic
+	\item 1 particle basis, localized orbitals
+	\item Specific algorithmic details?
+	\end{itemize}
 
-\subsection{Fitting procedure: $Ax=E$ method}
-\HJC{Choice of norm and avoiding over-fitting: $L_1$, $L_2$ or something else?}
+\item{Fitting procedure: $Ax=E$ method}
+	\begin{itemize}
+	\item Given data, how do we achieve what we want..
+	\item Choice of norm and avoiding over-fitting: $L_1$, $L_2$ or something else?
+	\item What does the A matrix encode - standard tricks of fitting...
+	\item QMC specific features
+	
+	\end{itemize}
+\end{itemize}
 
 \section{Representative Examples}
 \subsection{Three-band Hubbard model to one band Hubbard model at half filling}
-\HJC{Hitesh working on this. Example of lattice to lattice downfolding and a concrete SIMPLE example of what it means to downfold. Performing transferability calculation (8+16 site) and more analyses with existing data}
+\begin{itemize}
+	\item What is the 3 band model? Why the 3 band model.. relevance etc?
+	\HJC{Hitesh working on this. Example of lattice to lattice downfolding and a concrete SIMPLE example of what it means to downfold. Performing transferability calculation (8+16 site) and more analyses with existing data}
+	\begin{itemize}
+		\item VERY Brief history and relevance to cuprates	
+		\item Simple example of lattice to lattice downfolding, Explain model and parameter set \HJC{In response to LKW: Not worried about whether parameters correspond to cuprate or not... This is to explain downfolding, not solve the final cuprate problem}
+	\end{itemize}
+	\item Downfolding 3 band model
+	\begin{itemize}
+		\item Model we want to map it to ... 
+		\item Effective one particle orbitals and "unitary"
+		\item Effective interactions
+	\end{itemize}
+\item Results and Discussion
+	\begin{itemize}
+		\item U/t and t with Ud/tpd. 
+		\item Variation with Ep-Ed
+		\item Hybridization parameter
+		\item Transferability?
+	\end{itemize}
+\end{itemize}
 
 \subsection{Hydrogen Chain}
 \HJC{Huihuo working on this. Extension to simple ab initio problem. Issue with transferability being resolved}
-
 \lucas{I thought that Kiel was also working on this for long-range V} 
+\begin{itemize}
+	\item Why hydrogen chain ? One of the simplest ab initio systems... 
+	\begin{itemize}
+		\item VERY brief intro	
+		\item Simplest ab initio system 
+	\end{itemize}
+	\item Downfolding it
+	\begin{itemize}
+		\item Models we want to map it to ... 
+		\item Kohn Sham - Wannier
+		\item Effective interactions
+	\end{itemize}
+\item Results and Discussion
+	\begin{itemize}
+		\item U/t and t  
+		\item Transferability
+	\end{itemize}
+\end{itemize}
 
 \subsection{Graphene and hydrogen honeycomb lattice}
-\HJC{Huihuo + Hitesh.. Role of screening from other oribtals etc. Highlights importance of core and virtual orbitals. More or less in place...}
+\HJC{Huihuo + Hitesh.. Role of screening from other orbitals etc. Highlights importance of core and virtual orbitals. More or less in place...}
 
 \section{Future Realistic applications - silicon OR carbon OR transition metals OR transition metal oxides??}
 \HJC{Optional section ?? Depends on Kiel and Brian... currently no consensus... Wait 2 weeks (end of Sept, 2017)} 
