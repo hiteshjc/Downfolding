@@ -59,45 +59,39 @@
 \title{From real materials to model lattice Hamiltonians: multi-scale modelling of strongly correlated electronic systems 
        with information from many body wavefunctions}
 
-\author{Hitesh J. Changlani}
-\affiliation{Department of Physics and Astronomy, Johns Hopkins University, Baltimore, Maryland 21218, USA}
-\author{Huihuo Zheng}
-\affiliation{
-Argonne Leadership Computing Facility, Argonne National Laboratory, 9700 South Cass Avenue, Lemont, 60439, Illinois, USA}
-\author{Brian Busemeyer}
-\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
-1110 West Green St, Urbana IL 61801, USA}
-\author{Kiel Williams}
-\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
-1110 West Green St, Urbana IL 61801, USA}
-\author{Lucas K. Wagner}
-\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
-1110 West Green St, Urbana IL 61801, USA}
-\date{\today}
 \maketitle
 
-\textbf{
-Given a realistic material with all its intrinsic complications, how does one develop a 
-simple reliable model for understanding its properties? Theoretical insight has been the key driver of 
-this process leading to simple few-band pictures. When the interactions are comparable or much stronger than 
-the kinetic energy, it is convenient to adopt the real space lattice approach and think in terms of Hubbard or Kanamori type 
-Hamiltonians involving only the low energy electrons. 
-But this is no easy task, since the effective Hamiltonian involves a considerable renormalization of parameters with respect 
-to the bare Coulomb values. While the kinetic energy is dominated by contributions from bands or states energetically 
-near the Fermi level, screened interactions depend on states even \emph{far} away from it, leading to Hubbard U's 
-that have been traditionally hard to reliably determine. 
-Here we discuss an approach that treats 
-the kinetic and potential parts of the Hamiltonian democratically and one that provides a transparent way 
-of obtaining effective Hamiltonians using data from many body wavefunctions, 
-and whose validity can be systematically checked.
-We emphasize that determining the effective Hamiltonian reliably is crucial for 
-several applications in physics and chemistry not only for quantitative accuracy, but also a 
-correct qualitative picture of strongly correlated materials. 
-}
+
+
 
 \section{Introduction to downfolding the many electron problem}
-\HJC{Brief Survey and motivations ....}
-\lucas{Need more details here. What is the reason that we're writing this paper? What accuracy should we expect? } 
+\begin{itemize}
+\item Why we want interacting models
+	\begin{itemize}
+	\item Coarse-graining to get to longer length/time scales
+	\item Conceptual understanding 
+	\item \lucas{other thoughts?} 
+	\end{itemize}
+\item Standard methods. DFT-based downfolding, CRPA-based downfolding. \lucas{What is the issue with these methods? Accuracy? Being able to tell if a model is good or not? This will determine what we talk about in the paper. When are these methods good?} 
+\item We are presenting a more general solution to this problem:
+   \begin{itemize}
+      \item  can tell us when a model is good/bad, how much.
+      \item  can take advantage of many-body wave functions
+    \end{itemize}
+\end{itemize}
+
+\section{Theory: compression of the energy functional}
+
+\begin{itemize}
+\item Analogy to fitting classical PES
+    \begin{itemize}
+    \item Some modes get gapped out (bond stretch in water, for example)
+    \end{itemize}
+\item $E[\Psi]$ is like the classical PES. High energy bits also get gapped out. 
+\item A downfolded or coarse-grained model is a representation of the low-energy $E[\Psi]$ in terms of descriptors $\{d_i[\Psi]\}$
+\item For many systems, when we choose $d_i$ to be expectation values of density matrices, $E[\Psi]$ is a linear function.
+\end{itemize}
+
  
 \section{Criteria for Hamiltonian matching}
 \HJC{Discuss what metrics are being matched. Give details} 
