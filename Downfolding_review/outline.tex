@@ -113,15 +113,30 @@
 	\item Specific algorithmic details?
 	\end{itemize}
 
-\item{Fitting procedure: $Ax=E$ method}
+\item Fitting procedure: $Ax=E$ method
 	\begin{itemize}
 	\item Given data, how do we achieve what we want..
-	\item Choice of norm and avoiding over-fitting: $L_1$, $L_2$ or something else?
+	\item Choice of norm and avoiding over-fitting: $L_1$, $L_2$ or something else? \lucas{We often use a technique called 'matching pursuit'} 
 	\item What does the A matrix encode - standard tricks of fitting...
 	\item QMC specific features
 	
 	\end{itemize}
+	
+\item Protocol \lucas{this overlaps a little with 'Fitting procedure'; we should discuss how to merge/cut them. We will also probably want a graphic.} 
+   \begin{itemize}
+   \item Generate a set of potential descriptors consistent with symmetry and physical knowledge
+   \item Generate a set of wave functions putatively in the low energy space $|\Psi_i\rangle \in {\cal LE} $, and evaluate their descriptor and energy expectation values.
+   \item Assessment point: 
+      \begin{itemize}
+      \item If two descriptors are highly correlated in the samples, either the samples are not sufficient or the descriptor space is overcomplete.
+      \item If two wave functions have identical or near-identical descriptor sets, then either take the lowest energy (these are approximations to the low energy manifold and the lowest will be the best approximation), or consider expanding the descriptor set.
+      \end{itemize}
+   \item Fitting: See above. Can use orthogonal matching, LASSO, ridge regression, etc.
+   \item Iteration: if we can solve the resultant model, does it predict low-lying states that are not in our sample set? Concept of intruder states; one example is simple stretched N$_2$ models.
+   \end{itemize}
 \end{itemize}
+
+
 
 \section{Representative Examples}
 \subsection{Three-band Hubbard model to one band Hubbard model at half filling}
