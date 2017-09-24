@@ -82,7 +82,11 @@
 
 \section{Theory: compression of the energy functional}
 
+
+ 
 \begin{itemize}
+\item What principles are important for connecting a problem of many electrons to a problem of few electrons
+ \begin{itemize}
 \item Analogy to fitting classical PES
     \begin{itemize}
     \item Some modes get gapped out (bond stretch in water, for example)
@@ -92,35 +96,7 @@
 \item For many systems, when we choose $d_i$ to be expectation values of density matrices, $E[\Psi]$ is a linear function.
 \end{itemize}
 
- 
-\section{Criteria for Hamiltonian matching}
-\begin{itemize}
-\item What principles are important for connecting a problem of many electrons to a problem of few electrons
-\HJC{Discuss what metrics are being matched. Give details} 
-\lucas{Why do we choose these criteria? What are the advantages of these criteria versus say matching the spectrum? }
-    \begin{itemize}
-    \item criterion 1 - density matrices etc
-    \item criterion 2 - energies
-    \item criterion 3 - minimal, transferable
-    \HJC {What kind of data is needed and how much is enough}
-    \end{itemize}
 
-\item Subtleties: Choice of states, issues related to 1 particle basis...
-	\begin{itemize}
-	\item choice of energy window, data selection, many body states
-	\item Static vs dynamic
-	\item 1 particle basis, localized orbitals
-	\item Specific algorithmic details?
-	\end{itemize}
-
-\item Fitting procedure: $Ax=E$ method
-	\begin{itemize}
-	\item Given data, how do we achieve what we want..
-	\item Choice of norm and avoiding over-fitting: $L_1$, $L_2$ or something else? \lucas{We often use a technique called 'matching pursuit'} 
-	\item What does the A matrix encode - standard tricks of fitting...
-	\item QMC specific features
-	
-	\end{itemize}
 	
 \item Protocol \lucas{this overlaps a little with 'Fitting procedure'; we should discuss how to merge/cut them. We will also probably want a graphic.} 
    \begin{itemize}
@@ -131,13 +107,24 @@
       \item If two descriptors are highly correlated in the samples, either the samples are not sufficient or the descriptor space is overcomplete.
       \item If two wave functions have identical or near-identical descriptor sets, then either take the lowest energy (these are approximations to the low energy manifold and the lowest will be the best approximation), or consider expanding the descriptor set.
       \end{itemize}
-   \item Fitting: See above. Can use orthogonal matching, LASSO, ridge regression, etc.
+   \item Fitting: 
+      	\begin{itemize}
+      	\item Choice of norm and avoiding over-fitting: $L_1$, $L_2$ or something else? 
+      	\item What does the A matrix encode - standard tricks of fitting...
+	\end{itemize}
+
    \item Iteration: if we can solve the resultant model, does it predict low-lying states that are not in our sample set? Concept of intruder states; one example is simple stretched N$_2$ models.
    \end{itemize}
+
+\item Subtleties: Choice of states, issues related to 1 particle basis...
+	\begin{itemize}
+	\item choice of energy window, data selection, many body states
+	\item Static vs dynamic
+	\item 1 particle basis, localized orbitals
+	\item Specific algorithmic details?
+	\end{itemize}
+
 \end{itemize}
-
-
-
 
 
 \section{Representative Examples}
