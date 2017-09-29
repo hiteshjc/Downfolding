@@ -113,8 +113,11 @@ traditional band theory approach, involving model Hamiltonians such as the Hubba
 and Heisenberg models, defined only in terms of the valence electrons. 
 While these models have been extensively studied analytically and numerically, and have significantly 
 enhanced our understanding of strongly correlated physics, their effectiveness 
-(along with the accurate set of parameter values) for describing a real complex system of interest is often unclear. Since multiple 
-competing energy scales are involved, rich phase diagrams emerge under a variety of conditions - doping, pressure, 
+for describing a real complex system of interest is often unclear. In addition, efforts to obtain the 
+optimal parameter values still remains very much an active area of research, often requiring experimental inputs. 
+Since most parameters are highly dependent on each other this is not an easy task. 
+The presence of multiple competing energy scales is, in fact, the source of rich phase diagrams that 
+emerge under a variety of conditions - doping, pressure, 
 temperature, all heavily dependent on material-specific properties. This motivates 
 the need to determine reliable low energy effective Hamiltonians that can capture all the necessary details, while 
 remaining simple enough to be simulated accurately.  
@@ -134,13 +137,14 @@ remaining simple enough to be simulated accurately.
 The endeavor we pursue here is to develop a multi-scale approach in which the effective interactions between 
 quasiparticles (such as dressed electrons) are determined after a \emph{ab-initio} simulation (but not necessarily exact 
 solution) of the continuum Schroedinger equation involving all the electrons. This reduction 
-of the Hilbert space is known as ``downfolding". This "lattice model" can be efficiently and accurately 
+of the Hilbert space is known as ``downfolding". The resultant "lattice model" can be efficiently and accurately 
 solved for large system sizes using techniques designed and suited for small local Hilbert spaces- these include 
-the density matrix renormalization group (DMRG)~\cite{White1992}, tensor networks~\cite{PEPS,Changlani_CPS,NeuscammanCPS}, 
-dynamical field theory (DMFT)~\cite{}, density matrix embedding (DMET)~\cite{DMET_2012} 
-and lattice quantum Monte Carlo (QMC) methods~\cite{Booth2009,SQMC,Sandvik_loops,Booth2013}. 
-These methods have also been used to obtain excited states and dynamical correlation functions, that 
-have been difficult in \emph{ab-initio} approaches. 
+exact or selected diagonalization~\cite{DeRaedt,Holmes_Tubman_Umrigar}, density matrix renormalization group 
+(DMRG)~\cite{White1992}, tensor networks~\cite{PEPS,Changlani_CPS,NeuscammanCPS}, 
+dynamical field theory (DMFT)~\cite{}, density matrix embedding (DMET)~\cite{DMET_2012} and 
+lattice quantum Monte Carlo (QMC) methods~\cite{Scalapino, Trivedi_Ceperley, Zhang_AFQMC, Sandvik_loops, Prokofiev, 
+Booth2009,SQMC,Holmes_Changlani_Umrigar, Booth2013}. These methods have also been used to obtain 
+excited states and dynamical correlation functions, that have been difficult in \emph{ab-initio} approaches. 
 Full \emph{ab-initio} calculations are not computationally feasible for large system sizes 
 and often not accurate enough to yield an unbiased understanding of the low energy states of interest. 
 
@@ -167,20 +171,38 @@ Thus, we discuss the development and application
 of a new set of methods, christened "ab-initio density matrix downfolding" (AIDMD)~\cite{Changlani2015},
 which by nature of their formulation, restore the democracy between kinetic and 
 potential part of the Hamiltonian. There is no double counting involved and it is straightforward 
-to judge the accuracy of the effective Hamiltonian. While our method applies to any wavefunction based method, 
+to judge the accuracy of the effective Hamiltonian. While our prescription applies to any wavefunction based method, 
 we have primarily chosen to work with the \emph{ab-initio} QMC approach~\cite{Ceperley_Alder,Foulkes_review}. 
 The QMC method works directly in the real space continuum and explicitly introduces correlations (via Jastrow factors) 
 into trial wavefunctions of non-interacting electrons (Slater determinants). 
 The details of the method, relevant for AIDMD, will be clarified at appropriate points 
 in the text. 
 
+What sort of accuracy should one expect with effective Hamiltonians and AIDMD? The holy grail of quantum chemistry 
+and electronic structure is to obtain an energy of 1 mHa (0.027 eV) per atom which has been challenging, 
+despite decades of work has been difficult to achieve. However, since we are interested only in relative energies (excitation spectrum), 
+neither the total energy (nor its accuracy) is of particularly fundamental interest. Rather the accuracy of the 
+effective Hamiltonian is contingent on (and exploits) the cancellation of the large energy associated with the core electrons.
+Previous experience suggests spectra can be accurately determined to 0.2 eV (or less)~\cite{Changlani2015} and systematically improvable with 
+more data and more refined effective Hamiltonians.  In our view the main advantage is that 
+the effective Hamiltonian opens up many avenues for quantities not easily calculated in ground state approaches namely excitation spectra 
+and finite temperature properties. On a conceptual level it reveals the types of terms are important (and how much), 
+what is missing and how it could be possibly rectified. 
+
 The paper is organized as follows. In Section 2, we clarify and make precise what it means to downfold 
 a many electron problem to a few electron problem. We recast the problem into minimization 
 of a cost function that needs to be optimized to connect the many and few body problems. We further 
 these notions both in terms of physical as well as information science descriptions, which allows us to connect to 
-compression algorithms in the machine learning literature. Section 3, gives a concrete example of downfolding from 
+compression algorithms in the machine learning literature. Section 3a gives a concrete example of downfolding from 
 the three band model (relevant to the cuprates) to the one band model - the map between the bare and 
-effective particles and parameters will be explicitly elucidated here.  
+effective particles and parameters will be explicitly elucidated here. These concepts are directly applied 
+to a simple yet non-trivial \emph{ab-initio} problem - the hydrogen chain in section 3b where we are able to 
+systematically quantify several aspects of the effective Hubbard model describing it. Section 3c 
+shows a more advanced application to graphene. We focus on the renormalization and screening effects that arise 
+due to the presence of core (sigma) electrons, a comparison to its hydrogen counterpart clearly 
+elucidates why graphene is a semimetal not an insulator in vacuum. 
+Finally, in Section 4, we discuss future prospects of applications of the AIDMD method and 
+clear avenues for methodological improvements. 
 
 \section{Theory: Compression of the Energy Functional/Criteria for Hamiltonian matching}
 \HJC{Lucas handling this section......Look at theory.tex}
@@ -542,8 +564,8 @@ and interaction parameters.}
 
 The justification for the 3-band model for the cuprates, along with the determination of its parameters, 
 is itself contingent on downfolding from a wavefunction based \emph{ab-initio} calculation, 
-of the type carried out in Refs.~\cite{Wagner_Abbamonte}. There has also been a suggestion that the 4s orbital of copper is important 
-for the low energy properties~\cite{Pavirini} but we steer clear of this debate here. 
+of the type carried out in Refs.~\cite{Wagner_Abbamonte}. (There has also been a suggestion that the 4s orbital of copper is important 
+for the low energy properties~\cite{Pavirini} but we steer clear of this debate here.) 
 Instead we use the 3-band model at half filling, as a prototypical example of what it \emph{means} to downfold to 
 a simpler model - the one band Hubbard model, 
 \begin{eqnarray}
