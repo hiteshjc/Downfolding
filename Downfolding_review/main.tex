@@ -819,6 +819,46 @@ from Table.~\ref{tab:effm_hchain}, and examine the errors of the RDMs of S=0 and
 shown in Fig.~\ref{fig:h4transfer}. As we can see, the error of the RDMs is around 10\%, indicating that the downfolding parameters from a smaller system is transferable to larger systems.
 Therefore, at $d=2$\AA, the hydrogen chain can be described by the extended Hubbard model \eqref{eq:h4model} very well. 
 
+\subsection{One dimensional hydrogen chain (Non-Eigenstate Fitting)}
+
+As an alternative to the model-fitting approach for hydrogen given above, we consider fitting a model to a periodic chain of 10 hydrogen atoms, but instead using low-energy states that do not explicitly target eigenstates of the Hamiltonian. In this example, we obtain single-particle Kohn-Sham orbitals from a set of spin-unrestricted and spin-restricted DFT-PBE calculations. With this set of orbitals, we produce a set of wave function states consisting of singles- and doubles- excitations to the Slater determinant. Allow $| S \rangle $ to be the Slater determinant formed from the Kohn-Sham orbitals, and orbitals $i$ and $j$ ($k$ and $l$) to be Kohn-Sham orbitals that are unoccupied (occupied) in the Slater determinant. We then produce new wave function states as singles excitations $|s \rangle$ and doubles excitations $| d \rangle$ excitations to the Slater determinant:
+\begin{subequations}
+\begin{eqnarray}
+| s \rangle = & c^\dagger_{i \sigma} c_{k \sigma}   | S \rangle \\
+| d \rangle = & \: c^\dagger_{i \sigma} c^\dagger_{j \sigma'} c_{k \sigma'} c_{l \sigma}   | S \rangle ,
+\end{eqnarray}
+\end{subequations}
+where $\sigma$ and $\sigma'$ are spin indices and $c^\dagger$ ($c$) is a single-electron creation (destruction) operator. This technique does not access the explicit eigenstates of the Hamiltonian, but allows many more states to be sampled in the process of characterizing the low-energy Hilbert of space of the system. The localized orbital basis upon which the descriptors are calculated is obtained by generating intrinsic atomic orbitals (IAO) from the Kohn-Sham orbitals, and localizing them using the L\"owdin localization procedure.
+
+Having produced a set of wave functions, we compute the total energies and descriptor values associated to each parameter that might appear in the model. The \textit{ab-initio} Hamiltonian is solved using diffusion Monte Carlo (DMC) with Slater-Jastrow trial wave functions. Fig.~\ref{fig:Histogram-of-Parameter-Values} shows distributions for the $U$ and $t$ descriptors computed using this set of singly- and doubly-excited wave function states.  Because these descriptors vary in value between the distinct states we have constructed, it is appropriate to include both within a single model.
+
+There will exist some correlation between any two given descriptors. If two descriptors strongly covary with one another, then including both of them in a single model will introduce strong co-linearities, and produce aphysical parameter estimates. To control for this, we compute the covariance between descriptors prior to fitting a model, to verify that the descriptors are describing independent features of the wave function set. Fig.~\ref{fig:Cov-of-Descriptors} shows the absolute covariance of the hopping-$t$ descriptor with the $U$, $J$, and $V$ descriptors as a function of the separation distance between the hydrogen ions. We see that the covariance between the $t$ and $U$ descriptors is consistently low across all separation distances, indicating that these parameters are describing different wave function features. Therefore these descriptors are not strongly correlated with one another, and it is appropriate to include both in a single model.
+
+Having computed the energies and descriptors for this set of wave functions, and verified the independence of the $U$ and $t$ descriptors, we fit a Hubbard-type model to describe the \textit{ab-initio} energetic results. Fig.~\ref{fig:RMS-Error-vs-Bond} shows the RMS error in the resultant $U$-$t$ model, relative to the \textit{ab-initio} DMC energetics, as a function of the hydrogen inter-atomic separation. We observe the the error is consistently less than 2 eV. The fitted value of the one-body hopping $t$ as a function of separation is shown in Fig.~\ref{fig:Parameters-vs-Bond-t}. As expected, the value of $t$ declines toward zero at larger separations. Hence, we see that the hydrogen chain can be well-described by a Hubbard-type model for a range of inter-atomic separations.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{Spin0_pbe_H_relation.pdf}
+\caption{Histograms giving descriptor distributions for the one-body hopping $t$ and two-body Hubbard $U$ repulsion parameter for the periodic H$_{10}$ chain, with a lattice constant of $1.75$\AA.}\label{fig:Histogram-of-Parameter-Values}
+ \end{figure}
+ 
+ \begin{figure}
+\centering
+\includegraphics[scale=0.6]{t_covariance_vs_separation.pdf}
+\caption{Covariance of the one-body hopping $t$ descriptor with the two-body $U$, $J$, and $V$ descriptors respectively, as a function of lattice constant for the periodic H$_{10}$ chain.  The covariance between the $t$ and $U$ is consistently small across all bond lengths.}\label{fig:Cov-of-Descriptors}
+ \end{figure}
+ 
+ \begin{figure}
+\centering
+\includegraphics[scale=0.6]{rms_ut_error_vs_separation_h_chain.pdf}
+\caption{The RMS error in the fitted $U$-$t$ model for the periodic H$_{10}$ chain, relative to the \textit{ab-initio} energies. The RMS error is less than 1 eV for sufficiently long bond lengths.}\label{fig:RMS-Error-vs-Bond}
+ \end{figure}
+ 
+ \begin{figure}
+\centering
+\includegraphics[scale=0.6]{$t$_vs_separation_h_chain_ols.pdf}
+\caption{The one-body hopping $t$ parameter as a function of lattice constant for the periodic H$_{10}$ chain, obtained from a fitted $U$-$t$ model. The parameter value declines to zero as the lattice constant increases.}\label{fig:Parameters-vs-Bond-t}
+ \end{figure}
 
 \subsection{Graphene and hydrogen honeycomb lattice (NE-AIDMD)}
 Graphene has drawn much attention in the last decade because of its unusual electronic and structural properties and its potential applications in electronics~\cite{Wallace1947, Novoselov2004,NovoselovNature2005, Katsnelson2006, Geim2007, Novoselov2007, neto2009, Castro2009}. 
