@@ -110,16 +110,17 @@ dynamically excited simply renormalize the dynamics of the low energy degrees of
 This principle has also been widely employed in condensed matter physics. In the past few decades, several studies 
 have been dedicated to describing complex systems (for example, the high $T_c$ cuprates and other transition metal oxides), 
 in particular to strongly correlated systems. These are systems where the effects of Coulomb 
-interactions are comparable to or more important than the kinetic energy. This has motivated an approach 
-beyond the traditional band theory approach, where model Hamiltonians 
-such as the Hubbard~\cite{Hubbard}, t-J~\cite{tJSpalek} and Heisenberg models involving only the valence electrons have been 
-extensively studied analytically and numerically. 
-Despite their great success in promoting our understanding of strongly correlated physics, their effectiveness 
+interactions are comparable to or more important than the kinetic energy and the picture of 
+localized rather than itinerant electrons is more pertinent. This has motivated an approach beyond the 
+traditional band theory approach, involving model Hamiltonians such as the Hubbard~\cite{Hubbard}, t-J~\cite{tJSpalek} 
+and Heisenberg models, defined only in terms of the valence electrons. 
+While these models have been extensively studied analytically and numerically, and have significantly 
+enhanced our understanding of strongly correlated physics, their effectiveness 
 for describing a real complex system of interest is often unclear. Since multiple 
 competing energy scales are involved, rich phase diagrams emerge under a variety of conditions - doping, pressure, 
 temperature, all heavily dependent on material-specific properties. This motivates 
-the need to determine the effective Hamiltonians that can capture all the necessary details, while 
-remaining simple enough to be simulated reliably.  
+the need to determine reliable low energy effective Hamiltonians that can capture all the necessary details, while 
+remaining simple enough to be simulated accurately.  
 
 %In complex systems such as high $T_c$ cuprates, it is unclear to what extent can these models describe the reality \cite{Anderson2013}. 
 %Since strongly correlated systems are  the macroscopic phenomena are strongly dependent on material-specific properties, motivating the need to determine the effective Hamiltonians that can capture all necessary details. 
@@ -134,43 +135,35 @@ remaining simple enough to be simulated reliably.
 %on physical insight and/or fits to experimental data, and this notion is not always rigorously well justified.
 
 The endeavor we pursue here is a multi-scale approach in which the effective interactions between 
-quasiparticles (such as dressed electrons) are determined after a full \emph{ab-initio} 
-solution of the Schroedinger equation involving all the electrons. This reduction 
-of the Hilbert space is known as ``downfolding". Many techniques are particularly suited for 
-small local Hilbert spaces, these include, the density matrix renormalization group (DMRG), tensor networks, 
+quasiparticles (such as dressed electrons) are determined after a full \emph{ab-initio}  
+solution of the continuum Schroedinger equation involving all the electrons. This reduction 
+of the Hilbert space is known as ``downfolding". This "lattice model" can be efficiently and accurately 
+solved using techniques suited to small local Hilbert spaces- these include 
+the density matrix renormalization group (DMRG), tensor networks~\cite{Verstraete,Changlani_CPS,Neuscamman_CPS}, 
 dynamical field theory (DMFT), density matrix embedding (DMET) and lattice quantum Monte Carlo (QMC) methods. 
 These methods have also been used to obtain excited states and dynamical correlation functions, that 
-have traditionally been difficult in \emph{ab-initio} approaches. 
+have been difficult in \emph{ab-initio} approaches. 
 Full \emph{ab-initio} calculations are not computationally feasible for large system sizes 
 and often not accurate enough to yield an unbiased understanding of the low energy states. 
 
-Downfolding has most commonly been carried out using DFT-based approaches. 
-Various efforts have been taken to develop accurate downfolding 
-methods. For example, Aryasetiawan et al.
-have laid out a post-DFT framework for obtaining 
-static and frequency dependent Hamiltonians using the 
-constrained-RPA approach. While the method has been applied to 
-a wide range of systems, 
-it is only recently that its accuracy is being rigorously checked. 
-Other approaches include traditional Lowdin downfolding 
-within a stochastic approach and 
-canonical transformation theory, 
-also being actively pursued as quantum chemistry 
-methods
-These methods use the electronic band structure to generate a tight binding model, 
-but are generally silent on the role of interactions (i.e. two and higher body terms). 
-Incorrect estimation of the strength of the interactions 
-in the case of systems with strong electron-electron correlations leads to 
-outcomes in clear violations of experiments. For example, the local density 
-approximation (LDA) predicts undoped LaCu$_2$O$_4$ 
-to be metallic instead of insulating, requiring ad-hoc inputs for 
-the downfolding procedure. Other schemes for magnetic systems involve fitting DFT energies for 
+Downfolding has most commonly been carried out using DFT-based approaches, 
+most prominently the constrained-RPA approach. The hopping (kinetic) part is obtained from a standard 
+DFT calculation which gives an estimate of the effective kinetic Hamiltonian. 
+To estimate the interactions, one assumes a simple model of screening (based on RPA, for example) involving 
+the Kohn Sham orbitals. Since some of the effects of the orbitals (one body space) have already been 
+accounted for, the so called "double counting correction" is applied to obtain the downfolded Hamiltonian. 
+Unfortunately, the formalism does not support a systematic way of internally 
+checking the accuracy of the approximation, without resorting to comparison with experiment.  
 
-\HJC{Why are WE downfolding? What new things are we offering? What should we expect? Accuracy, qualitative etc...} 
-In this paper, we apply the \emph{ab-initio} 
-Quantum Monte Carlo (QMC) approach~\cite{Ceperley_Alder,Foulkes_review}, 
-one of the most accurate and highly scalable wavefunction based electronic-structure 
-methods. The QMC method works directly in the continuum and 
+Other downfolding approaches include traditional Lowdin downfolding 
+within a stochastic approach and canonical transformation theory, 
+also being actively pursued as a full fledged quantum chemistry method. 
+
+Here we develop and apply a new set of methods which by nature of their formulation restore the democracy 
+between kinetic and potential part of the Hamiltonian. 
+While our method applies to any wavefunction based method, 
+we have chosen the \emph{ab-initio} QMC approach~\cite{Ceperley_Alder,Foulkes_review}, 
+due to its accuracy. The QMC method works directly in the continuum and 
 explicitly introduces correlation into the Slater determinant obtained 
 from DFT or Hartree Fock calculations. For energies of eigenstates, obtained 
 by stochastic projection, the only systematic error is in the assumption of the 
@@ -182,9 +175,7 @@ For arbitrary wavefunctions which can be evaluated in polynomial time,
 the \emph{only} error is purely statistical and 
 can be brought down to arbitrarily small values by increased sampling.
 
-While all results presented here utilize data generated from 
-\emph{ab-initio} QMC, the idea of fitting data from many-body wavefunctions to models applies 
-to other methods as well. Information from many-body wavefunctions detects 
+Information from many-body wavefunctions detects 
 inadequacies of a proposed model: the deviations suggest the form of additional missing terms. 
 Crucially, a wavefunction-based method does not differentiate between kinetic 
 and potential energy terms: all terms are treated the same way. 
