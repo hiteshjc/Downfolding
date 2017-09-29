@@ -515,15 +515,6 @@ assumption of the form of the Hamiltonian).
 %\HJC{Simple examples - lattice to lattice downfolding - Three to One band model and the "effective" d orbitals}
 %\HJC{Notes on 3 band - copy pasted from pdf, tex file missing ?????}
 \subsection{Three-band Hubbard model to one band Hubbard model at half filling}
-\begin{figure}[htpb]
-\centering
-\includegraphics[width=1\linewidth]{./three_band_figure.pdf}
-\caption{Schematic for downfolding the three band Hubbard model to the one band Hubbard model. 
-The oxygen orbitals are completely eliminated to give "dressed" $d$-like orbitals of the one band model, with modified hopping 
-and interaction parameters.}
-\label{fig:hamfit} 
-\end{figure}	
-
 %\HJC{What is the 3 band model? Why the 3 band model??}
 \subsubsection{Introduction}
 A big motivation for studying lattice models of strongly correlated systems comes from their 
@@ -534,31 +525,43 @@ the low energy physics is primarily associated with the copper-oxygen 2D planes.
 for this work.) 
 
 Many works have been devoted to determining the model effective Hamiltonians and corresponding parameter 
-values for the cuprates~\cite{Emery, Rice, tJSpalek, Hybertsen_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard}. 
+values for the cuprates~\cite{Emery, ZhangRice, tJSpalek, Hybertsen_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard}. 
 Accounting for the octahedral environment of copper ions, and with support from electronic structure 
 and quantum chemistry calculations~\cite{Dagotto_RevModPhys}, one infers 
-that the five fold \emph{d} orbital degeneracy of the isolated copper ion is lifted to make the 
+that the five-fold \emph{d} orbital degeneracy of the isolated copper ion is lifted to make the 
 highest filled orbital with one unpaired electron to be the one with $d_{x^2-y^2}$ character. 
 (The choice of spatial coordinates corresponds to the copper oxide plane to be the X-Y plane). 
 The corresponding oxygen orbitals that hybridize most strongly with this orbital are the $p_x$ or $p_y$ orbitals. 
 Thus the minimal model for the cuprates involving the oxygens 
 is the 3-orbital or 3-band Hubbard model, 
 \begin{eqnarray}
-H &=&    \sum_{p} \epsilon_p n_p + \sum_{d} \epsilon_d n_d + \sum t_{pd} \text{sgn}(p_i,d_j) d_i^{\dagger} p_j \\
-  & &  + \sum U_p n^{p}_{\uparrow} n^{p}_{\downarrow} + \sum U_d n^{d}_{\uparrow} n^{d}_{\downarrow} + \sum V_{pd} n_p n_d 
+H &=&    \epsilon_p \sum_{j,\sigma} \epsilon_p n^{p}_{j,\sigma} + \epsilon_{d} \sum_{d}  n^{d}_{i,\sigma} 
+	+ t_{pd} \sum_{\langle i,j \rangle, \sigma} \text{sgn}(p_i,d_j) \Big( d_{i,\sigma}^{\dagger} p_{j,\sigma} + \text{h.c.} \Big) \\
+  & &   + U_p \sum_{j} n^{p}_{j,\uparrow} n^{p}_{j,\downarrow} + U_d \sum_{i} n^{d}_{i,\uparrow} n^{d}_{i,\downarrow} + V_{pd} \sum_{\langle i,j \rangle} n^{j}_p n^{i}_d 
 \end{eqnarray}
-where $p,d$ refer to the orbitals of oxygen and copper and the signs of the hoppings $t_{pd}$ are 
-shown in Fig.~. for a $2 \times 2$ unit cell. $U_d$, $U_p$ refer to strength of onsite Hubbard 
-interactions and $V_{pd}$ refers to the stength of the density-density interactions between a neighboring 
-$p$ and $d$ orbital. One could consider further variations of the model by adding $t_{pp}$ type hoppings, but 
+where $d_i,p_j$ refer to the orbitals of copper (at site $i$) and oxygen (at site $j$)  respectively 
+and the signs of the hopping $t_{pd}$ between them is shown in Fig.~\ref{fig:threeband} for a $2 \times 2$ unit cell. 
+$U_d$, $U_p$ refer to strength of onsite Hubbard interactions and $V_{pd}$ refers to the 
+stength of the density-density interactions between a neighboring $p$ and $d$ orbital. 
+One could consider further variations of the model by adding $t_{pp}$ type hoppings, but 
 these have not been shown here. To keep the exposition simple, we consider only 
 the case where $\epsilon_p$, $t_{pd}$ and $U_{d}$ are non zero and 
 since we work with a fixed number of particles, set $\epsilon_d = 0$. Thus the 
 charge transfer energy $\Delta \equiv \epsilon_p - \epsilon_d$ equals $\epsilon_p$ in our notation. 
 
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=1\linewidth]{./three_band_figure.pdf}
+\caption{Schematic for downfolding the three band Hubbard model to the one band Hubbard model. 
+The oxygen orbitals are completely eliminated to give "dressed" $d$-like orbitals of the one band model, with modified hopping 
+and interaction parameters.}
+\label{fig:threeband} 
+\end{figure}	
+
 The justification for the 3-band model for the cuprates, along with the determination of its parameters, 
-is itself contingent on downfolding from a wavefunction based \emph{ab-initio calculation}, 
-of the type carried out in Refs.~\cite{Wagner_Abbamonte}. However, we steer clear of this debate here. 
+is itself contingent on downfolding from a wavefunction based \emph{ab-initio} calculation, 
+of the type carried out in Refs.~\cite{Wagner_Abbamonte}. There has also been a suggestion that the 4s orbital of copper is important 
+for the low energy properties~\cite{Pavirini} but we steer clear of this debate here. 
 Instead we use the 3-band model at half filling, as a prototypical example of what it \emph{means} to downfold to 
 a simpler model - the one band Hubbard model, 
 \begin{eqnarray}
@@ -569,7 +572,7 @@ where $t$ and $U$ are downfolded (renormalized) Hubbard parameters, which are to
 be determined for given 3-band parameters, and $\tilde{d}$ are the effective \emph{d-like} orbitals. 
 The latter are a mixture of copper and oxygen orbitals and this optimal transformation also remains an unknown. Thus, 
 the determination of effective Hamiltonians is a \emph{dual} problem - (1) what are the composite objects that give a 
-compact description of the low energy physics? and given this choice what are the effective interactions between them ?  
+compact description of the low energy physics? and given this choice what are the effective interactions between them?  
 This example will serve as a setting for the downfolding of more complex \emph{ab-initio} systems to lattice 
 models. 
 %\lucas{I don't know how much to trust these parameters, to be honest with you.} 
