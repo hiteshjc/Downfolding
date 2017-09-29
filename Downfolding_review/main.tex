@@ -528,14 +528,15 @@ and interaction parameters.}
 \subsubsection{Introduction}
 A big motivation for studying lattice models of strongly correlated systems comes from their 
 relevance to the high $T_c$ superconducting cuprates. These materials are complex, with several 
-competing energy scales, leading to rich phase diagrams. In these materials, 
+competing energy scales, leading to rich phase diagrams~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. In these materials, 
 the low energy physics is primarily associated with the copper-oxygen 2D planes. 
-(Inter-layer effects can also important for several aspects~\cite{}, a complication we ignore 
+(Inter-layer effects can also important for some aspects, a complication we ignore 
 for this work.) 
 
-Many works have been devoted to determining the model effective Hamiltonians 
-for the cuprates~\cite{Hybertsen}. Accounting for the octahedral environment of copper ions, 
-and with support from electronic structure and quantum chemistry calculations~\cite{Dagotto}, one infers 
+Many works have been devoted to determining the model effective Hamiltonians and corresponding parameter 
+values for the cuprates~\cite{Emery, Rice, tJSpalek, Hybertsen_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard}. 
+Accounting for the octahedral environment of copper ions, and with support from electronic structure 
+and quantum chemistry calculations~\cite{Dagotto_RevModPhys}, one infers 
 that the five fold \emph{d} orbital degeneracy of the isolated copper ion is lifted to make the 
 highest filled orbital with one unpaired electron to be the one with $d_{x^2-y^2}$ character. 
 (The choice of spatial coordinates corresponds to the copper oxide plane to be the X-Y plane). 
@@ -543,14 +544,17 @@ The corresponding oxygen orbitals that hybridize most strongly with this orbital
 Thus the minimal model for the cuprates involving the oxygens 
 is the 3-orbital or 3-band Hubbard model, 
 \begin{eqnarray}
-H &=& \sum \epsilon_p n_p + \sum \epsilon_d n_d + \sum t_{pd} \text{sgn}(p_i,d_j) d_i^{\dagger} p_j + 
-      \sum t_{pp} * \text{sgn}(p_i,p_j) p_i^{\dagger} p_j + \sum U_p n^{p}_{\uparrow} n^{p}_{\downarrow} + \\
-  & & \sum U_d n^{d}_{\uparrow} n^{d}_{\downarrow} + \sum V_{pd} n_p n_d 
+H &=&    \sum_{p} \epsilon_p n_p + \sum_{d} \epsilon_d n_d + \sum t_{pd} \text{sgn}(p_i,d_j) d_i^{\dagger} p_j \\
+  & &  + \sum U_p n^{p}_{\uparrow} n^{p}_{\downarrow} + \sum U_d n^{d}_{\uparrow} n^{d}_{\downarrow} + \sum V_{pd} n_p n_d 
 \end{eqnarray}
-$p,d$ refer to the orbitals of oxygen and copper and the signs of the hoppings $t_{pd}$, $t_{pp}$ are 
+where $p,d$ refer to the orbitals of oxygen and copper and the signs of the hoppings $t_{pd}$ are 
 shown in Fig.~. for a $2 \times 2$ unit cell. $U_d$, $U_p$ refer to strength of onsite Hubbard 
 interactions and $V_{pd}$ refers to the stength of the density-density interactions between a neighboring 
-$p$ and $d$ orbital.
+$p$ and $d$ orbital. One could consider further variations of the model by adding $t_{pp}$ type hoppings, but 
+these have not been shown here. To keep the exposition simple, we consider only 
+the case where $\epsilon_p$, $t_{pd}$ and $U_{d}$ are non zero and 
+since we work with a fixed number of particles, set $\epsilon_d = 0$. Thus the 
+charge transfer energy $\Delta \equiv \epsilon_p - \epsilon_d$ equals $\epsilon_p$ in our notation. 
 
 The justification for the 3-band model for the cuprates, along with the determination of its parameters, 
 is itself contingent on downfolding from a wavefunction based \emph{ab-initio calculation}, 
@@ -593,10 +597,10 @@ models.
 %\HJC{Lot of stuff needs to be taken out or re-explained....}
 
 \subsubsection{Choice of effective one particle basis}
-What does it mean to map a 3-band model to a 1-band model? And when is it meaningful to do so? 
-To address these questions, our first aim will be to obtain "effective dressed" \emph{d-like} 
-orbitals that enter Eq.~\ref{eq:oneband}. To make this connection concrete, 
-we encode the transformation ${\bf U}$ as,
+To map the 3-band model to the 1-band model and determine its validity, 
+our first aim will be to obtain "effective dressed" \emph{d-like} 
+orbitals that enter Eq.~\ref{eq:oneband}. We encode this relationship as 
+the transformation ${\bf U}$, 
 \begin{equation}
 	\tilde{d}_i^{\dagger} = \sum_{j} U_{ij} c_j
 \end{equation}
@@ -619,7 +623,7 @@ where we have defined $F \equiv \sqrt{1-4{\alpha_1}^2 - 2{\alpha_2}^2 - 4 {\alph
 where the parameters $\alpha_1$,$\alpha_2$,$\alpha_3$ and $\alpha_4$ will be 
 optimized to minimize a certain cost function, which will be explained shortly. 
 
-Note that the transformation has been chosen to be as a linear one. However, 
+Note that the transformation has been chosen to be a linear one. However, 
 one can imagine a more complicated many-body transformation involving higher body functions. 
 In practice, at least for the model under consideration, this does not seem to be necessary. 
 This does not mean that determining the optimal one body space is \emph{always} a trivial problem. 
@@ -630,6 +634,15 @@ or composite objects. However, for the purpose of the rest of the paper, we will
 of the linear transformations even for the \emph{ab-initio} to lattice downfolding cases; 
 Kohn Sham orbitals will be rotated to form localized functions. These one body transformations will give us the orbitals 
 that enter the definition of the effective Hamiltonian. 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.49\linewidth]{./Hyb_vs_U_Ud_8.pdf}
+\includegraphics[width=0.49\linewidth]{./Hopping_vs_U_Ud_8.pdf}
+\includegraphics[width=0.49\linewidth]{./downfolded_U_Ud_8.pdf}
+\caption{Downfolded values of the effective 1-band Hubbard U/t and hopping $t_{opt}$ vs $U_d/t_{pd}$}
+\label{fig:hamfit} 
+\end{figure}	
 
 \begin{figure}[]
 \centering
@@ -659,7 +672,7 @@ to that in the original basis by,
 \begin{equation}
 	\langle {\tilde{d}_i}^{\dagger} \tilde{d}_{j} \rangle = \sum_{mn} U^{*}_{im} \langle {c_m}^{\dagger} c_n \rangle U_{jn}
 \end{equation}
-We demand two conditions be satisfied.
+We demand two conditions be satisfied,
 \begin{itemize} 
  \item The effective orbitals are orthogonal to each other 
  \item All diagonal entries of the 1-RDM of the effective orbitals for all eigenstates 
@@ -668,7 +681,7 @@ We demand two conditions be satisfied.
 \end{itemize} 
 
 \subsubsection{Results and Discussion}
-To give a concrete example of our results, we start with 1-RDMs for the first three eigenstates, 
+To give a concrete example of our results, we start with 1-RDM of the lowest eigenstate, 
 \begin{eqnarray}
 \left(
 \begin{array}{cccccccccccc}
@@ -687,8 +700,7 @@ To give a concrete example of our results, we start with 1-RDMs for the first th
 \end{array}
 \right)
 \end{eqnarray}
-and after finding the optimal values of $\alpha_1$, $\alpha_2$, $\alpha_3$ and $\alpha_4$ 
-find the $4\times4$ transformed RDM to be, 
+find the $4\times4$ transformed RDM to be which minimizes the cost function to be, 
 \begin{eqnarray}
 \left(
 \begin{array}{cccc}
@@ -700,15 +712,25 @@ find the $4\times4$ transformed RDM to be,
 \right)
 \end{eqnarray}
 and after finding the optimal parameters $\alpha_1=0.220$,$\alpha_2=0.044$,$\alpha_3=0.020$ and $\alpha_4=0.018$ 
-We then ask what $U/t$ of the one band Hubbard model best describes this 
+We then ask what $U/t$ of the one band Hubbard model best describes this 1-RDMm and in this case find $U/t = $Similar results are found when 
+one considers the other low energy eigenstates. In practice, we minimize the sum of costs of the lowest 
+three eigenstates on the $2 \times 2$ cluster  
  
-For understanding trends in downfolding from the 3-band to 1-band model, we consider only 
-the cases where $\epsilon_p$, $t_{pd}$ and $U_{d}$ are non zero and 
-since we are working with a fixed number of particles, set $\epsilon_d = 0$. Thus the 
-charge transfer energy $\Delta \equiv \epsilon_p - \epsilon_d$ equals $\epsilon_p$ in this notation. 
+The density matrix matching does not provide an absolute energy scale for the matching. 
+Taking $t_{pd}$ to be the typical values of $1.3$ eV, we then 
+We show our results for the optimal values of $t$ and the transformation parameters for different $\Delta/t_{pd}$
+keeping $U_d/t_{pd}=8$ fixed. First, note that $\alpha_1$, which is the primary parameter that mixes (hybridizes) 
+the copper and oxygen orbitals, \emph{decreases} as $\Delta/t_{pd}$ is increased. This is physically reasonable 
+since an increasing difference in the single particle energies of the copper and oxygen orbitals 
+means that it is even more energetically unfavorable to occupy the oxygen orbitals. 
+Correspondingly the effective hopping between $\tilde{d}$ in the 
+1-band model reduces and the effective $U/t$ increases. 
 
+Next, we consider our results for  
+
+These results are only useful if the energy spectra between the two models also matches. This is verified 
+and demonstrated for some representative examples in Fig.        
  
-\HJC{Transferability??}
 Finally, we show that the obtained parameters are 
 
 \subsection{One dimensional hydrogen chain (E-AIDMD)}
