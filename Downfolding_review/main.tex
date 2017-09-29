@@ -79,7 +79,7 @@ Given a realistic material with all its intrinsic complications, how does one de
 simple reliable model for understanding its properties? Theoretical insight has been the key driver of 
 this process leading to simple few-band pictures. When the interactions are comparable 
 to or much stronger than the kinetic energy, it is convenient to adopt the real space lattice 
-approach and think in terms of Hubbard or Kanamori type Hamiltonians involving only the low energy electrons. 
+approach and work with Hubbard or Kanamori type Hamiltonians involving only the low energy electrons. 
 But this is no easy task, since the effective Hamiltonian involves a considerable renormalization of parameters with respect 
 to the bare Coulomb values. While the kinetic energy is dominated by contributions from bands or states energetically 
 near the Fermi level, screened interactions depend on states even \emph{far} away from it, leading to Hubbard U's 
@@ -97,7 +97,7 @@ correct qualitative picture of strongly correlated materials.
 %\HJC{Survey of DFT based downfolding and known limitations....Survey of model Hamiltonians - Hubbard, Kanamori, .....}
 %\HJC{Modify intro - this is from the paper........ }
 %\HJC{How are many body systems studied, coarse graining - physics/ chemistry perspectives}
-One of the most sought-after, yet often daunting endeavors, for physicists is to develop 
+One of the most sought-after, yet often daunting, endeavor for physicists is to develop 
 an intuitive understanding of physical phenomena involving intrinsically complicated materials 
 using simplified models. These models are expected to capture the essence of the physics, and are formulated in terms 
 of the most relevant physical degrees of freedom related to the observed phenomena. 
@@ -135,47 +135,50 @@ remaining simple enough to be simulated accurately.
 %on physical insight and/or fits to experimental data, and this notion is not always rigorously well justified.
 
 The endeavor we pursue here is a multi-scale approach in which the effective interactions between 
-quasiparticles (such as dressed electrons) are determined after a full \emph{ab-initio}  
-solution of the continuum Schroedinger equation involving all the electrons. This reduction 
+quasiparticles (such as dressed electrons) are determined after a \emph{ab-initio} simulation (but not necessarily exact 
+solution) of the continuum Schroedinger equation involving all the electrons. This reduction 
 of the Hilbert space is known as ``downfolding". This "lattice model" can be efficiently and accurately 
-solved using techniques suited to small local Hilbert spaces- these include 
+solved for large system sizes using techniques designed and suited for small local Hilbert spaces- these include 
 the density matrix renormalization group (DMRG), tensor networks~\cite{Verstraete,Changlani_CPS,Neuscamman_CPS}, 
-dynamical field theory (DMFT), density matrix embedding (DMET) and lattice quantum Monte Carlo (QMC) methods. 
+dynamical field theory (DMFT), density matrix embedding (DMET)~\cite{Knizia_Chan_PRL,Knizia_Chan_JCP} 
+and lattice quantum Monte Carlo (QMC) methods~\cite{Booth2009,SQMC,Sandvik_loops,Booth2013}. 
 These methods have also been used to obtain excited states and dynamical correlation functions, that 
 have been difficult in \emph{ab-initio} approaches. 
 Full \emph{ab-initio} calculations are not computationally feasible for large system sizes 
-and often not accurate enough to yield an unbiased understanding of the low energy states. 
+and often not accurate enough to yield an unbiased understanding of the low energy states of interest. 
 
-Downfolding has most commonly been carried out using DFT-based approaches, 
-most prominently the constrained-RPA approach. The hopping (kinetic) part is obtained from a standard 
-DFT calculation which gives an estimate of the effective kinetic Hamiltonian. 
-To estimate the interactions, one assumes a simple model of screening (based on RPA, for example) involving 
-the Kohn Sham orbitals. Since some of the effects of the orbitals (one body space) have already been 
-accounted for, the so called "double counting correction" is applied to obtain the downfolded Hamiltonian. 
-Unfortunately, the formalism does not support a systematic way of internally 
-checking the accuracy of the approximation, without resorting to comparison with experiment.  
+Downfolding has most commonly been carried out using approaches based on density functional theory (DFT), 
+most prominently the constrained-RPA approach. The kinetic part is obtained from a standard 
+DFT calculation which gives an estimate of the effective hoppings of the lattice model. 
+Then, to estimate the interactions, one assumes a model of screening of the Coulomb interactions 
+(based on RPA, for example) involving the Kohn Sham orbitals. Since effects of interactions 
+between the orbitals (one body space) of interest, have already been accounted for by DFT, a 
+"double counting correction" is applied to obtain the downfolded Hamiltonian. 
+The approach has been widely applied, but suffers from the absence of a systematic way of checking 
+the internal accuracy of the approximation.
 
 Other downfolding approaches include traditional Lowdin downfolding 
 within a stochastic approach and canonical transformation theory, 
 also being actively pursued as a full fledged quantum chemistry method. 
 
-Here we develop and apply a new set of methods which by nature of their formulation restore the democracy 
-between kinetic and potential part of the Hamiltonian. 
-While our method applies to any wavefunction based method, 
-we have chosen the \emph{ab-initio} QMC approach~\cite{Ceperley_Alder,Foulkes_review}, 
-due to its accuracy. The QMC method works directly in the continuum and 
-explicitly introduces correlation into the Slater determinant obtained 
-from DFT or Hartree Fock calculations. For energies of eigenstates, obtained 
-by stochastic projection, the only systematic error is in the assumption of the 
-nodes of the many-body wavefunction: in practice, 
-this approximation is estimated to miss $ 5 - 10 \%$ 
-of the correlation energy. Correlation functions and density matrices are generally 
-less accurate, but good wavefunctions can bring down the errors significantly. 
-For arbitrary wavefunctions which can be evaluated in polynomial time, 
-the \emph{only} error is purely statistical and 
-can be brought down to arbitrarily small values by increased sampling.
+The viewpoint we take here is to work with many body wavefunctions of \emph{ab initio} systems, 
+which give us access to many properties encoded compactly in the form of reduced 
+density matrices (RDM) or correlation functions. Crucially, we do not commit ourselves to 
+knowledge of exact eigenstates - rather we "learn" the effective Hamiltonian from a database 
+of low energy wavefunctions and their associated energies (expectation value of the effective Hamiltonian). 
+Thus, we discuss the development and application 
+of a new set of methods, christened "ab-initio density matrix downfolding" (AIDMD)~\cite{Changlani2015},
+which by nature of their formulation, restore the democracy between kinetic and 
+potential part of the Hamiltonian. There is no double counting involved and it is straightforward 
+to judge the accuracy of the effective Hamiltonian. While our method applies to any wavefunction based method, 
+we have primarily chosen to work with the \emph{ab-initio} QMC approach~\cite{Ceperley_Alder,Foulkes_review}. 
+The QMC method works directly in the continuum and explicitly introduces correlation (via Jastrow factors) 
+into trial wavefunctions of non-interacting electrons (Slater determinants). 
+The details of the method, relevant for AIDMD, will be clarified at appropriate points 
+in the text. 
 
-Information from many-body wavefunctions detects 
+The paper is organized as follows. In Section 2, we clarify and make precise what it means to downfold 
+a many electron problem to a few electron problem. Information from many-body wavefunctions detects 
 inadequacies of a proposed model: the deviations suggest the form of additional missing terms. 
 Crucially, a wavefunction-based method does not differentiate between kinetic 
 and potential energy terms: all terms are treated the same way. 
