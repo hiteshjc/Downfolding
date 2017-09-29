@@ -77,57 +77,66 @@ Argonne Leadership Computing Facility, Argonne National Laboratory, 9700 South C
 \textbf{
 Given a realistic material with all its intrinsic complications, how does one develop a 
 simple reliable model for understanding its properties? Theoretical insight has been the key driver of 
-this process leading to simple few-band pictures. When the interactions are comparable or much stronger than 
-the kinetic energy, it is convenient to adopt the real space lattice approach and think in terms of Hubbard or Kanamori type 
-Hamiltonians involving only the low energy electrons. 
+this process leading to simple few-band pictures. When the interactions are comparable 
+to or much stronger than the kinetic energy, it is convenient to adopt the real space lattice 
+approach and think in terms of Hubbard or Kanamori type Hamiltonians involving only the low energy electrons. 
 But this is no easy task, since the effective Hamiltonian involves a considerable renormalization of parameters with respect 
 to the bare Coulomb values. While the kinetic energy is dominated by contributions from bands or states energetically 
 near the Fermi level, screened interactions depend on states even \emph{far} away from it, leading to Hubbard U's 
 that have been traditionally hard to reliably determine. 
-%Several existing approaches treat the kinetic and potential parts of the Hamiltonian differently,
-%without internal checks on the accuracy of the approximations. 
-Here we discuss an approach that treats 
-the kinetic and potential parts of the Hamiltonian democratically and one that provides a transparent way 
-of obtaining effective Hamiltonians using data from many body wavefunctions, 
+Here we discuss an approach that treats the kinetic and potential parts of the Hamiltonian 
+democratically and one that provides a transparent way of obtaining effective Hamiltonians using data from many body wavefunctions, 
 and whose validity can be systematically checked.
 We emphasize that determining the effective Hamiltonian reliably is crucial for 
 several applications in physics and chemistry not only for quantitative accuracy, but also a 
 correct qualitative picture of strongly correlated materials. 
-%Bands/states far from the 
-%Fermi level play a significant role in the screening of Coulomb interactions leading to Hubbard U's 
-%that have been traditionally hard to determine reliably. Here we discuss an approach that we 
-%have been developing which builds in several safeguards and provides a way of obtaining effective Hamiltonians 
-%which can be simulated using techniques specifically defined for small local Hilbert spaces.
 }
 
 \section{Introduction to downfolding the many electron problem}
 
-\HJC{Survey of DFT based downfolding and known limitations....Survey of model Hamiltonians - Hubbard, Kanamori, .....}
-\HJC{Modify intro - this is from the paper........ }
+%\HJC{Survey of DFT based downfolding and known limitations....Survey of model Hamiltonians - Hubbard, Kanamori, .....}
+%\HJC{Modify intro - this is from the paper........ }
+%\HJC{How are many body systems studied, coarse graining - physics/ chemistry perspectives}
+One of the most sought-after, yet often daunting endeavors, for physicists is to develop 
+an intuitive understanding of physical phenomena involving intrinsically complicated materials 
+using simplified models. These models are expected to capture the essence of the physics, and are formulated in terms 
+of the most relevant physical degrees of freedom related to the observed phenomena. 
+For example, at high temperature and low density when quantum effects are relatively insignificant, the ideal gas model 
+successfully captures the statistical properties of $10^{23}$ H$_{2}$ molecules in a box, 
+without any detailed knowledge of the fundamental constituent of H$_{2}$. This approach is valid when we are interested in 
+phenomena at certain energy scale (or length scale), while the degrees of freedom at other length scales which are not 
+dynamically excited simply renormalize the dynamics of the low energy degrees of freedom. 
 
-\HJC{How are many body systems studied, coarse graining - physics/ chemistry perspectives}
-Physicists usually like to have an intuitive understanding of physical phenomena using simplified models. These models are expected to capture the most relevant physical degrees of freedom related to the observed phenomena. For example, at high temperature and low density when quantum effect is not significant, the ideal gas model can successfully capture the statistical properties of $10^{23}$ H$_{2}$ molecules in a box, without any detailed knowledge of the fundamental constituent of H$_{2}$. This approach is valid when we are interested in phenomena at certain energy scale (or length scale), while the degrees of freedom at other length scales which are not dynamically excited simply renormalize the dynamics of the low energy degrees of freedom. 
+This principle has also been widely employed in condensed matter physics. In the past few decades, several studies 
+have been dedicated to describing complex systems (for example, the high $T_c$ cuprates and other transition metal oxides), 
+in particular to strongly correlated systems. These are systems where the effects of Coulomb 
+interactions are comparable to or more important than the kinetic energy. This has motivated an approach 
+beyond the traditional band theory approach, where model Hamiltonians 
+such as the Hubbard~\cite{Hubbard}, t-J~\cite{tJSpalek} and Heisenberg models involving only the valence electrons have been 
+extensively studied analytically and numerically. 
+Despite their great success in promoting our understanding of strongly correlated physics, their effectiveness 
+for describing a real complex system of interest is often unclear. Since multiple 
+competing energy scales are involved, rich phase diagrams emerge under a variety of conditions - doping, pressure, 
+temperature, heavily dependent on material-specific properties. This motivates 
+the need to determine the effective Hamiltonians that can capture all the necessary details, while 
+remaining simple enough to be simulated reliably.  
 
-\HJC{Model Hamiltonians in condensed matter}
-This concept/principle has been widely employed in condensed matter physics. For example, in the past decades, there are a lot of studies on describing complex systems (high $T_c$ Cuprate and many other transition metal oxides) using models such as Hubbard model \cite{Yanagisawa2008}, t-J model \cite{Sorella2002}, etc. However, very few studies have addressed the effectiveness of those models in describing the real complex systems. In complex systems such as high $T_c$ cuprates, it is unclear to what extent can these models describe the reality \cite{Anderson2013}. Generally, in strongly correlated systems, the macroscopic phenomena are strongly dependent on material-specific properties, motivating the need to determine the effective Hamiltonians that can capture all necessary details. 
+%In complex systems such as high $T_c$ cuprates, it is unclear to what extent can these models describe the reality \cite{Anderson2013}. 
+%Since strongly correlated systems are  the macroscopic phenomena are strongly dependent on material-specific properties, motivating the need to determine the effective Hamiltonians that can capture all necessary details. 
+%In strongly correlated systems, the macroscopic phenomena are strongly dependent on material-specific properties, motivating the need to determine the effective Hamiltonians that can capture all necessary details. 
+%\HJC{Downfolding: How should we connect our intuitive understanding of coarse graining with condensed matter concepts}
+%The reliable simulation of strongly correlated systems remains a major challenge in physics, chemistry, and materials science. 
 
-
-\HJC{Downfolding: How should we connect our intuitive understanding of coarse graining with condensed matter concepts}
-On the other hand, the reliable simulation of systems for which the large-scale physics is not well-approximated by a non-interacting model, is a major challenge in physics, chemistry, and materials science. These systems appear to require a multi-scale approach in which the effective interactions between electrons at a small distance scale are determined, which then leads to a coarse-grained description of emergent correlated physics. This reduction of the Hilbert space is often known as ``downfolding".
-Reliably simulating quantum systems remains a challenge 
-for the physics and chemistry communities. Calculations on real materials 
-are primarily carried out with density functional theory (DFT), 
-which in principle is exact, but in practice is limited by the quality of the exchange functional. 
+The endeavor we pursue here is a multi-scale approach in which the effective interactions between 
+quasiparticles (such as dressed electrons) are determined after a full solution of the Schrodinger equation 
+involving all the electrons. This reduction of the Hilbert space from the all electron problem to the few electron one is 
+known as ``downfolding".
 On the other hand are approximate model Hamiltonians (such as the Hubbard model) 
 which describe the low energy physics solely in terms of the valence electrons and 
 are crucial to our understanding of physical phenomena such 
 as antiferromagnetism and high temperature superconductivity. 
 However, transitioning from actual materials to an effective Hamiltonian on a lattice relies 
 on physical insight and/or fits to experimental data, and this notion is not always rigorously well justified.
-%~\footnote{
-%While terms introduced in a lattice model are often very well motivated by the 
-%underlying physics and the symmetries of the problem, 
-%the magnitude (and sometimes even sign) the couplings is unknown.
 
 \HJC{How has downfolding been performed in the literature. Any success stories or limitations?} 
 This effective reduction of the complexity of the calculation is known as "downfolding" 
@@ -518,11 +527,11 @@ assumption of the form of the Hamiltonian).
 %\HJC{What is the 3 band model? Why the 3 band model??}
 \subsubsection{Introduction}
 A big motivation for studying lattice models of strongly correlated systems comes from their 
-relevance to the high $T_c$ superconducting cuprates. These materials are complex, with several 
+relevance to the high $T_c$ superconducting cuprates~\cite{Bednorz1986}. These materials are complex, with several 
 competing energy scales, leading to rich phase diagrams~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. In these materials, 
 the low energy physics is primarily associated with the copper-oxygen 2D planes. 
-(Inter-layer effects can also important for some aspects, a complication we ignore 
-for this work.) 
+%(Inter-layer effects can also important for some aspects, a complication we ignore 
+%for this work.) 
 
 Many works have been devoted to determining the model effective Hamiltonians and corresponding parameter 
 values for the cuprates~\cite{Emery, ZhangRice, tJSpalek, Hybertsen_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard}. 
@@ -541,6 +550,7 @@ H &=&    \epsilon_p \sum_{j,\sigma} \epsilon_p n^{p}_{j,\sigma} + \epsilon_{d} \
 \end{eqnarray}
 where $d_i,p_j$ refer to the orbitals of copper (at site $i$) and oxygen (at site $j$)  respectively 
 and the signs of the hopping $t_{pd}$ between them is shown in Fig.~\ref{fig:threeband} for a $2 \times 2$ unit cell. 
+$\epsilon_p$,$\epsilon_d$ refer to the orbital energies, 
 $U_d$, $U_p$ refer to strength of onsite Hubbard interactions and $V_{pd}$ refers to the 
 stength of the density-density interactions between a neighboring $p$ and $d$ orbital. 
 One could consider further variations of the model by adding $t_{pp}$ type hoppings, but 
@@ -601,18 +611,18 @@ models.
 
 \subsubsection{Choice of effective one particle basis}
 To map the 3-band model to the 1-band model and determine its validity, 
-our first aim will be to obtain "effective dressed" \emph{d-like} 
+our first aim will be to obtain effective "dressed" \emph{d-like} 
 orbitals that enter Eq.~\ref{eq:oneband}. We encode this relationship as 
-the transformation ${\bf U}$, 
+the transformation ${\bf T}$, 
 \begin{equation}
-	\tilde{d}_i^{\dagger} = \sum_{j} U_{ij} c_j
+	\tilde{d}_i^{\dagger} = \sum_{j} T_{ij} c_j
 \end{equation}
 where $\tilde{d}_i$ is a transformed hole operator and $c_j$ is the bare hole
 operator, the latter could refer to either $d$ or $p$ orbitals. Accounting for all symmetries of 
-the $2\times2$ unit cell, {\bf U} is a $4 \times 12 $ matrix (the numbering of the orbitals 
-corresponds to Fig.~) is explicitly written out as, 
+the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix (the numbering of the orbitals 
+corresponds to Fig.~\ref{fig:threeband}) is explicitly written out as, 
 \begin{eqnarray}
-{\bf U} = 
+{\bf T} = 
 \left(
 \begin{array}{cccccccccccc}
 F        & \alpha_2 &        \alpha_2 &  \alpha_4 & \alpha_1 & \alpha_1 & -\alpha_1 & -\alpha_1 & \alpha_3 & -\alpha_3 & \alpha_3 & -\alpha_3 \\
@@ -626,17 +636,17 @@ where we have defined $F \equiv \sqrt{1-4{\alpha_1}^2 - 2{\alpha_2}^2 - 4 {\alph
 where the parameters $\alpha_1$,$\alpha_2$,$\alpha_3$ and $\alpha_4$ will be 
 optimized to minimize a certain cost function, which will be explained shortly. 
 
-Note that the transformation has been chosen to be a linear one. However, 
-one can imagine a more complicated many-body transformation involving higher body functions. 
-In practice, at least for the model under consideration, this does not seem to be necessary. 
-This does not mean that determining the optimal one body space is \emph{always} a trivial problem. 
-In fact, (as pointed out to us by D. Ceperley) there are several interesting problems in the study of helium 
-that involve ring exchanges involving as many as 12 particles~\cite{Ceperley_Jacucci}, 
-certainly our simple minded transformation does not capture the search for such multi-body 
-or composite objects. However, for the purpose of the rest of the paper, we will show the utility 
-of the linear transformations even for the \emph{ab-initio} to lattice downfolding cases; 
-Kohn Sham orbitals will be rotated to form localized functions. These one body transformations will give us the orbitals 
-that enter the definition of the effective Hamiltonian. 
+Note that the transformation has been chosen to be a linear one. One can imagine a more complicated 
+many-body transformation involving higher body functions. In practice, at least for the model under 
+consideration, this does not seem to be necessary. 
+%This does not mean that determining the optimal one body space is \emph{always} a trivial problem. 
+%In fact, (as pointed out to us by D. Ceperley) there are several interesting problems in the study of helium 
+%that involve ring exchanges involving as many as 12 particles~\cite{Ceperley_Jacucci}, 
+%certainly our simple minded transformation does not capture the search for such multi-body 
+%or composite objects. However, for the purpose of the rest of the paper, we will show the utility 
+%of the linear transformations even for the \emph{ab-initio} to lattice downfolding cases; 
+%Kohn Sham orbitals will be rotated to form localized functions. These one body transformations will give us the orbitals 
+%that enter the definition of the effective Hamiltonian. 
 
 \begin{figure}[]
 \centering
@@ -675,13 +685,14 @@ to that in the original basis by,
 \begin{equation}
 	\langle {\tilde{d}_i}^{\dagger} \tilde{d}_{j} \rangle = \sum_{mn} U^{*}_{im} \langle {c_m}^{\dagger} c_n \rangle U_{jn}
 \end{equation}
-We demand two conditions be satisfied,
+and using this relationship we demand two conditions be satisfied,
 \begin{itemize} 
  \item The effective orbitals are orthogonal to each other 
  \item All diagonal entries of the 1-RDM of the effective orbitals for all eigenstates 
        $(\langle \langle {\tilde{d}_i}^{\dagger} \tilde{d}_{i} \rangle \rangle)$ 
        equal 1/2 since, as we are working at half filling.
 \end{itemize} 
+We consider a cost function 
 
 \subsubsection{Results and Discussion}
 To give a concrete example of our results, we start with 1-RDM of the lowest eigenstate, 
@@ -703,7 +714,7 @@ To give a concrete example of our results, we start with 1-RDM of the lowest eig
 \end{array}
 \right)
 \end{eqnarray}
-find the $4\times4$ transformed RDM to be which minimizes the cost function to be, 
+and find the $4\times4$ transformed RDM to be which minimizes the cost function to be, 
 \begin{eqnarray}
 \left(
 \begin{array}{cccc}
@@ -715,9 +726,9 @@ find the $4\times4$ transformed RDM to be which minimizes the cost function to b
 \right)
 \end{eqnarray}
 and after finding the optimal parameters $\alpha_1=0.220$,$\alpha_2=0.044$,$\alpha_3=0.020$ and $\alpha_4=0.018$ 
-We then ask what $U/t$ of the one band Hubbard model best describes this 1-RDMm and in this case find $U/t = $Similar results are found when 
-one considers the other low energy eigenstates. In practice, we minimize the sum of costs of the lowest 
-three eigenstates on the $2 \times 2$ cluster  
+We then ask what $U/t$ of the one band Hubbard model best describes this 1-RDM and in this case find $U/t = $. 
+Similar results are found when one considers the other low energy eigenstates. 
+In practice, we minimize the sum of costs of the lowest three eigenstates on the $2 \times 2$ cluster.  
  
 The density matrix matching does not provide an absolute energy scale for the matching. 
 Taking $t_{pd}$ to be the typical values of $1.3$ eV, we then 
