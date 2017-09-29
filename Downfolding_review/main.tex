@@ -94,9 +94,6 @@ correct qualitative picture of strongly correlated materials.
 
 \section{Introduction to downfolding the many electron problem}
 
-%\HJC{Survey of DFT based downfolding and known limitations....Survey of model Hamiltonians - Hubbard, Kanamori, .....}
-%\HJC{Modify intro - this is from the paper........ }
-%\HJC{How are many body systems studied, coarse graining - physics/ chemistry perspectives}
 One of the most sought-after, yet often daunting, endeavor for physicists is to develop 
 an intuitive understanding of physical phenomena involving intrinsically complicated materials 
 using simplified models. These models are expected to capture the essence of the physics, and are formulated in terms 
@@ -134,7 +131,7 @@ remaining simple enough to be simulated accurately.
 %However, transitioning from actual materials to an effective Hamiltonian on a lattice relies 
 %on physical insight and/or fits to experimental data, and this notion is not always rigorously well justified.
 
-The endeavor we pursue here is a multi-scale approach in which the effective interactions between 
+The endeavor we pursue here is to develop a multi-scale approach in which the effective interactions between 
 quasiparticles (such as dressed electrons) are determined after a \emph{ab-initio} simulation (but not necessarily exact 
 solution) of the continuum Schroedinger equation involving all the electrons. This reduction 
 of the Hilbert space is known as ``downfolding". This "lattice model" can be efficiently and accurately 
@@ -161,29 +158,29 @@ Other downfolding approaches include traditional Lowdin downfolding
 within a stochastic approach and canonical transformation theory, 
 also being actively pursued as a full fledged quantum chemistry method. 
 
-The viewpoint we take here is to work with many body wavefunctions of \emph{ab initio} systems, 
+We work directly with many body wavefunctions of \emph{ab initio} systems, involving all electrons, 
 which give us access to many properties encoded compactly in the form of reduced 
 density matrices (RDM) or correlation functions. Crucially, we do not commit ourselves to 
-knowledge of exact eigenstates - rather we "learn" the effective Hamiltonian from a database 
-of low energy wavefunctions and their associated energies (expectation value of the effective Hamiltonian). 
+knowledge of exact eigenstates - rather we "learn" the effective Hamiltonian from a database of 
+low energy wavefunctions and their associated expectation values. 
 Thus, we discuss the development and application 
 of a new set of methods, christened "ab-initio density matrix downfolding" (AIDMD)~\cite{Changlani2015},
 which by nature of their formulation, restore the democracy between kinetic and 
 potential part of the Hamiltonian. There is no double counting involved and it is straightforward 
 to judge the accuracy of the effective Hamiltonian. While our method applies to any wavefunction based method, 
 we have primarily chosen to work with the \emph{ab-initio} QMC approach~\cite{Ceperley_Alder,Foulkes_review}. 
-The QMC method works directly in the continuum and explicitly introduces correlation (via Jastrow factors) 
+The QMC method works directly in the real space continuum and explicitly introduces correlations (via Jastrow factors) 
 into trial wavefunctions of non-interacting electrons (Slater determinants). 
 The details of the method, relevant for AIDMD, will be clarified at appropriate points 
 in the text. 
 
 The paper is organized as follows. In Section 2, we clarify and make precise what it means to downfold 
-a many electron problem to a few electron problem. Information from many-body wavefunctions detects 
-inadequacies of a proposed model: the deviations suggest the form of additional missing terms. 
-Crucially, a wavefunction-based method does not differentiate between kinetic 
-and potential energy terms: all terms are treated the same way. 
-The approach is complementary to semi-empirical methods that 
-fit models solely to available energy spectra. 
+a many electron problem to a few electron problem. We recast the problem into minimization 
+of a cost function that needs to be optimized to connect the many and few body problems. We further 
+these notions both in terms of physical as well as information science descriptions, which allows us to connect to 
+compression algorithms in the machine learning literature. Section 3, gives a concrete example of downfolding from 
+the three band model (relevant to the cuprates) to the one band model - the map between the bare and 
+effective particles and parameters will be explicitly elucidated here.  
 
 \section{Theory: Compression of the Energy Functional/Criteria for Hamiltonian matching}
 \HJC{Lucas handling this section......Look at theory.tex}
