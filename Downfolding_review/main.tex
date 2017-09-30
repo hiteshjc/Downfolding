@@ -104,7 +104,8 @@ without any detailed knowledge of the fundamental constituent of H$_{2}$. This a
 phenomena at certain energy scale (or length scale), while the degrees of freedom at other length scales which are not 
 dynamically excited simply renormalize the dynamics of the low energy degrees of freedom. 
 
-This principle has also been widely employed in condensed matter physics. In the past few decades, several studies 
+This principle, the basis of the renormalization group~\cite{Wilson}, 
+has also been widely employed in condensed matter physics. In the past few decades, several studies 
 have been dedicated to describing complex systems (for example, the high $T_c$ cuprates and other transition metal oxides), those of 
 primary interest here are strongly correlated systems. These are systems where the effects of Coulomb 
 interactions are comparable to or more important than the kinetic energy and the picture of 
@@ -538,22 +539,21 @@ by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and gra
 \subsection{Three-band Hubbard model to one band Hubbard model at half filling}
 %\HJC{What is the 3 band model? Why the 3 band model??}
 \subsubsection{Introduction}
-A big motivation for studying lattice models of strongly correlated systems comes from their 
-relevance to the high $T_c$ superconducting cuprates~\cite{Bednorz1986}. These materials are complex, with several 
-competing energy scales, leading to rich phase diagrams~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. In these materials, 
-the low energy physics is primarily associated with the copper-oxygen 2D planes. 
-%(Inter-layer effects can also important for some aspects, a complication we ignore 
-%for this work.) 
+%A big motivation for studying lattice models of strongly correlated systems comes from their 
+%relevance to 
+The high $T_c$ superconducting cuprates~\cite{Bednorz1986} are complex materials whose parent compounds 
+are Mott insulators that display rich phase diagrams on electron or hole doping~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. 
+Many extensive works have been devoted to determining their model effective Hamiltonians and corresponding parameter 
+values~\cite{Emery, ZhangRice, tJSpalek, Hybertsen_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard}. 
 
-Many works have been devoted to determining the model effective Hamiltonians and corresponding parameter 
-values for the cuprates~\cite{Emery, ZhangRice, tJSpalek, Hybertsen_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard}. 
-Accounting for the octahedral environment of copper ions, and with support from electronic structure 
+The low energy physics in the cuprates is primarily associated with the 2D planes of copper and oxygen (notated 
+as the XY plane); this setup has been shown in Fig.~\ref{fig:threeband} for a $2 \times 2$ unit cell.
+Accounting for the octahedral environment of copper ions, with support from electronic structure 
 and quantum chemistry calculations~\cite{Dagotto_RevModPhys}, one infers 
-that the five-fold \emph{d} orbital degeneracy of the isolated copper ion is lifted to make the 
-highest filled orbital with one unpaired electron to be the one with $d_{x^2-y^2}$ character. 
-(The choice of spatial coordinates corresponds to the copper oxide plane to be the X-Y plane). 
-The corresponding oxygen orbitals that hybridize most strongly with this orbital are the $p_x$ or $p_y$ orbitals. 
-Thus the minimal model for the cuprates involving the oxygens 
+that the five-fold \emph{d} orbital degeneracy of is lifted to make the 
+highest singly filled orbital to be the one with $d_{x^2-y^2}$ character. 
+The $p_x$ or $p_y$ oxygen orbitals (depending on their orientation relative to the copper) 
+hybridize most strongly with $d_{x^2-y^2}$. Thus the minimal model for the cuprates involving the oxygens 
 is the 3-orbital or 3-band Hubbard model, 
 \begin{eqnarray}
 H &=&    \epsilon_p \sum_{j,\sigma} \epsilon_p n^{p}_{j,\sigma} + \epsilon_{d} \sum_{d}  n^{d}_{i,\sigma} 
@@ -561,7 +561,7 @@ H &=&    \epsilon_p \sum_{j,\sigma} \epsilon_p n^{p}_{j,\sigma} + \epsilon_{d} \
   & &   + U_p \sum_{j} n^{p}_{j,\uparrow} n^{p}_{j,\downarrow} + U_d \sum_{i} n^{d}_{i,\uparrow} n^{d}_{i,\downarrow} + V_{pd} \sum_{\langle i,j \rangle} n^{j}_p n^{i}_d 
 \end{eqnarray}
 where $d_i,p_j$ refer to the orbitals of copper (at site $i$) and oxygen (at site $j$)  respectively 
-and the signs of the hopping $t_{pd}$ between them is shown in Fig.~\ref{fig:threeband} for a $2 \times 2$ unit cell. 
+and the signs of the hopping $t_{pd}$ between them are shown in Fig.~\ref{fig:threeband}. 
 $\epsilon_p$,$\epsilon_d$ refer to the orbital energies, 
 $U_d$, $U_p$ refer to strength of onsite Hubbard interactions and $V_{pd}$ refers to the 
 stength of the density-density interactions between a neighboring $p$ and $d$ orbital. 
