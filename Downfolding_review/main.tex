@@ -181,7 +181,8 @@ we have primarily chosen to work with the \emph{ab-initio} QMC approach~\cite{Ce
 The QMC method works directly in the real space continuum and explicitly introduces correlations (via Jastrow factors) 
 into trial wavefunctions of non-interacting electrons (Slater determinants). 
 The details of the method, relevant for AIDMD, will be clarified at appropriate points 
-in the text. 
+in the text. More QMC related specifics are described in our earlier work~\cite{Changlani2015,}, but will not be 
+reiterated here to focus solely on the downfolding aspect of the work. 
 
 %What sort of accuracy should one expect with effective Hamiltonians and AIDMD? The holy grail of quantum chemistry 
 %and electronic structure is to obtain an energy of 1 mHa (0.027 eV) per atom which remains an open challenge
@@ -523,9 +524,6 @@ clear avenues for methodological improvements.
 %\HJC{Choice of norm and avoiding over-fitting: $L_1$, $L_2$ or something else?}
 
 \section{Representative Examples}
-%\HJC{Choosing the optimal one body space/ Dual optimization of Hamiltonian parameters and basis sets}
-%\HJC{Simple examples - lattice to lattice downfolding - Three to One band model and the "effective" d orbitals}
-%\HJC{Notes on 3 band - copy pasted from pdf, tex file missing ?????}
 Given the theoretical framework for downfolding a many-orbital (or many electron) problem to a 
 few orbital (or few electron) problem, we now discuss three examples which also serve to highlight some practical aspects 
 associated with AIDMD. The first example is mostly pedagogical, 
@@ -537,7 +535,6 @@ by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and gra
 (with up to 32 carbons on a 2D honeycomb lattice).
   
 \subsection{Three-band Hubbard model to one band Hubbard model at half filling}
-%\HJC{What is the 3 band model? Why the 3 band model??}
 \subsubsection{Introduction}
 %A big motivation for studying lattice models of strongly correlated systems comes from their 
 %relevance to 
@@ -550,7 +547,7 @@ The low energy physics in the cuprates is primarily associated with the 2D plane
 as the XY plane); this setup has been shown in Fig.~\ref{fig:threeband} for a $2 \times 2$ unit cell.
 Accounting for the octahedral environment of copper ions, with support from electronic structure 
 and quantum chemistry calculations~\cite{Dagotto_RevModPhys}, one infers 
-that the five-fold \emph{d} orbital degeneracy of is lifted to make the 
+that the five-fold \emph{d} orbital degeneracy of copper is lifted to make the 
 highest singly filled orbital to be the one with $d_{x^2-y^2}$ character. 
 The $p_x$ or $p_y$ oxygen orbitals (depending on their orientation relative to the copper) 
 hybridize most strongly with $d_{x^2-y^2}$. Thus the minimal model for the cuprates involving the oxygens 
@@ -570,6 +567,8 @@ these have not been shown here. To keep the exposition simple, we consider only
 the case where $\epsilon_p$, $t_{pd}$ and $U_{d}$ are non zero and 
 since we work with a fixed number of particles, set $\epsilon_d = 0$. Thus the 
 charge transfer energy $\Delta \equiv \epsilon_p - \epsilon_d$ equals $\epsilon_p$ in our notation. 
+We find it convenient to work in the hole notation and thus half filling corresponds to 2$\uparrow$ and 2$\downarrow$ 
+holes on the $2\times2$ cell.
 
 \begin{figure}[htpb]
 \centering
@@ -581,9 +580,9 @@ and interaction parameters.}
 \end{figure}	
 
 The justification for the 3-band model for the cuprates, along with the determination of its parameters, 
-is itself contingent on downfolding from a wavefunction based \emph{ab-initio} calculation, 
-of the type carried out in Refs.~\cite{Wagner_Abbamonte}. (There has also been a suggestion that the 4s orbital of copper is important 
-for the low energy properties~\cite{Pavirini} but we steer clear of this debate here.) 
+is itself contingent on downfolding from an \emph{ab-initio} calculation, 
+of the type carried out in Refs.~\cite{Wagner_Abbamonte}. (There is also suggestion that the 4s orbital of copper is important 
+for the low energy properties~\cite{Pavirini} but we steer clear of these debates here.) 
 Instead we use the 3-band model at half filling, as a prototypical example of what it \emph{means} to downfold to 
 a simpler model - the one band Hubbard model, 
 \begin{eqnarray}
@@ -599,15 +598,15 @@ This example will serve as a setting for the downfolding of more complex \emph{a
 models. 
 
 \subsubsection{Choice of effective one particle basis}
-To map the 3-band model to the 1-band model and determine its validity, 
+To map the three-band model to the one-band model and determine its validity, 
 our first aim will be to obtain effective "dressed" \emph{d-like} 
 orbitals that enter Eq.~\ref{eq:oneband}. We encode this relationship as 
 the transformation ${\bf T}$, 
 \begin{equation}
-	\tilde{d}_i^{\dagger} = \sum_{j} T_{ij} c_j
+	\tilde{d}_i = \sum_{j} T_{ij} c_j
 \end{equation}
-where $\tilde{d}_i$ is a transformed hole operator and $c_j$ is the bare hole
-operator, the latter could refer to either $d$ or $p$ orbitals. Accounting for all symmetries of 
+where $\tilde{d}_i$ is a transformed hole (destruction) operator and $c_j$ is the bare hole (destruction)
+operator, the latter could refer to either the bare $d$ or $p$ orbitals. Accounting for all symmetries of 
 the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix (the numbering of the orbitals 
 corresponds to Fig.~\ref{fig:threeband}) is explicitly written out as, 
 \begin{eqnarray}
@@ -637,55 +636,24 @@ consideration, this does not seem to be necessary.
 %Kohn Sham orbitals will be rotated to form localized functions. These one body transformations will give us the orbitals 
 %that enter the definition of the effective Hamiltonian. 
 
-\begin{figure}[]
-\centering
-\includegraphics[width=0.49\linewidth]{./Hyb_vs_U_Ud_8.pdf}
-\includegraphics[width=0.49\linewidth]{./Hopping_vs_U_Ud_8.pdf}
-\includegraphics[width=0.49\linewidth]{./downfolded_U_Ud_8.pdf}
-\caption{Downfolded values of the effective 1-band Hubbard U/t and hopping $t_{opt}$ vs $U_d/t_{pd}$}
-\label{fig:hamfit} 
-\end{figure}	
-
-\begin{figure}[]
-\centering
-\includegraphics[width=0.49\linewidth]{./downfolded_U_ep_3.pdf}
-\includegraphics[width=0.49\linewidth]{./downfolded_U_ep_5.pdf}
-\includegraphics[width=0.49\linewidth]{./Hopping_vs_U_ep_3.pdf}
-\includegraphics[width=0.49\linewidth]{./Hopping_vs_U_ep_5.pdf}
-\caption{Downfolded values of the effective 1-band Hubbard U/t and hopping $t_{opt}$ vs $U_d/t_{pd}$}
-\label{fig:hamfit} 
-\end{figure}	
-
-\begin{figure}[]
-\centering
-\includegraphics[width=0.325\linewidth]{./Gap_1_band_3_band_ep_3_number_5.pdf}
-\includegraphics[width=0.325\linewidth]{./Gap_1_band_3_band_ep_3_number_9.pdf}
-\includegraphics[width=0.325\linewidth]{./Gap_1_band_3_band_ep_3_number_2.pdf}
-\includegraphics[width=0.325\linewidth]{./Gap_1_band_3_band_ep_5_number_5.pdf}
-\includegraphics[width=0.325\linewidth]{./Gap_1_band_3_band_ep_5_number_9.pdf}
-\includegraphics[width=0.325\linewidth]{./Gap_1_band_3_band_ep_5_number_2.pdf}
-\caption{Comparison for energy gaps between the 3-band and 1-band Hubbard models using the optimized values of $U/t$ and $t$, for different
-$U_{d}/t_{pd}$ for $\Delta/t_{pd}=3$ and $\Delta/t_{pd}=5$}
-\label{fig:hamfit} 
-\end{figure}	
-
 The one particle density matrix in the transformed basis is related 
 to that in the original basis by,
 \begin{equation}
-	\langle {\tilde{d}_i}^{\dagger} \tilde{d}_{j} \rangle = \sum_{mn} U^{*}_{im} \langle {c_m}^{\dagger} c_n \rangle U_{jn}
+	\langle {\tilde{d}_i}^{\dagger} \tilde{d}_{j} \rangle = \sum_{mn} T^{*}_{im} \langle {c_m}^{\dagger} c_n \rangle T_{jn}
 \end{equation}
 and using this relationship we demand two conditions be satisfied,
 \begin{itemize} 
  \item The effective orbitals are orthogonal to each other 
- \item All diagonal entries of the 1-RDM of the effective orbitals for all eigenstates 
-       $(\langle \langle {\tilde{d}_i}^{\dagger} \tilde{d}_{i} \rangle \rangle)$ 
-       equal 1/2 since, as we are working at half filling.
+ \item All diagonal entries of the 1-RDM of the effective orbitals for all low energy eigenstates 
+       $(\langle {\tilde{d}_i}^{\dagger} \tilde{d}_{i} \rangle)$ 
+       equal 1/2.
 \end{itemize} 
-We consider a cost function 
+We consider a cost function, 
 
 \subsubsection{Results and Discussion}
-To give a concrete example of our results, we start with 1-RDM of the lowest eigenstate (here a $12 \times 12$ 
-matrix) 
+To give a concrete and representative example of our results, we start with 1-RDM of the lowest eigenstate 
+in either $\uparrow$ or $\downarrow$ channel. This is a $12 \times 12$ matrix, which for $U_{d}/t_{pd}=8$ 
+and $\Delta/t_{pd}=3$ we find to be,
 \begin{eqnarray}
 \left(
 \begin{array}{cccccccccccc}
@@ -719,6 +687,25 @@ corresponding to the optimal parameters $\alpha_1=0.220$,$\alpha_2=0.044$,$\alph
 We then ask what $U/t$ of the one band Hubbard model best describes this 1-RDM and in this case find $U/t = $. 
 Similar results are found when one considers the other low energy eigenstates. 
 (In practice, we minimize the sum of costs of the lowest three eigenstates on the $2 \times 2$ cluster.) 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.49\linewidth]{./Hyb_vs_U_Ud_8.pdf}
+\includegraphics[width=0.49\linewidth]{./Hopping_vs_U_Ud_8.pdf}
+\includegraphics[width=0.49\linewidth]{./downfolded_U_Ud_8.pdf}
+\caption{Downfolded values of the effective 1-band Hubbard U/t and hopping $t_{opt}$ vs $U_d/t_{pd}$}
+\label{fig:hamfit} 
+\end{figure}	
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.49\linewidth]{./downfolded_U_ep_3.pdf}
+\includegraphics[width=0.49\linewidth]{./downfolded_U_ep_5.pdf}
+\includegraphics[width=0.49\linewidth]{./Hopping_vs_U_ep_3.pdf}
+\includegraphics[width=0.49\linewidth]{./Hopping_vs_U_ep_5.pdf}
+\caption{Downfolded values of the effective 1-band Hubbard U/t and hopping $t_{opt}$ vs $U_d/t_{pd}$}
+\label{fig:hamfit} 
+\end{figure}	
  
 The density matrix matching does not provide an absolute energy scale for the matching. 
 Taking $t_{pd}$ to be the typical values of $1.3$ eV, we then 
@@ -734,10 +721,26 @@ Next, we consider our results for
 
 These results are only useful if the energy spectra between the two models also matches. This is verified 
 and demonstrated for some representative examples in Fig.        
- 
-Finally, we show that the obtained parameters are 
 
-\subsection{One dimensional hydrogen chain (E-AIDMD)}
+\begin{figure}[]
+\centering
+\includegraphics[width=0.325\linewidth]{./Gap_1_band_3_band_ep_3_number_5.pdf}
+\includegraphics[width=0.325\linewidth]{./Gap_1_band_3_band_ep_3_number_9.pdf}
+\includegraphics[width=0.325\linewidth]{./Gap_1_band_3_band_ep_3_number_2.pdf}
+\includegraphics[width=0.325\linewidth]{./Gap_1_band_3_band_ep_5_number_5.pdf}
+\includegraphics[width=0.325\linewidth]{./Gap_1_band_3_band_ep_5_number_9.pdf}
+\includegraphics[width=0.325\linewidth]{./Gap_1_band_3_band_ep_5_number_2.pdf}
+\caption{Comparison for energy gaps between the 3-band and 1-band Hubbard models using the optimized values of $U/t$ and $t$, for different
+$U_{d}/t_{pd}$ for $\Delta/t_{pd}=3$ and $\Delta/t_{pd}=5$}
+\label{fig:hamfit} 
+\end{figure}	
+
+ 
+Finally, we show that the obtained parameters are ....
+
+
+\subsection{One dimensional hydrogen chain (Non-Eigenstate Fitting)}
+%\subsection{One dimensional hydrogen chain (E-AIDMD)}
 Let us consider the following single band model Hamiltonian,
 \begin{eqnarray}\label{eq:h4model}
 H &=& \sum_{i}\left\{-t[c^{\dagger}_{i\sigma}c_{i+1\sigma} +h.c.]+ Vn_{i}n_{i+1} + Un_{i\uparrow}n_{i\downarrow}+ J\vec \sigma_{i}\cdot \vec \sigma_{i+1}\right\} + C\,.
@@ -757,59 +760,56 @@ Here, $c_{i}$'s are Wannier orbitals generated from Kohn-Sham orbitals. We consi
 \caption{Kohn-Sham orbitals (upper panel) from DFT calculations with PBE exchange-exchange correlation functional, and Wannier orbitals (lower panel) constructed through a unitary transformation of Kohn-Sham orbitals.}\label{fig:h4orb}
 \end{figure}
 
-
-We will use the mentioned E-AIDMD method to downfold the ab initio system into the model Hamiltonian in Eq.~\eqref{eq:h4model} by matching the single-body energy spectra and the 1-body and 2-body reduced density matrices. The model Hamiltonian is solved by exact diagonization, whereas the \textit{ab initio} system is solved using diffusion Monte Carlo method with single Slater-Jastrow trial wave functions. 
-
-In our calculations, we used energies and RDMs of the following three states:
-\begin{subequations}
-\begin{eqnarray}
-S=0: \quad E = -2047.8(6) \text{mHa}; \\
-S=1: \quad E = -2038.9(5) \text{mHa}; \\
-S=2: \quad E = -1957.8(3) \text{mHa}.
-\end{eqnarray}
-\end{subequations}
-where S is the total angular moment of such the four-site hydrogen chain. In order to understand the relative importance of various two-body terms: (a) the on-site Hubbard interaction -- $\hat U$; (b) nearest neighbor Coulomb interaction -- $\hat V$; (c) nearest neighbor exchange -- $\hat J$, we compare the parameters obtained when downfolding the system to the following three different models with different two-body interactions,
-\begin{itemize}
-\item [(a)] \textbf{UVJ} model: onsite Hubbard interaction(U), nearest neighbor Coulomb (V) and exchange (J);
-\item [(b)] \textbf{UV} model: onsite Hubbard interaction(U), nearest neighbor Coulomb (V);  J is set to zero. 
-\item [(c)] \textbf{U} model: onsite Hubbard interaction(U). V and J are set to zero. 
-\end{itemize}
-
-The quality of downfolding is measured by the relative error of the two-body reduced density matrices, and the error of the eigen energies of the three states.
-\begin{eqnarray}
-R_{err} =\sqrt{\frac{\sum_{i,j,k,l}(M_{ijkl}^\text{ab initio} - M_{ijkl}^\text{model})^{2}}{\sum_{i,j,k,l}(M^\text{ab initio}_{ijkl})^{2} }}, \quad
-\Delta E = \sqrt{\sum_{i}|E_{i}^\text{ab initio} - E_{i}^{\text{model}}|^{2}}\,.
-\end{eqnarray}
-The resulting effective parameters are showed in Table.~\ref{tab:effm_hchain}. We see that all the three models can match the \textit{ab initio} data accurately. U model has relatively larger error in energy, but it is still comparable to the stochastic error from QMC (0.3 $\sim$ 0.5 mHa).
-
-\begin{table}[hbt]
-\centering
-\begin{tabular}{||l|c|c|c|c||c|c||}
-\hline
-Model & t & U & V & J & err(RDM) & err(energy)\\
-\hline
-\hline
-UVJ & 23.68 & 34.58 & 0.03 & -3.11 & 0.25\% & $10^{-13}$\\
-UV & 32.76 & 130.63 & 65.31 & / & 0.75\% & $10^{-13}$\\
-U & 37.45 & 114.62 & / & / & 0.26\% & $1.8$\\
-\hline
-\end{tabular}
-\caption{Parameters of effective Hamiltonian [mHa], and error of RDMs and energies [mHa].}\label{tab:effm_hchain}
-\end{table}
-
-%\subsection{Transferability of the model parameters to larger systems} 
-\begin{figure}[hbt]
-\centering
-\subfigure[]{\includegraphics[width=0.40\linewidth]{h4_transfer_rdm.png}}
-\subfigure[]{\includegraphics[width=0.40\linewidth]{h4_transfer_energy.png}}
-\caption{Errors of RDMs and energy for hydrogen chains with different number of sites: (a) relative error of two-body reduced density matrix; (b) error of eigen energy for $S=0$ and $S=1$ states per atom. the parameters used in model calculations are from 4-site chain.}\label{fig:h4transfer}
-\end{figure}
-In order to verify the transferability of the parameters for larger systems. We study longer chains (6-site, 8-site and 10-site) with the same inter-atomic distance (2\AA), and examine whether our parameters obtained from the 4-sites hydrogen chain is able to match the low energy physics of longer chains. We therefore, solve the model Hamiltonian with the parameters
-from Table.~\ref{tab:effm_hchain}, and examine the errors of the RDMs of S=0 and S=1 states. The results are
-shown in Fig.~\ref{fig:h4transfer}. As we can see, the error of the RDMs is around 10\%, indicating that the downfolding parameters from a smaller system is transferable to larger systems.
-Therefore, at $d=2$\AA, the hydrogen chain can be described by the extended Hubbard model \eqref{eq:h4model} very well. 
-
-\subsection{One dimensional hydrogen chain (Non-Eigenstate Fitting)}
+%We will use the mentioned E-AIDMD method to downfold the ab initio system into the model Hamiltonian in Eq.~\eqref{eq:h4model} by matching the single-body energy spectra and the 1-body and 2-body reduced density matrices. The model Hamiltonian is solved by exact diagonization, whereas the \textit{ab initio} system is solved using diffusion Monte Carlo method with single Slater-Jastrow trial wave functions. 
+%
+%In our calculations, we used energies and RDMs of the following three states:
+%\begin{subequations}
+%\begin{eqnarray}
+%S=0: \quad E = -2047.8(6) \text{mHa}; \\
+%S=1: \quad E = -2038.9(5) \text{mHa}; \\
+%S=2: \quad E = -1957.8(3) \text{mHa}.
+%\end{eqnarray}
+%\end{subequations}
+%where S is the total angular moment of such the four-site hydrogen chain. In order to understand the relative importance of various two-body terms: (a) the on-site Hubbard interaction -- $\hat U$; (b) nearest neighbor Coulomb interaction -- $\hat V$; (c) nearest neighbor exchange -- $\hat J$, we compare the parameters obtained when downfolding the system to the following three different models with different two-body interactions,
+%\begin{itemize}
+%\item [(a)] \textbf{UVJ} model: onsite Hubbard interaction(U), nearest neighbor Coulomb (V) and exchange (J);
+%\item [(b)] \textbf{UV} model: onsite Hubbard interaction(U), nearest neighbor Coulomb (V);  J is set to zero. 
+%\item [(c)] \textbf{U} model: onsite Hubbard interaction(U). V and J are set to zero. 
+%\end{itemize}
+%
+%The quality of downfolding is measured by the relative error of the two-body reduced density matrices, and the error of the eigen energies of the three states.
+%\begin{eqnarray}
+%R_{err} =\sqrt{\frac{\sum_{i,j,k,l}(M_{ijkl}^\text{ab initio} - M_{ijkl}^\text{model})^{2}}{\sum_{i,j,k,l}(M^\text{ab initio}_{ijkl})^{2} }}, \quad
+%\Delta E = \sqrt{\sum_{i}|E_{i}^\text{ab initio} - E_{i}^{\text{model}}|^{2}}\,.
+%\end{eqnarray}
+%The resulting effective parameters are showed in Table.~\ref{tab:effm_hchain}. We see that all the three models can match the \textit{ab initio} data accurately. U model has relatively larger error in energy, but it is still comparable to the stochastic error from QMC (0.3 $\sim$ 0.5 mHa).
+%
+%\begin{table}[hbt]
+%\centering
+%\begin{tabular}{||l|c|c|c|c||c|c||}
+%\hline
+%Model & t & U & V & J & err(RDM) & err(energy)\\
+%\hline
+%\hline
+%UVJ & 23.68 & 34.58 & 0.03 & -3.11 & 0.25\% & $10^{-13}$\\
+%UV & 32.76 & 130.63 & 65.31 & / & 0.75\% & $10^{-13}$\\
+%U & 37.45 & 114.62 & / & / & 0.26\% & $1.8$\\
+%\hline
+%\end{tabular}
+%\caption{Parameters of effective Hamiltonian [mHa], and error of RDMs and energies [mHa].}\label{tab:effm_hchain}
+%\end{table}
+%
+%%\subsection{Transferability of the model parameters to larger systems} 
+%\begin{figure}[hbt]
+%\centering
+%\subfigure[]{\includegraphics[width=0.40\linewidth]{h4_transfer_rdm.png}}
+%\subfigure[]{\includegraphics[width=0.40\linewidth]{h4_transfer_energy.png}}
+%\caption{Errors of RDMs and energy for hydrogen chains with different number of sites: (a) relative error of two-body reduced density matrix; (b) error of eigen energy for $S=0$ and $S=1$ states per atom. the parameters used in model calculations are from 4-site chain.}\label{fig:h4transfer}
+%\end{figure}
+%In order to verify the transferability of the parameters for larger systems. We study longer chains (6-site, 8-site and 10-site) with the same inter-atomic distance (2\AA), and examine whether our parameters obtained from the 4-sites hydrogen chain is able to match the low energy physics of longer chains. We therefore, solve the model Hamiltonian with the parameters
+%from Table.~\ref{tab:effm_hchain}, and examine the errors of the RDMs of S=0 and S=1 states. The results are
+%shown in Fig.~\ref{fig:h4transfer}. As we can see, the error of the RDMs is around 10\%, indicating that the downfolding parameters from a smaller system is transferable to larger systems.
+%Therefore, at $d=2$\AA, the hydrogen chain can be described by the extended Hubbard model \eqref{eq:h4model} very well. 
 
 As an alternative to the model-fitting approach for hydrogen given above, we consider fitting a model to a periodic chain of 10 hydrogen atoms, but instead using low-energy states that do not explicitly target eigenstates of the Hamiltonian. In this example, we obtain single-particle Kohn-Sham orbitals from a set of spin-unrestricted and spin-restricted DFT-PBE calculations. With this set of orbitals, we produce a set of wave function states consisting of singles- and doubles- excitations to the Slater determinant. Allow $| S \rangle $ to be the Slater determinant formed from the Kohn-Sham orbitals, and orbitals $i$ and $j$ ($k$ and $l$) to be Kohn-Sham orbitals that are unoccupied (occupied) in the Slater determinant. We then produce new wave function states as singles excitations $|s \rangle$ and doubles excitations $| d \rangle$ excitations to the Slater determinant:
 \begin{subequations}
@@ -928,7 +928,7 @@ relative energies are important, neither the total energy (nor its accuracy) is 
 fundamental interest. This, of course, is contingent on the cancellation of the large energy associated with the core electrons, 
 whose role is to primarily renormalize the interactions between the active (valence) electrons. This aspect can also 
 be a major limitation when the core and active electrons are strongly entangled i.e when the separation of energy 
-scales is not prominent (an energy dependent description may be needed). 
+scales is not prominent (in which case an energy-dependent description may be needed). 
 Thus, it is possibly best suited for extended systems (solids) where there this separation exists. 
 In our view, AIDMD (and downfolding in general) opens up many avenues for determination of physical 
 quantities not easily calculated in ground state approaches. Our experience suggests excitation spectra 
