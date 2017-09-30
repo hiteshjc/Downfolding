@@ -115,7 +115,7 @@ While these models have been extensively studied analytically and numerically, a
 enhanced our understanding of strongly correlated physics, their effectiveness 
 for describing a real complex system of interest is often unclear. In addition, efforts to obtain the 
 optimal parameter values still remains very much an active area of research, often requiring experimental inputs. 
-Since most parameters are highly dependent on each other this is not an easy task. 
+The values of most parameters are highly correlated with one another this is not an easy task. 
 The presence of multiple competing energy scales is, in fact, the source of rich phase diagrams that 
 emerge under a variety of conditions - doping, pressure, 
 temperature, all heavily dependent on material-specific properties. This motivates 
@@ -150,27 +150,30 @@ and often not accurate enough to yield an unbiased understanding of the low ener
 
 Downfolding has most commonly been carried out using approaches based on density functional theory (DFT). 
 The kinetic part is obtained from a standard 
-DFT calculation which gives an estimate of the effective hoppings of the lattice model. 
+DFT calculation which is projected onto localized Wannier functions and 
+gives an estimate of the effective hoppings of the lattice model~\cite{Pavirini}. 
 Then, to estimate the interactions, one assumes a model of screening of the Coulomb interactions 
-(based on RPA, for example) involving the Kohn Sham orbitals. Since effects of interactions 
-between the orbitals (one body space) of interest, have already been accounted for by DFT, a 
-"double counting correction" is applied to obtain the downfolded Hamiltonian. 
-The approach has been widely applied, but suffers from the absence of a systematic way of checking 
-the internal accuracy of the approximation.
+(based on RPA, for example) which is determined from the knowledge of the single particle (Kohn Sham) 
+DFT orbitals. Since effects of interactions between the orbitals (one body space) of interest, have already 
+been accounted for by DFT, a "double counting correction" is required to obtain the final 
+downfolded Hamiltonian. The approach has been developed and widely applied~\cite{}; 
+a clear shortcoming is the absence of a systematic way of checking 
+the internal accuracy of the approximation. Improving double counting estimates remains an active area of 
+research~\cite{Haule_doublecounting}.
 
-Other downfolding approaches include traditional Lowdin downfolding 
-within a stochastic approach and canonical transformation theory, 
-also being actively pursued as a full fledged quantum chemistry method. 
+There are other downfolding approaches that include traditional Lowdin downfolding 
+within a stochastic approach and the related method of canonical transformations, also being actively pursued 
+as a full fledged quantum chemistry method. These share the same aims as us, in the sense that they work with 
+in a many body setting and involve working with wavefunctions. 
 
-We work directly with many body wavefunctions of \emph{ab initio} systems, involving all electrons, 
-which give us access to many properties encoded compactly in the form of reduced 
-density matrices (RDM) or correlation functions. Crucially, we do not commit ourselves to 
-knowledge of exact eigenstates - rather we "learn" the effective Hamiltonian from a database of 
-low energy wavefunctions and their associated expectation values. 
-Thus, we discuss the development and application 
-of a new set of methods, christened "ab-initio density matrix downfolding" (AIDMD)~\cite{Changlani2015},
-which by nature of their formulation, restore the democracy between kinetic and 
-potential part of the Hamiltonian. There is no double counting involved and it is straightforward 
+Our primary focus is to downfold based on results of \emph{ab initio} wavefunctions, involving all electrons, 
+these explicitly provide access to properties encoded compactly in the form of reduced 
+density matrices (RDMs) or correlation functions. Crucially, we do not commit ourselves to 
+knowledge of exact eigenstates (a challenging endeavor) - rather we "learn" the effective Hamiltonian from a 
+intelligently constructed database of low energy wavefunctions and their associated expectation values. 
+Our aim is thus to discuss the development and application of a new set of methods, christened 
+"ab-initio density matrix downfolding" (AIDMD)~\cite{Changlani2015},which by nature of their formulation, 
+restore the democracy between kinetic and potential part of the Hamiltonian. There is no double counting involved and it is straightforward 
 to judge the accuracy of the effective Hamiltonian. While our prescription applies to any wavefunction based method, 
 we have primarily chosen to work with the \emph{ab-initio} QMC approach~\cite{Ceperley_Alder,Foulkes_review}. 
 The QMC method works directly in the real space continuum and explicitly introduces correlations (via Jastrow factors) 
@@ -190,7 +193,7 @@ the effective Hamiltonian opens up many avenues for quantities not easily calcul
 and finite temperature properties. On a conceptual level, AIDMD reveals the types of terms are important (and how much), 
 what is missing and how it could be possibly rectified. It is also possibly best suited for extended systems (solids) where 
 there is often a clear separation of energy scales associated with the single particle 
-core, active (valence) and virtual electronic spaces. We would like to emphasize that AIDMD, though conceptually simple, 
+core, active (valence) and virtual electronic spaces. Finally we would like to emphasize that AIDMD, though conceptually simple, 
 is still a method in its development stages, with room for several algorithmic improvements. 
 
 The paper is organized as follows. In Section 2, we clarify and make precise what it means to downfold 
@@ -203,8 +206,8 @@ effective particles and parameters will be explicitly elucidated here. These con
 to a simple yet non-trivial \emph{ab-initio} problem - the hydrogen chain in section 3b where we are able to 
 systematically quantify several aspects of the effective Hubbard model describing it. Section 3c 
 shows a more advanced application to graphene. We focus on the renormalization and screening effects that arise 
-due to the presence of core (sigma) electrons, a comparison to its hydrogen counterpart clearly 
-elucidates why graphene is a semimetal not an insulator in vacuum. 
+due to the presence of core (sigma) electrons, a comparison to its hydrogen counterpart on the honeycomb lattice 
+clearly elucidates why graphene is a semimetal not an insulator in vacuum. 
 Finally, in Section 4, we discuss future prospects of applications of the AIDMD method and 
 clear avenues for methodological improvements. 
 
@@ -693,7 +696,8 @@ and using this relationship we demand two conditions be satisfied,
 We consider a cost function 
 
 \subsubsection{Results and Discussion}
-To give a concrete example of our results, we start with 1-RDM of the lowest eigenstate, 
+To give a concrete example of our results, we start with 1-RDM of the lowest eigenstate (here a $12 \times 12$ 
+matrix) 
 \begin{eqnarray}
 \left(
 \begin{array}{cccccccccccc}
@@ -712,7 +716,7 @@ To give a concrete example of our results, we start with 1-RDM of the lowest eig
 \end{array}
 \right)
 \end{eqnarray}
-and find the $4\times4$ transformed RDM to be which minimizes the cost function to be, 
+and transform it into a $4\times4$ RDM (satisfying the requirements of our cost function), 
 \begin{eqnarray}
 \left(
 \begin{array}{cccc}
@@ -723,10 +727,10 @@ and find the $4\times4$ transformed RDM to be which minimizes the cost function 
 \end{array}
 \right)
 \end{eqnarray}
-and after finding the optimal parameters $\alpha_1=0.220$,$\alpha_2=0.044$,$\alpha_3=0.020$ and $\alpha_4=0.018$ 
+corresponding to the optimal parameters $\alpha_1=0.220$,$\alpha_2=0.044$,$\alpha_3=0.020$ and $\alpha_4=0.018$ 
 We then ask what $U/t$ of the one band Hubbard model best describes this 1-RDM and in this case find $U/t = $. 
 Similar results are found when one considers the other low energy eigenstates. 
-In practice, we minimize the sum of costs of the lowest three eigenstates on the $2 \times 2$ cluster.  
+(In practice, we minimize the sum of costs of the lowest three eigenstates on the $2 \times 2$ cluster.) 
  
 The density matrix matching does not provide an absolute energy scale for the matching. 
 Taking $t_{pd}$ to be the typical values of $1.3$ eV, we then 
