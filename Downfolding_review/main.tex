@@ -180,20 +180,20 @@ into trial wavefunctions of non-interacting electrons (Slater determinants).
 The details of the method, relevant for AIDMD, will be clarified at appropriate points 
 in the text. 
 
-What sort of accuracy should one expect with effective Hamiltonians and AIDMD? The holy grail of quantum chemistry 
-and electronic structure is to obtain an energy of 1 mHa (0.027 eV) per atom which remains an open challenge
-despite decades of work. The effective Hamiltonian approach largely ameliorates this problem,  only 
-relative energies (excitation spectrum) are important, neither the total energy (nor its accuracy) is of particularly 
-fundamental interest. This, of course, is contingent on the cancellation of the large energy associated with the core electrons, 
-whose role is primarily in renormalizing the effective interactions of the active (valence) electrons.
-Our previous experience suggests spectra can be accurately determined to 0.2 eV (or less)~\cite{Changlani2015} 
-and systematically improved with more data and more refined effective Hamiltonians.  In our view the main advantage is that 
-the effective Hamiltonian opens up many avenues for quantities not easily calculated in ground state approaches - namely excitation spectra 
-and finite temperature properties. On a conceptual level, AIDMD reveals the types of terms are important (and how much), 
-what is missing and how it could be possibly rectified. It is also possibly best suited for extended systems (solids) where 
-there is often a clear separation of energy scales associated with the single particle 
-core, active (valence) and virtual electronic spaces. Finally we would like to emphasize that AIDMD, though conceptually simple, 
-is still a method in its development stages, with room for several algorithmic improvements. 
+%What sort of accuracy should one expect with effective Hamiltonians and AIDMD? The holy grail of quantum chemistry 
+%and electronic structure is to obtain an energy of 1 mHa (0.027 eV) per atom which remains an open challenge
+%despite decades of work. The effective Hamiltonian approach largely ameliorates this problem,  only 
+%relative energies (excitation spectrum) are important, neither the total energy (nor its accuracy) is of particularly 
+%fundamental interest. This, of course, is contingent on the cancellation of the large energy associated with the core electrons, 
+%whose role is primarily in renormalizing the effective interactions of the active (valence) electrons.
+%Our previous experience suggests spectra can be accurately determined to 0.2 eV (or less)~\cite{Changlani2015} 
+%and systematically improved with more data and more refined effective Hamiltonians.  In our view the main advantage is that 
+%the effective Hamiltonian opens up many avenues for quantities not easily calculated in ground state approaches - namely excitation spectra 
+%and finite temperature properties. On a conceptual level, AIDMD reveals the types of terms are important (and how much), 
+%what is missing and how it could be rectified. It is also possibly best suited for extended systems (solids) where 
+%there is often a clear separation of energy scales associated with the 
+%core, active (valence) and virtual electronic spaces. Finally we would like to emphasize that AIDMD, though conceptually simple, 
+%is still a method in its development stages, with room for several algorithmic improvements. 
 
 The paper is organized as follows. In Section 2, we clarify and make precise what it means to downfold 
 a many electron problem to a few electron problem. We recast the problem into minimization 
@@ -585,29 +585,6 @@ the determination of effective Hamiltonians is a \emph{dual} problem - (1) what 
 compact description of the low energy physics? and given this choice what are the effective interactions between them?  
 This example will serve as a setting for the downfolding of more complex \emph{ab-initio} systems to lattice 
 models. 
-%\lucas{I don't know how much to trust these parameters, to be honest with you.} 
-%\begin{table*}
-%\begin{ruledtabular}
-% \begin{tabular}{cccc}
-%  Parameter				&  LE = Lucas (electron)    & LH = Lucas (hole) & SH = Shiwei (hole) \\ 
-%	$t_{pd}$			&  $-1.31$		    & $+1.31$        &     $+1.00$ 	       \\
-%	$t_{pp}$			&  $-0.90$		    & $+0.90$        &     $+0.00$	       \\
-%	$U_{pd}$			&  $+0.00$		    & $+0.00$        &     $+0.00$ 	       \\
-%	$U_{d}$				&  $+8.00$		    & $+8.00$        &     $+6.00$ 	       \\
-%	$U_{p}$				&  $+1.79$		    & $+1.79$        &     $+0.00$ 	       \\
-%        $\epsilon_{p}$			&  $+0.00$		    & $+0.00$        &     $+3.00$          \\
-%        $\epsilon_{d}$			&  $-3.50$		    & $-2.71$        &     $+0.00$          \\
-%$\Delta=\epsilon_{p}-\epsilon_{d}$      &  $+3.50$		    & $+2.71$        &     $+3.00$          \\
-%  \end{tabular}
-% \end{ruledtabular}
-% \caption{Parameter sets. The sign of $t_{pd}$ does not matter in either notation because this sign can be absorbed 
-%into the redefinition of the d orbital itself, see discussion on particle hole transformations. 
-%Nevertheless we stick to the sign conventions above, unless otherwise mentioned.}
-% \label{table:params}
-%\end{table*}
-%
-%\HJC{How do we think of the problem...? effective d orbitals.... explain associated Figure}
-%\HJC{Lot of stuff needs to be taken out or re-explained....}
 
 \subsubsection{Choice of effective one particle basis}
 To map the 3-band model to the 1-band model and determine its validity, 
@@ -917,11 +894,51 @@ We find that the onsite Hubbard model describes graphene and hydrogen very well.
 
 %\section{OTHER Realistic applications - silicon, carbon, transition metals, transition metal oxides}
 %\HJC{LKW suggested silicon. This section is most uncertain. TM/ TMO stuff out}
-\section{Prospects}
+\section{Conclusion and Future prospects}
 %\HJC{The need for including spin-orbit terms, need for QMC for this case}
-\HJC{Other areas: Magnetism, can we access small energy scales? LKW suggests we can distinguish checkerboard vs Neel etc...}
-\HJC{Applications to non QMC methods - coupled cluster, FCI, HCI}
-\HJC{Strengths and limitations of effective Hamiltonian approach}
+%\HJC{Other areas: Magnetism, can we access small energy scales? LKW suggests we can distinguish checkerboard vs Neel etc...}
+%\HJC{Applications to non QMC methods - coupled cluster, FCI, HCI}
+%\HJC{Strengths and limitations of effective Hamiltonian approach}
+
+In this paper, we have explained the AIDMD method that we have been developing, primarily in conjunction with the 
+\emph{ab-initio} QMC approach. The practical motivation is to take data from first principles calculations 
+as inputs for methods devised for lattice models, which can be simulated accurately at larger length scales. 
+Since one is mapping a many body problem to a few body one, the relevant quantities of interest are only the reduced density matrices 
+associated with the wavefunctions.  The density matrix based approach is appealing as it restores the 
+democracy in the determination of the hopping and interaction parts of the effective Hamiltonian, and provides 
+several sanity checks on the kind of accuracy one should expect. We have discussed three representative examples 
+to discuss the conceptual and algorithmic aspects of AIDMD. 
+
+What sort of accuracy should one expect with effective Hamiltonians and AIDMD? The holy grail of quantum chemistry 
+and electronic structure is to obtain an energy of 1 mHa (0.027 eV) per atom which remains an open challenge
+despite decades of work. The effective Hamiltonian approach largely ameliorates this problem,  only 
+relative energies (excitation spectrum) are important, neither the total energy (nor its accuracy) is of particularly 
+fundamental interest. This, of course, is contingent on the cancellation of the large energy associated with the core electrons, 
+whose role is primarily in renormalizing the effective interactions of the active (valence) electrons.
+Our experience suggests spectra can be accurately determined to 0.2 eV (or less)~\cite{Changlani2015} 
+and systematically improved with more data and more refined effective Hamiltonians.  In our view the main advantage is that 
+the effective Hamiltonian opens up many avenues for quantities not easily calculated in ground state approaches - namely excitation spectra 
+and finite temperature properties. On a conceptual level, AIDMD reveals the types of terms are important (and how much), 
+what is missing and how it could be rectified. It is also possibly best suited for extended systems (solids) where 
+there is often a clear separation of energy scales associated with the 
+core, active (valence) and virtual electronic spaces. Finally we would like to emphasize that AIDMD, though conceptually simple, 
+is still a method in its development stages, with room for several algorithmic improvements and new applications.
+
+In terms of algorithmic and conceptual developments we believe there are three main issues that need further research and development, 
+\begin{itemize} 
+	\item Automated construction of database of low energy wavefunctions
+	\item Optimal choice of active orbitals (one body space)
+	\item Form of the low energy model Hamiltonian and number of free parameters
+\end{itemize} 
+
+We expect the method to be eventually applied to solids involving transition metals and/or rare earth elements, 
+which are in the strongly correlated regime due to the presence of localized orbitals. These magnetism associated with the   
+\begin{itemize} 
+	\item Automated construction of database of low energy wavefunctions
+	\item Choice of active orbitals
+	\item Form of the low energy model Hamiltonian and number of free parameters
+\end{itemize} 
+
 
 \bibliographystyle{unsrt}
 \bibliography{refs}
