@@ -907,38 +907,65 @@ In this paper, we have explained the AIDMD method that we have been developing, 
 as inputs for methods devised for lattice models, which can be simulated accurately at larger length scales. 
 Since one is mapping a many body problem to a few body one, the relevant quantities of interest are only the reduced density matrices 
 associated with the wavefunctions.  The density matrix based approach is appealing as it restores the 
-democracy in the determination of the hopping and interaction parts of the effective Hamiltonian, and provides 
-several sanity checks on the kind of accuracy one should expect. We have discussed three representative examples 
-to discuss the conceptual and algorithmic aspects of AIDMD. 
+democracy in the determination of the hopping and interaction parts of the effective Hamiltonian, and provides several 
+checks on its validity. We have discussed three representative examples to discuss the conceptual and algorithmic aspects of AIDMD. 
 
 What sort of accuracy should one expect with effective Hamiltonians and AIDMD? The holy grail of quantum chemistry 
 and electronic structure is to obtain an energy of 1 mHa (0.027 eV) per atom which remains an open challenge
 despite decades of work. The effective Hamiltonian approach largely ameliorates this problem,  only 
-relative energies (excitation spectrum) are important, neither the total energy (nor its accuracy) is of particularly 
+relative energies are important, neither the total energy (nor its accuracy) is of particularly 
 fundamental interest. This, of course, is contingent on the cancellation of the large energy associated with the core electrons, 
-whose role is primarily in renormalizing the effective interactions of the active (valence) electrons.
-Our experience suggests spectra can be accurately determined to 0.2 eV (or less)~\cite{Changlani2015} 
+whose role is to primarily renormalize the interactions between the active (valence) electrons.
+Our experience suggests excitation spectra can be accurately determined to 0.2 eV (or less)~\cite{Changlani2015} 
 and systematically improved with more data and more refined effective Hamiltonians.  In our view the main advantage is that 
-the effective Hamiltonian opens up many avenues for quantities not easily calculated in ground state approaches - namely excitation spectra 
-and finite temperature properties. On a conceptual level, AIDMD reveals the types of terms are important (and how much), 
-what is missing and how it could be rectified. It is also possibly best suited for extended systems (solids) where 
-there is often a clear separation of energy scales associated with the 
-core, active (valence) and virtual electronic spaces. Finally we would like to emphasize that AIDMD, though conceptually simple, 
-is still a method in its development stages, with room for several algorithmic improvements and new applications.
+the effective Hamiltonian opens up many avenues for physical quantities not easily calculated in ground state approaches. 
+On a conceptual level, AIDMD reveals the types of terms are important and clues about what is missing. 
+It is also possibly best suited for extended systems (solids) where there is often a clear separation of energy scales associated with the 
+core, active (valence) and virtual electronic spaces. 
 
-In terms of algorithmic and conceptual developments we believe there are three main issues that need further research and development, 
+Finally we would like to emphasize that AIDMD, though conceptually simple, 
+is still a method in its development stages, with room for several algorithmic improvements and new applications. In 
+terms of algorithmic and conceptual developments we believe there are three main issues that need further research, 
 \begin{itemize} 
-	\item Automated construction of database of low energy wavefunctions
-	\item Optimal choice of active orbitals (one body space)
-	\item Form of the low energy model Hamiltonian and number of free parameters
+	\item Construction of wavefunction database:
+	The AIDMD method relies crucially on the availability of a low energy space of \emph{ab initio} wavefunctions, 
+	which despite not being eigenstates, reveal the nature of the effective Hamiltonian. Automating its construction remains somewhat challenging. We propose Slater Jastrow wavefunctions and deforming the orbitals entering the Slater determinant as a way of probing the low energy manifold.
+	\item Optimal choice of active orbitals (one body space):
+	In the present work, we chose . Some ways of ..
+	\item Form of the low energy model Hamiltonian:
+	Many works in the literature have been to ~\cite{Georges}
+	\item Other (non QMC) wavefunction based electronic structure methods:
+	
 \end{itemize} 
 
-We expect the method to be eventually applied to solids involving transition metals and/or rare earth elements, 
-which are in the strongly correlated regime due to the presence of localized orbitals. These magnetism associated with the   
+In terms of applications, we hope the method to be eventually applied to solids involving transition 
+metals and/or rare earth elements, which are in the strongly correlated regime due to the presence of localized orbitals. 
+Some challenging areas include the following,
 \begin{itemize} 
-	\item Automated construction of database of low energy wavefunctions
-	\item Choice of active orbitals
-	\item Form of the low energy model Hamiltonian and number of free parameters
+	\item Magnetism: 
+	The magnetism associated with strongly correlated Mott insulators is highly non trivial 
+	and has become an active area of research in its own right. This is compounded by 
+	the presence of geometric frustration, impurities and defects and 
+	spin-orbital effects. For example, the frustrated nature of the two dimensional kagome lattice planes in 
+	herbertsmithite harbors an exotic topological phase of matter - a "quantum spin liquid". While our understanding is primarily 
+	from lattice model calculations of a Heisenberg model~\cite{Yan_Huse_White, Hermele_Wen, Iqbal_Becca, Changlani_motherkagome}, 
+	contentious issues plague a complete understanding and connection to experiment; 
+	there has been recent progress in downfolding herbertsmithite~\cite{Jeschke}. 
+	Other areas of application include pyrochlore iridates and titanates and Kitaev materials. 
+	We caution that relevant energy scales associated with magnetism can be $0.1$ meV or less, and no electronic structure 
+	method is currently that accurate. It may thus be necessary to perform multiple downfolding steps to map from 
+	the Schrodinger equation to a spin model.
+	\item Superconductors:
+	As previously mentioned, unconventional (non BCS) superconductivity in materials such as the cuprates and iron based 
+	pntictides has fuelled the study of strongly correlated systems.
+	Several parameter sets exist in the literature for multi-band models, but it appears that there is little universal consensus. 
+	We are optimistic that additional \emph{ab-initio} inputs from AIDMD will help constrain the part of parameter 
+	space relevant for these materials. Trends of the parameters (and the effectiveness of the three band 
+	or one band model itself) with pressure dependence and doping remain largely unexplored.  
+	%\item Quantum computing (\HJC{tell me if this one is too weird}) : 
+	%Quantum computers have been heralded as the future of computing with many promising advances. 
+	%There has been progress in the simulation of small molecules in compact basis sets, but scalability (needed for solids) 
+	%remains an issue. Downfolding macould help in the reduction in the number of active orbitals 
 \end{itemize} 
 
 
