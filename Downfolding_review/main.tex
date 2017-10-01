@@ -147,8 +147,10 @@ dynamical field theory (DMFT)~\cite{}, density matrix embedding (DMET)~\cite{DME
 lattice quantum Monte Carlo (QMC) methods~\cite{Scalapino, Trivedi_Ceperley, Zhang_AFQMC, Sandvik_loops, Prokofiev, 
 Booth2009,SQMC,Holmes_Changlani_Umrigar, Booth2013}. These methods have also been used to obtain 
 excited states and dynamical correlation functions, that have been difficult in \emph{ab-initio} approaches. 
-Full \emph{ab-initio} calculations are not computationally feasible for large system sizes 
-and often not accurate enough to yield an unbiased understanding of the low energy states of interest. 
+Full \emph{ab-initio} wavefunction based calculations are computationally infeasible for large system sizes. 
+In addition they are often \emph{not} accurate enough to yield an unbiased quantitative resolution of 
+low energy scales, but \emph{are} accurate enough to yield the correct low energy basin in which the effective description 
+of the problem lives. This is schematically represented in Fig.~\ref{fig:lowenergybasin_schematic}.
 
 Downfolding has most commonly been carried out using approaches based on density functional theory (DFT). 
 The kinetic part is obtained from a standard 
@@ -215,7 +217,7 @@ Finally, in Section 4, we discuss future prospects of applications of the AIDMD 
 clear avenues for methodological improvements. 
 
 \section{Theory: Compression of the Energy Functional/Criteria for Hamiltonian matching}
-\HJC{Lucas handling this section......Look at theory.tex}
+\HJC{Lucas handling this section......Look at theory.tex. Could use commented out snippets explaining Ax=E etc and criteria}
 
 %\HJC{What principles are important for connecting a problem of many electrons to a problem of few electrons}
 %\HJC{Focus on density matrices and emphasize the reduction in number of effective orbitals. A dual problem: get the optimal one body space and also get the optimal effective interactions.}
@@ -554,7 +556,7 @@ hybridize most strongly with $d_{x^2-y^2}$. Thus the minimal model for the cupra
 is the 3-orbital or 3-band Hubbard model, 
 \begin{eqnarray}
 H &=&    \epsilon_p \sum_{j,\sigma} \epsilon_p n^{p}_{j,\sigma} + \epsilon_{d} \sum_{d}  n^{d}_{i,\sigma} 
-	+ t_{pd} \sum_{\langle i,j \rangle, \sigma} \text{sgn}(p_i,d_j) \Big( d_{i,\sigma}^{\dagger} p_{j,\sigma} + \text{h.c.} \Big) \\
+	+ t_{pd} \sum_{\langle i,j \rangle, \sigma} \text{sgn}(p_i,d_j) \Big( d_{i,\sigma}^{\dagger} p_{j,\sigma} + \text{h.c.} \Big) \nonumber \\
   & &   + U_p \sum_{j} n^{p}_{j,\uparrow} n^{p}_{j,\downarrow} + U_d \sum_{i} n^{d}_{i,\uparrow} n^{d}_{i,\downarrow} + V_{pd} \sum_{\langle i,j \rangle} n^{j}_p n^{i}_d 
 \end{eqnarray}
 where $d_i,p_j$ refer to the orbitals of copper (at site $i$) and oxygen (at site $j$)  respectively 
@@ -929,7 +931,7 @@ fundamental interest. This, of course, is contingent on the cancellation of the 
 whose role is to primarily renormalize the interactions between the active (valence) electrons. This aspect can also 
 be a major limitation when the core and active electrons are strongly entangled i.e when the separation of energy 
 scales is not prominent (in which case an energy-dependent description may be needed). 
-Thus, it is possibly best suited for extended systems (solids) where there this separation exists. 
+Thus, it is possibly best suited for extended systems (solids) where this separation exists. 
 In our view, AIDMD (and downfolding in general) opens up many avenues for determination of physical 
 quantities not easily calculated in ground state approaches. Our experience suggests excitation spectra 
 can be accurately determined to 0.2 eV (or less)~\cite{Changlani2015} and potentially improved with 
