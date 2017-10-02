@@ -1,0 +1,307 @@
+%\HJC{What principles are important for connecting a problem of many electrons to a problem of few electrons}
+%\HJC{Focus on density matrices and emphasize the reduction in number of effective orbitals. A dual problem: get the optimal one body space and also get the optimal effective interactions.}
+%\HJC{Include Lucas' perspective}
+%Our aim is to obtain a low energy effective Hamiltonian defined in 
+%the active space of electrons which is preferably (but not necessarily) 
+%described in terms of localized orbitals. In this basis, the criteria any 
+%effective low energy model Hamiltonian must satisfy are,
+%\begin{itemize}
+%\item (a) The reduced density matrices (RDM) of the ground and excited states (computed in a basis) 
+%          obtained from the \emph{ab-initio} calculation must match with that of the model calculation. 
+%
+%\item (b) The energy spectra of the \emph{ab-initio} and model systems must match in the energy window of interest. 
+%
+%\item(c) The model must be simple enough and must contain the essential physics to avoid over-parameterization and over-fitting. 
+%\end{itemize}
+%
+%\HJC{Explain criterion 1}
+%The concept of matching RDMs, criterion (a), 
+%has previously appeared in related contexts~\cite{Acioli,Zhou_Ceperley, Changlani_percolation} 
+%and in work by one of us~\cite{Wagner_JCP}. Most physical properties, 
+%such as the charge and spin structure factors, are functions of the 2-RDM.
+%Practically, it may be computationally expensive to get 
+%high-order RDMs: in this study we use the matching condition only on the 
+%2-RDM $\rho_{ijkl} \equiv \langle c_i^{\dagger} c_j^{\dagger} c_l c_k \rangle$ where $i,j,k,l$ are orbital indices 
+%(including space and spin)
+%\HJC{Note that good quantum numbers such as 
+%total spin and angular momentum of a pure state are functions of the \emph{full} 
+%2-RDM (if the Hamiltonian has those same symmetries) and not the \emph{partial} ones we use for matching.}.
+%This criterion automatically ensures that 
+%the combined number of electrons occupying the orbitals 
+%is equal to those in the model Hamiltonian. (If any 
+%input state does not satisfy the condition of 
+%expected electron number, then it can not be described by the effective Hamiltonian.)  
+%
+%\HJC{Explain criterion 2}
+%The importance of excited state energies 
+%used in the fitting, criterion (b), is easily highlighted by the fact that 
+%the wavefunctions (and hence their two-body density matrices) 
+%are invariant to many kinds of terms that enter the Hamiltonian.
+%For example, the transformation, 
+%\begin{equation}
+%	H' \rightarrow H + \alpha S^2 + \beta n + \gamma S^2 n 
+%\end{equation}
+%is, by construction, consistent with all the 2-RDM data 
+%for any $\alpha$, $\beta$, $\gamma$ 
+%for systems which have spin symmetry and conserve particle number.
+%Imposing certain "physical constraints" on the form of the 
+%interactions can eliminate the need for this criterion. 
+%To give a concrete example, consider wavefunction data 
+%generated from the ground state of an unfrustrated 
+%Heisenberg Hamiltonian in a bipartite lattice~\HJC{A bipartite 
+%lattice is one with two sublattices $A$ and $B$ with 
+%only $A-B$ connections but no $A-A$ or $B-B$ ones.}, 
+%$ H = J \sum_{\langle i,j \rangle}\bar{S}_i \cdot \bar{S_j}.$ 
+%where $\langle i,j \rangle$ refer to nearest neighbor pairs.
+%Then adding $\alpha S^2$ gives the same correlators (density matrices) 
+%of the ground state, as long as $\alpha$ is small enough to not cause 
+%energy crossings i.e. not make an original 
+%excited state the new ground state. This additional 
+%term has the effect of introducing long range Heisenberg couplings. 
+%Moreover, the effective Hamiltonian is not unique: 
+%the Lieb-Mattis model~\cite{LM} $H = S_A \dot S_B$ 
+%(where $A$ and $B$ refer to sublattice spins), is also 
+%known to reproduce the low-energy limit of the Heisenberg model. 
+%Thus, imposing the requirement that the Hamiltonian has the 
+%nearest-neighbor form constrains $\alpha$ to zero and picks 
+%one particular model. Similar arguments should 
+%apply to long-range Hubbard models in homogeneous 
+%systems where a physical constraint is that density-density 
+%interaction must decrease monotonically with distance between orbitals. 
+%
+%While having many excited states from \emph{ab-initio} calculations 
+%is desirable, we note that certain methods only work best for 
+%determining ground states in symmetry sectors. 
+%In the case of FN-DMC, 
+%some other excited states can also be achieved by fixing their 
+%nodal structure (which is different from that of the ground state). 
+%Our practical experience suggests that attempts to obtain 
+%eigenstates were often associated with broken symmetries. 
+%This happens for a variety of reasons: choice of DFT orbitals, 
+%contamination of the spin-structure by the 
+%Jastrow and/or incomplete optimization. 
+%These limitations suggest that it is 
+%important to reduce the dependence of the desired 
+%method only on eigenstates. Instead, our philosophy is to 
+%use the \emph{available} information from arbitrary 
+%low-energy states to our advantage. 
+%(Moreover, if \emph{all} eigenstates were known, the utility of 
+%generating an effective Hamiltonian might be diluted anyway.)
+%  
+%Given a finite amount of data, we note that criteria (a) and (b) 
+%do not always uniquely determine an effective Hamiltonian, 
+%even within the ansatz chosen. For example, one may demand that 
+%the cross expectation values of certain operators 
+%(say $\langle \psi_1 | c_i^{\dagger} c_j | \psi_2 \rangle$) 
+%between the \emph{ab-initio} and model calculations must match. 
+%This information could also be added as an 
+%additional criterion for matching. 
+%
+%\HJC{Importance of transferability}
+%Finally, it is important to build confidence 
+%in this Hamiltonian by comparing its outputs with respect 
+%to data not used in the fitting. 
+%To partly remedy this, we propose the 
+%heuristic criterion (c). As is the case with many situations 
+%involving fitting, we desire 
+%the minimal model that explains the data to 
+%some reasonable accuracy. This has the effect of making such a 
+%model Hamiltonian useful in other situations i.e. transferable.
+%
+%\HJC{Hubbard parameters are fit parameters, do not have any deep meaning necessarily.}
+%What is the meaning of the Hubbard $U$ (and other interactions)?
+%Is there a fundamental definition or are they fit parameters to a chosen model? 
+%We take the latter viewpoint and thinking this way helps reconcile 
+%widely varying estimates that exist in the literature. 
+%A common expression for the generalized-two body interaction is taken to be, 
+%\begin{equation}
+% V_{ijkl} = \int  \phi_i (r) \phi_j (r')  W (r,r') \phi_k (r) \phi_l (r')
+%\end{equation}
+%where the modified interaction $W(r,r')$ is obtained from a model for screening 
+%relating it to the bare Coulomb interaction $V(r,r')$. 
+%
+%
+%\subsection{Choice of 1 particle orbitals, energy window, data selection...etc}
+%\HJC{IAO, Wannier or something else?}
+%
+%\HJC{Choice of energy window - Hubbard parameters could be energy dependent. Static vs dynamic (energy dependent) 
+%models.}
+%The Hubbard $U$ depends on the energy range 
+%over which one is interested in estimating it. It is an 
+%"effective interaction" that encodes the effect of many others 
+%which would otherwise be needed in a completely static model.
+%Even in the low frequency static limit, estimates 
+%of the Hubbard $U$ can vary over large factors~\cite{Fei_Lin} 
+%(of the order of $2$ or more): this is partly attributed to insensitivity 
+%of correlation-functions in the ground state to its precise value. 
+%Any inaccuracy in the \emph{ab-initio} calculation reflects as 
+%large changes in the estimated $U$. This point 
+%will become clearer in later sections of the paper.
+% 
+%\HJC {What kind of data is needed and how much is enough}
+%In the fitting approach, the idea is to use a sufficiently 
+%large data set such that the proposed Hamiltonian has "learnt" most 
+%relevant features of the low-energy physics, after which the parameters 
+%are used for understanding other properties. 
+%This reconstruction depends on the kind of data input to the method 
+%and the presence of linear dependencies. 
+%We present a formulation which puts the statements above 
+%on a more rigorous mathematical footing.
+%
+%\HJC {Given data, how do we achieve what we want...}
+%\subsection{Fitting procedure: $Ax=E$ method}
+%\label{sec:AxE}
+%Consider a set of \emph{ab-initio} 
+%energies $E_s$ (in general, expectation values of the Hamiltonian) 
+%and corresponding 1 and 2 body RDMs $\langle c_i^{\dagger} c_j \rangle_s$ 
+%$\langle c_i^{\dagger}c_j^{\dagger} c_l c_k \rangle_s$ 
+%for various \emph{arbitrary} low-energy states characterized by index $s$. 
+%Assume a model 2-body Hamiltonian parameterized by (yet unknown) 
+%renormalized parameters $t_{ij}$ (one body part) 
+%and $V_{i,j,k,l}$ (2-body part) along with a constant term $C$, 
+%the total number of parameters being $N_p$. Then for each state $s$, 
+%we have the equation, 
+%\begin{equation}
+%	E_s = \langle H \rangle_s = C + \sum_{ij} t_{ij} \langle c_i^{\dagger} c_j \rangle + \sum_{ijkl} V_{ijkl} \langle c_i^{\dagger}c_j^{\dagger} c_l c_k \rangle  
+%\end{equation}
+%where we have made the assumption that the chosen set of orbitals 
+%is capable of explaining all energy differences. The constant $C$ is from energetic contributions 
+%of all other orbitals which are (almost) decoupled from the chosen set.  
+% 
+%We then perform calculations for 
+%$M$ (possibly random) low-energy states which are not necessarily eigenstates.  
+%The objective is to explore various parts 
+%of the low-energy Hilbert space which show variations in the 2-RDM elements. 
+%Since the same parameters describe all $M$ states, they must 
+%satisfy the linear set of equations, 
+%\begin{eqnarray}
+%\left(
+%\begin{array}{c}
+%E_1 \\
+%E_2 \\
+%E_3 \\
+%... \\
+%... \\
+%... \\
+%... \\
+%E_M
+%\end{array}
+%\right) =
+%\left(
+%\begin{array}{ccccc}
+%1 & \langle c_i^{\dagger}c_j \rangle_{1}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{1} & .. \\
+%1 & \langle c_i^{\dagger}c_j \rangle_{2}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{2} & .. \\
+%1 & \langle c_i^{\dagger}c_j \rangle_{3}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{3} & .. \\
+%1 & \langle c_i^{\dagger}c_j \rangle_{4}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{4} & .. \\
+%1 & ....                                  & .. & ..                                                    & .. \\
+%1 & ....                                  & .. & ..                                                    & .. \\
+%1 & \langle c_i^{\dagger}c_j \rangle_{M}  & .. & \langle c_i^{\dagger}c_j^{\dagger}c_l c_k \rangle_{M} & .. \\
+%\end{array}
+%\right) \left(
+%\begin{array}{c}
+%C           \\
+%t_{ij}      \\
+%..          \\
+%V_{ijkl}    \\
+%..
+%\end{array}
+%\right)
+%\end{eqnarray}
+%which can be written more compactly as,
+%\begin{equation}
+%	{\bf{E}} = A {\bf{x}}
+%\end{equation}
+%where $ {\bf{E}} \equiv (E_1,E_2,...E_M)^{T}$ 
+%is the $M$ dimensional vector of energies, $A$ is the $M \times N_p$ matrix composed 
+%of density matrix elements and $ {\bf{x}} \equiv (C,t_{ij}....V_{ijkl}...)^T$ 
+%is a $N_p$ dimensional vector of parameters.
+%This problem is overdetermined for $M>N_p$, which is the regime we expect to work in.
+%
+%In the case of any imperfection in the model (which is the most common case), 
+%the equality will not hold exactly 
+%and one must then instead minimize the norm, $\mathcal{N}$,
+%\begin{equation}
+%	\mathcal{N} \equiv ||A\bf{x}-\bf{E}||^2
+%\label{eq:norm}
+%\end{equation}
+%The nice property of this cost function is that it can be minimized
+%in a single step by using the method of least squares, employing the singular 
+%value decomposition of matrix $A$, which also encodes exact (or near-exact) linear dependences. 
+%Thus, the quality of the fit can be directly judged 
+%by assessing (1) the singular values of the $A$ matrix and (2) 
+%the value of the cost function itself i.e. the deviations of the input and fitted energies.
+%We will refer to this method as the "Ax=E" method at various points in the paper.
+%
+%\HJC{Advantage over other cost functions... L1 norm may not be so nice but it could give more minimal models?}
+%The cost function~\eqref{eq:norm} is unlike that used when matching 
+%canonical density operators,
+%\begin{equation} 
+%\frac{1} {Z^{m}} \exp(-\beta H^{m})  = \frac{1} {Z^{a}} \exp(-\beta H^{a})
+%\label{eq:Z_Zstar}
+%\end {equation}
+%where indices $m$ and $a$ refer to the model and ab-initio (true) systems, $\beta$ 
+%is an inverse temperature and $Z$ is the partition function
+%In contrast, our "energy-weighting" function is a box-function: it weighs all the energies 
+%in a given window equally. The form of the cost function (including the 
+%weighting function) is unimportant in the limit of a perfect model.
+%
+%In summary, our approach solves 
+%linear equations in terms of the unknown parameters, by using the density matrices 
+%from an \emph{ab-initio} method. This concept works only when we 
+%know the model Hamiltonian that describes the data, and all we want is the numerical 
+%values of the parameters. Thus to verify the validity of the calculation, 
+%one must use the derived parameters and calculate many-body eigenstates 
+%in the model and check their correspondence with the \emph{ab-initio} 
+%calculations.
+%
+%\HJC{What does the A matrix encode - standard tricks of fitting...}
+%The matrix $A$ gives a very natural basis to understand "renormalization" effects.
+%For example, consider a set of wavefunctions, that show that the correlator 
+%$\langle n_0 n_3 \rangle$ does not change significantly. This would lead to the 
+%corresponding column of matrix $A$ being identical (up to a scale factor) 
+%to the first column of 1's. Physically, this would correspond to the coupling constant 
+%$V_{03}$ being unimportant (it can take any value including 0) and its 
+%effect can be completely absorbed into the constant shift term. 
+%(This could also alternatively mean that the input 
+%data is correlated and does not provide enough information about $V_{03}$. 
+%In the case of non-zero "small variations", the value of this parameter 
+%will be quite sensitive to the data set and its quality.) 
+%Said differently, it is the \emph{variation}  
+%in an RDM element (across states in the energy window) 
+%that are important: \emph{not} their \emph{absolute} values.
+%
+%\subsection{QMC specific features}
+%\HJC{Till this point perfectly general... QMC helps.... etc etc}
+%The utility of the wavefunction approach is apparent in this 
+%formulation: the expectation values entering matrix $A$ 
+%can be calculated for arbitrary wavefunctions by Monte Carlo sampling.
+%We can also simply use variational Monte Carlo and corresponding energies
+%for constructing the $A$ matrix, however we may not get the desired accuracy. 
+%
+%\HJC{QMC specific}
+%It is thus preferable to use the accurate FN-DMC method. In this case, one needs to modify the linear equations 
+%to use projected estimators. More specifically, we have, $E= \langle {\psi_T}^{s}| H | {\psi}^s \rangle$ 
+%and thus must use the projected estimates of the density matrix elements i.e. 
+%$\langle {\psi_T}^s | c_i^{\dagger} c_j | {\psi}^s \rangle$ and $\langle {\psi_T}^s| c_i^{\dagger}c_j^{\dagger} c_l c_k | {\psi}^s \rangle$ 
+%in the construction of the $A$ matrix. (The implicit normalization of these 
+%mixed estimates by $\langle {\psi_T}^s | \psi^{s} \rangle$ is assumed.) 
+%This projector formulation is also very amenable to 
+%coupled-cluster calculations which also work with projected energies 
+%and density matrices.
+%
+%\HJC{QMC specific}
+%There is no need to worry about the bias in FN-DMC in our formulation. 
+%This is because we regard $\psi \psi_T$ as some \emph{arbitrary} positive sampling function 
+%associated with a low energy state and use the \emph{same} distribution for the 
+%evaluation of the density matrix elements. We are not concerned with whether 
+%an exact eigenstate is being sampled or not: we just desire a linear equation 
+%(for the unknown parameters) from this exercise. Thus the relationship between the FN-DMC energy 
+%and the projected density matrix elements is always an \emph{exact} relationship 
+%(up to errors coming in from statistics and from the 
+%assumption of the form of the Hamiltonian). 
+
+
+%\HJC{Visualizing the goodness of fit/connecting to tools from data science}
+%\HJC{Choice of norm and avoiding over-fitting: $L_1$, $L_2$ or something else?}
+
+
