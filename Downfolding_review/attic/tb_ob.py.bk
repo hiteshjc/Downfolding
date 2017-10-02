@@ -1,0 +1,256 @@
+import sys
+import os 
+import pylab 
+import numpy as N
+
+def get_ob_data():
+	os.system("ls one_band_data/out* > tt")
+	f=open("tt",'r')
+	fnames=[]
+	for line in f:
+		fnames.append(line.strip())
+	f.close()
+	data=[]
+	for fname in fnames:
+		os.system("grep -A1 \"One RDM\" "+fname+" > tt")
+		f=open("tt",'r')
+		for i,line in enumerate(f):
+			line=line.strip()
+			line=line.split(" ")
+			if (i==1):
+				rdm0=float(line[1])
+				print rdm0,line	
+			if (i==4):
+				rdm1=float(line[1])
+				print rdm1,line	
+			if (i==7):
+				rdm2=float(line[1])
+				print rdm2,line	
+		f.close()
+		os.system("grep -A10 \"Eigenvalues\" "+fname+" > tt")
+		f=open("tt",'r')
+		for i,line in enumerate(f):
+			line=line.strip()
+			#print line
+			if (i==2):
+				e0=float(line)
+				print e0,line	
+			if (i==3):
+				e1=float(line)
+				print e1,line	
+			if (i==4):
+				e2=float(line)
+				print e2,line	
+			if (i==5):
+				e3=float(line)
+				print e3,line	
+			if (i==6):
+				e4=float(line)
+				print e4,line	
+			if (i==7):
+				e5=float(line)
+				print e5,line
+		f.close()
+		g=fname.split("_")
+		Ud=float(g[-1])
+		data.append([Ud,rdm0,rdm1,rdm2,e0,e1,e2,e3,e4,e5])	
+	return data
+
+def get_tb_data():
+	hybridization=0
+	os.system("ls three_band_data/out* > tt")
+	f=open("tt",'r')
+	fnames=[]
+	for line in f:
+		fnames.append(line.strip())
+	f.close()
+	data=[]
+	for fname in fnames:
+		os.system("tail -n112 "+fname+" | grep -A1 \"Unitary\" > tt")
+		f=open("tt",'r')
+		for i,line in enumerate(f):
+			line=line.strip()
+			line=line.split(" ")
+			if (i==1):hybridization=float(line[4])
+		f.close()
+		os.system("tail -n84 "+fname+" | grep -A1 \"Out 1-RDM\" > tt")
+		f=open("tt",'r')
+		for i,line in enumerate(f):
+			line=line.strip()
+			line=line.split(" ")
+			if (i==1):
+				rdm0=float(line[1])
+				print rdm0,line	
+			if (i==4):
+				rdm1=float(line[1])
+				print rdm1,line	
+			if (i==7):
+				rdm2=float(line[1])
+				print rdm2,line	
+		f.close()
+		os.system("grep -A10 \"Eigenvalues\" "+fname+" > tt")
+		f=open("tt",'r')
+		for i,line in enumerate(f):
+			line=line.strip()
+			#print line
+			if (i==2):
+				e0=float(line)
+				print e0,line	
+			if (i==3):
+				e1=float(line)
+				print e1,line	
+			if (i==4):
+				e2=float(line)
+				print e2,line	
+			if (i==5):
+				e3=float(line)
+				print e3,line	
+			if (i==6):
+				e4=float(line)
+				print e4,line	
+			if (i==7):
+				e5=float(line)
+				print e5,line
+		f.close()
+		g=fname.split("_")
+		#print g
+		#stop
+		Ud=float(g[7])
+		ep=float(g[19])
+		ed=float(g[-1])
+		data.append([Ud,ep-ed,rdm0,rdm1,rdm2,e0,e1,e2,e3,e4,e5,hybridization])	
+	return data
+
+
+data1=get_ob_data()
+for d in data1:
+	print d
+
+data3=get_tb_data()
+for d in data3:
+	print d
+
+# Now Match
+# For every data3 find best Hubbard model
+tpd=1.3
+tpds=[]
+ep=int(sys.argv[1])
+atts=[0,1,2]
+markers=["o","s","d"]
+matchpairs=[]
+Uopt=[]
+Uins=[]
+hybs=[]
+for att in atts:
+	U1found=[]
+	U3s=[]
+	for k3,d in enumerate(data3):
+		mindiff=1000
+		if (abs(d[1]-ep)<1.0e-3 and d[0]>3 and d[0]<15):
+			U3s.append(d[0])
+			for k1,o in enumerate(data1):
+				if (abs(abs(d[att+2])-abs(o[att+1]))<mindiff):
+					mindiff=abs(abs(d[att+2])-abs(o[att+1]))
+					Uspecial=o[0]
+					matchpair=[k3,k1]
+			print d[0],Uspecial
+			U1found.append(Uspecial)
+			if (att==1):
+				Uins.append(d[0]) 
+				Uopt.append(Uspecial)
+				hybs.append(d[-1]) 
+				matchpairs.append(matchpair)
+	pylab.plot(U3s,U1found,lw=0,markersize=10,marker=markers[att],label="State "+str(att))
+pylab.xlabel("$U_{d}/t_{pd}$",fontsize=25)
+pylab.ylabel("$U/t$",fontsize=25)
+pylab.xticks(fontsize=20)
+pylab.yticks(fontsize=20)
+pylab.legend(loc="best",numpoints=1,prop={'size':15})
+pylab.text(10,(min(U1found)+max(U1found))/2.0,"$\Delta/t_{pd}=$"+str(int(ep)),fontsize=25)
+pylab.savefig("downfolded_U_ep_"+str(ep)+".pdf",bbox_inches="tight")
+e1s=[]
+e3s=[]
+topts=[]
+x=[-0.2,-0.1,0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8]
+y=[-0.2,-0.1,0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8]
+for r,pair in enumerate(matchpairs):
+	e1s=[]
+	e3s=[]
+	k3=pair[0]
+	k1=pair[1]
+	d1=data1[k1]
+	d3=data3[k3]
+	e1s.append(d1[4]-d1[4])
+	e1s.append(d1[5]-d1[4])
+	e1s.append(d1[6]-d1[4])
+	e1s.append(d1[7]-d1[4])
+	e1s.append(d1[8]-d1[4])
+	e1s.append(d1[9]-d1[4])
+	e3s.append(d3[5]-d3[5])
+	e3s.append(d3[6]-d3[5])
+	e3s.append(d3[7]-d3[5])
+	e3s.append(d3[8]-d3[5])
+	e3s.append(d3[9]-d3[5])
+	e3s.append(d3[10]-d3[5])
+	e3s=N.array(e3s)
+	e1s=N.array(e1s)
+	fig=2+r
+	pylab.figure(fig)
+	scale=0.2
+	scales=[]
+	for i in range(1000):
+		scale+=0.001
+		if (scale<0.500 and scale>0.2): scales.append(scale)
+	#scales=[0.300,0.302,0.305,0.307,0.310,0.312,0.313,0.314,0.315,0.316,0.317,0.318,0.319,0.320,0.321,0.322,0.323,0.24,0.325,0.326,0.327,0.328,0.329,0.330,0.331,0.332,0.333,0.334,0.335,0.336,0.337,0.338,0.339,0.340,0.341,0.342,0.343,0.344,0.345,0.346,0.347,0.348,0.349,0.350,0.351,0.352,0.353,0.354,0.355,0.356,0.357,0.358,0.359,0.360,0.37,0.38,0.39,0.40,0.41,0.42,0.43,0.44,0.45,0.46,0.47,0.48,0.49,0.50]
+	mincost=1000
+	for scale in scales:
+		cost=0
+		for n in range(len(e3s)):
+			cost=cost+((e3s[n]*tpd)-(scale*e1s[n]))**2
+		if (cost<mincost):
+			mincost=cost
+			bestscale=scale
+	topts.append(bestscale)
+	e3s=e3s*tpd
+	e1s=e1s*bestscale
+	pylab.plot(e3s,e1s,marker="o",lw=0,markersize=10,label="$U_d/t_{pd} = $"+str(Uins[r])+" $t_{opt}$ ="+str(bestscale)+" eV   $U/t$ = "+str(Uopt[r]),color="red")
+	pylab.plot(x,y,lw=3,markersize=0,color="black",ls="dashed")
+	pylab.text(0,e3s[-1]-0.1,"$U_d/t_{pd} = $"+str(Uins[r]),fontsize=17)
+	pylab.text(0,e3s[-1]-0.3,"$t_{opt}    = $"+str(bestscale)+" eV",fontsize=17)
+	pylab.text(0,e3s[-1]-0.5,"$U/t        = $"+str(Uopt[r]),fontsize=17)
+	#pylab.legend(loc="best",numpoints=1,prop={'size':15})
+	pylab.xlim([-0.1,e3s[-1]+0.1])
+	pylab.ylim([-0.1,e3s[-1]+0.1])
+	pylab.xticks(fontsize=20)
+	pylab.yticks(fontsize=20)
+	pylab.ylabel("1-band gaps (eV)",fontsize=25)
+	pylab.xlabel("3-band gaps (eV)",fontsize=25)
+	pylab.savefig("Gap_1_band_3_band_ep_"+str(ep)+"_number_"+str(r)+".pdf",bbox_inches="tight")
+fig=fig+1
+pylab.figure(fig)
+Uins, topts, hybs = zip(*sorted(zip(Uins, topts, hybs)))
+pylab.plot(Uins,topts,markersize=10,marker="o",color="black",lw=2,ls="dashed")
+Ualls=[]
+for i in range(2,15):
+	Ualls.append(i)
+	tpds.append(tpd)
+pylab.plot(Ualls,tpds,markersize=0,marker="o",color="black",lw=2)
+pylab.xticks(fontsize=20)
+pylab.yticks(fontsize=20)
+pylab.ylabel("Hopping (eV)",fontsize=25)
+pylab.xlabel("$U_{d}/t_{pd}$",fontsize=25)
+pylab.text((Uins[0]+Uins[-1])/2 - 1,tpd*0.90,"$t_{pd}$",fontsize=20)
+pylab.text((Uins[0]+Uins[-1])/2 - 1,topts[-1]+0.1,"$t_{opt}$",fontsize=20)
+pylab.ylim([-0.05,tpd+0.2])
+pylab.xlim([Uins[0]-0.2,Uins[-1]+0.2])
+a=pylab.axes([0.6,0.5,0.2,0.2])
+pylab.xticks(fontsize=12)
+pylab.yticks(fontsize=12)
+pylab.ylabel("$t_{opt}$ (eV)",fontsize=15)
+pylab.xlabel("$U_{d}/t_{pd}$",fontsize=15)
+pylab.plot(Uins,topts,marker="o",markersize=5,color="black",ls="dashed")
+pylab.savefig("Hopping_vs_U_ep_"+str(ep)+".pdf",bbox_inches="tight")
+fig=fig+1
+pylab.figure(fig)
+pylab.plot(Uins,hybs,markersize=10,marker="o",color="black",lw=2,ls="dashed")
+#pylab.show()
