@@ -14,7 +14,7 @@ all:
 	$(TEX) $(BUILDTEX);                         \
 	$(TEX) $(BUILDTEX);                         
 clean:
-	rm -f *.log *.bak *.aux *.bbl *.blg *.idx *.toc *.out *~ *.synctex.gz* *Notes.bib
+	rm -f *.log *.bak *.aux *.bbl *.blg *.idx *.toc *.out *~ *.synctex.gz* *Notes.bib main.pdf honeycomb.pdf
 
 honeycomb:
 	$(BIBTEX) $(BUILDTEX);                      \
