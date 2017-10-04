@@ -15,3 +15,17 @@ all:
 	$(TEX) $(BUILDTEX);                         
 clean:
 	rm -f *.log *.bak *.aux *.bbl *.blg *.idx *.toc *.out *~ *.synctex.gz* *Notes.bib
+
+honeycomb:
+	$(BIBTEX) $(BUILDTEX);                      \
+	$(TEX) honeycomb.tex
+	for auxfile in $(wildcard *.aux); 	\
+	do                                	\
+		$(BIBTEX) `basename $$auxfile .aux`; \
+	done;                                        \
+	$(TEX) honeycomb.tex
+	$(TEX) honeycomb.tex
+commit:
+	sed -e "s/\\\input/%\\\input/g" honeycomb.tex
+	git commit -am "${message}"
+	git push
