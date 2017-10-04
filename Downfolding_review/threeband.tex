@@ -1,9 +1,8 @@
 \section{Representative Examples}
 Given the theoretical framework for downfolding a many-orbital (or many electron) problem to a 
-few orbital (or few electron) problem, we now discuss three examples which also serve to highlight some practical aspects 
+few orbital (or few electron) problem, we now discuss few examples which also serve to highlight some practical aspects 
 associated with AIDMD. The first example is mostly pedagogical, 
-where we have completely avoided the complications of low energy state generation, 
-and the general difficulty of doing the ab-initio calculation itself. Rather, we use information directly available 
+where we have completely avoided the ab-initio related complications of AIDMD. Rather, we use information directly available 
 from \emph{exact} eigenstates themselves to downfold from a lattice model with more orbitals (three band model) 
 to one with fewer orbitals (one band model). We then gradually increase the complexity of the problems we address
 by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and graphene 
@@ -17,18 +16,23 @@ The high $T_c$ superconducting cuprates~\cite{Bednorz1986} are complex materials
 are Mott insulators that display rich phase diagrams on electron or hole doping~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. 
 Many extensive works have been devoted to determining their model effective Hamiltonians and corresponding parameter 
 values~\cite{Emery, ZhangRice, tJSpalek, Hybertsen_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard}. 
-
-The low energy physics in the cuprates is primarily associated with the 2D planes of copper and oxygen (notated 
-as the XY plane); this setup has been shown in Fig.~\ref{fig:threeband} for a $2 \times 2$ unit cell.
-Accounting for the octahedral environment of copper ions, with support from electronic structure 
-and quantum chemistry calculations~\cite{Dagotto_RevModPhys}, one infers 
-that the five-fold \emph{d} orbital degeneracy of copper is lifted to make the 
-highest singly filled orbital to be the one with $d_{x^2-y^2}$ character. 
-The $p_x$ or $p_y$ oxygen orbitals (depending on their orientation relative to the copper) 
-hybridize most strongly with $d_{x^2-y^2}$. Thus the minimal model for the cuprates involving the oxygens 
+The emergent consensus of the minimal model for the cuprates involving the oxygens 
 is the 3-orbital or 3-band Hubbard model, 
-\BDB{What are sum over d? Should it be i, sigma?}
-\HJC{Yes, thanks! Fixed now}
+%\BDB{What are sum over d? Should it be i, sigma?}
+%\HJC{Yes, thanks! Fixed now}
+%
+%The low energy physics in the cuprates is primarily associated with the 2D planes of copper and oxygen (notated 
+%as the XY plane); this setup has been shown in Fig.~\ref{fig:threeband} for a $2 \times 2$ unit cell.
+%Accounting for the octahedral environment of copper ions, with support from electronic structure 
+%and quantum chemistry calculations~\cite{Dagotto_RevModPhys}, one infers 
+%that the five-fold \emph{d} orbital degeneracy of copper is lifted to make the 
+%highest singly filled orbital to be the one with $d_{x^2-y^2}$ character. 
+%The $p_x$ or $p_y$ oxygen orbitals (depending on their orientation relative to the copper) 
+%hybridize most strongly with $d_{x^2-y^2}$. 
+%Thus the minimal model for the cuprates involving the oxygens 
+%is the 3-orbital or 3-band Hubbard model, 
+%\BDB{What are sum over d? Should it be i, sigma?}
+%\HJC{Yes, thanks! Fixed now}
 \begin{eqnarray}
 H &=&    \epsilon_p \sum_{j,\sigma} n^{p}_{j,\sigma} + \epsilon_{d} \sum_{i,\sigma}  n^{d}_{i,\sigma} 
 	+ t_{pd} \sum_{\langle i,j \rangle, \sigma} \text{sgn}(p_i,d_j) \Big( d_{i,\sigma}^{\dagger} p_{j,\sigma} + \text{h.c.} \Big) \nonumber \\
@@ -38,29 +42,33 @@ where $d_i,p_j$ refer to the orbitals of copper (at site $i$) and oxygen (at sit
 and the signs of the hopping $t_{pd}$ between them are shown in Fig.~\ref{fig:threeband}. 
 $\epsilon_p$,$\epsilon_d$ refer to the orbital energies, 
 $U_d$, $U_p$ refer to strength of onsite Hubbard interactions and $V_{pd}$ refers to the 
-stength of the density-density interactions between a neighboring $p$ and $d$ orbital. 
-One could consider further variations of the model by adding $t_{pp}$ type hoppings, but 
-these have not been shown here. To keep the exposition simple, we consider only 
+strength of the density-density interactions between a neighboring $p$ and $d$ orbital. 
+Further variations are possible, but we keep the exposition simple and consider only 
 the case where $\epsilon_p$, $t_{pd}$ and $U_{d}$ are non zero and 
-since we work with a fixed number of particles, set $\epsilon_d = 0$. Thus the 
-charge transfer energy $\Delta \equiv \epsilon_p - \epsilon_d$ equals $\epsilon_p$ in our notation. 
-We find it convenient to work in the hole notation and thus half filling corresponds to 2$\uparrow$ and 2$\downarrow$ 
+since we work with a fixed number of particles, set $\epsilon_d = 0$. 
+%Thus the 
+%One could consider further variations of the model by adding $t_{pp}$ type hoppings, but 
+%these have not been shown here. To keep the exposition simple, we consider only 
+%the case where $\epsilon_p$, $t_{pd}$ and $U_{d}$ are non zero and 
+%since we work with a fixed number of particles, set $\epsilon_d = 0$. 
+Thus the charge transfer energy $\Delta \equiv \epsilon_p - \epsilon_d$ equals $\epsilon_p$ in our notation. 
+We work in the hole notationl; half filling corresponds to 2$\uparrow$ and 2$\downarrow$ 
 holes on the $2\times2$ cell.
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[width=1\linewidth]{./Figures/three_band_figure.pdf}
+\includegraphics[width=0.8\linewidth]{./Figures/three_band_figure.pdf}
 \caption{Schematic for downfolding the three band Hubbard model to the one band Hubbard model. 
 The oxygen orbitals are completely eliminated to give "dressed" $d$-like orbitals of the one band model, with modified hopping 
 and interaction parameters.}
 \label{fig:threeband} 
 \end{figure}	
 
-The justification for the 3-band model for the cuprates, along with the determination of its parameters, 
-is itself contingent on downfolding from an \emph{ab-initio} calculation, 
-of the type carried out in Refs.~\cite{Wagner_Abbamonte}. (There is also suggestion that the 4s orbital of copper is important 
-for the low energy properties~\cite{Pavirini} but we steer clear of these debates here.) 
-Instead we use the 3-band model at half filling, as a prototypical example of what it \emph{means} to downfold to 
+%The justification for the 3-band model for the cuprates, along with the determination of its parameters, 
+%is itself contingent on downfolding from an \emph{ab-initio} calculation, 
+%of the type carried out in Refs.~\cite{Wagner_Abbamonte}. (There is also suggestion that the 4s orbital of copper is important 
+%for the low energy properties~\cite{Pavirini} but we steer clear of these debates here.) 
+We use this model at half filling, as a prototypical example of what it \emph{means} to downfold to 
 a simpler model - the one band Hubbard model, 
 \begin{eqnarray}
 	\tilde{H} &=&  -t \;\sum_{\langle i,j \rangle} \tilde{d}_i^{\dagger} \tilde{d}_j + U \;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}
@@ -131,35 +139,35 @@ We consider a cost function,
 To give a concrete and representative example of our results, we start with 1-RDM of the lowest eigenstate 
 in either $\uparrow$ or $\downarrow$ channel. This is a $12 \times 12$ matrix, which for $U_{d}/t_{pd}=8$ 
 and $\Delta/t_{pd}=3$ we find to be,
-\begin{eqnarray}
-\left(
-\begin{array}{cccccccccccc}
-+0.380	   & -0.091 &-0.091 &-0.015& +0.119& +0.119& -0.119 &-0.119 &-0.017 &+0.017 &-0.017 &+0.017 \\
--0.091	   & +0.380 &-0.015 &-0.091& -0.017& -0.119& +0.119 &+0.017 &+0.017 &-0.017 &+0.119 &-0.119 \\
--0.091	   & -0.015 &+0.380 &-0.091& -0.119& -0.017& +0.017 &+0.119 &+0.119 &-0.119 &+0.017 &-0.017 \\
--0.015	   & -0.091 &-0.091 &+0.380& +0.017& +0.017& -0.017 &-0.017 &-0.119 &+0.119 &-0.119 &+0.119 \\
-+0.119	   & -0.017 &-0.119 &+0.017& +0.060& +0.034& -0.034 &-0.060 &-0.034 &+0.034 &-0.007 &+0.007 \\
-+0.119	   & -0.119 &-0.017 &+0.017& +0.034& +0.060& -0.060 &-0.034 &-0.007 &+0.007 &-0.034 &+0.034 \\
--0.119	   & +0.119 &+0.017 &-0.017& -0.034& -0.060& +0.060 &+0.034 &+0.007 &-0.007 &+0.034 &-0.034 \\
--0.119	   & +0.017 &+0.119 &-0.017& -0.060& -0.034& +0.034 &+0.060 &+0.034 &-0.034 &+0.007 &-0.007 \\
--0.017	   & +0.017 &+0.119 &-0.119& -0.034& -0.007& +0.007 &+0.034 &+0.060 &-0.060 &+0.034 &-0.034 \\
-+0.017	   & -0.017 &-0.119 &+0.119& +0.034& +0.007& -0.007 &-0.034 &-0.060 &+0.060 &-0.034 &+0.034 \\
--0.017	   & +0.119 &+0.017 &-0.119& -0.007& -0.034& +0.034 &+0.007 &+0.034 &-0.034 &+0.060 &-0.060 \\
-+0.017	   & -0.119 &-0.017 &+0.119& +0.007& +0.034& -0.034 &-0.007 &-0.034 &+0.034 &-0.060 &+0.060 \\
-\end{array}
-\right)
-\end{eqnarray}
-and transform it into a $4\times4$ RDM (satisfying the requirements of our cost function), 
-\begin{eqnarray}
-\left(
-\begin{array}{cccc}
-+0.499 & -0.158 & -0.158 & 0.000  \\
--0.158 & +0.499 &  0.000 & -0.158 \\
--0.158 &  0.000 & +0.499 & -0.158 \\
- 0.000 & -0.158 & -0.158 & +0.499 \\
-\end{array}
-\right)
-\end{eqnarray}
+%\begin{eqnarray}
+%\left(
+%\begin{array}{cccccccccccc}
+%+0.380	   & -0.091 &-0.091 &-0.015& +0.119& +0.119& -0.119 &-0.119 &-0.017 &+0.017 &-0.017 &+0.017 \\
+%-0.091	   & +0.380 &-0.015 &-0.091& -0.017& -0.119& +0.119 &+0.017 &+0.017 &-0.017 &+0.119 &-0.119 \\
+%-0.091	   & -0.015 &+0.380 &-0.091& -0.119& -0.017& +0.017 &+0.119 &+0.119 &-0.119 &+0.017 &-0.017 \\
+%-0.015	   & -0.091 &-0.091 &+0.380& +0.017& +0.017& -0.017 &-0.017 &-0.119 &+0.119 &-0.119 &+0.119 \\
+%+0.119	   & -0.017 &-0.119 &+0.017& +0.060& +0.034& -0.034 &-0.060 &-0.034 &+0.034 &-0.007 &+0.007 \\
+%+0.119	   & -0.119 &-0.017 &+0.017& +0.034& +0.060& -0.060 &-0.034 &-0.007 &+0.007 &-0.034 &+0.034 \\
+%-0.119	   & +0.119 &+0.017 &-0.017& -0.034& -0.060& +0.060 &+0.034 &+0.007 &-0.007 &+0.034 &-0.034 \\
+%-0.119	   & +0.017 &+0.119 &-0.017& -0.060& -0.034& +0.034 &+0.060 &+0.034 &-0.034 &+0.007 &-0.007 \\
+%-0.017	   & +0.017 &+0.119 &-0.119& -0.034& -0.007& +0.007 &+0.034 &+0.060 &-0.060 &+0.034 &-0.034 \\
+%+0.017	   & -0.017 &-0.119 &+0.119& +0.034& +0.007& -0.007 &-0.034 &-0.060 &+0.060 &-0.034 &+0.034 \\
+%-0.017	   & +0.119 &+0.017 &-0.119& -0.007& -0.034& +0.034 &+0.007 &+0.034 &-0.034 &+0.060 &-0.060 \\
+%+0.017	   & -0.119 &-0.017 &+0.119& +0.007& +0.034& -0.034 &-0.007 &-0.034 &+0.034 &-0.060 &+0.060 \\
+%\end{array}
+%\right)
+%\end{eqnarray}
+%and transform it into a $4\times4$ RDM (satisfying the requirements of our cost function), 
+%\begin{eqnarray}
+%\left(
+%\begin{array}{cccc}
+%+0.499 & -0.158 & -0.158 & 0.000  \\
+%-0.158 & +0.499 &  0.000 & -0.158 \\
+%-0.158 &  0.000 & +0.499 & -0.158 \\
+% 0.000 & -0.158 & -0.158 & +0.499 \\
+%\end{array}
+%\right)
+%\end{eqnarray}
 corresponding to the optimal parameters $\alpha_1=0.220$,$\alpha_2=0.044$,$\alpha_3=0.020$ and $\alpha_4=0.018$ 
 We then ask what $U/t$ of the one band Hubbard model best describes this 1-RDM and in this case find $U/t = $. 
 Similar results are found when one considers the other low energy eigenstates. 
