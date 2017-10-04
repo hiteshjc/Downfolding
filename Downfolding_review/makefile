@@ -26,6 +26,8 @@ honeycomb:
 	$(TEX) honeycomb.tex
 	$(TEX) honeycomb.tex
 commit:
-	sed -e "s/\\\input/%\\\input/g" honeycomb.tex
+	cp honeycomb.tex honeycomb.tex.backup
+	sed -e "s/\\\input/%\\\input/g" honeycomb.tex.backup > honeycomb.tex
 	git commit -am "${message}"
 	git push
+	rm honeycomb.tex.backup
