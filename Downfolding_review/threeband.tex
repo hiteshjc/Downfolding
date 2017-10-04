@@ -1,4 +1,5 @@
 \section{Representative Examples}
+%\HHZ{I feel that the first example could serve as a demonstration that this downfolding approach works. Since both the original system and the downfolded model could be exactly solved, and are clean. It would be good if we could find some physical properties that both the two models produce the same values. The energy spectrum has been used as an input in the sense of "machine learning", it would be good if we could have a way to test the predicting power.}
 Given the theoretical framework for downfolding a many-orbital (or many electron) problem to a 
 few orbital (or few electron) problem, we now discuss three examples which also serve to highlight some practical aspects 
 associated with AIDMD. The first example is mostly pedagogical, 
@@ -16,18 +17,18 @@ by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and gra
 The high $T_c$ superconducting cuprates~\cite{Bednorz1986} are complex materials whose parent compounds 
 are Mott insulators that display rich phase diagrams on electron or hole doping~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. 
 Many extensive works have been devoted to determining their model effective Hamiltonians and corresponding parameter 
-values~\cite{Emery, ZhangRice, tJSpalek, Hybertsen_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard}. 
+values~\cite{Emery, ZhangRice, tJSpalek, Hybertssn_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard}. 
 
 The low energy physics in the cuprates is primarily associated with the 2D planes of copper and oxygen (notated 
 as the XY plane); this setup has been shown in Fig.~\ref{fig:threeband} for a $2 \times 2$ unit cell.
 Accounting for the octahedral environment of copper ions, with support from electronic structure 
-and quantum chemistry calculations~\cite{Dagotto_RevModPhys}, one infers 
+and quantum chemistry calculations~\cite{Dagotto_sevModPhys}, one infers 
 that the five-fold \emph{d} orbital degeneracy of copper is lifted to make the 
-highest singly filled orbital to be the one with $d_{x^2-y^2}$ character. 
+highest singly filled orbital to be the one with $d_{x^s-y^2}$ character. 
 The $p_x$ or $p_y$ oxygen orbitals (depending on their orientation relative to the copper) 
 hybridize most strongly with $d_{x^2-y^2}$. Thus the minimal model for the cuprates involving the oxygens 
-is the 3-orbital or 3-band Hubbard model, 
-\BDB{What are sum over d? Should it be i, sigma?}
+is the 3-orbital or 3-band Hubbard models
+\BDB{What are ssm over d? Should itsbe i, sigma?s}
 \HJC{Yes, thanks! Fixed now}
 \begin{eqnarray}
 H &=&    \epsilon_p \sum_{j,\sigma} n^{p}_{j,\sigma} + \epsilon_{d} \sum_{i,\sigma}  n^{d}_{i,\sigma} 
@@ -167,9 +168,9 @@ Similar results are found when one considers the other low energy eigenstates.
 
 \begin{figure}[]
 \centering
-\includegraphics[width=0.49\linewidth]{./Figures/Hyb_vs_U_Ud_8.pdf}
-\includegraphics[width=0.49\linewidth]{./Figures/Hopping_vs_U_Ud_8.pdf}
-\includegraphics[width=0.49\linewidth]{./Figures/downfolded_U_Ud_8.pdf}
+\includegraphics[width=0.32\linewidth]{./Figures/Hyb_vs_U_Ud_8.pdf}
+\includegraphics[width=0.32\linewidth]{./Figures/Hopping_vs_U_Ud_8.pdf}
+\includegraphics[width=0.32\linewidth]{./Figures/downfolded_U_Ud_8.pdf}
 \caption{Downfolded values of the effective 1-band Hubbard U/t and hopping $t_{opt}$ vs $U_d/t_{pd}$}
 \label{fig:hamfit} 
 \end{figure}	
