@@ -13,6 +13,5 @@ all:
 	done;                                        \
 	$(TEX) $(BUILDTEX);                         \
 	$(TEX) $(BUILDTEX);                         
-	
 clean:
-	rm -f *.log *.bak *.aux *.bbl *.blg *.idx *.toc *.out *~
+	rm -f *.log *.bak *.aux *.bbl *.blg *.idx *.toc *.out *~ *.synctex.gz* *Notes.bib
