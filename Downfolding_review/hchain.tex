@@ -85,23 +85,24 @@ We obtain single-particle Kohn-Sham orbitals from a set of spin-unrestricted and
 \end{subequations}
 where $|KS\rangle$ is the Stater determinant of occupied Kohn-Sham orbitals, $\sigma$ and $\sigma'$ are spin indices and $a^\dagger$ ($a$) is a single-electron creation (destruction) operator corresponding to Kohn-Sham orbitals, and $e^J$ is the Jastrow factor which was optimized using variational Monte Carlo. This technique does not access the explicit eigenstates of the Hamiltonian, but allows many more states to be sampled in the process of characterizing the low-energy Hilbert of space of the system. The localized orbital basis upon which the descriptors are calculated is obtained by generating intrinsic atomic orbitals (IAO) from the Kohn-Sham orbitals, and localizing them using the L\"owdin localization procedure. \HHZ{Could you plot these orbitals and replace the Wannier orbitals stuff?}
 
-Having produced a set of wave functions, we compute the total energies and descriptor values associated to each parameter that might appear in the model. The \textit{ab-initio} Hamiltonian is solved using diffusion Monte Carlo (DMC) with Slater-Jastrow trial wave functions. Fig.~\ref{fig:Histogram-of-Parameter-Values} shows distributions for the $U$ and $t$ descriptors computed using this set of singly- and doubly-excited wave function states.  Because these descriptors vary in value between the distinct states we have constructed, it is appropriate to include both within a single model.
 
-\HHZ{We suggest to remove the discussion of covariance. Instead we could just show the results of Hubbard model fitting} There will exist some correlation between any two given descriptors. If two descriptors strongly covary with one another, then including both of them in a single model will introduce strong co-linearities, and produce aphysical parameter estimates. To control for this, we compute the covariance between descriptors prior to fitting a model, to verify that the descriptors are describing independent features of the wave function set. Fig.~\ref{fig:Cov-of-Descriptors} shows the absolute covariance of the hopping-$t$ descriptor with the $U$, $J$, and $V$ descriptors as a function of the separation distance between the hydrogen ions. We see that the covariance between the $t$ and $U$ descriptors is consistently low across all separation distances, indicating that these parameters are describing different wave function features. Therefore these descriptors are not strongly correlated with one another, and it is appropriate to include both in a single model.
-
+%Having produced a set of wave functions, we compute the total energies and descriptor values associated to each parameter that might appear in the model. The \textit{ab-initio} Hamiltonian is solved using diffusion Monte Carlo (DMC) with Slater-Jastrow trial wave functions. Fig.~\ref{fig:Histogram-of-Parameter-Values} shows distributions for the $U$ and $t$ descriptors computed using this set of singly- and doubly-excited wave function states.  Because these descriptors vary in value between the distinct states we have constructed, it is appropriate to include both within a single model.
+%
+%\HHZ{We suggest to remove the discussion of covariance. Instead we could just show the results of Hubbard model fitting} There will exist some correlation between any two given descriptors. If two descriptors strongly covary with one another, then including both of them in a single model will introduce strong co-linearities, and produce aphysical parameter estimates. To control for this, we compute the covariance between descriptors prior to fitting a model, to verify that the descriptors are describing independent features of the wave function set. Fig.~\ref{fig:Cov-of-Descriptors} shows the absolute covariance of the hopping-$t$ descriptor with the $U$, $J$, and $V$ descriptors as a function of the separation distance between the hydrogen ions. We see that the covariance between the $t$ and $U$ descriptors is consistently low across all separation distances, indicating that these parameters are describing different wave function features. Therefore these descriptors are not strongly correlated with one another, and it is appropriate to include both in a single model.
+%
 Having computed the energies and descriptors for this set of wave functions, and verified the independence of the $U$ and $t$ descriptors, we fit a Hubbard-type model to describe the \textit{ab-initio} energetic results. Fig.~\ref{fig:RMS-Error-vs-Bond} shows the RMS error in the resultant $U$-$t$ model, relative to the \textit{ab-initio} DMC energetics, as a function of the hydrogen inter-atomic separation. We observe the the error is consistently less than 2 eV. The fitted value of the one-body hopping $t$ as a function of separation is shown in Fig.~\ref{fig:Parameters-vs-Bond-t}. As expected, the value of $t$ declines toward zero at larger separations. Hence, we see that the hydrogen chain can be well-described by a Hubbard-type model for a range of inter-atomic separations.
 
-\begin{figure}
-\centering
-\includegraphics[scale=0.7]{./Figures/Spin0_pbe_H_relation.pdf}
-\caption{Histograms giving descriptor distributions for the one-body hopping $t$ and two-body Hubbard $U$ repulsion parameter for the periodic H$_{10}$ chain, with a lattice constant of $1.75$\AA.}\label{fig:Histogram-of-Parameter-Values}
- \end{figure}
- 
- \begin{figure}
-\centering
-\includegraphics[scale=0.6]{./Figures/t_covariance_vs_separation.pdf}
-\caption{Covariance of the one-body hopping $t$ descriptor with the two-body $U$, $J$, and $V$ descriptors respectively, as a function of lattice constant for the periodic H$_{10}$ chain.  The covariance between the $t$ and $U$ is consistently small across all bond lengths.}\label{fig:Cov-of-Descriptors}
- \end{figure}
+%\begin{figure}
+%\centering
+%\includegraphics[scale=0.7]{./Figures/Spin0_pbe_H_relation.pdf}
+%\caption{Histograms giving descriptor distributions for the one-body hopping $t$ and two-body Hubbard $U$ repulsion parameter for the periodic H$_{10}$ chain, with a lattice constant of $1.75$\AA.}\label{fig:Histogram-of-Parameter-Values}
+% \end{figure}
+% 
+% \begin{figure}
+%\centering
+%\includegraphics[scale=0.6]{./Figures/t_covariance_vs_separation.pdf}
+%\caption{Covariance of the one-body hopping $t$ descriptor with the two-body $U$, $J$, and $V$ descriptors respectively, as a function of lattice constant for the periodic H$_{10}$ chain.  The covariance between the $t$ and $U$ is consistently small across all bond lengths.}\label{fig:Cov-of-Descriptors}
+% \end{figure}
  
  \begin{figure}
 \centering
