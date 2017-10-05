@@ -1,0 +1,44 @@
+[Hamiltonian]
+hamiltonian=hydrogenchain
+#available options: 
+#	   hubbard_plus_exchange, 
+#	   hubbard_plus_coulomb
+#	   hubbard_onsite_only
+#	   hubbard_plus_exchange_nearest
+#option=hubbard_onsite_only
+#option=hubbard_plus_coulomb_nearest
+option=hubbard_plus_exchange_nearest
+analysis_option=optimize
+#analysis_option=analysis
+num_sites=4
+nup_holes=2
+ndn_holes=2
+
+shift=0.0
+E00=-500
+T1=-19.6852
+T2=0.
+U=34
+V1=-0.0291097
+V2=0
+J1=-3.11174
+J2=0.0
+diagonalize=true
+neigs=400
+nkrylov=400
+maxiter=1000
+
+[QMC]
+nstate=3
+NAME       ENERGY[Ha]    RDM_INPUT                            norb    nup    ndn    state_weight  energy_weight
+S=0     -2047.8      data_files/HChain/full_2rdm_hc_s0.txt      4       2     2       1      1  
+S=1     -2038.9      data_files/HChain/full_2rdm_hc_s1.txt      4       3     1       3      1
+S=2     -1957.8      data_files/HChain/full_2rdm_hc_s2.txt      4       4     0       5      1
+PDOP    -1423.      no                                       4       2     1       0      0.0
+NDOP    -1874.2      no                                       4       3     2       0      0.0 
+
+
+[Optimization]
+cost_type=rdm_plus_energy
+energy_cost_weight=0.0005
+finite_difference=0.0001
