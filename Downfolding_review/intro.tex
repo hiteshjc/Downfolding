@@ -56,7 +56,7 @@ all electron many-body wavefunctions ($\psi_i$). This "low energy basin"
 %on physical insight and/or fits to experimental data, and this notion is not always rigorously well justified.
 
 The endeavor we pursue here is to develop a multi-scale approach in which the effective interactions between 
-quasiparticles (such as dressed electrons) are determined after an \emph{ab-initio} simulation (but not necessarily exact 
+quasiparticles (such as dressed electrons) are determined after an \textit{ab-initio} simulation (but not necessarily exact 
 solution) of the continuum Schroedinger equation involving all the electrons. This reduction 
 of the Hilbert space is known as ``downfolding". The resultant "lattice model" can be efficiently and accurately 
 solved for large system sizes using techniques designed and suited for small local Hilbert spaces- these include 
@@ -65,10 +65,10 @@ exact or selected diagonalization~\cite{DeRaedt,Holmes_Tubman_Umrigar}, density 
 dynamical field theory (DMFT)~\cite{}, density matrix embedding (DMET)~\cite{DMET_2012} and 
 lattice quantum Monte Carlo (QMC) methods~\cite{Scalapino, Trivedi_Ceperley, Zhang_AFQMC, Sandvik_loops, Prokofiev, 
 Booth2009,SQMC,Holmes_Changlani_Umrigar, Booth2013}. These methods have also been used to obtain 
-excited states and dynamical correlation functions, that have been difficult in \emph{ab-initio} approaches. 
-%Full \emph{ab-initio} wavefunction based calculations are computationally infeasible for large system sizes. 
-In addition to being computationally expensive, \emph{ab-initio} approaches lack the accuracy to resolve 
-low energy scales. They do yield the correct low energy basin in which the effective description of the problem lives, 
+excited states and dynamical correlation functions, that have been difficult in \textit{ab-initio} approaches. 
+%Full \textit{ab-initio} wavefunction based calculations are computationally infeasible for large system sizes. 
+In addition to being computationally expensive, \textit{ab-initio} approaches lack the accuracy to resolve 
+low energy scales. They do, however, yield the correct low energy basin in which the effective description of the problem lives, 
 schematically represented in Fig.~\ref{fig:lowenergybasin_schematic}.
 
 Downfolding has most commonly been carried out using approaches based on density functional theory (DFT). 
@@ -89,7 +89,7 @@ approach~\cite{Tenno,Zhou_Ceperley} and the related method of canonical transfor
 These share the same aims as us, in the sense that they work with 
 in a many body setting and involve working with wavefunctions. 
 
-Our primary focus is to downfold based on results of \emph{ab initio} wavefunctions, involving all electrons, 
+Our primary focus is to downfold based on results of \textit{ab initio} wavefunctions, involving all electrons, 
 these explicitly provide access to properties encoded compactly in the form of reduced 
 density matrices (RDMs) or correlation functions. Crucially, we do not commit ourselves to 
 knowledge of exact eigenstates (a challenging endeavor) - rather we "learn" the effective Hamiltonian from a 
@@ -98,7 +98,7 @@ Our aim is thus to discuss the development and application of a new set of metho
 "ab-initio density matrix downfolding" (AIDMD)~\cite{Changlani2015},which by nature of their formulation, 
 restore the democracy between kinetic and potential part of the Hamiltonian. There is no double counting involved and it is straightforward 
 to judge the accuracy of the effective Hamiltonian. While our prescription applies to any wavefunction based method, 
-we have primarily chosen to work with the \emph{ab-initio} QMC approach~\cite{Ceperley_Alder,Foulkes_review}. 
+we have primarily chosen to work with the \textit{ab-initio} QMC approach~\cite{Ceperley_Alder,Foulkes_review}. 
 The QMC method works directly in the real space continuum and explicitly introduces correlations (via Jastrow factors) 
 into trial wavefunctions of non-interacting electrons (Slater determinants). 
 The details of the method, relevant for AIDMD, will be clarified at appropriate points 
@@ -117,7 +117,7 @@ reiterated here to focus solely on the downfolding aspect of the work.
 %and finite temperature properties. On a conceptual level, AIDMD reveals the types of terms are important (and how much), 
 %what is missing and how it could be rectified. It is also possibly best suited for extended systems (solids) where 
 %there is often a clear separation of energy scales associated with the 
-%core, active (valence) and virtual electronic spaces. Finally we would like to emphasize that AIDMD, though conceptually simple, 
+%core, active (valence) and virtual electronic spaces. Finally we would like to textitasize that AIDMD, though conceptually simple, 
 %is still a method in its development stages, with room for several algorithmic improvements. 
 
 The paper is organized as follows. In Section 2, we clarify and make precise what it means to downfold 
@@ -130,7 +130,7 @@ and ab-initio systems to downfold to a simpler lattice model.
 %Section 3a gives a concrete example of downfolding from 
 %the three band model (relevant to the cuprates) to the one band model - the map between the bare and 
 %effective particles and parameters will be explicitly elucidated here. These concepts are directly applied 
-%to a simple yet non-trivial \emph{ab-initio} problem - the hydrogen chain in section 3b where we are able to 
+%to a simple yet non-trivial \textit{ab-initio} problem - the hydrogen chain in section 3b where we are able to 
 %systematically quantify several aspects of the effective Hubbard model describing it. Section 3c 
 %shows a more advanced application to graphene. We focus on the renormalization and screening effects that arise 
 %due to the presence of core (sigma) electrons, a comparison to its hydrogen counterpart on the honeycomb lattice 
