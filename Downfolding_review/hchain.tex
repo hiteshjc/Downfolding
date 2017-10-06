@@ -9,10 +9,11 @@ in terms of primarily $s$-like orbitals, whose form we discuss here.
 \HHZ{General comment for all of us: This is a physics paper, and the readers will mostly be physicists. Therefore, I think emphasizing physics quantities is more important than machine learning terminologies. I would say PHYSICS TERM (MACHINE LEARNING TERM) instead of MACHINE LEARNING TERM (PHYSICS TERM).}
 
 For a given $r$, we first obtain single-particle Kohn-Sham orbitals from a set of spin-unrestricted and 
-spin-restricted DFT-PBE calculations. The localized orbital basis upon which the density matrices (descriptors) are evaluated is obtained by generating intrinsic atomic orbitals (IAO) from the Kohn-Sham orbitals \HHZ{Maybe Kiel could clarify, the Kohn-Sham orbitals used for constructing IAO are those from spin unpolarized calculation?} orthogonizing using 
-the L\"owdin procedure. The resulting orbitals are shown in Fig.~xx \HHZ{Could you plot these orbitals and replace the Wannier orbitals stuff?}
-%These form the effective orbitals that enter the 1-band Hubbard Hamiltonian. 
-These are the orbitals that enter the 1-band Hubbard Hamiltonian. 
+spin-restricted DFT-PBE calculations. The localized orbital basis upon which the density matrices (descriptors) 
+are evaluated is obtained by generating intrinsic atomic orbitals (IAO) from the Kohn-Sham orbitals 
+\HHZ{Maybe Kiel could clarify, the Kohn-Sham orbitals used for constructing IAO are those from spin unpolarized calculation?} 
+orthogonalized using the L\"owdin procedure. The resulting orbitals are shown in Fig.~xx \HHZ{Could you plot these orbitals 
+and replace the Wannier orbitals stuff?}. These are the orbitals that enter the 1-band Hubbard Hamiltonian. 
 
 \begin{figure}[]
 \centering
@@ -28,10 +29,8 @@ These are the orbitals that enter the 1-band Hubbard Hamiltonian.
 \caption{\HJC{Put IAO here} Kohn-Sham orbitals (upper panel) from DFT calculations with PBE exchange-exchange correlation functional, and Wannier orbitals (lower panel) constructed through a unitary transformation of Kohn-Sham orbitals.}\label{fig:h4orb}
 \end{figure}
 
-
-To generate a database of wavefunctions needed for the N-AIDMD, 
-we produce a set of Slater-Jastrow wavefunctions consisting of singles- and doubles- excitations 
-to the Slater determinant, 
+To generate a database of wavefunctions needed for the N-AIDMD, we produce a set of Slater-Jastrow 
+wavefunctions consisting of singles- and doubles- excitations to the Slater determinant, 
 \begin{subequations}
 \begin{eqnarray}
 | s \rangle = & \Big[a^\dagger_{i \sigma} a_{k \sigma}   | KS \rangle \Big]e^J \\
