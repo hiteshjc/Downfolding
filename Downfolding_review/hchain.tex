@@ -23,6 +23,9 @@ to the Slater determinant,
 where $|KS\rangle$ is the Stater determinant of occupied Kohn-Sham orbitals, $\sigma$ and $\sigma'$ are spin indices, 
 and $a_{i}^\dagger$ ($a_{i}$) is a single-electron creation (destruction) corresponding to Kohn-Sham orbitals, 
 and $e^J$ is the Jastrow factor which was optimized using variational Monte Carlo. 
+Then, having computed the energies (expectation values of the Hamiltonian) and corresponding 
+descriptors for these wavefunctions we verify the independence of the $U$ and $t$ descriptors.
+We then fit the 1-band Hubbard Hamiltonian using least-squares fitting, as part of the formalism described in sec. 2. 
 
 \begin{figure}
 \centering
@@ -30,16 +33,12 @@ and $e^J$ is the Jastrow factor which was optimized using variational Monte Carl
 \includegraphics[scale=0.5]{./Figures/rms_ut_error_vs_separation_h_chain.pdf}
 \caption{\HJC{Put model vs ab-initio plots here}The RMS error in the fitted $U$-$t$ model for the periodic H$_{10}$ chain, relative to the \textit{ab-initio} energies. The RMS error is less than 1 eV for sufficiently long bond lengths.}\label{fig:fit_quality}
 \end{figure}
- 
+Fig.~\ref{fig:fit_quality} shows our N-AIDMD fits for two representative $r$. As expected, the RMS error 
+is significantly smaller for larger $r$, verifying the effectiveness of the Hubbard model 
+in this limit. 
 
-Having computed the energies (expectation values of the Hamiltonian) and corresponding 
-descriptors for these wavefunctions, and having verified the independence of the $U$ and $t$ descriptors, 
-we fit the 1-band Hubbard Hamiltonian using least-squares fitting, as part of the formalism described in sec. 2. 
-Fig.~\ref{fig:fit_quality} shows fits for two representative $r$. As expected, the RMS error 
-is significantly smaller for larger $r$, verifying the effectiveness of the approach in this limit. 
-
-In addition, we show trends of the fitted value of the one-body hopping $t$ and the repulsion $U$ as a function of $r$ 
-in Fig.~\ref{fig:Parameters-vs-Bond-t}. Consistent with physical intuition, $t$ decreases towards zero at larger $r$
+Fig.~\ref{fig:Parameters-vs-Bond-t} also shows trends of the fitted value of the one-body hopping $t$ 
+and the repulsion $U$ as a function of $r$. Consistent with physical intuition, $t$ decreases towards zero at larger $r$
 and the value of $U/t$ rises. Based on these values and the extensive body of work in 1D systems we expect a Luttinger liquid 
 to insulator transition to occur at $U/t=...$ corresponding to $r=...$.  
 
