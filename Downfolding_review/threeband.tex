@@ -1,53 +1,30 @@
 \section{Representative Examples}
-%\HHZ{I feel that the first example could serve as a demonstration that this downfolding approach works. Since both the original system and the downfolded model could be exactly solved, and are clean. It would be good if we could find some physical properties that both the two models produce the same values. The energy spectrum has been used as an input in the sense of "machine learning", it would be good if we could have a way to test the predicting power.}
+\HHZ{I feel that the first example could serve as a demonstration that this downfolding approach works. Since both the original system and the downfolded model could be exactly solved, and are clean. It would be good if we could find some physical properties that both the two models produce the same values. The energy spectrum has been used as an input in the sense of "machine learning", it would be good if we could have a way to test the predicting power.}
+\HJC{I agree, this was my motivation for spending the most time on it since it is a clean system. 
+But this is at odds with shortening the section. Let me see if I have the 8 site results}
 Given the theoretical framework for downfolding a many-orbital (or many electron) problem to a 
 few orbital (or few electron) problem, we now discuss few examples which also serve to highlight some practical aspects 
 associated with AIDMD. The first example is mostly pedagogical, 
-where we have completely avoided the ab-initio related complications of AIDMD. Rather, we use information directly available 
+where we have completely avoided the \emph{ab-initio} related complications of AIDMD. Rather, we use information directly available 
 from \emph{exact} eigenstates themselves to downfold from a lattice model with more orbitals (three band model) 
 to one with fewer orbitals (one band model). We then gradually increase the complexity of the problems we address
 by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and graphene 
 (with up to 32 carbons on a 2D honeycomb lattice).
-  
+
+\begin{eqnarray}
+	\tilde{H} &=&  -t \;\sum_{\langle i,j \rangle} \tilde{d}_i^{\dagger} \tilde{d}_j + U \;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}
+\label{eq:oneband}
+\end{eqnarray}
 \subsection{Three-band Hubbard model to one band Hubbard model at half filling (E-AIDMD)}
 
 \lucas{This section seems rather long to me. We should think about how to cut it down to the essentials.} 
-\subsubsection{Introduction}
-%A big motivation for studying lattice models of strongly correlated systems comes from their 
-%relevance to 
+\HJC{Working on it} 
+
 The high $T_c$ superconducting cuprates~\cite{Bednorz1986} are complex materials whose parent compounds 
 are Mott insulators that display rich phase diagrams on electron or hole doping~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. 
-Many extensive works have been devoted to determining their model effective Hamiltonians and corresponding parameter 
+Many works have been devoted to their model effective Hamiltonians and corresponding parameter 
 values~\cite{Emery, ZhangRice, tJSpalek, Hybertsen_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard}. 
-The emergent consensus of the minimal model for the cuprates involving the oxygens 
-is the 3-orbital or 3-band Hubbard model, 
-%\BDB{What are sum over d? Should it be i, sigma?}
-%\HJC{Yes, thanks! Fixed now}
-%
-%The low energy physics in the cuprates is primarily associated with the 2D planes of copper and oxygen (notated 
-%as the XY plane); this setup has been shown in Fig.~\ref{fig:threeband} for a $2 \times 2$ unit cell.
-%Accounting for the octahedral environment of copper ions, with support from electronic structure 
-%and quantum chemistry calculations~\cite{Dagotto_RevModPhys}, one infers 
-%that the five-fold \emph{d} orbital degeneracy of copper is lifted to make the 
-%highest singly filled orbital to be the one with $d_{x^2-y^2}$ character. 
-%The $p_x$ or $p_y$ oxygen orbitals (depending on their orientation relative to the copper) 
-%hybridize most strongly with $d_{x^2-y^2}$. 
-%Thus the minimal model for the cuprates involving the oxygens 
-%is the 3-orbital or 3-band Hubbard model, 
-%\BDB{What are sum over d? Should it be i, sigma?}
-%\HJC{Yes, thanks! Fixed now}
-%The low energy physics in the cuprates is primarily associated with the 2D planes of copper and oxygen (notated 
-%as the XY plane); this setup has been shown in Fig.~\ref{fig:threeband} for a $2 \times 2$ unit cell.
-%Accounting for the octahedral environment of copper ions, with support from electronic structure 
-%and quantum chemistry calculations~\cite{Dagotto_sevModPhys}, one infers 
-%that the five-fold \emph{d} orbital degeneracy of copper is lifted to make the 
-%highest singly filled orbital to be the one with $d_{x^s-y^2}$ character. 
-%The $p_x$ or $p_y$ oxygen orbitals (depending on their orientation relative to the copper) 
-%hybridize most strongly with $d_{x^2-y^2}$. Thus the minimal model for the cuprates involving the oxygens 
-%is the 3-orbital or 3-band Hubbard models
-%\BDB{What are ssm over d? Should itsbe i, sigma?s}
-%\HJC{Yes, thanks! Fixed now}
-%>>>>>>> eefb3a2947d95eaf4dd36e17aa118020d4216fb0
+The emergent consensus of the minimal model involving the oxygens is the 3-orbital or 3-band Hubbard model, 
 \begin{eqnarray}
 H &=&    \epsilon_p \sum_{j,\sigma} n^{p}_{j,\sigma} + \epsilon_{d} \sum_{i,\sigma}  n^{d}_{i,\sigma} 
 	+ t_{pd} \sum_{\langle i,j \rangle, \sigma} \text{sgn}(p_i,d_j) \Big( d_{i,\sigma}^{\dagger} p_{j,\sigma} + \text{h.c.} \Big) \nonumber \\
@@ -55,18 +32,12 @@ H &=&    \epsilon_p \sum_{j,\sigma} n^{p}_{j,\sigma} + \epsilon_{d} \sum_{i,\sig
 \end{eqnarray}
 where $d_i,p_j$ refer to the  $d_{x^2 - y^2}$ orbitals of copper (at site $i$) and $p_x$ or $p_y$ 
 oxygen (at site $j$)  respectively and the signs of the hopping $t_{pd}$ between them are shown in Fig.~\ref{fig:threeband}. 
-$\epsilon_p$,$\epsilon_d$ refer to the orbital energies, 
+$\epsilon_d$,$\epsilon_p$ refer to the orbital energies, 
 $U_d$, $U_p$ refer to strength of onsite Hubbard interactions and $V_{pd}$ refers to the 
 strength of the density-density interactions between a neighboring $p$ and $d$ orbital. 
-Further variations are possible, but we keep the exposition simple and consider only 
-the case where $\epsilon_p$, $t_{pd}$ and $U_{d}$ are non zero and 
-since we work with a fixed number of particles, set $\epsilon_d = 0$. 
-%Thus the 
-%One could consider further variations of the model by adding $t_{pp}$ type hoppings, but 
-%these have not been shown here. To keep the exposition simple, we consider only 
-%the case where $\epsilon_p$, $t_{pd}$ and $U_{d}$ are non zero and 
-%since we work with a fixed number of particles, set $\epsilon_d = 0$. 
-Thus the charge transfer energy $\Delta \equiv \epsilon_p - \epsilon_d$ equals $\epsilon_p$ in our notation. 
+We keep the exposition simple and consider only the case where $\epsilon_p$, $t_{pd}$ and $U_{d}$ are non zero
+(since we work with fixed number of particles we set $\epsilon_d = 0$). 
+The charge transfer energy $\Delta \equiv \epsilon_p - \epsilon_d$ equals $\epsilon_p$ in our notation. 
 We work in the hole notationl; half filling corresponds to 2$\uparrow$ and 2$\downarrow$ 
 holes on the $2\times2$ cell.
 
@@ -79,34 +50,16 @@ and interaction parameters.}
 \label{fig:threeband} 
 \end{figure}	
 
-%The justification for the 3-band model for the cuprates, along with the determination of its parameters, 
-%is itself contingent on downfolding from an \emph{ab-initio} calculation, 
-%of the type carried out in Refs.~\cite{Wagner_Abbamonte}. (There is also suggestion that the 4s orbital of copper is important 
-%for the low energy properties~\cite{Pavirini} but we steer clear of these debates here.) 
-We use this model at half filling, as a prototypical example of what it \emph{means} to downfold to 
-a simpler model - the one band Hubbard model, 
-\begin{eqnarray}
-	\tilde{H} &=&  -t \;\sum_{\langle i,j \rangle} \tilde{d}_i^{\dagger} \tilde{d}_j + U \;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}
-\label{eq:oneband}
-\end{eqnarray}
-where $t$ and $U$ are downfolded (renormalized) Hubbard parameters, which are to 
-be determined for given 3-band parameters, and $\tilde{d}$ are the effective \emph{d-like} orbitals. 
-The latter are a mixture of copper and oxygen orbitals and this optimal transformation also remains an unknown. Thus, 
-the determination of effective Hamiltonians is a \emph{dual} problem - (1) what are the composite objects that give a 
-compact description of the low energy physics? and given this choice what are the effective interactions between them?  
-This example will serve as a setting for the downfolding of more complex \emph{ab-initio} systems to lattice 
-models. 
-
-\subsubsection{Choice of effective one particle basis}
-To map the three-band model to the one-band model and determine its validity, 
-our first aim will be to obtain effective "dressed" \emph{d-like} 
-orbitals that enter Eq.~\ref{eq:oneband}. We encode this relationship as 
-the transformation ${\bf T}$, 
+We ask what effective one-band parameters best describe the 3-band data, the former defined 
+in terms of effective \emph{d-like} orbitals, $\tilde{d}$, which are mixtures of copper and oxygen orbitals. 
+This optimal transformation also remains an unknown. We encode the relationship between the 
+bare and effective operators as a 
+linear transformation ${\bf T}$ (higher body generalizations are possible), 
 \begin{equation}
 	\tilde{d}_i = \sum_{j} T_{ij} c_j
 \end{equation}
-where $\tilde{d}_i$ is a transformed hole (destruction) operator and $c_j$ is the bare hole (destruction)
-operator, the latter could refer to either the bare $d$ or $p$ orbitals. Accounting for all symmetries of 
+%where $\tilde{d}_i$ is a transformed hole (destruction) operator 
+where $c_j$ is the bare hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals. Accounting for all symmetries of 
 the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix (the numbering of the orbitals 
 corresponds to Fig.~\ref{fig:threeband}) is explicitly written out as, 
 \begin{eqnarray}
@@ -123,18 +76,6 @@ F        & \alpha_2 &        \alpha_2 &  \alpha_4 & \alpha_1 & \alpha_1 & -\alph
 where we have defined $F \equiv \sqrt{1-4{\alpha_1}^2 - 2{\alpha_2}^2 - 4 {\alpha_3}^2 -{\alpha_4}^2}$ and 
 where the parameters $\alpha_1$,$\alpha_2$,$\alpha_3$ and $\alpha_4$ will be 
 optimized to minimize a certain cost function, which will be explained shortly. 
-
-Note that the transformation has been chosen to be a linear one. One can imagine a more complicated 
-many-body transformation involving higher body functions. In practice, at least for the model under 
-consideration, this does not seem to be necessary. 
-%This does not mean that determining the optimal one body space is \emph{always} a trivial problem. 
-%In fact, (as pointed out to us by D. Ceperley) there are several interesting problems in the study of helium 
-%that involve ring exchanges involving as many as 12 particles~\cite{Ceperley_Jacucci}, 
-%certainly our simple minded transformation does not capture the search for such multi-body 
-%or composite objects. However, for the purpose of the rest of the paper, we will show the utility 
-%of the linear transformations even for the \emph{ab-initio} to lattice downfolding cases; 
-%Kohn Sham orbitals will be rotated to form localized functions. These one body transformations will give us the orbitals 
-%that enter the definition of the effective Hamiltonian. 
 
 The one particle density matrix in the transformed basis is related 
 to that in the original basis by,
