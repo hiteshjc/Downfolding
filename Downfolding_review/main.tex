@@ -10,6 +10,7 @@
 \usepackage{float}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage{times}   %% Times Roman font
 \usepackage{esint}
@@ -17,6 +18,9 @@
 \usepackage{verbatim}
 \usepackage{braket}
 \usepackage{footmisc}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,calc}
+
 \usepackage[unicode=true,pdfusetitle,
  bookmarks=false,colorlinks=true,citecolor=blue,urlcolor=blue,linkcolor=red]{hyperref}
 \makeatletter
@@ -47,6 +51,8 @@
 \newcommand{\HJC}[1]{{\color{RED}{\bf HJC: #1}}}
 \newcommand{\BDB}[1]{{\color{RED}{\bf BDB: #1}}}
 \newcommand{\HHZ}[1]{{\color{GREEN}{\bf HHZ: #1}}}
+\newcommand{\lucas}[1]{{\color{BLUE}{\bf LKW: #1}}}
+
 \newcommand{\prlsec}[1]{\emph{#1---}}
 \newcommand{\Ncal}{{\mathcal N}}
 \newcommand{\T}{{\mathbf{T}}}
@@ -105,9 +111,7 @@ correct qualitative picture of strongly correlated materials.
 }
 
 \input{intro.tex}
-%\input{theory.tex}
-\section{Theory: Compression of the Energy Functional/Criteria for Hamiltonian matching}
-\HJC{Lucas handling this section......Look at theory.tex. Could use commented out snippets explaining Ax=E etc and criteria from theoryoldhitesh.tex}
+\input{theory.tex}
 \input{threeband.tex}
 \input{hchain.tex}
 \input{honeycomb.tex}
