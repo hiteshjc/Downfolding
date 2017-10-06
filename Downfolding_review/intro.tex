@@ -20,14 +20,14 @@ traditional band theory approach, involving model Hamiltonians such as the Hubba
 and Heisenberg models, defined only in terms of the valence electrons. 
 While these models have been extensively studied analytically and numerically, and have significantly 
 enhanced our understanding of strongly correlated physics, their effectiveness 
-for describing a real complex system of interest is often unclear. In addition, efforts to obtain the 
-optimal parameter values still remains very much an active area of research, often requiring experimental inputs. 
-This is compounded by the fact that all the parameters are not independent of each other and 
-the value of one heavily influences the value of the other. The presence of multiple competing energy scales of similar strength 
-is, in fact, the source of rich phase diagrams that 
-emerge under a variety of conditions - doping, pressure, 
-temperature, all heavily dependent on material-specific properties. This motivates 
-the need to determine reliable low energy effective Hamiltonians that can capture all the necessary details, while 
+for describing a real complex system of interest is often unclear. 
+%In addition, efforts to obtain the optimal parameter values still remains very much an active area of research, often requiring experimental inputs. 
+%This is compounded by the fact that all the parameters are not independent of each other and 
+%the value of one heavily influences the value of the other. The presence of multiple competing energy scales of similar strength 
+%is, in fact, the source of rich phase diagrams that 
+%emerge under a variety of conditions - doping, pressure, 
+%temperature, all heavily dependent on material-specific properties. 
+This motivates the need to determine reliable low energy effective Hamiltonians that can capture all the necessary details, while 
 remaining simple enough to be simulated accurately.  
 
 \begin{figure}[htpb]
@@ -66,10 +66,10 @@ dynamical field theory (DMFT)~\cite{}, density matrix embedding (DMET)~\cite{DME
 lattice quantum Monte Carlo (QMC) methods~\cite{Scalapino, Trivedi_Ceperley, Zhang_AFQMC, Sandvik_loops, Prokofiev, 
 Booth2009,SQMC,Holmes_Changlani_Umrigar, Booth2013}. These methods have also been used to obtain 
 excited states and dynamical correlation functions, that have been difficult in \emph{ab-initio} approaches. 
-Full \emph{ab-initio} wavefunction based calculations are computationally infeasible for large system sizes. 
-In addition they are often \emph{not} accurate enough to yield an unbiased quantitative resolution of 
-low energy scales, but \emph{are} accurate enough to yield the correct low energy basin in which the effective description 
-of the problem lives. This is schematically represented in Fig.~\ref{fig:lowenergybasin_schematic}.
+%Full \emph{ab-initio} wavefunction based calculations are computationally infeasible for large system sizes. 
+In addition to being computationally expensive, \emph{ab-initio} approaches lack the accuracy to resolve 
+low energy scales. They do yield the correct low energy basin in which the effective description of the problem lives, 
+schematically represented in Fig.~\ref{fig:lowenergybasin_schematic}.
 
 Downfolding has most commonly been carried out using approaches based on density functional theory (DFT). 
 The kinetic part is obtained from a standard 
