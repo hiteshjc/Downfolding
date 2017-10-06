@@ -2,7 +2,7 @@
 \newtheorem{definition}{Definition}
 
 
-\section{Downfolding recast as a compression of the energy functional}
+\section{Downfolding as a compression of the energy functional}
 
 \subsection{Theory} 
 
@@ -45,8 +45,8 @@ If $E_{eff}[\Psi] = E[\Psi], \forall \ket{\Psi} \in {\cal LE}$, then $H_{eff} \k
 	\begin{equation}
 	\left.\frac{\partial E[\Psi]}{\partial\Psi}\right|_{\Psi=\Phi_i} = 0 
 	\end{equation}
-\lucas{We have to project the derivative into the low-energy subspace. If the functional derivative of $E$ is zero at a point, then certainly the functional derivative of $E_{eff}$ is zero.  } 
-Then
+If this is true, then certainly the derivative on the low-energy manifold is also zero.
+Since $E_{eff}[\Psi] = E[\Psi]$, 
 \begin{equation}
 	\left.\frac{\partial E_{eff}[\Psi]}{\partial\Psi}\right|_{\Psi=\Phi_i} = 0 
 \end{equation}
@@ -67,7 +67,7 @@ Then we can approximate the energy functional as follows
 E_{eff}[\Psi] \simeq \sum_i f_i(d_i[\Psi]),
 \end{equation}
 where $f_i$ are some parameterized functions.
-\lucas{This is a compression operation.} 
+This will allow us to use data analysis techniques to efficiently describe $E_{eff}$.
 
 \subsection{Practical protocol}
 
@@ -104,4 +104,40 @@ where $f_i$ are some parameterized functions.
 \caption{A practical protocol for fitting effective models to {\it ab initio} data.}
 \label{fig:protocol} 
 \end{figure*}
+
+A practical protocol is presented in Fig~\ref{fig:protocol}. 
+Let's go through this step by step.
+
+\paragraph{Generating $\ket{\Psi_i}\in {\cal LE}$}. 
+\begin{itemize}
+\item Ideally sample the whole space; it is probably too big.
+\item Dependency on expected model: if you have a $U$ you should vary double occupancy and occupation {\it independently} 
+\item If the model is non-interacting, singles excitations are enough; doubles excitations can give information about how good the model is.
+\end{itemize}
+
+\paragraph{Generate $d_i[\Psi_i]$ and $E_i[\Psi_i]$}. 
+\begin{itemize}
+\item Typically density matrix elements are good descriptors. This is because effective Hamiltonians are linear functions of them.
+\item Basis functions and relaxation.
+\item Energy-dependent terms can be included by deviating from the linear {\it ansatz}
+\end{itemize}
+ 
+\paragraph{Assess descriptors}. 
+\begin{itemize}
+\item Check distributions
+\item Check correlations between descriptors. Large correlation $\rightarrow$ either not enough sampling or your model is overcomplete.
+\item Check energies distribution
+\item If you have multiple energies with the same descriptor $\rightarrow$ either take the lowest energy one or reconsider the descriptor space.
+\end{itemize}
+
+\paragraph{Ansatz: $E_i \simeq \sum_i c_i d_i$} 
+\begin{itemize}
+\item 
+\end{itemize}
+
+\paragraph{Fit bounding plane}
+\begin{itemize}
+\item Removing redundant descriptors: LASSO, or matching pursuit
+\item The space of descriptors is smaller than the space of wave functions, so some wave functions will map to the same point in descriptor space. In that case, the low-energy space is given by the bounding plane.
+\end{itemize}
 
