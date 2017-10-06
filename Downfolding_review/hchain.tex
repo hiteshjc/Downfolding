@@ -1,18 +1,21 @@
 \subsection{One dimensional hydrogen chain}
 We now move to one of the simplest extended \emph{ab-initio} systems, a hydrogen chain with periodic boundary conditions. 
-In the absence of availability of exact eigenstates, the example will highlight the effectiveness of the N-AIDMD approach.
+%%HHZ: We don't need to say exact eigenstates stuff.
+%In the absence of availability of exact eigenstates, the example will highlight the effectiveness of the N-AIDMD approach. 
 We consider the case of $10$ atoms and work in a regime where the inter-atomic distance $r$ is 
 relatively large ($r=1.5$ to $3.0$ \AA), such that the system is potentially well described by a 1-band Hubbard model 
 in terms of primarily $s$-like orbitals, whose form we discuss here. 
 
+\HHZ{General comment for all of us: This is a physics paper, and the readers will mostly be physicists. Therefore, I think emphasizing physics quantities is more important than machine learning terminologies. I would say PHYSICS TERM (MACHINE LEARNING TERM) instead of MACHINE LEARNING TERM (PHYSICS TERM).}
+
 For a given $r$, we first obtain single-particle Kohn-Sham orbitals from a set of spin-unrestricted and 
-spin-restricted DFT-PBE calculations. The localized orbital basis upon which the descriptors (density matrices) 
-are calculated is obtained by generating intrinsic atomic orbitals (IAO) from the Kohn-Sham orbitals, and orthogonalizing them using 
-the L\"owdin procedure; our results are shown in Fig.~xx \HHZ{Could you plot these orbitals and replace the Wannier orbitals stuff?}
-These form the effective orbitals that enter the 1-band Hubbard Hamiltonian. 
+spin-restricted DFT-PBE calculations. The localized orbital basis upon which the density matrices (descriptors) are evaluated is obtained by generating intrinsic atomic orbitals (IAO) from the Kohn-Sham orbitals \HHZ{Maybe Kiel could clarify, the Kohn-Sham orbitals used for constructing IAO are those from spin unpolarized calculation?} orthogonizing using 
+the L\"owdin procedure. The resulting orbitals are shown in Fig.~xx \HHZ{Could you plot these orbitals and replace the Wannier orbitals stuff?}
+%These form the effective orbitals that enter the 1-band Hubbard Hamiltonian. 
+These are the orbitals that enter the 1-band Hubbard Hamiltonian. 
 
 To generate a database of wavefunctions needed for the N-AIDMD, 
-we produce a set of wavefunctions (\HHZ{Slater-Jastrow wave functions?}) consisting of singles- and doubles- excitations 
+we produce a set of Slater-Jastrow wavefunctions consisting of singles- and doubles- excitations 
 to the Slater determinant, 
 \begin{subequations}
 \begin{eqnarray}
@@ -21,11 +24,12 @@ to the Slater determinant,
 \end{eqnarray}
 \end{subequations}
 where $|KS\rangle$ is the Stater determinant of occupied Kohn-Sham orbitals, $\sigma$ and $\sigma'$ are spin indices, 
-and $a_{i}^\dagger$ ($a_{i}$) is a single-electron creation (destruction) corresponding to Kohn-Sham orbitals, 
+$a_{i}^\dagger$ ($a_{i}$) is a single-electron creation (destruction) corresponding to Kohn-Sham orbitals, 
 and $e^J$ is the Jastrow factor which was optimized using variational Monte Carlo. 
-Then, having computed the energies (expectation values of the Hamiltonian) and corresponding 
-descriptors for these wavefunctions we verify the independence of the $U$ and $t$ descriptors.
-We then fit the 1-band Hubbard Hamiltonian using least-squares fitting, as part of the formalism described in sec. 2. 
+We compute the energies (expectation values of the Hamiltonian) and reduce reduce density matrices (descriptors) on all the wave functions. 
+%Then, having computed the energies (expectation values of the Hamiltonian) and corresponding 
+%descriptors for these wavefunctions we verify the independence of the $U$ and $t$ descriptors. 
+We then fit the 1-band Hubbard Hamiltonian using least-squares fitting according to the N-AIDMD formalism described in Sec. 2. %, as part of the formalism described in sec. 2. 
 
 \begin{figure}
 \centering
@@ -37,15 +41,14 @@ Fig.~\ref{fig:fit_quality} shows our N-AIDMD fits for two representative $r$. As
 is significantly smaller for larger $r$, verifying the effectiveness of the Hubbard model 
 in this limit. 
 
-Fig.~\ref{fig:Parameters-vs-Bond-t} also shows trends of the fitted value of the one-body hopping $t$ 
-and the repulsion $U$ as a function of $r$. Consistent with physical intuition, $t$ decreases towards zero at larger $r$
-and the value of $U/t$ rises. Based on these values and the extensive body of work in 1D systems we expect a Luttinger liquid 
+Fig.~\ref{fig:Parameters-vs-Bond-t} also shows trends of the fitted value of $t$ 
+and $U$ as a function of $r$. Consistent with physical intuition, $t$ decreases towards zero at larger $r$
+and the value of $U/t$ rises. Based on these values and the extensive body of work in 1D systems, we expect a Luttinger liquid 
 to insulator transition to occur at $U/t=...$ corresponding to $r=...$.  
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.5]{./Figures/$t$_vs_separation_h_chain_ols.pdf}
 \includegraphics[scale=0.5]{./Figures/$t$_vs_separation_h_chain_ols.pdf}
-\caption{\HJC{Put t vs r and U/t vs r} The one-body hopping $t$ parameter as a function of lattice constant for the periodic H$_{10}$ chain, obtained from a fitted $U$-$t$ model. The parameter value declines to zero as the lattice constant increases. \HHZ{I suggest to remove the titles from the figure, and put description in the caption instead. The y-axis label: how about "Hopping parameter $t$"}}\label{fig:Parameters-vs-Bond-t}
-
+\caption{\HJC{Put t vs r and U/t vs r} The one-body hopping $t$ parameter as a function of inter-atomic distance for the periodic H$_{10}$ chain, obtained from a fitted $U$-$t$ model. $t$ declines to zero as $r$ increases. \HHZ{I suggest to remove the titles from the figure, and put description in the caption instead. The y-axis label: how about "Hopping parameter $t$"}}\label{fig:Parameters-vs-Bond-t}
 \end{figure}
