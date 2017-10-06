@@ -11,6 +11,21 @@ are calculated is obtained by generating intrinsic atomic orbitals (IAO) from th
 the L\"owdin procedure; our results are shown in Fig.~xx \HHZ{Could you plot these orbitals and replace the Wannier orbitals stuff?}
 These form the effective orbitals that enter the 1-band Hubbard Hamiltonian. 
 
+\begin{figure}[]
+\centering
+\subfigure[KS 1]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks1.png}}\quad
+\subfigure[KS 2]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks2.png}}\quad
+\subfigure[KS 3]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks3.png}}\quad
+\subfigure[KS 4]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks4.png}}
+\\
+\subfigure[Wannier 1]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan1.png}}\quad
+\subfigure[Wannier 2]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan2.png}}\quad
+\subfigure[Wannier 3]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan3.png}}\quad
+\subfigure[Wannier 4]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan4.png}}
+\caption{\HJC{Put IAO here} Kohn-Sham orbitals (upper panel) from DFT calculations with PBE exchange-exchange correlation functional, and Wannier orbitals (lower panel) constructed through a unitary transformation of Kohn-Sham orbitals.}\label{fig:h4orb}
+\end{figure}
+
+
 To generate a database of wavefunctions needed for the N-AIDMD, 
 we produce a set of wavefunctions (\HHZ{Slater-Jastrow wave functions?}) consisting of singles- and doubles- excitations 
 to the Slater determinant, 
