@@ -1,7 +1,7 @@
 \section{Representative Examples}
 \HHZ{I feel that the first example could serve as a demonstration that this downfolding approach works. Since both the original system and the downfolded model could be exactly solved, and are clean. It would be good if we could find some physical properties that both the two models produce the same values. The energy spectrum has been used as an input in the sense of "machine learning", it would be good if we could have a way to test the predicting power.}
 \HJC{I agree, this was my motivation for spending the most time on it since it is a clean system. 
-But this is at odds with shortening the section. Let me see if I have the 8 site results}
+But this is at odds with shortening the section. Let me see if I have the 8 site results, that may build confidence in the results}
 Given the theoretical framework for downfolding a many-orbital (or many electron) problem to a 
 few orbital (or few electron) problem, we now discuss few examples which also serve to highlight some practical aspects 
 associated with AIDMD. The first example is mostly pedagogical, 
@@ -9,19 +9,21 @@ where we have completely avoided the \emph{ab-initio} related complications of A
 from \emph{exact} eigenstates themselves to downfold from a lattice model with more orbitals (three band model) 
 to one with fewer orbitals (one band model). We then gradually increase the complexity of the problems we address
 by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and graphene 
-(with up to 32 carbons on a 2D honeycomb lattice).
-
+(with up to 32 carbons on a 2D honeycomb lattice). Since the 1-band Hubbard Hamiltonian occurs in most of our examples, 
+we define it here,
 \begin{eqnarray}
 	\tilde{H} &=&  -t \;\sum_{\langle i,j \rangle} \tilde{d}_i^{\dagger} \tilde{d}_j + U \;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}
 \label{eq:oneband}
 \end{eqnarray}
+where $t$ and $U$ correspond 
+
 \subsection{Three-band Hubbard model to one band Hubbard model at half filling (E-AIDMD)}
-
 \lucas{This section seems rather long to me. We should think about how to cut it down to the essentials.} 
-\HJC{Working on it} 
+\HJC{Working on it, but I think this section really clarifies downfolding, because it is a controlled setting. 
+so making it too short is not a good idea. I agree we need to keep the essentials only.} 
 
-The high $T_c$ superconducting cuprates~\cite{Bednorz1986} are complex materials whose parent compounds 
-are Mott insulators that display rich phase diagrams on electron or hole doping~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. 
+The high $T_c$ superconducting cuprates~\cite{Bednorz1986} have parent Mott insulators that display 
+rich phase diagrams on electron or hole doping~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. 
 Many works have been devoted to their model effective Hamiltonians and corresponding parameter 
 values~\cite{Emery, ZhangRice, tJSpalek, Hybertsen_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard}. 
 The emergent consensus of the minimal model involving the oxygens is the 3-orbital or 3-band Hubbard model, 
@@ -38,7 +40,7 @@ strength of the density-density interactions between a neighboring $p$ and $d$ o
 We keep the exposition simple and consider only the case where $\epsilon_p$, $t_{pd}$ and $U_{d}$ are non zero
 (since we work with fixed number of particles we set $\epsilon_d = 0$). 
 The charge transfer energy $\Delta \equiv \epsilon_p - \epsilon_d$ equals $\epsilon_p$ in our notation. 
-We work in the hole notationl; half filling corresponds to 2$\uparrow$ and 2$\downarrow$ 
+We work in the hole notation; half filling corresponds to 2$\uparrow$ and 2$\downarrow$ 
 holes on the $2\times2$ cell.
 
 \begin{figure}[htpb]
@@ -74,8 +76,8 @@ F        & \alpha_2 &        \alpha_2 &  \alpha_4 & \alpha_1 & \alpha_1 & -\alph
 \right)
 \end{eqnarray}
 where we have defined $F \equiv \sqrt{1-4{\alpha_1}^2 - 2{\alpha_2}^2 - 4 {\alpha_3}^2 -{\alpha_4}^2}$ and 
-where the parameters $\alpha_1$,$\alpha_2$,$\alpha_3$ and $\alpha_4$ will be 
-optimized to minimize a certain cost function, which will be explained shortly. 
+where the parameters $\alpha_1$,$\alpha_2$,$\alpha_3$ and $\alpha_4$ will be optimized to minimize a 
+certain cost function, which will be explained shortly. 
 
 The one particle density matrix in the transformed basis is related 
 to that in the original basis by,
@@ -91,39 +93,10 @@ and using this relationship we demand two conditions be satisfied,
 \end{itemize} 
 We consider a cost function, 
 
-\subsubsection{Results and Discussion}
+%\subsubsection{Results and Discussion}
 To give a concrete and representative example of our results, we start with 1-RDM of the lowest eigenstate 
 in either $\uparrow$ or $\downarrow$ channel. This is a $12 \times 12$ matrix, which for $U_{d}/t_{pd}=8$ 
 and $\Delta/t_{pd}=3$ we find to be,
-%\begin{eqnarray}
-%\left(
-%\begin{array}{cccccccccccc}
-%+0.380	   & -0.091 &-0.091 &-0.015& +0.119& +0.119& -0.119 &-0.119 &-0.017 &+0.017 &-0.017 &+0.017 \\
-%-0.091	   & +0.380 &-0.015 &-0.091& -0.017& -0.119& +0.119 &+0.017 &+0.017 &-0.017 &+0.119 &-0.119 \\
-%-0.091	   & -0.015 &+0.380 &-0.091& -0.119& -0.017& +0.017 &+0.119 &+0.119 &-0.119 &+0.017 &-0.017 \\
-%-0.015	   & -0.091 &-0.091 &+0.380& +0.017& +0.017& -0.017 &-0.017 &-0.119 &+0.119 &-0.119 &+0.119 \\
-%+0.119	   & -0.017 &-0.119 &+0.017& +0.060& +0.034& -0.034 &-0.060 &-0.034 &+0.034 &-0.007 &+0.007 \\
-%+0.119	   & -0.119 &-0.017 &+0.017& +0.034& +0.060& -0.060 &-0.034 &-0.007 &+0.007 &-0.034 &+0.034 \\
-%-0.119	   & +0.119 &+0.017 &-0.017& -0.034& -0.060& +0.060 &+0.034 &+0.007 &-0.007 &+0.034 &-0.034 \\
-%-0.119	   & +0.017 &+0.119 &-0.017& -0.060& -0.034& +0.034 &+0.060 &+0.034 &-0.034 &+0.007 &-0.007 \\
-%-0.017	   & +0.017 &+0.119 &-0.119& -0.034& -0.007& +0.007 &+0.034 &+0.060 &-0.060 &+0.034 &-0.034 \\
-%+0.017	   & -0.017 &-0.119 &+0.119& +0.034& +0.007& -0.007 &-0.034 &-0.060 &+0.060 &-0.034 &+0.034 \\
-%-0.017	   & +0.119 &+0.017 &-0.119& -0.007& -0.034& +0.034 &+0.007 &+0.034 &-0.034 &+0.060 &-0.060 \\
-%+0.017	   & -0.119 &-0.017 &+0.119& +0.007& +0.034& -0.034 &-0.007 &-0.034 &+0.034 &-0.060 &+0.060 \\
-%\end{array}
-%\right)
-%\end{eqnarray}
-%and transform it into a $4\times4$ RDM (satisfying the requirements of our cost function), 
-%\begin{eqnarray}
-%\left(
-%\begin{array}{cccc}
-%+0.499 & -0.158 & -0.158 & 0.000  \\
-%-0.158 & +0.499 &  0.000 & -0.158 \\
-%-0.158 &  0.000 & +0.499 & -0.158 \\
-% 0.000 & -0.158 & -0.158 & +0.499 \\
-%\end{array}
-%\right)
-%\end{eqnarray}
 corresponding to the optimal parameters $\alpha_1=0.220$,$\alpha_2=0.044$,$\alpha_3=0.020$ and $\alpha_4=0.018$ 
 We then ask what $U/t$ of the one band Hubbard model best describes this 1-RDM and in this case find $U/t = $. 
 Similar results are found when one considers the other low energy eigenstates. 
@@ -175,8 +148,6 @@ and demonstrated for some representative examples in Fig.
 $U_{d}/t_{pd}$ for $\Delta/t_{pd}=3$ and $\Delta/t_{pd}=5$}
 \label{fig:hamfit} 
 \end{figure}	
-
- 
 Finally, we show that the obtained parameters are ....
 
 
