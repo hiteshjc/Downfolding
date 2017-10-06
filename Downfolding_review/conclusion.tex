@@ -10,9 +10,9 @@ checks on its validity. We have discussed three representative examples to discu
 
 What sort of accuracy should one expect with effective Hamiltonians and AIDMD? The holy grail of quantum chemistry 
 and electronic structure is to obtain an energy of 1 mHa (0.027 eV) per atom; this 
-remains an open challenge despite decades of work. The effective Hamiltonian approach largely ameliorates this problem,  only 
-relative energies are important, neither the total energy (nor its accuracy) is of particularly 
-fundamental interest. This, of course, is contingent on the cancellation of the large energy associated with the core electrons, 
+remains an open challenge despite decades of work. The effective Hamiltonian approach somewhat ameliorates 
+this problem, only relative energies are important, neither the total energy (nor its accuracy) is of particularly 
+fundamental interest. This is contingent on the cancellation of the large energy associated with the core electrons, 
 whose role is to primarily renormalize the interactions between the active (valence) electrons. This aspect can also 
 be a major limitation when the core and active electrons are strongly entangled i.e when the separation of energy 
 scales is not prominent (in which case an energy-dependent description may be needed). 
@@ -21,8 +21,6 @@ In our view, AIDMD (and downfolding in general) opens up many avenues for determ
 quantities not easily calculated in ground state approaches. Our experience suggests excitation spectra 
 can be accurately determined to 0.2 eV (or less)~\cite{Changlani2015} and potentially improved with 
 more \emph{ab-initio} data and more refined effective Hamiltonians.  
-%It is also possibly best suited for extended systems (solids) where there is often a clear separation of energy scales associated with the 
-%core, active (valence) and virtual electronic spaces. 
 
 Finally we would like to emphasize that AIDMD, though conceptually simple, 
 is still a method in its development stages, with room for algorithmic improvements and new applications. It suffers 
@@ -51,7 +49,6 @@ concerns may become less problematic. Some of the issues that need further resea
 	There are several wavefunction based quantum chemistry 
 	methods for electronic structure like coupled cluster and ab-initio DMRG which work primarily 
 	directly in orbital space. These could also be potentially explored in conjunction with AIDMD.
-	
 \end{itemize} 
 
 In terms of applications, we hope the method will be eventually applied to solids involving transition 
