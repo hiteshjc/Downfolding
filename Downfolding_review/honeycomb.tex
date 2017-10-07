@@ -42,8 +42,8 @@ To estimate the Hubbard parameters, we used the N-AIDMD method using a set of 50
 to the electron-hole excitations within the $\pi$ channel (or $s$ channel for hydrogen system). In particular, for graphene, 
 the Slater-Jastrow wave functions are constructed from occupied $\sigma$ bands and occupied $\pi$ bands, whereas for $\pi$-only graphene, 
 Slater-Jastrow wavefunctions constructed from occupied $\pi$ Kohn-Sham orbitals of graphene. The \textit{ab initio} simulations 
-are performed on a $3\times3$ cell (32 carbons) and the energy and RDMs evaluated with VMC. 
-(We expect further renormalizations in corresponding DMC calculations~\cite{Changlani2015}, 
+are performed on a $3\times3$ cell (32 carbons or hydrogens) and the energy and RDMs of these wavefunctions 
+evaluated with VMC. (We expect further renormalizations in the corresponding DMC calculations~\cite{Changlani2015}, 
 but we do not explore that aspect here). The error bars on our downfolded parameters are estimated using the Jackknife method. 
 The results from our calculations are summarized in Table~\ref{tab:grpheffm} 
 and Fig.~\ref{fig:ne_aidmd_gh} shows the quality of the fits for the three systems.
@@ -64,7 +64,7 @@ U & 7.16(3) & 14.8(2) & 9.47(5)\\
 \end{table} 
 
 We find that the 1-band Hubbard model describes graphene and hydrogen very well, as is seen from the small 
-root mean square error of the predicted energies (Fig.~\ref{fig:ne_aidmd_gh}). The ratio of $U/t$ is smaller 
+root mean square error of the predicted energies (shown in Fig.~\ref{fig:ne_aidmd_gh}). The ratio of $U/t$ is smaller 
 than the semi-metal-insulator transition critical value (3.8, for the honeycomb lattice) in both graphene and hydrogen, 
 which is consistent with both systems being semimetals. The two systems indeed have similar hopping constant $t$, 
 consistent with the fact that they have similar Fermi velocities at the Dirac point. However, 
