@@ -63,6 +63,17 @@ U & 7.16(3) & 14.8(2) & 9.47(5)\\
 \label{tab:grpheffm}
 \end{table} 
 
+\begin{figure*}
+\centering
+  \begin{tabular}{@{}p{0.99\linewidth}@{\quad}p{\linewidth}@{}}
+    \subfigimg[clip, width=0.325\linewidth]{(a)}{./Figures/grp_all_tu.pdf}
+     \subfigimg[clip, width=0.325\linewidth]{(b)}{./Figures/grp_pi_tu.pdf}
+    \subfigimg[clip, width=0.325\linewidth]{(c)}{./Figures/h_tu.pdf}
+      \end{tabular}
+\caption{Comparison of \textit{ab initio} (x-axis) and fitted energies (y-axis) of the 3$\times$3 periodic unit cell of graphene and hydrogen lattice: (a) graphene; (b) $\pi$-only graphene; (c) hydrogen lattice.}\label{fig:ne_aidmd_gh}
+\end{figure*}
+
+
 We find that the 1-band Hubbard model describes graphene and hydrogen very well, as is seen from the small 
 root mean square error of the predicted energies (shown in Fig.~\ref{fig:ne_aidmd_gh}). The ratio of $U/t$ is smaller 
 than the semi-metal-insulator transition critical value (3.8, for the honeycomb lattice) in both graphene and hydrogen, 
@@ -79,15 +90,4 @@ which makes it easier for the $\pi$ electrons to hop to nearby sites.
 
 Thus, downfolding shows the clear significance of $\sigma$ electrons in renormalizing the effective onsite interactions of the $\pi$ orbitals. 
 The $\sigma$ electrons change \textit{both} $t$ and $U$, making graphene a weakly interacting semimetal instead of an insulator.
-
-\begin{figure*}[tbh]
-\centering
-  \begin{tabular}{@{}p{0.99\linewidth}@{\quad}p{\linewidth}@{}}
-    \subfigimg[clip, width=0.325\linewidth]{(a)}{./Figures/grp_all_tu.pdf}
-     \subfigimg[clip, width=0.325\linewidth]{(b)}{./Figures/grp_pi_tu.pdf}
-    \subfigimg[clip, width=0.325\linewidth]{(c)}{./Figures/h_tu.pdf}
-      \end{tabular}
-\caption{Comparison of \textit{ab initio} (x-axis) and fitted energies (y-axis) of the 3$\times$3 periodic unit cell of graphene and hydrogen lattice: (a) graphene; (b) $\pi$-only graphene; (c) hydrogen lattice.}\label{fig:ne_aidmd_gh}
-\end{figure*}
-
 %In summary, we have demonstrated that the effective models constructed using this approach effectively reflect the renormalization/screening effect from high energy degree of freedom, and correctly characterize the low energy dynamics of the system. 
