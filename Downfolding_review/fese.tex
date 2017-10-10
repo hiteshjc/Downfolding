@@ -1,6 +1,4 @@
 \subsection{FeSe diatomic molecule (NE-AIDMD)}
-\BDB{I thought this section might fit more naturally in the examples part. I think the conclusions can discuss the shortcomings of this fit WRT fitting a lattice to a small finite system. We can also discuss moving on to superconductors in the conclusions}.
-\BDB{I can put in references once we converge on the content we want to include.}
 
 Transition metal systems are an especially difficult case for most electronic structure methods, and therefore, are an 
 important test case for AIDMD. Futhermore, diffusion Monte Carlo is particularly useful in transition-metal systems, where is has been shown to improve the description of energy gaps for the types of orbital excitations used to sample the Hilbert space~\cite{lucas}.
@@ -12,16 +10,18 @@ Using the process outlined in Sec.~\ref{sec:theory}, we consider a multiband Hub
 \begin{align*}
   H 
   &=
-  \epsilon_d \sum_{i,\eta} n^{d}_{i,\eta} 
+  \epsilon_{d_{xy}} \sum_{\eta} (n^{d_{xy}}_{\eta}  + n^{d_{x^2-y^2}}_{\eta})
   +
-  \epsilon_s \sum_{i,\eta} n^{s}_{i,\eta} 
+  \epsilon_{d_{z^2}} \sum_{\eta} n^{d_{z^2}}_{\eta} 
   +
-  \epsilon_\pi \sum_{i,\eta} n^{\pi}_{i,\eta} 
+  \epsilon_s \sum_{\eta} n^{s}_{\eta} 
   +
-  \epsilon_\sigma \sum_{i,\eta} n^{\sigma}_{i,\eta} 
+  \epsilon_{p_{z}} \sum_{i,\eta} n^{p_{z}}_{i,\eta} 
   \\
   &+ 
-  t_{\sigma} \sum_{\eta} \left( d_{z^2,\eta}^{\dagger} p_{z,\eta} + s_{\eta}^{\dagger}  p_{z,\eta} + \text{h.c.} \right)
+  t_{\sigma,d} \sum_{\eta} \left( d_{z^2,\eta}^{\dagger} p_{z,\eta} + \text{h.c.} \right)
+  +
+  t_{\sigma,s} \sum_{\eta} \left(s_{\eta}^{\dagger}  p_{z,\eta} + \text{h.c.} \right)
   \\
   &+ 
   t_{\pi} \sum_{\eta} \left( d_{xy,\eta}^{\dagger} p_{x,\eta} + d_{yz,\eta}^{\dagger}  p_{y,\eta} + \text{h.c.} \right)
@@ -30,21 +30,13 @@ Using the process outlined in Sec.~\ref{sec:theory}, we consider a multiband Hub
   U_d \sum_{i} n^{d}_{i,\uparrow} n^{d}_{i,\downarrow} 
   +
   J_d \sum_{i\ne j} S_i \cdot S_j.
+  +
+  E_0
 \end{align*}
-Here, $\eta$ represents the spin index, $\pi$ and refers to the $\pi$-bonding orbitals: $d_{xy}$, $d_{yz}$, $p_x$ and $p_y$, and $\sigma$ refers to the $\sigma$-bonding orbitals: $s$, $d_{z^2}$, and $p_z$. 
-The $U_d$ interaction is between $d$ states on the iron, and the $J_d$ represents a Hunds coupling between $d$ states on the iron.
+Here, $\eta$ represents the spin index and $i$ represents orbital index.
+The $\epsilon_i$ terms represent single-particle orbital energies, while the $U_d$ is an on-site interaction among the $d$ orbitals and the $J_d$ is a Hund's coupling among the $d$ orbitals.
+$E_0$ is an overall energy shift compared to the \textit{ab initio} hamiltonian.
 This set of parameters was chosen based on the matching pursuit method described in Sec.~\ref{sec:theory}.
-%
-%\BDB{This section needed?}
-%The small size of the system means we can cheaply generate many samples of the space; however, this also generates an additional difficulty in generating the excited states. 
-%An optical excitation in a small system will tend to shift the charge density of the system.
-%As an example, the basis element formerly describing the $p_z$ state may overlap less with this new state, and to describe all the electrons in the system, one would have to use additional basis states that can describe the shift in density.
-%The additional basis elements would require additional parameters, which would complicate the model. 
-%To avoid this, we utilize the IAO construction \cite{IAO} of localized atomic-like basis elements for each excited state of our sample. 
-%This adjusts the basis set slightly for each excited state, effectively absorbing these orbital relaxations into the definition of the basis. 
-%This process can be interpreted as introducing a energy-dependence to the parameters, because basis set corresponding to the parameters now depends on the state sampled.
-%As a result, we maintain a minimal Hamiltonian that describes the interaction between a single set of $s$, $p$, and $d$ orbitals, and much of the orbital relaxation effects are folded into the parameters shown above.
-%
 
 The parameters resulting from NE-AIDMD are presented in Table~\ref{tab:fese}. 
 To illustrate the effect of using DMC to sample the wave functions, we also compare the results to the corresponding results from using the DFT calculations used to generate the trial wave functions. 
