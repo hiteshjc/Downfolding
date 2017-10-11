@@ -88,14 +88,8 @@ in the transformed basis is related to that in the original basis,
 \begin{equation}
 	\langle {\tilde{d}_i}^{\dagger} \tilde{d}_{j} \rangle_{s} = \sum_{mn} T^{*}_{im} \langle {c_m}^{\dagger} c_n \rangle_{s} T_{jn}
 \end{equation}
-Using this relationship, we demand two conditions be satisfied,
-\begin{itemize} 
- \item The effective orbitals ($\tilde{d}_i$) are orthogonal to each other 
- \item All diagonal entries of the 1-RDM of the effective orbitals for all low energy eigenstates 
-       $(\langle {\tilde{d}_i}^{\dagger} \tilde{d}_{i} \rangle)$ 
-       equal 1/2.
-\end{itemize} 
-These conditions are enforced by minimizing a cost function,
+Using this relationship, we demand two conditions be satisfied, (1) the effective orbitals ($\tilde{d}_i$) are orthogonal to each other 
+and (2) all diagonal entries of the 1-RDM of the effective orbitals for all low energy eigenstates $(\langle {\tilde{d}_i}^{\dagger} \tilde{d}_{i} \rangle)$ equal 1/2. These conditions are enforced by minimizing a cost function,
 \begin{equation}
 	C = \sum_{s} \sum_{i} \Big( \langle {\tilde{d}_i}^{\dagger} \tilde{d}_{i} \rangle_{s} - \frac{1}{2} \Big)^{2} + \sum_{mn} ( \Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn})^{2}
 \end{equation} 
