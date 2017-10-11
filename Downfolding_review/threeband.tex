@@ -100,7 +100,9 @@ These conditions are enforced by minimizing a cost function,
 	C = \sum_{s} \sum_{i} \Big( \langle {\tilde{d}_i}^{\dagger} \tilde{d}_{i} \rangle_{s} - \frac{1}{2} \Big)^{2} + \sum_{mn} ( \Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn})^{2}
 \end{equation} 
 
-To give a concrete and representative example of our results, we start with 1-RDM of the lowest three eigenstates for $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$; these are $12 \times 12$ matrices. We optimize the transformation according to Eq. and find the optimal parameters $\alpha_1=0.220$,$\alpha_2=0.044$,$\alpha_3=0.020$ and $\alpha_4=0.018$ 
+To give a concrete and representative example of our results, we optimize the transformation 
+according to Eq. and find the optimal parameters $\alpha_1=0.220$, $\alpha_2=0.044$, $\alpha_3=0.020$ 
+and $\alpha_4=0.018$ 
 \begin{small}
 \begin{eqnarray}
 \left(
@@ -142,7 +144,9 @@ $t$.
 \includegraphics[width=0.32\linewidth]{./Figures/Hyb_vs_U_Ud_8.pdf}
 \includegraphics[width=0.32\linewidth]{./Figures/Hopping_vs_U_Ud_8.pdf}
 \includegraphics[width=0.32\linewidth]{./Figures/downfolded_U_Ud_8.pdf}
-\caption{Downfolded values of the effective 1-band Hubbard U/t and hopping $t_{opt}$ vs $U_d/t_{pd}$}
+\caption{(Left) Parameters entering the transformation matrix ($\alpha_1$ through $\alpha_4$)  
+and (Right) Effective 1-band Hubbard $U/t$ and hopping $t$ (inset) versus $\Delta/t_{pd}$ for fixed 
+$U_{d}/t_{pd}=8$}
 \label{fig:hamfitepdvary} 
 \end{figure}	
 
@@ -150,10 +154,11 @@ $t$.
 \centering
 \includegraphics[width=0.49\linewidth]{./Figures/downfolded_U_ep_3.pdf}
 \includegraphics[width=0.49\linewidth]{./Figures/Hopping_vs_U_ep_3.pdf}
-\includegraphics[width=0.49\linewidth]{./Figures/downfolded_U_ep_5.pdf}
-\includegraphics[width=0.49\linewidth]{./Figures/Hopping_vs_U_ep_5.pdf}
-\caption{Downfolded values of the effective 1-band Hubbard U/t and hopping $t_{opt}$ vs $U_d/t_{pd}$}
-\label{fig:hamfit} 
+%\includegraphics[width=0.49\linewidth]{./Figures/downfolded_U_ep_5.pdf}
+%\includegraphics[width=0.49\linewidth]{./Figures/Hopping_vs_U_ep_5.pdf}
+\caption{Downfolded values of the effective 1-band Hubbard $U/t$ and $t$ (inset) 
+vs $U_d/t_{pd}$ for two representative values of $\Delta/t_{pd}$}
+\label{fig:hamfitUdvary} 
 \end{figure}	
  
 Fig.~\ref{fig:hamfitepdvary} shows our results for the optimal 
@@ -165,9 +170,21 @@ means that it is even more energetically unfavorable to occupy the oxygen orbita
 Correspondingly the effective hopping between $\tilde{d}$ in the 
 1-band model reduces and the effective $U/t$ increases. 
 
-Next, we consider analogous res 
+Next, in Fig.~\ref{fig:hamfitUdvary} we consider analogous results keeping $\Delta/t_{pd}$ fixed to two representative values, 
+and varying $U_d/t_{pd}$. In both cases, $U/t$ increases dramatically with $U_d/t_{pd}$, but $t$ 
+increases marginally little (similar results are seen for the dominant 
+hybridization parameter $\alpha_1$). Also, the different estimates of $U/t$ are closer to each other 
+for the case of larger $\Delta$ indicating the increased effectiveness of the 1-band model 
+in the limit of large $\Delta$. 
 
-Fig.~\
+A primary quality check for the model is its ability to reproduce the low energy spectrum. 
+Fig.~\ref{fig:energyfit} shows the comparison of the 1-band vs 3-band model energy gaps 
+(here only comprising of $6$ states). In all cases, the fit is reasonably good; 
+the best fits seen at larger $U_d$ and larger $\Delta$ consistent with our expectations 
+from the previous plots. We re-emphasize that once the density matrices were transformed 
+only one parameter ($t$) was fit to match five energy gaps between the two models; this indicates 
+it is thus an indicator of the success of the downfolding (rather than a result of overfitting). 
+
 \begin{figure}[]
 \centering
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_3_number_5.pdf}
@@ -176,9 +193,12 @@ Fig.~\
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_5.pdf}
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_9.pdf}
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_2.pdf}
-\caption{Comparison for energy gaps between the 3-band and 1-band Hubbard models using the optimized values of $U/t$ and $t$, for different
-$U_{d}/t_{pd}$ for $\Delta/t_{pd}=3$ and $\Delta/t_{pd}=5$}
+\caption{Comparison for energy gaps between the 3-band and 1-band Hubbard models 
+using the optimized values of $U/t$ and $t$, for different $U_{d}/t_{pd}$ for $\Delta/t_{pd}=3$ (top row) 
+and $\Delta/t_{pd}=5$ (bottom row)}
 \label{fig:energyfit} 
 \end{figure}	
+
+\HJC {Predictivity} Ultimately, the whole reason for downfolding is to reduce the effective Hilbert space. 
 Finally, we show that the obtained parameters are ....
 
