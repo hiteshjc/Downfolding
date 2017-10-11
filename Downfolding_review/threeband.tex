@@ -6,13 +6,13 @@ But this is at odds with shortening the section. Let me see if I have the 8 site
 Given the theoretical framework for downfolding a many-orbital (or many electron) problem to a 
 few orbital (or few electron) problem, we now discuss few examples which also serve to highlight some practical aspects 
 associated with AIDMD. The first example is mostly pedagogical, 
-where we have completely avoided the \emph{ab-initio} related complications of AIDMD. Rather, we use information directly available 
-from \emph{exact} eigenstates themselves to downfold from a lattice model with more orbitals (3-band model) 
-to one with fewer orbitals (1-band model). We then gradually increase the complexity of the problems we address
+where we have completely avoided the \textit{ab-initio} related complications of AIDMD. Rather, we use information directly available 
+from \textit{exact} eigenstates themselves to downfold from a lattice model with more orbitals (3-band model) 
+to one with fewer orbitals (1-band model). We then gradually increase the complexity of the problems we address 
 by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and graphene 
 (with up to 32 carbons on a 2D honeycomb lattice). 
 
-A common occurrence in all our examples is the 1-band Hubbard Hamiltonian, defined as,
+A common occurrence in most of our examples is the 1-band Hubbard Hamiltonian, defined as,
 \begin{equation}
 	\tilde{H} = -t \;\sum_{\langle i,j \rangle} \tilde{d}_i^{\dagger} \tilde{d}_j + U \;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}
 \label{eq:oneband}
@@ -28,7 +28,7 @@ so making it too short is not a good idea. I agree we need to keep the essential
 
 Our first example is motivated by the high $T_c$ superconducting cuprates~\cite{Bednorz1986} that 
 have parent Mott insulators with rich phase diagrams on electron or hole doping~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. 
-Many works have been devoted to their model effective Hamiltonians and corresponding parameter 
+Many works have been devoted to their model Hamiltonians and corresponding parameter 
 values~\cite{Emery, ZhangRice, tJSpalek, Hybertsen_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard}. 
 The emergent consensus of the minimal model involving the oxygens is the 3-orbital or 3-band Hubbard model, 
 \begin{eqnarray}
@@ -56,8 +56,8 @@ and interaction parameters.}
 \label{fig:threeband} 
 \end{figure}	
 
-We determine here, what 1-band parameters best describe the 3-band data, the former defined 
-in terms of effective \emph{d-like} orbitals, $\tilde{d}$, which are mixtures of copper and oxygen orbitals. 
+Here we determine what 1-band parameters best describe the 3-band data, the former defined 
+in terms of effective \textit{d-like} orbitals, $\tilde{d}$, which are mixtures of copper and oxygen orbitals. 
 This optimal transformation also remains an unknown; we encode the relationship between the 
 bare and effective operators as a linear transformation ${\bf T}$, 
 \begin{equation}
@@ -65,7 +65,7 @@ bare and effective operators as a linear transformation ${\bf T}$,
 \end{equation}
 %where $\tilde{d}_i$ is a transformed hole (destruction) operator 
 where $c_j$ is the bare hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals. 
-(Note that higher body generalizations are also possible, but have not been consisdered here). 
+(Note that higher body generalizations are also possible, but have not been considered here). 
 Accounting for all symmetries of the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix (the numbering of the orbitals 
 corresponds to Fig.~\ref{fig:threeband}) is explicitly written out as, 
 \begin{eqnarray}
@@ -83,27 +83,59 @@ where we have defined $F \equiv \sqrt{1-4{\alpha_1}^2 - 2{\alpha_2}^2 - 4 {\alph
 where the parameters $\alpha_1$,$\alpha_2$,$\alpha_3$ and $\alpha_4$ will be optimized to minimize a 
 certain cost function, which will be explained shortly. 
 
-The one particle density matrix in the transformed basis is related 
-to that in the original basis by,
+The one particle density matrix (calculated in eigenstate $s$) 
+in the transformed basis is related to that in the original basis,
 \begin{equation}
-	\langle {\tilde{d}_i}^{\dagger} \tilde{d}_{j} \rangle = \sum_{mn} T^{*}_{im} \langle {c_m}^{\dagger} c_n \rangle T_{jn}
+	\langle {\tilde{d}_i}^{\dagger} \tilde{d}_{j} \rangle_{s} = \sum_{mn} T^{*}_{im} \langle {c_m}^{\dagger} c_n \rangle_{s} T_{jn}
 \end{equation}
-and using this relationship we demand two conditions be satisfied,
+Using this relationship, we demand two conditions be satisfied,
 \begin{itemize} 
- \item The effective orbitals are orthogonal to each other 
+ \item The effective orbitals ($\tilde{d}_i$) are orthogonal to each other 
  \item All diagonal entries of the 1-RDM of the effective orbitals for all low energy eigenstates 
        $(\langle {\tilde{d}_i}^{\dagger} \tilde{d}_{i} \rangle)$ 
        equal 1/2.
 \end{itemize} 
-We consider a cost function, 
+These conditions are enforced by minimizing a cost function,
+\begin{equation}
+	C = \sum_{s} \sum_{i} \Big( \langle {\tilde{d}_i}^{\dagger} \tilde{d}_{i} \rangle_{s} - \frac{1}{2} \Big)^{2} + \sum_{mn} ( \Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn})^{2}
+\end{equation} 
 
-To give a concrete and representative example of our results, we start with 1-RDM of the lowest eigenstate 
-in either $\uparrow$ or $\downarrow$ channel. This is a $12 \times 12$ matrix, which for $U_{d}/t_{pd}=8$ 
-and $\Delta/t_{pd}=3$ we find to be,
-corresponding to the optimal parameters $\alpha_1=0.220$,$\alpha_2=0.044$,$\alpha_3=0.020$ and $\alpha_4=0.018$ 
-We then ask what $U/t$ of the one band Hubbard model best describes this 1-RDM and in this case find $U/t = $. 
-Similar results are found when one considers the other low energy eigenstates. 
-(In practice, we minimize the sum of costs of the lowest three eigenstates on the $2 \times 2$ cluster.) 
+To give a concrete and representative example of our results, we start with 1-RDM of the lowest three eigenstates for $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$; these are $12 \times 12$ matrices. We optimize the transformation according to Eq. and find the optimal parameters $\alpha_1=0.220$,$\alpha_2=0.044$,$\alpha_3=0.020$ and $\alpha_4=0.018$ 
+\begin{small}
+\begin{eqnarray}
+\left(
+\begin{array}{cccc}
++0.499 & -0.158 & -0.158 & 0.000  \\
+-0.158 & +0.499 &  0.000 & -0.158 \\
+-0.158 &  0.000 & +0.499 & -0.158 \\
+ 0.000 & -0.158 & -0.158 & +0.499 \\
+\end{array}
+\right);
+\left(
+\begin{array}{cccc}
++0.498 & -0.141 & -0.141 & -0.001  \\
+-0.141 & +0.498 & -0.001 & -0.141 \\
+-0.141 & -0.001 & +0.498 & -0.141 \\
+-0.001 & -0.141 & -0.141 & +0.498 \\
+\end{array}
+\right)
+;\left(
+\begin{array}{cccc}
++0.498 & -0.083 & -0.083 & -0.032  \\
+-0.083 & +0.498 & -0.032 & -0.083 \\
+-0.083 & -0.032 & +0.498 & -0.083 \\
+-0.032 & -0.083 & -0.083 & +0.498 \\
+\end{array}
+\right)
+\end{eqnarray}
+\end{small}
+We then ask $U/t$ of the 1-band Hubbard model best describes this transformed 
+1-RDMs. This is state specific and we find $(U/t)_1 = $ 
+The density matrix matching does not provide an absolute energy scale for the matching. 
+Taking $t_{pd} = 1.3$ eV, we then optimize $t$ (with fixed $(U/t)_2$ obtained from the procedure described 
+previously) to best fit the energy spectra between the two models. This gives the optimal value of 
+$t$. 
+
 
 \begin{figure}[]
 \centering
@@ -111,7 +143,7 @@ Similar results are found when one considers the other low energy eigenstates.
 \includegraphics[width=0.32\linewidth]{./Figures/Hopping_vs_U_Ud_8.pdf}
 \includegraphics[width=0.32\linewidth]{./Figures/downfolded_U_Ud_8.pdf}
 \caption{Downfolded values of the effective 1-band Hubbard U/t and hopping $t_{opt}$ vs $U_d/t_{pd}$}
-\label{fig:hamfit} 
+\label{fig:hamfitepdvary} 
 \end{figure}	
 
 \begin{figure}[]
@@ -124,21 +156,18 @@ Similar results are found when one considers the other low energy eigenstates.
 \label{fig:hamfit} 
 \end{figure}	
  
-The density matrix matching does not provide an absolute energy scale for the matching. 
-Taking $t_{pd}$ to be the typical values of $1.3$ eV, we then 
-We show our results for the optimal values of $t$ and the transformation parameters for different $\Delta/t_{pd}$
-keeping $U_d/t_{pd}=8$ fixed. First, note that $\alpha_1$, which is the primary parameter that mixes (hybridizes) 
-the copper and oxygen orbitals, \emph{decreases} as $\Delta/t_{pd}$ is increased. This is physically reasonable 
-since an increasing difference in the single particle energies of the copper and oxygen orbitals 
+Fig.~\ref{fig:hamfitepdvary} shows our results for the optimal 
+transformation parameters ($\alpha$'s), $t$ and $U/t$ as a function of $\Delta/t_{pd}$
+keeping $U_d/t_{pd}=8$ fixed. $\alpha_1$, which is the primary parameter that mixes (hybridizes) 
+the copper and oxygen orbitals, \textit{decreases} as $\Delta/t_{pd}$ is increased. 
+This is physically reasonable since an increasing difference in the single particle energies of the copper and oxygen orbitals 
 means that it is even more energetically unfavorable to occupy the oxygen orbitals. 
 Correspondingly the effective hopping between $\tilde{d}$ in the 
 1-band model reduces and the effective $U/t$ increases. 
 
-Next, we consider our results for  
+Next, we consider analogous res 
 
-These results are only useful if the energy spectra between the two models also matches. This is verified 
-and demonstrated for some representative examples in Fig.        
-
+Fig.~\
 \begin{figure}[]
 \centering
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_3_number_5.pdf}
@@ -149,7 +178,7 @@ and demonstrated for some representative examples in Fig.
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_2.pdf}
 \caption{Comparison for energy gaps between the 3-band and 1-band Hubbard models using the optimized values of $U/t$ and $t$, for different
 $U_{d}/t_{pd}$ for $\Delta/t_{pd}=3$ and $\Delta/t_{pd}=5$}
-\label{fig:hamfit} 
+\label{fig:energyfit} 
 \end{figure}	
 Finally, we show that the obtained parameters are ....
 
