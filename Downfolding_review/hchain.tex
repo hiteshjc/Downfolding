@@ -7,12 +7,11 @@ relatively large ($r=1.5$ to $3.0$ \AA), such that the system is potentially wel
 in terms of primarily $s$-like orbitals, whose form we discuss here. 
 
 \HHZ{General comment for all of us: This is a physics paper, and the readers will mostly be physicists. Therefore, I think emphasizing physics quantities is more important than machine learning terminologies. I would say PHYSICS TERM (MACHINE LEARNING TERM) instead of MACHINE LEARNING TERM (PHYSICS TERM).} 
-\lucas{What are you talking about specifically?} 
+\lucas{What are you talking about specifically?}  \HHZ{I meant the following paragraph.}
 
 For a given $r$, we first obtain single-particle Kohn-Sham orbitals from a set of spin-unrestricted and 
 spin-restricted DFT-PBE calculations. The localized orbital basis upon which the density matrices (descriptors) 
 are evaluated is obtained by generating intrinsic atomic orbitals (IAO) from the Kohn-Sham orbitals 
-\HHZ{Maybe Kiel could clarify, the Kohn-Sham orbitals used for constructing IAO are those from spin unpolarized calculation?} 
 orthogonalized using the L\"owdin procedure. The resulting orbitals are shown in Fig.~\ref{fig:h10orb}. These are the orbitals that enter the 1-band Hubbard Hamiltonian. 
 
 %\begin{figure}[]
@@ -37,12 +36,11 @@ orthogonalized using the L\"owdin procedure. The resulting orbitals are shown in
 \caption{\HJC{Put IAO here Done -Kiel} Orthogonalized intrinsic atomic orbitals for interatomic hydrogen separation distances equal to $1$, $1.5$, and $2$ \AA \:respectively}\label{fig:h10orb}
 \end{figure}
 
-
 To generate a database of wavefunctions needed for the N-AIDMD, we produce a set of Slater-Jastrow 
 wavefunctions consisting of singles- and doubles- excitations to the Slater determinant, 
 \begin{subequations}
 \begin{eqnarray}
-| s \rangle = & \Big[a^\dagger_{i \sigma} a_{k \sigma}   | KS \rangle \Big]e^J \\
+| s \rangle = & \Big[a^\dagger_{i \sigma} a_{k \sigma}   | KS \rangle \Big]e^J \,,\\
 | d \rangle = & \: \Big[a^\dagger_{i \sigma} a^\dagger_{j \sigma'} a_{k \sigma'} c_{l \sigma}   | KS \rangle\Big]e^J ,
 \end{eqnarray}
 \end{subequations}
@@ -58,16 +56,18 @@ We then fit the 1-band Hubbard Hamiltonian using least-squares fitting according
 \centering
 \includegraphics[scale=0.5]{{./Figures/H_chain_fit_model_length1.5_tUs}.pdf}
 \includegraphics[scale=0.5]{{./Figures/H_chain_fit_model_length2.25_tUs}.pdf}
-\caption{\HJC{Put model vs ab-initio plots here. Done -Kiel} DMC energy vs. model energy for the H$_{10}$ chain at 1.5 \AA \:(left) and 2.25 \AA \:(right). Note that the energy range narrows significantly for larger interatomic separation. }\label{fig:fit_quality}
+\caption{\HJC{Put model vs ab-initio plots here. Done -Kiel} DMC energy vs. model energy for the H$_{10}$ chain at 1.5 \AA \:(left) and 2.25 \AA \:(right). Note that the energy range narrows significantly for larger interatomic separation. \HHZ{Could you change to total energy instead of energy per atom?}}\label{fig:fit_quality}
 \end{figure}
+
 Fig.~\ref{fig:fit_quality} shows our N-AIDMD fits for two representative $r$. As expected, the RMS error 
 is significantly smaller for larger $r$, verifying the effectiveness of the Hubbard model 
-in this limit. 
-
-Fig.~\ref{fig:Parameters-vs-Bond-t} also shows trends of the fitted value of $t$ 
+in this limit. Fig.~\ref{fig:Parameters-vs-Bond-t} also shows trends of the fitted value of $t$ 
 and $U$ as a function of $r$. Consistent with physical intuition, $t$ decreases towards zero at larger $r$
-and the value of $U/t$ rises. Based on these values and the extensive body of work in 1D systems, we expect a Luttinger liquid 
-to insulator transition to occur at $U/t=...$ corresponding to $r=...$.  
+and the value of $U/t$ rises. 
+
+% Based on these values and the extensive body of work in 1D systems, we expect a Luttinger liquid 
+%to insulator transition to occur at $U/t=...$ corresponding to $r=...$.  
+The single band Hubbard model does not describe hydrogen chain well at small distance. The one dimensional Hubbard model with $U/t>0$ will always result in an Mott insulating state. However, the metal-to-insulator transition happens at $r_c=\sim1.8$\AA~ for a hydrogen chain \cite{Stella2011}. This indicates that at small distance, the higher energy orbitals play nontrivial role in stabilizing the metallic state of hydrogen, instead of merely renormalizing the effective strength of U. Meanwhile, at small distance, other interactions term like nearest neighbor Coulomb interaction and Heisenberg exchange interactions also become important at $r<r_c$ \cite{ZhengThesis}. 
 
 \begin{figure}
 \centering
