@@ -6,28 +6,37 @@ We consider the case of $10$ atoms and work in a regime where the inter-atomic d
 relatively large ($r=1.5$ to $3.0$ \AA), such that the system is potentially well described by a 1-band Hubbard model 
 in terms of primarily $s$-like orbitals, whose form we discuss here. 
 
-\HHZ{General comment for all of us: This is a physics paper, and the readers will mostly be physicists. Therefore, I think emphasizing physics quantities is more important than machine learning terminologies. I would say PHYSICS TERM (MACHINE LEARNING TERM) instead of MACHINE LEARNING TERM (PHYSICS TERM).}
+\HHZ{General comment for all of us: This is a physics paper, and the readers will mostly be physicists. Therefore, I think emphasizing physics quantities is more important than machine learning terminologies. I would say PHYSICS TERM (MACHINE LEARNING TERM) instead of MACHINE LEARNING TERM (PHYSICS TERM).} 
 
 For a given $r$, we first obtain single-particle Kohn-Sham orbitals from a set of spin-unrestricted and 
 spin-restricted DFT-PBE calculations. The localized orbital basis upon which the density matrices (descriptors) 
 are evaluated is obtained by generating intrinsic atomic orbitals (IAO) from the Kohn-Sham orbitals 
 \HHZ{Maybe Kiel could clarify, the Kohn-Sham orbitals used for constructing IAO are those from spin unpolarized calculation?} 
-orthogonalized using the L\"owdin procedure. The resulting orbitals are shown in Fig.~xx \HHZ{Could you plot these orbitals 
+orthogonalized using the L\"owdin procedure. The resulting orbitals are shown in Fig.~\ref{fig:h10orb} \HHZ{Could you plot these orbitals 
 and replace the Wannier orbitals stuff?}. These are the orbitals that enter the 1-band Hubbard Hamiltonian. 
+
+%\begin{figure}[]
+%\centering
+%\subfigure[KS 1]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks1.png}}\quad
+%\subfigure[KS 2]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks2.png}}\quad
+%\subfigure[KS 3]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks3.png}}\quad
+%\subfigure[KS 4]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks4.png}}
+%\\
+%\subfigure[Wannier 1]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan1.png}}\quad
+%\subfigure[Wannier 2]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan2.png}}\quad
+%\subfigure[Wannier 3]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan3.png}}\quad
+%\subfigure[Wannier 4]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan4.png}}
+%\caption{\HJC{Put IAO here} Kohn-Sham orbitals (upper panel) from DFT calculations with PBE exchange-exchange correlation functional, and Wannier orbitals (lower panel) constructed through a unitary transformation of Kohn-Sham orbitals.}\label{fig:h4orb}
+%\end{figure}
 
 \begin{figure}[]
 \centering
-\subfigure[KS 1]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks1.png}}\quad
-\subfigure[KS 2]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks2.png}}\quad
-\subfigure[KS 3]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks3.png}}\quad
-\subfigure[KS 4]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks4.png}}
-\\
-\subfigure[Wannier 1]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan1.png}}\quad
-\subfigure[Wannier 2]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan2.png}}\quad
-\subfigure[Wannier 3]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan3.png}}\quad
-\subfigure[Wannier 4]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan4.png}}
-\caption{\HJC{Put IAO here} Kohn-Sham orbitals (upper panel) from DFT calculations with PBE exchange-exchange correlation functional, and Wannier orbitals (lower panel) constructed through a unitary transformation of Kohn-Sham orbitals.}\label{fig:h4orb}
+\subfigure[Separation = $1$ \AA]{\includegraphics[width=0.28\linewidth]{{./Figures/length1_h_paper_view.orb5}.png}}\quad
+\subfigure[Separation = $1.5$ \AA]{\includegraphics[width=0.28\linewidth]{{./Figures/length1.5_h_paper_view.orb5}.png}}\quad
+\subfigure[Separation = $2$ \AA]{\includegraphics[width=0.28\linewidth]{{./Figures/length2_h_paper_view.orb5}.png}}
+\caption{\HJC{Put IAO here Done -Kiel} Orthogonalized intrinsic atomic orbitals for interatomic hydrogen separation distances equal to $1$, $1.5$, and $2$ \AA \:respectively}\label{fig:h10orb}
 \end{figure}
+
 
 To generate a database of wavefunctions needed for the N-AIDMD, we produce a set of Slater-Jastrow 
 wavefunctions consisting of singles- and doubles- excitations to the Slater determinant, 
@@ -47,9 +56,9 @@ We then fit the 1-band Hubbard Hamiltonian using least-squares fitting according
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.5]{./Figures/rms_ut_error_vs_separation_h_chain.pdf}
-\includegraphics[scale=0.5]{./Figures/rms_ut_error_vs_separation_h_chain.pdf}
-\caption{\HJC{Put model vs ab-initio plots here}The RMS error in the fitted $U$-$t$ model for the periodic H$_{10}$ chain, relative to the \textit{ab-initio} energies. The RMS error is less than 1 eV for sufficiently long bond lengths.}\label{fig:fit_quality}
+\includegraphics[scale=0.5]{{./Figures/H_chain_fit_model_length1.5_tUs}.pdf}
+\includegraphics[scale=0.5]{{./Figures/H_chain_fit_model_length2.5_tUs}.pdf}
+\caption{\HJC{Put model vs ab-initio plots here. Done -Kiel} DMC energy vs. model energy for the H$_{10}$ chain at 1.5 \AA \:(left) and 2.5 \AA \:(right). The RMS devision between the DMC and $U$-$t$ model energies at $2.5$ \AA \:interatomic separation is reduced to less than 0.05 eV/atom. }\label{fig:fit_quality}
 \end{figure}
 Fig.~\ref{fig:fit_quality} shows our N-AIDMD fits for two representative $r$. As expected, the RMS error 
 is significantly smaller for larger $r$, verifying the effectiveness of the Hubbard model 
@@ -62,7 +71,7 @@ to insulator transition to occur at $U/t=...$ corresponding to $r=...$.
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.5]{./Figures/$t$_vs_separation_h_chain_ols.pdf}
-\includegraphics[scale=0.5]{./Figures/$t$_vs_separation_h_chain_ols.pdf}
-\caption{\HJC{Put t vs r and U/t vs r} The one-body hopping $t$ parameter as a function of inter-atomic distance for the periodic H$_{10}$ chain, obtained from a fitted $U$-$t$ model. $t$ declines to zero as $r$ increases. \HHZ{I suggest to remove the titles from the figure, and put description in the caption instead. The y-axis label: how about "Hopping parameter $t$"}}\label{fig:Parameters-vs-Bond-t}
+\includegraphics[scale=0.5]{./Figures/fitted_t_values_no_annotate_h10_chain.pdf}
+\includegraphics[scale=0.5]{./Figures/Ust_ratio_vs_separation_h_chain.pdf}
+\caption{\HJC{Put t vs r and U/t vs r Done -Kiel} (Left) The one-body hopping $t$ parameter as a function of interatomic distance for the periodic H$_{10}$ chain, obtained from a fitted $U$-$t$ model. $t$ declines to zero as $r$ increases. (Right) The ratio $U/t$ for the fitted parameter values as a function of interatomic separation. The ratio is small at lower bond-lengths, where $t$ is more relevant in describing the system, and larger at longer bond-lengths, where inter-site hopping is less significant. \HHZ{I suggest to remove the titles from the figure, and put description in the caption instead. The y-axis label: how about "Hopping parameter $t$". Done -Kiel}}\label{fig:Parameters-vs-Bond-t}
 \end{figure}
