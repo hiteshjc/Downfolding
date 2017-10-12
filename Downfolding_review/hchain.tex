@@ -13,8 +13,7 @@ For a given $r$, we first obtain single-particle Kohn-Sham orbitals from a set o
 spin-restricted DFT-PBE calculations. The localized orbital basis upon which the density matrices (descriptors) 
 are evaluated is obtained by generating intrinsic atomic orbitals (IAO) from the Kohn-Sham orbitals 
 \HHZ{Maybe Kiel could clarify, the Kohn-Sham orbitals used for constructing IAO are those from spin unpolarized calculation?} 
-orthogonalized using the L\"owdin procedure. The resulting orbitals are shown in Fig.~\ref{fig:h10orb} \HHZ{Could you plot these orbitals 
-and replace the Wannier orbitals stuff?}. These are the orbitals that enter the 1-band Hubbard Hamiltonian. 
+orthogonalized using the L\"owdin procedure. The resulting orbitals are shown in Fig.~\ref{fig:h10orb}. These are the orbitals that enter the 1-band Hubbard Hamiltonian. 
 
 %\begin{figure}[]
 %\centering
@@ -59,7 +58,7 @@ We then fit the 1-band Hubbard Hamiltonian using least-squares fitting according
 \centering
 \includegraphics[scale=0.5]{{./Figures/H_chain_fit_model_length1.5_tUs}.pdf}
 \includegraphics[scale=0.5]{{./Figures/H_chain_fit_model_length2.5_tUs}.pdf}
-\caption{\HJC{Put model vs ab-initio plots here. Done -Kiel} DMC energy vs. model energy for the H$_{10}$ chain at 1.5 \AA \:(left) and 2.5 \AA \:(right). The RMS devision between the DMC and $U$-$t$ model energies at $2.5$ \AA \:interatomic separation is reduced to less than 0.05 eV/atom. }\label{fig:fit_quality}
+\caption{\HJC{Put model vs ab-initio plots here. Done -Kiel} DMC energy vs. model energy for the H$_{10}$ chain at 1.5 \AA \:(left) and 2.5 \AA \:(right). The RMS devision between the DMC and $U$-$t$ model energies at $2.5$ \AA \:interatomic separation is reduced to less than 0.05 eV/atom. \HHZ{Adjust xlim and ylim of the second figure?}}\label{fig:fit_quality}
 \end{figure}
 Fig.~\ref{fig:fit_quality} shows our N-AIDMD fits for two representative $r$. As expected, the RMS error 
 is significantly smaller for larger $r$, verifying the effectiveness of the Hubbard model 
@@ -74,5 +73,5 @@ to insulator transition to occur at $U/t=...$ corresponding to $r=...$.
 \centering
 \includegraphics[scale=0.5]{./Figures/fitted_t_values_no_annotate_h10_chain.pdf}
 \includegraphics[scale=0.5]{./Figures/Ust_ratio_vs_separation_h_chain.pdf}
-\caption{\HJC{Put t vs r and U/t vs r Done -Kiel} (Left) The one-body hopping $t$ parameter as a function of interatomic distance for the periodic H$_{10}$ chain, obtained from a fitted $U$-$t$ model. $t$ declines to zero as $r$ increases. (Right) The ratio $U/t$ for the fitted parameter values as a function of interatomic separation. The ratio is small at lower bond-lengths, where $t$ is more relevant in describing the system, and larger at longer bond-lengths, where inter-site hopping is less significant. \HHZ{I suggest to remove the titles from the figure, and put description in the caption instead. The y-axis label: how about "Hopping parameter $t$". Done -Kiel}}\label{fig:Parameters-vs-Bond-t}
+\caption{\HJC{Put t vs r and U/t vs r Done -Kiel} (Left) The one-body hopping $t$ parameter as a function of interatomic distance for the periodic H$_{10}$ chain, obtained from a fitted $U$-$t$ model. $t$ declines to zero as $r$ increases. (Right) The ratio $U/t$ for the fitted parameter values as a function of interatomic separation. The ratio is small at lower bond-lengths, where $t$ is more relevant in describing the system, and larger at longer bond-lengths, where inter-site hopping is less significant. }\label{fig:Parameters-vs-Bond-t}
 \end{figure}

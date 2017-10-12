@@ -40,13 +40,13 @@ Therefore, we expect that Eq.~\eqref{eq:oneband} still remains a reasonable desc
 
 To estimate the Hubbard parameters, we used the N-AIDMD method using a set of 50 Slater-Jastrow wavefunctions that correspond 
 to the electron-hole excitations within the $\pi$ channel (or $s$ channel for hydrogen system). In particular, for graphene, 
-the Slater-Jastrow wave functions are constructed from occupied $\sigma$ bands and occupied $\pi$ bands, whereas for $\pi$-only graphene, 
+the Slater-Jastrow wave functions are constructed from occupied $\sigma$ bands and occupied $\pi$ bands, whereas for ``$\pi$-only" graphene, 
 Slater-Jastrow wavefunctions constructed from occupied $\pi$ Kohn-Sham orbitals of graphene. The \textit{ab initio} simulations 
-are performed on a $3\times3$ cell (32 carbons or hydrogens) and the energy and RDMs of these wavefunctions 
+were performed on a $3\times3$ cell (32 carbons or hydrogens) and the energy and RDMs of these wavefunctions were
 evaluated with VMC. (We expect further renormalizations in the corresponding DMC calculations~\cite{Changlani2015}, 
 but we do not explore that aspect here). The error bars on our downfolded parameters are estimated using the Jackknife method. 
 The results from our calculations are summarized in Table~\ref{tab:grpheffm} 
-and Fig.~\ref{fig:ne_aidmd_gh} shows the quality of the fits for the three systems.
+and Fig.~\ref{fig:ne_aidmd_gh}.% shows the quality of the fits for the three systems.
 
 \begin{table}[ht]
 \centering
@@ -79,13 +79,13 @@ root mean square error of the predicted energies (shown in Fig.~\ref{fig:ne_aidm
 than the semi-metal-insulator transition critical value (3.8, for the honeycomb lattice) in both graphene and hydrogen, 
 which is consistent with both systems being semimetals. The two systems indeed have similar hopping constant $t$, 
 consistent with the fact that they have similar Fermi velocities at the Dirac point. However, 
-the difference in their high energy structure manifests itself as differently renormalizated electron-electrons interactions, 
+the difference in their high energy structure manifests itself as different renormalizated electron-electrons interactions, 
 explaining the difference in $U$. 
 
-Most prominently, the $\pi$-only system has much larger $U/t$ compared to graphene; large enough 
-to push it into the insulating (antiferromagnetic) phase of the honeycomb lattice Hubbard model. Another important 
-difference, which matches with our physical intuition, is that graphene has larger $t$ than $\pi$-only graphene. This is 
-attributed to the $\sigma$ electrons pushing $\pi$ electrons away from the ions through exchange-correlation interactions, 
+Most prominently, the ``$\pi$-only" system has much larger $U/t$ ($\sim4.9$) compared to graphene, which is large enough 
+to push it into the insulating (antiferromagnetic) phase. %of the honeycomb lattice Hubbard model. 
+Another important difference, which matches with our physical intuition, is that graphene has larger $t$ than $\pi$-only graphene. 
+This is attributed to the $\sigma$ electrons pushing $\pi$ electrons away from the ions through exchange-correlation interactions, 
 which makes it easier for the $\pi$ electrons to hop to nearby sites. 
 
 Thus, downfolding shows the clear significance of $\sigma$ electrons in renormalizing the effective onsite interactions of the $\pi$ orbitals. 
