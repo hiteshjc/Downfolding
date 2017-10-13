@@ -1,7 +1,4 @@
 \section{Representative Examples}
-\HHZ{I feel that the first example could serve as a demonstration that this downfolding approach works. Since both the original system and the downfolded model could be exactly solved, and are clean. It would be good if we could find some physical properties that both the two models produce the same values. The energy spectrum has been used as an input in the sense of "machine learning", it would be good if we could have a way to test the predicting power.}
-\HJC{I agree, this was my motivation for spending the most time on it since it is a clean system. 
-But this is at odds with shortening the section. Let me see if I have the 8 site results, that may build confidence in the results}
 
 Given the theoretical framework for downfolding a many-orbital (or many electron) problem to a 
 few orbital (or few electron) problem, we now discuss few examples which also serve to highlight some practical aspects 
@@ -10,22 +7,18 @@ where we have completely avoided the \textit{ab-initio} related complications of
 from \textit{exact} eigenstates themselves to downfold from a lattice model with more orbitals (3-band model) 
 to one with fewer orbitals (1-band model). We then gradually increase the complexity of the problems we address 
 by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and graphene 
-(with up to 32 carbons on a 2D honeycomb lattice). 
+(with up to 32 carbons on a 2D honeycomb lattice). \lucas{don't forget FeSe}
 
-A common occurrence in most of our examples is the 1-band Hubbard Hamiltonian, defined as,
+\lucas{This paragraph seems somehow out of place to me. While it is true that the choice of the orbitals is important, so is the choice of the effective Hamiltonian and the sampling of the low energy space. This is a good place to point out that one should be looking for those things. }A common occurrence\lucas{For 3/4 of our examples..} in most of our examples is the 1-band Hubbard Hamiltonian, defined as,
 \begin{equation}
 	\tilde{H} = -t \;\sum_{\langle i,j \rangle} \tilde{d}_i^{\dagger} \tilde{d}_j + U \;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}
 \label{eq:oneband}
 \end{equation}
 where $t$ and $U$ correspond to downfolded (renormalized) parameters and $\tilde{d}$ are the effective one-particle operators, 
-which are obtained from transformations on their bare counterparts. This choice is crucial for obtaining accurate Hamiltonians 
-and we highlight it for each example presented.   
+which are obtained from transformations on their bare counterparts. 
+This choice is crucial for obtaining accurate Hamiltonians and we highlight it for each example presented.   
 
 \subsection{Three-band Hubbard model to one band Hubbard model at half filling}
-\lucas{This section seems rather long to me. We should think about how to cut it down to the essentials.} 
-\HJC{Working on it, but I think this section really clarifies downfolding, because it is a controlled setting. 
-so making it too short is not a good idea. I agree we need to keep the essentials only.} 
-\lucas{The explicit matrices might be a good thing to omit or relegate to appendices or supplementary information. } 
 
 Our first example is motivated by the high $T_c$ superconducting cuprates~\cite{Bednorz1986} that 
 have parent Mott insulators with rich phase diagrams on electron or hole doping~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. 
