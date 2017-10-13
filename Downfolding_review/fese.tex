@@ -42,62 +42,48 @@ Here, $\eta$ represents the spin index and $i$ represents orbital index.
 The $\epsilon_i$ terms represent single-particle orbital energies, while the $U_d$ is an on-site interaction among the $d$ orbitals and the $J_d$ is a Hund's coupling among the $d$ orbitals.
 $E_0$ is an overall energy shift compared to the \textit{ab initio} hamiltonian.
 This set of parameters was chosen based on the matching pursuit method described in Sec.~\ref{sec:theory}.
-We stop selecting terms in the model when all other descriptors do not correlate with the residuals of the fit.
-For example, $U_p$, an on-site interaction for the Se $p$-electrons, does not correlate with the residuals, and therefore was excluded from the model.
+We stop selecting terms in the model when all other descriptors' correlation coefficient with the residual of the fit dropped below 0.15.
+With this criteria, the next parameter decreases the RMSE by less than 0.01 eV.
+For example, $U_p$, an on-site interaction for the Se $p$-electrons, does not correlate strongly enough with the residuals, and therefore was excluded from the model.
 The states sampled consisted of singles and doubles excitations from PBE0 calculations with total spin 0, 2, and 4, which were then relaxed via a DMC projection.
 
-The parameters resulting from NE-AIDMD are presented in Table~\ref{tab:fese}, shown in the order selected by matching pursuit. 
-The error of the model including only parameters in or above the row is shown in the column labeled ``RMSE.''
-The sign of $J$ is consistent with Hund's rules. 
-The signs of $t_{\sigma,d}$ and $t_{\sigma,s}$ are positive, because Se is located in positive $z$ with respect to Fe. 
-Likewise $t_\pi$ is negative corresponding to positive overlap integrals, and is smaller than $t_\sigma$ in magnitude.
-The $\epsilon_i$ states represent energies of the single particle orbitals relative to the energy of $d_{xz}$, $d_{yz}$, $p_x$, and $p_y$, which are likely close in energy.
-
+Applying the MP approach to the system produced reasonable parameters and suggested a separation of interaction energies consistent with intuition from previous work on iron-based superconductors in the literature.
+Analysis of the MP results are shown in Fig.~\ref{fig:fese}. 
+Each parameter added to the model can shift the optimal parameters from previous steps, and generates a new description of the system. 
+Fig.~\ref{fig:fese}(a) and (b) show the evolution of the parameters and RMSE of the fit as additional parameters are added.
+The parameters are smoothly varying with the inclusion of new parameters, and as discussed in the caption, generally take reasonable values.
 The matching pursuit algorithm would suggest that minimal models can be built by disregarding the descriptors added in later steps.
 In this approach, $J$ is considered the most important parameter in the model, and an absolute minimal model for the system would be $H_\text{minimal} = E_0 + J_d \sum_i S_i \cdot S_j$. 
 Such a model would have a RMSE 1.11 eV. 
-According to matching pursuit the next most important interactions to include are (1) hopping between $d_{z^2}$ and $p_z$, (2) on-site $d$ Coulomb interactions, and (3) hopping between the $4s$ and the $p_z$, and so on. Including these degrees of freedom brings the RMSE to 0.75 eV.
-Further improvements are possible with additional interaction terms; however, the drops in RMSE diminish. 
+According to matching pursuit the next most important interactions to include are (1) hopping between $d_{z^2}$ and $p_z$, (2) on-site $d$ Coulomb interactions, and (3) hopping between the $4s$ and the $p_z$, and so on. 
+Including these degrees of freedom brings the RMSE to 0.75 eV.
 In this way MP would suggest that the most important interactions in the system are Hund's coupling, hopping with Se, and on-site Coulomb repulsion, in that order.
 This observation is consistent with the several studies in the literature, which find Hund's coupling in bulk FeSe to be an important part of its description~\cite{hunds}.
-A comparison of the model and \textit{ab initio} energies is shown in Fig. \ref{fig:fese}.
-
-\begin{table}[ht]
-\label{tab:fese}
-\centering
-\begin{tabular}{|c|c|r|c|}
-  \hline
-  MP step & Selected parameter & Final Value [eV]  & RMSE [eV] \\
-  \hline
-  1 & $E_0$                    &  -3620.9(4) & 1.53 \\
-  2 & $J$                      &  -0.45(4)   & 1.11 \\
-  3 & $t_{\sigma,d}$           &  3.0(2)     & 1.02 \\
-  4 & $U_d$                    &  2.6(1)     & 0.89 \\
-  5 & $t_{\sigma,s}$           &  2.1(2)     & 0.75 \\
-  6 & $\epsilon_{d_{xy}}$      &  -0.36(7)   & 0.69 \\
-  7 & $\epsilon_{s}$           &  2.1(2)     & 0.66 \\
-  8 & $\epsilon_{p_z}$         &  -1.4(2)    & 0.61 \\
-  9 & $t_\pi$                  &  -0.7(1)    & 0.57 \\
-  10& $\epsilon_{d_{z^2}}$     &  -0.4(1)    & 0.56 \\
-\hline
-\end{tabular}
-\caption{
-  \BDB{Problem: this is a bit misleading because the parameter values change slightly during the MP steps, needs discussion}
-    Downfolding parameters for FeSe diatomic molecule. 
-    The parameters are shown in the order chosen by matching pursuit (MP), so that $J$ correlated most strongly with the energy, $t_{\sigma,d}$ correlated most strongly with the error in the $E_0$-$J$-model, $U_d$ correlated most strongly with the error in the $E_0$-$J$-$t_{\sigma,d}$ model, and so on.
-    The final value of the parameter on the 10-th MP step is shown in "Final Value."
-    Note that the parameters change slightly as the MP progresses, but important parameters such as $J$ and $U_d$ by only around a few percent.
-    The RMSE for the model including parameters chosen by MP up to that step are shown in the final column. 
-    Parameters chosen by MP first tend to reduce the error more significantly than those chosen later. 
-  }
-\end{table} 
 
 \begin{figure*}[htb]
-\centering
-\includegraphics[width=0.7\textwidth]{./Figures/fese.pdf}
+  \centering
+  \begin{tabular}{cc}
+    \includegraphics[width=0.5\textwidth]{./Figures/mp_parm.pdf}
+    \includegraphics[width=0.5\textwidth]{./Figures/jlast_corr.pdf}
+  \end{tabular}
   \caption{
-    Comparison of \textit{ab initio} (x-axis) and fitted energies (y-axis) of the FeSe diatomic molecule.
-    \BDB{Possibly simplify this by removing UKS/ROKS}
+    \label{fig:fese} 
+    (a) Parameter values for each fit generated in the MP algorithm. 
+    The trivial $E_0$ parameter is included before the MP begins.
+    A zero value implies that parameter is not yet added to the model.
+    The sign of $J$ is consistent with Hund's rules. 
+    The signs of $t_{\sigma,d}$, $t_{\sigma,s}$, $t_\pi$ are consistent with Se being located in positive $z$ with respect to Fe. 
+    The $\epsilon_i$ states represent energies of the single particle orbitals relative to the energy of $d_{xz}$, $d_{yz}$, $p_x$, and $p_y$, which are likely close in energy.
+    (b) RMSE of each model generated by MP as the algorithm includes parameters. 
+    MP tends to add parameters that reduce the error most significantly first. 
+    $J$ correlates most with the error initially, is chosen first, and decreases error the most.
+    (c) Correlation coefficient of descriptor corresponding to each parameter in (a) for a separate MP run which intentionally avoids including $J$ to the model. 
+    The residual of the fit correlates with $J$ throughout, suggesting $J$ is indeed important in include for an accurate description.
   }
-  \label{fig:fese}
 \end{figure*}
+
+The explore the significance of the matching pursuit order, we repeated the analysis while excluding $J$ from the model.
+In Fig.~\ref{fig:fese}(c) we show the correlation coefficients between the descriptors and the residuals of the model fit for this modified MP run.
+Normally MP includes the parameter with the largest correlation coefficient, thereby making the correlation coefficient zero. 
+In this run, we exclude $J$, and find the error correlates strongly with the $J$ descriptor, signifying that the other descriptors cannot correctly describe the Hund's coupling effect. 
+The $U_d$ descriptor correlates with $J$, and therefore can adjust to partially make up for a lack of $J$; however, as a result, we found the error of the final model (without $J$) has a 23\% higher RMSE than normal MP, and the $U_d$ parameter is larger by 0.9(2) eV.
