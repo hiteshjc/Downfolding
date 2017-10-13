@@ -46,6 +46,10 @@ We stop selecting terms in the model when all other descriptors' correlation coe
 With this criteria, the next parameter decreases the RMSE by less than 0.01 eV.
 For example, $U_p$, an on-site interaction for the Se $p$-electrons, does not correlate strongly enough with the residuals, and therefore was excluded from the model.
 The states sampled consisted of singles and doubles excitations from PBE0 calculations with total spin 0, 2, and 4, which were then relaxed via a DMC projection.
+243 states fit within an energy window of 8 eV from the ground state, and were selected as the low energy space.
+Out of these states, 8 states because the sum of all occupation descriptors was more than 0.5 less than the number of electrons.
+These states generally have a significant iron $p$ component relative to the ground state, and therefore were excluded, as they are not describable without several additional parameters describing the iron $p$ states.
+\BDB{This might be simplified...}
 
 Applying the MP approach to the system produced reasonable parameters and suggested a separation of interaction energies consistent with intuition from previous work on iron-based superconductors in the literature.
 Analysis of the MP results are shown in Fig.~\ref{fig:fese}. 
