@@ -7,7 +7,10 @@ where we have completely avoided the \textit{ab-initio} related complications of
 from \textit{exact} eigenstates themselves to downfold from a lattice model with more orbitals (3-band model) 
 to one with fewer orbitals (1-band model). We then gradually increase the complexity of the problems we address 
 by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and graphene 
-(with up to 32 carbons on a 2D honeycomb lattice). \lucas{don't forget FeSe}
+(with up to 32 carbons on a 2D honeycomb lattice). We also explore AIDMD and the matching pursuit algorithm discussed 
+in section 2, suited for multiple energy scales, for the case of transition metals 
+by considering the diatomic FeSe molecule.% \lucas{don't forget FeSe}
+
 
 \lucas{This paragraph seems somehow out of place to me. While it is true that the choice of the orbitals is important, so is the choice of the effective Hamiltonian and the sampling of the low energy space. This is a good place to point out that one should be looking for those things. }A common occurrence\lucas{For 3/4 of our examples..} in most of our examples is the 1-band Hubbard Hamiltonian, defined as,
 \begin{equation}
@@ -19,7 +22,7 @@ which are obtained from transformations on their bare counterparts.
 This choice is crucial for obtaining accurate Hamiltonians and we highlight it for each example presented.   
 
 \subsection{Three-band Hubbard model to one band Hubbard model at half filling}
-
+\HJC{Still editing - need to incorporate Lucas suggestions and new results for 8 site FCI}
 Our first example is motivated by the high $T_c$ superconducting cuprates~\cite{Bednorz1986} that 
 have parent Mott insulators with rich phase diagrams on electron or hole doping~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. 
 Many works have been devoted to their model Hamiltonians and corresponding parameter 
