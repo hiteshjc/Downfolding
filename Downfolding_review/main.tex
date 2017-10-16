@@ -1,20 +1,24 @@
-\documentclass[prl,12pt,onecolumn,nofootinbib,notitlepage,english,superscriptaddress]{revtex4-1}
+%\documentclass[prl,12pt,onecolumn,nofootinbib,notitlepage,english,superscriptaddress]{revtex4-1}
+\documentclass[utf8,latin9]{frontiersFPHY} 
+%\usepackage[latin9]{inputenc}
+
+\usepackage{url,lineno,microtype,subcaption}
+\usepackage[onehalfspacing]{setspace}
 \renewcommand{\rmdefault}{cmr}
-\usepackage[T1]{fontenc}
-\usepackage[latin9]{inputenc}
+%\usepackage[T1]{fontenc}
 \setcounter{secnumdepth}{2}
 \setcounter{tocdepth}{2}
 \usepackage{color}
-\usepackage{babel}
+%\usepackage{babel}
 \usepackage{latexsym}
 \usepackage{float}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{graphicx}
-\usepackage{times}   %% Times Roman font
+%\usepackage{times}   %% Times Roman font
 \usepackage{esint}
-\usepackage{subfigure}
+%\usepackage{subfigure}
 \usepackage{verbatim}
 \usepackage{braket}
 \usepackage{footmisc}
@@ -23,13 +27,13 @@
 
 \usepackage[unicode=true,pdfusetitle,
  bookmarks=false,colorlinks=true,citecolor=blue,urlcolor=blue,linkcolor=red]{hyperref}
-\makeatletter
+%\makeatletter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
-\special{papersize=\the\paperwidth,\the\paperheight}
+%\special{papersize=\the\paperwidth,\the\paperheight}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
-\@ifundefined{textcolor}{}
-{%
+%\@ifundefined{textcolor}{}
+%{%
  \definecolor{BLACK}{gray}{0}
  \definecolor{WHITE}{gray}{1}
  \definecolor{RED}{rgb}{1,0,0}
@@ -38,15 +42,15 @@
  \definecolor{CYAN}{cmyk}{1,0,0,0}
  \definecolor{MAGENTA}{cmyk}{0,1,0,0}
  \definecolor{YELLOW}{cmyk}{0,0,1,0}
-}
+%}
 
-\@ifundefined{date}{}{\date{}}
-\AtBeginDocument{
+%\@ifundefined{date}{}{\date{}}
+%\AtBeginDocument{
   \def\labelitemi{\(\rhd\)}
-}
+%}
 \makeatother
 
-\setlength{\belowcaptionskip}{-7pt}
+%\setlength{\belowcaptionskip}{-7pt}
 \newcommand{\SAVE}[1]{}
 \newcommand{\HJC}[1]{{\color{RED}{\bf HJC: #1}}}
 \newcommand{\BDB}[1]{{\color{RED}{\bf BDB: #1}}}
@@ -68,31 +72,64 @@
   \phantom{\usebox1}
 }
 
-\begin{document}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+<<<<<<< HEAD
 \renewcommand\abstractname{}
 %\title{From real materials to model lattice Hamiltonians: multi-scale modelling of strongly correlated electronic systems 
  %      with information from many body wavefunctions}
 \title{From real materials to model lattice Hamiltonians using \textit{ab-initio} density matrix downfolding}
+=======
+\linenumbers
 
-\author{Hitesh J. Changlani}
-\affiliation{Department of Physics and Astronomy, Johns Hopkins University, Baltimore, Maryland 21218, USA}
-\author{Huihuo Zheng}
-\affiliation{
-Argonne Leadership Computing Facility, Argonne National Laboratory, 9700 South Cass Avenue, Lemont, 60439, Illinois, USA}
-\author{Kiel Williams}
-\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
-1110 West Green St, Urbana IL 61801, USA}
-\author{Brian Busemeyer}
-\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
-1110 West Green St, Urbana IL 61801, USA}
-\author{Lucas K. Wagner}
-\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
-1110 West Green St, Urbana IL 61801, USA}
-\date{\today}
+\def\keyFont{\fontsize{8}{11}\helveticabold }
+\def\firstAuthorLast{Hitesh J. Changlani et al} %use et al only if is more than 1 author
+\def\Authors{Hitesh J. Changlani\,$^{1}$, Huihuo Zheng\,$^{2}$ Kiel Williams\,$^{3}$, Brian Busemeyer\,$^{3}$, and Lucas K. Wagner\,$^{3}$}
+% Affiliations should be keyed to the author's name with superscript numbers and be listed as follows: Laboratory, Institute, Department, Organization, City, State abbreviation (USA, Canada, Australia), and Country (without detailed address information such as city zip codes or street names).
+% If one of the authors has a change of address, list the new address below the correspondence details using a superscript symbol and use the same symbol to indicate the author in the author list.
+\def\Address{$^{1}$Department of Physics and Astronomy, Johns Hopkins University, Baltimore, Maryland 21218, USA \\
+$^{2}$Argonne Leadership Computing Facility, Argonne National Laboratory, 9700 South Cass Avenue, Lemont, 60439, Illinois, USA\\
+$^{3}$Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
+1110 West Green St, Urbana IL 61801, USA }
+% The Corresponding Author should be marked with an asterisk
+% Provide the exact contact address (this time including street name and city zip code) and email of the corresponding author
+\def\corrAuthor{XXX}
+
+\def\corrEmail{email@uni.edu}
+
+\begin{document}
+\onecolumn
+\firstpage{1}
+
+%\renewcommand\abstractname{}
+\title[Multi-scale modelling]{From real materials to model lattice Hamiltonians: multi-scale modelling of strongly correlated electronic systems 
+       with information from many body wavefunctions}
+\author[\firstAuthorLast ]{\Authors} %This field will be automatically populated
+\address{} %This field will be automatically populated
+\correspondance{} %This field will be automatically populated
+>>>>>>> e61c5335c049d05855f550a1e33cd79f32d385db
+
+\extraAuth{}
 \maketitle
+%\author{Hitesh J. Changlani}
+%\affiliation{Department of Physics and Astronomy, Johns Hopkins University, Baltimore, Maryland 21218, USA}
+%\author{Huihuo Zheng}
+%\affiliation{
+%Argonne Leadership Computing Facility, Argonne National Laboratory, 9700 South Cass Avenue, Lemont, 60439, Illinois, USA}
+%\author{Kiel Williams}
+%\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
+%1110 West Green St, Urbana IL 61801, USA}
+%\author{Brian Busemeyer}
+%\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
+%1110 West Green St, Urbana IL 61801, USA}
+%\author{Lucas K. Wagner}
+%\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
+%1110 West Green St, Urbana IL 61801, USA}
+%\date{\today}
+%\maketitle
 
-\textbf{
+%\textbf{
+\begin{abstract}
+\section{}
 Given a realistic quantum material with all its intrinsic complications, how does one develop a 
 simple reliable model for understanding its properties? Theoretical insight has been the key driver of 
 this process leading to simple few-band pictures. When the interactions are comparable 
@@ -109,8 +146,10 @@ and whose validity can be systematically checked.
 We emphasize that determining the effective Hamiltonian reliably is crucial for 
 several applications in physics and chemistry not only for quantitative accuracy, but also a 
 correct qualitative picture of strongly correlated materials. 
-}
-
+\tiny
+ \keyFont{ \section{Keywords:} downfolding, effective model, strongly correlated system} %All article types: you may provide up to 8 keywords; at least 5 are mandatory.
+\end{abstract}
+%}
 \input{intro.tex}
 \input{theory.tex}
 \input{threeband.tex}
@@ -119,7 +158,8 @@ correct qualitative picture of strongly correlated materials.
 \input{fese.tex}
 \input{conclusion.tex}
 
-\bibliographystyle{unsrt}
-\bibliography{refs}
+%\bibliographystyle{unsrt}
+\bibliographystyle{frontiersinHLTH&FPHY} 
+\bibliography{a}
 
 \end{document}

@@ -6,7 +6,7 @@
 
 \subsection{Theory} 
 
-Suppose we start with a quantum system with Hamiltonian $H$ and Hilbert space ${\cal H}$.
+Suppose we start with a quantum system with Hamiltonian $H$ and Hilbert space ${\mathcal H}$.
 
 \begin{definition}
 $E[\Psi] = \frac{\bra{\Psi}H\ket{\Psi}}{\braket{\Psi|\Psi}}$
@@ -14,16 +14,16 @@ $E[\Psi] = \frac{\bra{\Psi}H\ket{\Psi}}{\braket{\Psi|\Psi}}$
 
 
 \begin{definition}
-Let ${\cal H}$ be a Hilbert space. Then ${\cal LE}(H,N)$ is a subset of ${\cal H}$ spanned by $N$ vectors given by the lowest energy solutions to $H\ket{\Phi_i}=E_i{\Phi_i}$. 
+Let ${\mathcal H}$ be a Hilbert space. Then ${\mathcal LE}(H,N)$ is a subset of ${\mathcal H}$ spanned by $N$ vectors given by the lowest energy solutions to $H\ket{\Phi_i}=E_i{\Phi_i}$. 
 \end{definition}
 
 \begin{definition}
-$H_{eff}$ is an operator on the Hilbert space ${\cal LE(H,N)}$.	\lucas{Does this need to be linear?} 
+$H_{eff}$ is an operator on the Hilbert space ${\mathcal LE(H,N)}$.	\lucas{Does this need to be linear?} 
 \end{definition}
 
 
 \begin{definition}
-The effective model $E_{eff}[\Psi]=\frac{\bra{\Psi}H_{eff}\ket{\Psi}}{\braket{\Psi|\Psi}}$ is a functional from ${\cal LE} \rightarrow \mathbb{R}$
+The effective model $E_{eff}[\Psi]=\frac{\bra{\Psi}H_{eff}\ket{\Psi}}{\braket{\Psi|\Psi}}$ is a functional from ${\mathcal LE} \rightarrow \mathbb{R}$
 \end{definition}
 
 
@@ -38,7 +38,7 @@ This has been proven already by \lucas{find citation}
 
 
 \begin{theorem} 	
-If $E_{eff}[\Psi] = E[\Psi], \forall \ket{\Psi} \in {\cal LE}$, then $H_{eff} \ket{\Phi_i} = E_i\ket{\Phi_i}$ for all eigenstates $\ket{\Phi_i}\in {\cal LE}$.
+If $E_{eff}[\Psi] = E[\Psi], \forall \ket{\Psi} \in {\mathcal LE}$, then $H_{eff} \ket{\Phi_i} = E_i\ket{\Phi_i}$ for all eigenstates $\ket{\Phi_i}\in {\mathcal LE}$.
 \end{theorem}
 \begin{proof}
 	Suppose that $\ket{\Phi_i}$ is an eigenstate of $H$. Then 
@@ -50,18 +50,18 @@ Since $E_{eff}[\Psi] = E[\Psi]$,
 \begin{equation}
 	\left.\frac{\partial E_{eff}[\Psi]}{\partial\Psi}\right|_{\Psi=\Phi_i} = 0 
 \end{equation}
-for $\ket{\Psi} \in {\cal LE}$. Using Theorem~\ref{theorem:criticalpoint}, $H_{eff} \ket{\Phi_i} = E_i\ket{\Phi_i}$. 
+for $\ket{\Psi} \in {\mathcal LE}$. Using Theorem~\ref{theorem:criticalpoint}, $H_{eff} \ket{\Phi_i} = E_i\ket{\Phi_i}$. 
 Similarly, if the derivative is not zero, then the wave function must not be an eigenstate.
 \end{proof}
 
 We have thus reduced the problem of finding an effective Hamiltonian $H_{eff}$ that reproduces the low-energy spectrum of $H$ to matching the corresponding energy functionals $E[\Psi]$ and $E_{eff}[\Psi]$. 
-An important result of this is that it is not necessary to diagonalize either of the Hamiltonians; one must only be able to select wave functions from the low-energy space ${\cal LE}$.
+An important result of this is that it is not necessary to diagonalize either of the Hamiltonians; one must only be able to select wave functions from the low-energy space ${\mathcal LE}$.
 As we shall see, this can be substantially easier than attaining full eigenstates.
 
 
 The theory presented above maps coarse-graining into a functional approximation problem. 
 This is still rather intimidating, since even supposing one can generate wave functions in the low-energy space, they are still complicated objects in a very large space.
-An effective way to accomplish this is through the use of descriptors, $d_i[\Psi]$, which map from ${\cal H} \rightarrow \mathbb{R}$.
+An effective way to accomplish this is through the use of descriptors, $d_i[\Psi]$, which map from ${\mathcal H} \rightarrow \mathbb{R}$.
 Then we can approximate the energy functional as follows
 \begin{equation}
 E_{eff}[\Psi] \simeq \sum_i f_i(d_i[\Psi]),
@@ -83,7 +83,7 @@ This will allow us to use data analysis techniques to efficiently describe $E_{e
 \begin{figure*}
 \begin{tikzpicture}[scale=2,node distance = 3cm, auto]
     % Place nodes
-    \node [block] (wfs) {Generate $\ket{\Psi_i} \in {\cal LE}$};
+    \node [block] (wfs) {Generate $\ket{\Psi_i} \in {\mathcal LE}$};
     \node [block, right of=wfs] (descriptors) {Generate $d_j[\Psi_i]$,$E[\Psi_i]$};
     \node [block, right of=descriptors] (assess) {Assess descriptors};
     \node [block, right of=assess] (ansatz) {Ansatz: $E_i \simeq \sum_j p_j d_{ij}$};
@@ -111,7 +111,7 @@ This will allow us to use data analysis techniques to efficiently describe $E_{e
 A practical protocol is presented in Fig~\ref{fig:protocol}. 
 Let's go through this step by step.
 
-\paragraph{Generating $\ket{\Psi_i}\in {\cal LE}$}. 
+\paragraph{Generating $\ket{\Psi_i}\in {\mathcal LE}$}. 
 Ideally one would be able to sample the entire low-energy space. 
 Typically, however, the space will be too large and it will need to be sampled. 
 The optimal wave functions to use depend on the models one expects to fit, which we will discuss in detail  in later steps. 
@@ -133,7 +133,7 @@ One is not limited to static orbital descriptors; they may have a more complex f
 \paragraph{Assess descriptors}
 At this point, one has collected the data $E_i$ and $d_{ij}$. 
 If two descriptors have a large correlation coefficient, then they are redundant in the data set. 
-This could either mean that the sampling of the low-energy Hilbert space ${\cal LE}$ was insufficient, or that they are both proxies for the same differences in states. 
+This could either mean that the sampling of the low-energy Hilbert space ${\mathcal LE}$ was insufficient, or that they are both proxies for the same differences in states. 
 If two data points have the same or very similar descriptor sets, but different energies, then either the descriptor set is not enough to describe the variations in the low-energy space, or the sampling has generated states that are not in the low-energy space.
 To resolve these possibilities, one should analyze the difference between the two wave functions.  
 \lucas{Choosing the reduced set is not so easy. If you choose wrong then you can get intruder states once you solve the effective model. Super subtle point which is not so easy to get across. That is, which descriptors we use interacts with the model Hilbert space. We want the edges of our Hilbert space to be represented in the }
