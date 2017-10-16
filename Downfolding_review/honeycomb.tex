@@ -32,9 +32,10 @@ However, at least for certain aspects, the long ranged part can be considered as
 onsite Coulomb interaction $U$ at low energy \cite{Schuler2013, Changlani2015}. 
 Therefore, we expect that Eq.~\eqref{eq:oneband} still remains a reasonable description of the low energy physics. 
 \begin{figure}[hbt]
+\centering
 \includegraphics[width=0.40\textwidth]{./Figures/c_pi.png}
 \includegraphics[width=0.40\textwidth]{./Figures/h_wan.png}
-\caption{Wannier orbitals constructed from Kohn-Sham orbitals: (a) graphene $\pi$ orbitals; (b) hydrogen S orbital. }
+\caption{Wannier orbitals constructed from Kohn-Sham orbitals: (A) graphene $\pi$ orbitals; (B) hydrogen S orbital. }
 \label{fig:honeycomb_wan}
 \end{figure}
 
@@ -45,23 +46,24 @@ Slater-Jastrow wavefunctions constructed from occupied $\pi$ Kohn-Sham orbitals 
 were performed on a $3\times3$ cell (32 carbons or hydrogens) and the energy and RDMs of these wavefunctions were
 evaluated with VMC. (We expect further renormalizations in the corresponding DMC calculations~\cite{Changlani2015}, 
 but we do not explore that aspect here). The error bars on our downfolded parameters are estimated using the Jackknife method. 
-The results from our calculations are summarized in Table~\ref{tab:grpheffm} 
-and Fig.~\ref{fig:ne_aidmd_gh}.% shows the quality of the fits for the three systems.
+The results from our calculations are summarized in %Table~\ref{tab:grpheffm} 
+Figure.~\ref{fig:ne_aidmd_gh}.% shows the quality of the fits for the three systems.
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-Parameters [eV] & $\;\;\;\;$ graphene $\;\;\;$ & $\pi$-only graphene & $\;\;\;$hydrogen$\;\;\;$ \\
-\hline
-\hline
-$t$ & 3.61(1) & 2.99(1) & 3.73(1)\\
-$U$ & 7.16(3) & 14.8(2) & 9.47(5)\\
-\hline
-\end{tabular}
-\caption{Downfolding parameters for graphene and hydrogen.}
-\label{tab:grpheffm}
-\end{table} 
+%\begin{table}[ht]
+%\centering
+%\caption{Downfolding parameters for graphene and hydrogen.}
+%\begin{tabular}{|c|c|c|c|}
+%\hline
+%Parameters [eV] & $\;\;\;\;$ graphene $\;\;\;$ & $\pi$-only graphene & $\;\;\;$hydrogen$\;\;\;$ \\
+%\hline
+%\hline
+%$t$ & 3.61(1) & 2.99(1) & 3.73(1)\\
+%$U$ & 7.16(3) & 14.8(2) & 9.47(5)\\
+%\hline
+%\end{tabular}
+
+%\label{tab:grpheffm}
+%\end{table} 
 
 \begin{figure*}
 \centering
@@ -70,7 +72,7 @@ $U$ & 7.16(3) & 14.8(2) & 9.47(5)\\
      \subfigimg[clip, width=0.325\linewidth]{(b)}{./Figures/grp_pi_tu.pdf}
     \subfigimg[clip, width=0.325\linewidth]{(c)}{./Figures/h_tu.pdf}
       \end{tabular}
-\caption{Comparison of \textit{ab initio} (x-axis) and fitted energies (y-axis) of the 3$\times$3 periodic unit cell of graphene and hydrogen lattice: (a) graphene; (b) $\pi$-only graphene; (c) hydrogen lattice.}\label{fig:ne_aidmd_gh}
+\caption{Comparison of \textit{ab initio} (x-axis) and fitted energies (y-axis) of the 3$\times$3 periodic unit cell of graphene and hydrogen lattice: (A) graphene; (B) $\pi$-only graphene; (C) hydrogen lattice.}\label{fig:ne_aidmd_gh}
 \end{figure*}
 
 
