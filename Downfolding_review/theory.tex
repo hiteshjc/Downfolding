@@ -9,16 +9,16 @@
 Suppose we start with a quantum system with Hamiltonian $H$ and Hilbert space ${\mathcal H}$.
 
 \begin{definition}
-$E[\Psi] = \frac{\bra{\Psi}H\ket{\Psi}}{\braket{\Psi|\Psi}}$
+Let the energy functional be $E[\Psi] = \frac{\bra{\Psi}H\ket{\Psi}}{\braket{\Psi|\Psi}}$ for a wavefunction $\ket{\Psi} \in {\mathcal H}$.
 \end{definition}
 
 
 \begin{definition}
-Let ${\mathcal H}$ be a Hilbert space. Then ${\mathcal LE}(H,N)$ is a subset of ${\mathcal H}$ spanned by $N$ vectors given by the lowest energy solutions to $H\ket{\Phi_i}=E_i{\Phi_i}$. 
+Let ${\mathcal LE}(H,N)$ be a subset of ${\mathcal H}$ spanned by $N$ vectors given by the lowest energy solutions to $H\ket{\Phi_i}=E_i{\Phi_i}$. 
 \end{definition}
 
 \begin{definition}
-$H_{eff}$ is an operator on the Hilbert space ${\mathcal LE(H,N)}$.	\lucas{Does this need to be linear?} 
+$H_{eff}$ is an operator on the Hilbert space ${\mathcal LE(H,N)}$.	 
 \end{definition}
 
 
@@ -33,12 +33,50 @@ The effective model $E_{eff}[\Psi]=\frac{\bra{\Psi}H_{eff}\ket{\Psi}}{\braket{\P
 $E[\Psi]$ has a critical point only where $\Psi$ is an eigenstate of $H$.
 \end{theorem}
 \begin{proof}
+%<<<<<<< HEAD
 \begin{eqnarray}
 \frac{\delta }{\delta \Psi^*}  E[\Psi] = \frac{\delta}{\delta \Psi^*}\frac{\langle \Psi |H|\Psi\rangle}{\langle \Psi |\Psi\rangle} = \frac{H|\Psi\rangle}{\langle \Psi |\Psi\rangle} - \langle \Psi |H|\Psi\rangle \frac{|\Psi \rangle}{|\langle \Psi | \Psi\rangle|^2} =\frac{ (H-E[\Psi])|\Psi\rangle }{|\langle\Psi|\Psi\rangle|^2}
 \end{eqnarray}
 Therefore, 
 $\frac{\delta }{\delta \Psi^*}  E[\Psi] = 0$ if and only if $(H-E[\Psi])|\Psi\rangle =0$, i.e., $\Psi$ is an eigenvector of $H$. 
 %This has been proven already by \lucas{find citation} 	
+%=======
+%\lucas{This is not a new result, but I can't find a good proof of this. } 
+%This can be proved by using a spectral expansion. 
+%Write $\ket{\Psi} = \sum_i c_i \ket{\Phi_i}$, where $H\ket{\Phi_i}=E_i\ket{\Phi_i}$. 
+%Then 
+%\begin{equation}
+%E[\Psi] = \frac{\sum_i c_i^2 E_i}{\sum_i c_i^2}.
+%\end{equation}
+%Taking the derivative, 
+%\begin{align}
+%\frac{\partial E[\Psi]}{\partial c_j } &= \frac{2 c_j E_j}{\sum_i c_i^2} - \frac{2c_j \sum_i c_i^2 E_i}{(\sum_i c_i^2)^2} \\
+%&= 2c_j \left(\frac{E_j}{\sum_i c_i^2} - \frac{\sum_i c_i^2 E_i}{(\sum_i c_i^2)^2}\right) 
+%\end{align}
+%Since $\frac{\partial E[a\Psi]}{\partial c_j } = \frac{\partial E[\Psi]}{\partial c_j }$ for any constant $a$, let's consider only normalized wave functions.
+%Then the equation for the critical points is 
+%\begin{equation}
+%c_j\left(E_j - \sum_i c_i^2 E_i\right) = c_j (E_j - E[\Psi]) = 0	
+%\label{eqn:denergyfunctional}
+%\end{equation}
+
+
+First, let's show that all eigenstates are critical points. 
+Suppose $\Psi$ is an eigenfunction. 
+Then either $c_j=0$ or $E_j = E[\Psi]$, so Eqn~\ref{eqn:denergyfunctional} is satisfied.  
+
+
+Now, let's show that all critical points are eigenstates. 
+We will do this using the contrapositive.
+Suppose that $\ket{\Psi}$ is not an eigenstate. 
+Then there are at least two coefficients, $j_1$ and $j_2$ such that $E_{j_1} \neq E_{j_2}$, $c_{j_1}\neq 0$, and $c_{j_2}\neq 0$.\footnote{If  $E_{j_1} = E_{j_2}$ for all non-zero coefficients, then $\ket{\Psi}$ is an eigenstate.}
+Thus in order for Eqn~\ref{eqn:denergyfunctional} to be satisfied for all $j$, we must have 
+\begin{equation}
+E_{j_1} = E[\Psi] \text{ and } E_{j_2} = E[\Psi].
+\end{equation}
+This is not possible because $E_{j_1} \neq E_{j_2}$. 
+Therefore, all eigenstates are critical points and all non-eigenstates are not critical points.
+>>>>>>> 45818ae14e27fd718f6b886fb13ba91499b32830
 \end{proof}
 
 
@@ -72,7 +110,7 @@ Then we can approximate the energy functional as follows
 E_{eff}[\Psi] \simeq \sum_i f_i(d_i[\Psi]),
 \end{equation}
 where $f_i$ are some parameterized functions.
-This will allow us to use data analysis techniques to efficiently describe $E_{eff}$.
+This will allow us to use techniques from statistical learning to efficiently describe $E_{eff}$.
 
 \subsection{Practical protocol}
 
@@ -141,7 +179,7 @@ If two descriptors have a large correlation coefficient, then they are redundant
 This could either mean that the sampling of the low-energy Hilbert space ${\mathcal LE}$ was insufficient, or that they are both proxies for the same differences in states. 
 If two data points have the same or very similar descriptor sets, but different energies, then either the descriptor set is not enough to describe the variations in the low-energy space, or the sampling has generated states that are not in the low-energy space.
 To resolve these possibilities, one should analyze the difference between the two wave functions.  
-\lucas{Choosing the reduced set is not so easy. If you choose wrong then you can get intruder states once you solve the effective model. Super subtle point which is not so easy to get across. That is, which descriptors we use interacts with the model Hilbert space. We want the edges of our Hilbert space to be represented in the }
+\lucas{Choosing the reduced set is not so easy. If you choose wrong then you can get intruder states once you solve the effective model. Super subtle point which is not so easy to get across. That is, which descriptors we use interacts with the model Hilbert space. We want the edges of our Hilbert space to be represented in or at least near our sampled wave functions. This is why it's good to have eigenstates in your set if possible; they are guaranteed to be on the corners of your descriptor space if everything is working correctly.}
 
 
 \paragraph{Ansatz: $E_i \simeq \sum_i  d_{ij} p_j$} 
