@@ -38,7 +38,7 @@ $E[\Psi]$ has a critical point only where $\Psi$ is an eigenstate of $H$.
 \frac{\delta }{\delta \Psi^*}  E[\Psi] = \frac{\delta}{\delta \Psi^*}\frac{\langle \Psi |H|\Psi\rangle}{\langle \Psi |\Psi\rangle} = \frac{H|\Psi\rangle}{\langle \Psi |\Psi\rangle} - \langle \Psi |H|\Psi\rangle \frac{|\Psi \rangle}{|\langle \Psi | \Psi\rangle|^2} =\frac{ (H-E[\Psi])|\Psi\rangle }{|\langle\Psi|\Psi\rangle|^2}
 \end{eqnarray}
 Therefore, 
-$\frac{\delta }{\delta \Psi^*}  E[\Psi] = 0$ if and only if $(H-E[\Psi])|\Psi\rangle =0$, i.e., $\Psi$ is an eigenvector of $H$. 
+$\frac{\delta }{\delta \Psi^*}  E[\Psi] = 0$ if and only if $(H-E[\Psi])|\Psi\rangle =0$, i.e., $\Psi$ is an eigenvector of $H$ corresponding to eigenvalue $E[\Psi]$.  
 %This has been proven already by \lucas{find citation} 	
 %=======
 %\lucas{This is not a new result, but I can't find a good proof of this. } 
@@ -61,22 +61,22 @@ $\frac{\delta }{\delta \Psi^*}  E[\Psi] = 0$ if and only if $(H-E[\Psi])|\Psi\ra
 %\end{equation}
 
 
-First, let's show that all eigenstates are critical points. 
-Suppose $\Psi$ is an eigenfunction. 
-Then either $c_j=0$ or $E_j = E[\Psi]$, so Eqn~\ref{eqn:denergyfunctional} is satisfied.  
+%First, let's show that all eigenstates are critical points. 
+%Suppose $\Psi$ is an eigenfunction. 
+%Then either $c_j=0$ or $E_j = E[\Psi]$, so Eqn~\ref{eqn:denergyfunctional} is satisfied.  
 
 
-Now, let's show that all critical points are eigenstates. 
-We will do this using the contrapositive.
-Suppose that $\ket{\Psi}$ is not an eigenstate. 
-Then there are at least two coefficients, $j_1$ and $j_2$ such that $E_{j_1} \neq E_{j_2}$, $c_{j_1}\neq 0$, and $c_{j_2}\neq 0$.\footnote{If  $E_{j_1} = E_{j_2}$ for all non-zero coefficients, then $\ket{\Psi}$ is an eigenstate.}
-Thus in order for Eqn~\ref{eqn:denergyfunctional} to be satisfied for all $j$, we must have 
-\begin{equation}
-E_{j_1} = E[\Psi] \text{ and } E_{j_2} = E[\Psi].
-\end{equation}
-This is not possible because $E_{j_1} \neq E_{j_2}$. 
-Therefore, all eigenstates are critical points and all non-eigenstates are not critical points.
->>>>>>> 45818ae14e27fd718f6b886fb13ba91499b32830
+%Now, let's show that all critical points are eigenstates. 
+%We will do this using the contrapositive.
+%Suppose that $\ket{\Psi}$ is not an eigenstate. 
+%Then there are at least two coefficients, $j_1$ and $j_2$ such that $E_{j_1} \neq E_{j_2}$, $c_{j_1}\neq 0$, and $c_{j_2}\neq 0$.\footnote{If  $E_{j_1} = E_{j_2}$ for all non-zero coefficients, then $\ket{\Psi}$ is an eigenstate.}
+%Thus in order for Eqn~\ref{eqn:denergyfunctional} to be satisfied for all $j$, we must have 
+%\begin{equation}
+%E_{j_1} = E[\Psi] \text{ and } E_{j_2} = E[\Psi].
+%\end{equation}
+%This is not possible because $E_{j_1} \neq E_{j_2}$. 
+%Therefore, all eigenstates are critical points and all non-eigenstates are not critical points.
+%>>>>>>> 45818ae14e27fd718f6b886fb13ba91499b32830
 \end{proof}
 
 
