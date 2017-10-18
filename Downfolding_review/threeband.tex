@@ -193,8 +193,8 @@ hybridization parameter $\alpha_1$). Also, the different estimates of $U/t$ are 
 for the case of larger $\Delta$ indicating the increased effectiveness of the 1-band model 
 in the limit of large $\Delta$. 
 
-A primary quality check for the model is its ability to reproduce the low energy spectrum. 
-Fig.~\ref{fig:energyfit} shows the comparison of the 1-band vs 3-band model energy gaps 
+One important check for the downfolded model is its ability to reproduce the low energy spectrum of 
+the full model. Fig.~\ref{fig:energyfit} shows the comparison of the 1-band vs 3-band model energy gaps 
 (here only comprising of $6$ states). In all cases, the fit is reasonably good; 
 the best fits seen at larger $U_d$ and larger $\Delta$ consistent with our expectations 
 from the previous plots. We re-emphasize that once the density matrices were transformed 
@@ -215,6 +215,36 @@ and $\Delta/t_{pd}=5$ (bottom row)}
 \label{fig:energyfit} 
 \end{figure}	
 
-\HJC {Predictivity} Ultimately, the whole reason for downfolding is to reduce the effective Hilbert space. 
-Finally, we show that the obtained parameters are ....
+We motivated the need for downfolding by suggesting that one of its primary objectives 
+is to reduce the size of the effective Hilbert space; the downfolded Hamiltonian enables 
+simulations of a bigger unit cell. To show that this actually works well in practice for the 3-band case, 
+we consider the $2\sqrt{2} \times 2 \sqrt{2}$ square unit cell, comprising of 8 copper and 16 oxygen orbitals. 
+For the six test cases presented in Fig.~\ref{fig:energyfit}, we performed an exact diagonalization 
+(or full configuration interaction) calculation at half filling, the Hilbert space comprises of 112911876 basis states. 
+Roughly 200 Lanczos iterations were carried out, enabling convergence of the lowest four energies. 
+We compared the lowest gaps with the corresponding calculation on the single 
+band model with the same square geometry (Hilbert space size of only 4900) using the downfolded 
+parameters obtained from the smaller $2 \times 2 cell$. Our results are summarized in Table xx
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{c||c|c||c|c||c|c|}
+\hline
+Case                             & $E_1-E_0$ & $E_1-E_0$ & $E_2-E_0$ & $E_2-E_0$ & $E_3-E_0$ & $E_3-E_0$ \\
+\hline
+$\Delta/t_{pd}$=3,$U_d/t_{pd}=4$ &           &           &           &           &           &        \\ 
+$\Delta/t_{pd}$=3,$U_d/t_{pd}=8$ &           &           &           &           &           &        \\
+$\Delta/t_{pd}$=3,$U_d/t_{pd}=12$ &           &           &           &           &           &       \\
+\hline
+\hline
+$\Delta/t_{pd}$=5,$U_d/t_{pd}=4$ &           &           &           &           &           &        \\
+$\Delta/t_{pd}$=5,$U_d/t_{pd}=8$ &           &           &           &           &           &        \\
+$\Delta/t_{pd}$=5,$U_d/t_{pd}=12$ &           &           &           &           &           &       \\
+\hline
+\hline
+\end{tabular}
+\label{tab:predictivity}
+\end{table} 
+
 
