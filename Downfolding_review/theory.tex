@@ -33,7 +33,12 @@ The effective model $E_{eff}[\Psi]=\frac{\bra{\Psi}H_{eff}\ket{\Psi}}{\braket{\P
 $E[\Psi]$ has a critical point only where $\Psi$ is an eigenstate of $H$.
 \end{theorem}
 \begin{proof}
-This has been proven already by \lucas{find citation} 	
+\begin{eqnarray}
+\frac{\delta }{\delta \Psi^*}  E[\Psi] = \frac{\delta}{\delta \Psi^*}\frac{\langle \Psi |H|\Psi\rangle}{\langle \Psi |\Psi\rangle} = \frac{H|\Psi\rangle}{\langle \Psi |\Psi\rangle} - \langle \Psi |H|\Psi\rangle \frac{|\Psi \rangle}{|\langle \Psi | \Psi\rangle|^2} =\frac{ (H-E[\Psi])|\Psi\rangle }{|\langle\Psi|\Psi\rangle|^2}
+\end{eqnarray}
+Therefore, 
+$\frac{\delta }{\delta \Psi^*}  E[\Psi] = 0$ if and only if $(H-E[\Psi])|\Psi\rangle =0$, i.e., $\Psi$ is an eigenvector of $H$. 
+%This has been proven already by \lucas{find citation} 	
 \end{proof}
 
 

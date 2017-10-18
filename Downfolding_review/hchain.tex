@@ -10,34 +10,20 @@ in terms of primarily $s$-like orbitals, whose form we discuss here.
 For a given $r$, we first obtain single-particle Kohn-Sham orbitals from a set of spin-unrestricted and 
 spin-restricted DFT-PBE calculations. The localized orbital basis upon which the density matrices (descriptors) 
 are evaluated is obtained by generating intrinsic atomic orbitals (IAO) from the Kohn-Sham orbitals 
-orthogonalized using the L\"owdin procedure. The resulting orbitals are shown in Fig.~\ref{fig:h10orb}. These are the orbitals that enter the 1-band Hubbard Hamiltonian. 
-
-%\begin{figure}[]
-%\centering
-%\subfigure[KS 1]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks1.png}}\quad
-%\subfigure[KS 2]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks2.png}}\quad
-%\subfigure[KS 3]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks3.png}}\quad
-%\subfigure[KS 4]{\includegraphics[width=0.20\linewidth]{./Figures/h4_ks4.png}}
-%\\
-%\subfigure[Wannier 1]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan1.png}}\quad
-%\subfigure[Wannier 2]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan2.png}}\quad
-%\subfigure[Wannier 3]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan3.png}}\quad
-%\subfigure[Wannier 4]{\includegraphics[width=0.20\linewidth]{./Figures/h4_wan4.png}}
-%\caption{\HJC{Put IAO here} Kohn-Sham orbitals (upper panel) from DFT calculations with PBE exchange-exchange correlation functional, and Wannier orbitals (lower panel) constructed through a unitary transformation of Kohn-Sham orbitals.}\label{fig:h4orb}
-%\end{figure}
+orthogonalized using the L\"owdin procedure. The resulting orbitals are shown in Figure~\ref{fig:h10orb}. These are the orbitals that enter the 1-band Hubbard Hamiltonian. 
 
 \begin{figure}[]
 \centering
 %\subfigure[Separation = $1$ \AA]{
-\includegraphics[width=0.25\linewidth]{{./Figures/length1_h_paper_view.orb5}.png}
+\includegraphics[width=0.20\linewidth]{{./Figures/length1_h_paper_view.orb5}.png}\quad
 %}
 %\quad
 %\subfigure[Separation = $1.5$ \AA]{
-\includegraphics[width=0.25\linewidth]{{./Figures/length1.5_h_paper_view.orb5}.png}%}\quad
+%\includegraphics[width=0.25\linewidth]{{./Figures/length1.5_h_paper_view.orb5}.png}%}\quad
 
 %\subfigure[Separation = $2$ \AA]{
-\includegraphics[width=0.25\linewidth]{{./Figures/length2_h_paper_view.orb5}.png}%}
-\caption{Orthogonalized intrinsic atomic orbitals for interatomic hydrogen separation distances equal to $1$, $1.5$, and $2$ \AA \:respectively}\label{fig:h10orb}
+\includegraphics[width=0.20\linewidth]{{./Figures/length2_h_paper_view.orb5}.png}%}
+\caption{Orthogonalized intrinsic atomic orbitals for interatomic hydrogen separation distances equal to $1$, and $2$ \AA \:respectively. }\label{fig:h10orb}%,% $1.5$, and $2$ \AA \:respectively}\label{fig:h10orb}
 \end{figure}
 
 To generate a database of wavefunctions needed for the N-AIDMD, we produce a set of Slater-Jastrow 
@@ -73,7 +59,7 @@ and the value of $U/t$ rises.
 
 % Based on these values and the extensive body of work in 1D systems, we expect a Luttinger liquid 
 %to insulator transition to occur at $U/t=...$ corresponding to $r=...$.  
-The single band Hubbard model does not describe hydrogen chain well at small distance. The one dimensional Hubbard model with $U/t>0$ will always result in an Mott insulating state. However, the metal-to-insulator transition happens at $r_c=\sim1.8$\AA~ for a hydrogen chain \cite{Stella2011}. This indicates that at small distance, the higher energy orbitals play nontrivial role in stabilizing the metallic state of hydrogen, instead of merely renormalizing the effective strength of U. Meanwhile, at small distance, other interactions term like nearest neighbor Coulomb interaction and Heisenberg exchange interactions also become important at $r<r_c$ \cite{ZhengThesis}. 
+The single band Hubbard model does not describe hydrogen chain well at small distance. The one dimensional Hubbard model with $U/t>0$ will always result in an Mott insulating state. However, the metal-to-insulator transition happens at $r_c=\sim1.8$\AA~ for a hydrogen chain \cite{Stella2011}. This indicates that at small distance, the higher energy orbitals play nontrivial roles in stabilizing the metallic state of hydrogen, instead of merely renormalizing the effective strength of U. Meanwhile, at small distance, other interactions term like nearest neighbor Coulomb interaction and Heisenberg exchange interactions also become important at $r<r_c$ \cite{ZhengThesis}. 
 
 \begin{figure}
 \centering
