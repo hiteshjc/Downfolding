@@ -38,44 +38,6 @@ $E[\Psi]$ has a critical point only where $\Psi$ is an eigenstate of $H$.
 \end{eqnarray}
 Therefore, 
 $\frac{\delta }{\delta \Psi^*}  E[\Psi] = 0$ if and only if $(H-E[\Psi])|\Psi\rangle =0$, i.e., $\Psi$ is an eigenvector of $H$ corresponding to eigenvalue $E[\Psi]$.  
-%This has been proven already by \lucas{find citation} 	
-%=======
-%\lucas{This is not a new result, but I can't find a good proof of this. } 
-%This can be proved by using a spectral expansion. 
-%Write $\ket{\Psi} = \sum_i c_i \ket{\Phi_i}$, where $H\ket{\Phi_i}=E_i\ket{\Phi_i}$. 
-%Then 
-%\begin{equation}
-%E[\Psi] = \frac{\sum_i c_i^2 E_i}{\sum_i c_i^2}.
-%\end{equation}
-%Taking the derivative, 
-%\begin{align}
-%\frac{\partial E[\Psi]}{\partial c_j } &= \frac{2 c_j E_j}{\sum_i c_i^2} - \frac{2c_j \sum_i c_i^2 E_i}{(\sum_i c_i^2)^2} \\
-%&= 2c_j \left(\frac{E_j}{\sum_i c_i^2} - \frac{\sum_i c_i^2 E_i}{(\sum_i c_i^2)^2}\right) 
-%\end{align}
-%Since $\frac{\partial E[a\Psi]}{\partial c_j } = \frac{\partial E[\Psi]}{\partial c_j }$ for any constant $a$, let's consider only normalized wave functions.
-%Then the equation for the critical points is 
-%\begin{equation}
-%c_j\left(E_j - \sum_i c_i^2 E_i\right) = c_j (E_j - E[\Psi]) = 0	
-%\label{eqn:denergyfunctional}
-%\end{equation}
-
-
-%First, let's show that all eigenstates are critical points. 
-%Suppose $\Psi$ is an eigenfunction. 
-%Then either $c_j=0$ or $E_j = E[\Psi]$, so Eqn~\ref{eqn:denergyfunctional} is satisfied.  
-
-
-%Now, let's show that all critical points are eigenstates. 
-%We will do this using the contrapositive.
-%Suppose that $\ket{\Psi}$ is not an eigenstate. 
-%Then there are at least two coefficients, $j_1$ and $j_2$ such that $E_{j_1} \neq E_{j_2}$, $c_{j_1}\neq 0$, and $c_{j_2}\neq 0$.\footnote{If  $E_{j_1} = E_{j_2}$ for all non-zero coefficients, then $\ket{\Psi}$ is an eigenstate.}
-%Thus in order for Eqn~\ref{eqn:denergyfunctional} to be satisfied for all $j$, we must have 
-%\begin{equation}
-%E_{j_1} = E[\Psi] \text{ and } E_{j_2} = E[\Psi].
-%\end{equation}
-%This is not possible because $E_{j_1} \neq E_{j_2}$. 
-%Therefore, all eigenstates are critical points and all non-eigenstates are not critical points.
-%>>>>>>> 45818ae14e27fd718f6b886fb13ba91499b32830
 \end{proof}
 
 
@@ -97,8 +59,8 @@ Similarly, if the derivative is not zero, then the wave function must not be an 
 \end{proof}
 
 We have thus reduced the problem of finding an effective Hamiltonian $H_{eff}$ that reproduces the low-energy spectrum of $H$ to matching the corresponding energy functionals $E[\Psi]$ and $E_{eff}[\Psi]$. \HHZ{We still need to find the form of $H_{eff}$ in order to compute $E_{eff}[\Psi]$, right?}
-An important result of this is that it is not necessary to diagonalize either of the Hamiltonians; one must only be able to select wave functions from the low-energy space ${\mathcal LE}$. 
-As we shall see, this can be substantially easier than attaining full eigenstates.
+An important implication of this is that it is not necessary to diagonalize either of the Hamiltonians; one must only be able to select wave functions from the low-energy space ${\mathcal LE}$.
+As we shall see, this can be substantially easier than attaining eigenstates.
 
 
 The theory presented above maps coarse-graining into a functional approximation problem. 
@@ -128,7 +90,7 @@ This will allow us to use techniques from statistical learning to efficiently de
     \node [block, right of=wfs] (descriptors) {Generate $d_j[\Psi_i]$,$E[\Psi_i]$};
     \node [block, right of=descriptors] (assess) {Assess descriptors};
     \node [block, right of=assess] (ansatz) {Ansatz: $E_i \simeq \sum_j p_j d_{ij}$};
-    \node [block, right of=ansatz] (fit) {Fit bounding plane};
+    \node [block, right of=ansatz] (fit) {Fit optimal model};
     \node [result, right of=fit] (model) {Effective model};
     % Draw edges
     \path [line] (wfs) -- (descriptors);
@@ -188,14 +150,17 @@ E[\Psi_i] = \sum_j p_j d_j[\Psi_i],
 which we shorten to 
 \begin{equation}
 {\bf E} = D{\bf p} .
+\label{eqn:EdP}
 \end{equation}
 If this can be done, the fitting problem is reduced to a linear regression optimization.
 More complex functions of the descriptors are also possible, although at the cost of making the effective model more difficult to solve and complicating the fitting procedure.
 
 
-\paragraph{Fit bounding plane}
-\begin{itemize}
-\item Removing redundant descriptors: LASSO, or matching pursuit
-\item The space of descriptors is smaller than the space of wave functions, so some wave functions will map to the same point in descriptor space. In that case, the low-energy space is given by the bounding plane.
-\end{itemize}
+\paragraph{Fit optimal model}
+Finally, one wishes to find a set of parameters such that Eqn~\ref{eqn:EdP} is satisfied as closely as possible. 
+There are many choices to make in this step, which will often depend on the desired properties of the final model. 
+One can imagine choosing different cost functions to minimize, which can also include a penalty for complicated models. 
+In our tests, we have successfully used LASSO\lucas{citation} and matching pursuit techniques\lucas{citation} to select high quality and compact model parameters. 
+A detailed example of using the latter technique is presented in Section~\ref{subsection:fese}.
+
 
