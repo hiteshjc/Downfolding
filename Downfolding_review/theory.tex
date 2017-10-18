@@ -101,7 +101,7 @@ Then we can approximate the energy functional as follows
 E_{eff}[\Psi] \simeq \sum_i f_i(d_i[\Psi]),
 \end{equation}
 where $f_i$ are some parameterized functions.
-This will allow us to use data analysis techniques to efficiently describe $E_{eff}$.
+This will allow us to use techniques from statistical learning to efficiently describe $E_{eff}$.
 
 \subsection{Practical protocol}
 
@@ -170,7 +170,7 @@ If two descriptors have a large correlation coefficient, then they are redundant
 This could either mean that the sampling of the low-energy Hilbert space ${\mathcal LE}$ was insufficient, or that they are both proxies for the same differences in states. 
 If two data points have the same or very similar descriptor sets, but different energies, then either the descriptor set is not enough to describe the variations in the low-energy space, or the sampling has generated states that are not in the low-energy space.
 To resolve these possibilities, one should analyze the difference between the two wave functions.  
-\lucas{Choosing the reduced set is not so easy. If you choose wrong then you can get intruder states once you solve the effective model. Super subtle point which is not so easy to get across. That is, which descriptors we use interacts with the model Hilbert space. We want the edges of our Hilbert space to be represented in the }
+\lucas{Choosing the reduced set is not so easy. If you choose wrong then you can get intruder states once you solve the effective model. Super subtle point which is not so easy to get across. That is, which descriptors we use interacts with the model Hilbert space. We want the edges of our Hilbert space to be represented in or at least near our sampled wave functions. This is why it's good to have eigenstates in your set if possible; they are guaranteed to be on the corners of your descriptor space if everything is working correctly.}
 
 
 \paragraph{Ansatz: $E_i \simeq \sum_i  d_{ij} p_j$} 
