@@ -9,23 +9,21 @@ to one with fewer orbitals (1-band model). We then gradually increase the comple
 by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and graphene 
 (with up to 32 carbons on a 2D honeycomb lattice). Finally, we use the matching pursuit algorithm discussed 
 in section 2, suited for multiple energy scales, for the case of transition metals 
-by considering the diatomic FeSe molecule.% \lucas{don't forget FeSe}
+by considering the diatomic FeSe molecule.
 
-\lucas{This paragraph seems somehow out of place to me. While it is true that the choice of the orbitals is important, so is the choice of the effective Hamiltonian and the sampling of the low energy space. This is a good place to point out that one should be looking for those things. }A common occurrence
-
-\HJC{Is this better?}
+%\lucas{This paragraph seems somehow out of place to me. While it is true that the choice of the orbitals is important, so is the choice of the effective Hamiltonian and the sampling of the low energy space. This is a good place to point out that one should be looking for those things. }A common occurrence
+\HJC{Lucas, Is this better?}
 In all examples we will highlight the important ingredients associated with AIDMD. First and foremost, is the choice 
 of low energy space or energy window i.e. how our database of wavefunctions was generated. Associated with this is 
-the choice of the one body space in terms of which the effective Hamiltonian is expressed. 
-Finally, we will discuss aspects of the functional forms or parameterizations that are expected to describe our physical 
+the choice of the one body space in terms of which the effective Hamiltonian is expressed. Finally, we discuss 
+aspects of the functional forms or parameterizations that are expected to describe our physical 
 problem. In three out of our four representative examples we work with the single (or 1-) band Hubbard Hamiltonian,
-%\lucas{For 3/4 of our examples..} in most of our examples is the 1-band Hubbard Hamiltonian, defined as,
 \begin{equation}
 	\tilde{H} = -t \;\sum_{\langle i,j \rangle} \tilde{d}_i^{\dagger} \tilde{d}_j + U \;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}
 \label{eq:oneband}
 \end{equation}
 where $t$ and $U$ correspond to downfolded (renormalized) parameters and $\tilde{d}$ are the effective one-particle operators, 
-which are obtained from transformations on their bare counterparts. Note that 
+which are obtained from transformations on their bare counterparts. Thus 
 the determination of effective Hamiltonians is a \emph{dual} problem - what are the composite objects ($\tilde{d}_i$ here) 
 that give a compact description of the low energy physics? and given this choice what 
 are the effective interactions between them?
@@ -47,7 +45,8 @@ oxygen (at site $j$)  respectively and the signs of the hopping $t_{pd}$ between
 $\epsilon_d$,$\epsilon_p$ refer to the orbital energies, 
 $U_d$, $U_p$ refer to strength of onsite Hubbard interactions and $V_{pd}$ refers to the 
 strength of the density-density interactions between a neighboring $p$ and $d$ orbital. 
-We keep the exposition simple and consider only the case where $\epsilon_p$, $t_{pd}$ and $U_{d}$ are non zero
+We keep the exposition simple and consider only the case where $\epsilon_p$, $t_{pd}$ (chosen to be $1.3$ eV throughout) 
+and $U_{d}$ are non zero
 (since we work with fixed number of particles we set $\epsilon_d = 0$). 
 The charge transfer energy $\Delta \equiv \epsilon_p - \epsilon_d$ equals $\epsilon_p$ in our notation. 
 We work in the hole notation; half filling corresponds to 2$\uparrow$ and 2$\downarrow$ 
@@ -62,18 +61,14 @@ and interaction parameters.}
 \label{fig:threeband} 
 \end{figure}	
 
-Here we determine what 1-band parameters best describe the 3-band data, the former defined 
-in terms of effective \textit{d-like} orbitals, $\tilde{d}$, which are mixtures of copper and oxygen orbitals and this optimal transformation also remains an unknown. 
-%(This highlights that the determination of effective Hamiltonians is a \emph{dual} problem - 
-%what are the composite objects that give a compact description of the low energy physics? and given this choice what 
-%are the effective interactions between them?) 
-Here we encode the relationship between the 
+We determine what 1-band parameters best describe the 3-band data, the former defined 
+in terms of effective \textit{d-like} orbitals, $\tilde{d}$, which are mixtures of copper and oxygen orbitals and this optimal transformation also remains an unknown. We encode the relationship between the 
 bare and effective operators as a linear transformation ${\bf T}$, 
 \begin{equation}
-	\tilde{d}_i = \sum_{j} T_{ij} c_j
+	\tilde{d}_{i,\sigma} = \sum_{j} T_{ij} c_{j,\sigma}
 \end{equation}
 %where $\tilde{d}_i$ is a transformed hole (destruction) operator 
-where $c_j$ is the bare hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals. 
+where $c_{j,\sigma}$ is the bare hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals. 
 (Note that higher body generalizations are also possible, but have not been considered here). 
 Accounting for all symmetries of the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix (the numbering of the orbitals 
 corresponds to Fig.~\ref{fig:threeband}) is explicitly written out as, 
@@ -95,10 +90,15 @@ certain cost function, which will be explained shortly.
 The one particle density matrix (calculated in eigenstate $s$) 
 in the transformed basis is related to that in the original basis,
 \begin{equation}
-	\langle {\tilde{d}_i}^{\dagger} \tilde{d}_{j} \rangle_{s} = \sum_{mn} T^{*}_{im} \langle {c_m}^{\dagger} c_n \rangle_{s} T_{jn}
+	\langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{j,\sigma} \rangle_{s} = \sum_{mn} T^{*}_{im} \langle {c_{m,\sigma}}^{\dagger} c_{n,\sigma} \rangle_{s} T_{jn}
 \end{equation}
-Using this relationship, we demand two conditions be satisfied, (1) the effective orbitals ($\tilde{d}_i$) are orthogonal to each other 
-and (2) all diagonal entries of the 1-RDM of the effective orbitals for all low energy eigenstates $(\langle {\tilde{d}_i}^{\dagger} \tilde{d}_{i} \rangle)$ equal 1/2. These conditions are enforced by minimizing a cost function,
+Using this relationship, we demand two conditions be satisfied, (1) the effective orbitals ($\tilde{d}_{i,\sigma}$) 
+are orthogonal to each other and (2) the sum of all diagonal entries of the 1-RDM of the effective orbitals for all low energy eigenstates 
+$\sum_{i} \langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s}$ 
+equals the number of electrons of a given spin $N_{\sigma}$. 
+(Since we use only the ground and first two excited states, at half filling, which do not break spin or translational symmetry, 
+we used the equivalent constraint in our calculations, $\langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s} =1/2$) 
+These conditions are enforced by minimizing a cost function,
 \begin{equation}
 	C = \sum_{s} \sum_{i} \Big( \langle {\tilde{d}_i}^{\dagger} \tilde{d}_{i} \rangle_{s} - \frac{1}{2} \Big)^{2} + \sum_{mn} ( \Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn})^{2}
 \end{equation} 
@@ -138,7 +138,7 @@ and $\alpha_4=0.018$
 We then ask $U/t$ of the 1-band Hubbard model best describes this transformed 
 1-RDMs. This is state specific and we find $(U/t)_1 = $ 
 The density matrix matching does not provide an absolute energy scale for the matching. 
-Taking $t_{pd} = 1.3$ eV, we then optimize $t$ (with fixed $(U/t)_2$ obtained from the procedure described 
+We then optimize $t$ (with fixed $(U/t)_2$ obtained from the procedure described 
 previously) to best fit the energy spectra between the two models. This gives the optimal value of 
 $t$. 
 
