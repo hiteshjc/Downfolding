@@ -11,8 +11,18 @@ by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and gra
 in section 2, suited for multiple energy scales, for the case of transition metals 
 by considering the diatomic FeSe molecule.
 
-%\lucas{This paragraph seems somehow out of place to me. While it is true that the choice of the orbitals is important, so is the choice of the effective Hamiltonian and the sampling of the low energy space. This is a good place to point out that one should be looking for those things. }A common occurrence
-\HJC{Lucas, Is this better?}
+\lucas{What about this? } 
+The examples are as follows:
+\begin{itemize}
+\item Section~\ref{subsection:3band}: Three band Hubbard $\rightarrow$ one band Hubbard at half filling. Demonstrates finding a basis set for the second quantized operators and uses a set of eigenstates directly sampled from the low-energy space to find a one-band model.
+\item Section~\ref{subsection:1dhydrogen}: Hydrogen chain $\rightarrow$ one band Hubbard model at half filling. Demonstrates basis sets for {\it ab-initio} systems and the possibility to use this technique to determine the quality of a model to a given physical situation.
+\item Section~\ref{subsection:graphene}: Graphene $\rightarrow$ one band Hubbard model with and without $\sigma$ electrons. Demonstrates using the downfolding procedure to examine the effects of screening due to core electrons. 
+\item Section~\ref{subsection:fese}: FeSe molecule $\rightarrow$ $d,p,4s$ system. Demonstrates the use of matching pursuit to assess the importance of terms in an effective model and to select compact effective models.
+\end{itemize}
+
+
+
+\HJC{Lucas, Is this better?} \lucas{It still looks to me that this really goes in the 3-band part?} 
 In all examples we will highlight the important ingredients associated with AIDMD. First and foremost, is the choice 
 of low energy space or energy window i.e. how our database of wavefunctions was generated. Associated with this is 
 the choice of the one body space in terms of which the effective Hamiltonian is expressed. Finally, we discuss 
@@ -29,6 +39,7 @@ that give a compact description of the low energy physics? and given this choice
 are the effective interactions between them?
 
 \subsection{Three-band Hubbard model to one band Hubbard model at half filling}
+\label{subsection:3band} 
 \HJC{Still editing - need to incorporate Lucas suggestions and new results for 8 site FCI}
 Our first example is motivated by the high $T_c$ superconducting cuprates~\cite{Bednorz1986} that 
 have parent Mott insulators with rich phase diagrams on electron or hole doping~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. 
