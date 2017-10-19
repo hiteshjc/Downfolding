@@ -2,16 +2,16 @@
 
 Given the theoretical framework for downfolding a many-orbital (or many electron) problem to a 
 few orbital (or few electron) problem, we now discuss few examples which also serve to highlight some practical aspects 
-associated with AIDMD. The first example is mostly pedagogical, 
-where we have completely avoided the \textit{ab-initio} related complications of AIDMD. Rather, we use information directly available 
-from \textit{exact} eigenstates themselves to downfold from a lattice model with more orbitals (3-band model) 
-to one with fewer orbitals (1-band model). We then gradually increase the complexity of the problems we address 
-by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and graphene 
-(with up to 32 carbons on a 2D honeycomb lattice). Finally, we use the matching pursuit algorithm discussed 
-in section 2, suited for multiple energy scales, for the case of transition metals 
-by considering the diatomic FeSe molecule.
-
-\lucas{What about this? } \HJC{Yes, this is good} 
+associated with AIDMD. 
+%The first example is mostly pedagogical, 
+%where we have completely avoided the \textit{ab-initio} related complications of AIDMD. Rather, we use information directly available 
+%from \textit{exact} eigenstates themselves to downfold from a lattice model with more orbitals (3-band model) 
+%to one with fewer orbitals (1-band model). We then gradually increase the complexity of the problems we address 
+%by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and graphene 
+%(with up to 32 carbons on a 2D honeycomb lattice). Finally, we use the matching pursuit algorithm discussed 
+%in section 2, suited for multiple energy scales, for the case of transition metals 
+%by considering the diatomic FeSe molecule.
+%\lucas{What about this? } \HJC{Yes, this is good} 
 The examples are as follows:
 \begin{itemize}
 \item Section~\ref{subsection:3band}: Three band Hubbard $\rightarrow$ one band Hubbard at half filling. Demonstrates finding a basis set for the second quantized operators and uses a set of eigenstates directly sampled from the low-energy space to find a one-band model.
@@ -172,7 +172,9 @@ To mimic the situation characteristic of ab-initio examples, several non eigenst
 random linear combinations of the lowest three eigenstates. This gives us an average estimate of $U/t$ 
 and $t$ in this energy window. As is expected, and observed, when the 1-band 
 description is good, all estimates of $U/t$ (be it from state by state comparison or the standard protocol) 
-essentially agree with each other.
+essentially agree with each other. To explore its validity we explore 
+the trends associated with the downfolded parameters as a function of varying $\Delta/t_{pd}$ and 
+$U_d/t_{pd}$.
 
 \begin{figure}[]
 \centering
@@ -195,28 +197,29 @@ vs $U_d/t_{pd}$ for two representative values of $\Delta/t_{pd}$}
  
 Fig.~\ref{fig:hamfitepdvary} shows our results for the optimal 
 transformation parameters ($\alpha$'s), $t$ and $U/t$ as a function of $\Delta/t_{pd}$
-keeping $U_d/t_{pd}=8$ fixed. $\alpha_1$, which is the primary parameter that mixes (hybridizes) 
+keeping $U_d/t_{pd}=8$ fixed. $\alpha_1$, which is the primary parameter that mixes 
 the copper and oxygen orbitals, \textit{decreases} as $\Delta/t_{pd}$ is increased. 
 This is physically reasonable since an increasing difference in the single particle energies of the copper and oxygen orbitals 
 means that it is even more energetically unfavorable to occupy the oxygen orbitals. 
 Correspondingly the effective hopping between $\tilde{d}$ in the 
 1-band model reduces and the effective $U/t$ increases. 
 
-Next, in Fig.~\ref{fig:hamfitUdvary} we consider analogous results keeping $\Delta/t_{pd}$ fixed to two representative values, 
-and varying $U_d/t_{pd}$. In both cases, $U/t$ increases dramatically with $U_d/t_{pd}$, but $t$ 
-increases marginally little (similar results are seen for the dominant 
-hybridization parameter $\alpha_1$). Also, the different estimates of $U/t$ are closer to each other 
-for the case of larger $\Delta$ indicating the increased effectiveness of the 1-band model 
-in the limit of large $\Delta$. 
+Next, in Fig.~\ref{fig:hamfitUdvary} analogous results are presented by fixing $\Delta/t_{pd}$ 
+to two representative values, and varying $U_d/t_{pd}$. In both cases, $U/t$ increases 
+dramatically with $U_d/t_{pd}$, but $t$ changes only marginally little; 
+similar results were seen for the hybridization parameters. 
+Also, the different estimates of $U/t$ are closer to each other for the case of larger $\Delta$ 
+indicating the increased effectiveness of the 1-band model. 
 
 One important check for the downfolded model is its ability to reproduce the low energy spectrum of 
 the full model. Fig.~\ref{fig:energyfit} shows the comparison of the 1-band vs 3-band model energy gaps 
 for the lowest 6 states, corresponding to 4C2 states of the effective spin model in its $S_z=0$ sector, 
-all of which correspond to \textit{d like} excitations. The states above these states involve p-like excitations something 
-our model is not designed to capture. In all cases, the fit is reasonably good; 
-the best fits seen at larger $U_d$ and larger $\Delta$ consistent with our expectations 
-from the previous plots. Despite this good agreement in energy, which is less sensitive to small RDM elements, 
-we caution that the Hubbard parameters (from the standard protocol or eigenstate matching) 
+all of which correspond to \textit{d like} excitations. The eigenstates above this manifold 
+involve \textit{p-like} excitations, an aspect the 1-band model is not designed to capture. 
+In all cases, the fit is reasonably good from an energetic viewpoint; the best fits seen at larger 
+$U_d$ and larger $\Delta$ consistent with our expectations from the previous plots. Despite this good agreement, 
+we caution that the reduced sensitivity of the energy to small RDM elements means 
+that the Hubbard parameters (from the standard protocol or eigenstate matching) 
 can be strongly dependent on the energy window of interest, a point we highlight shortly. 
 %We re-emphasize that once the density matrices were transformed %only one parameter ($t$) was fit to match five energy gaps between the two models; this indicates %it is thus an indicator of the success of the downfolding (rather than a result of overfitting). 
 \begin{figure}[]
