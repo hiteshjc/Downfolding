@@ -80,15 +80,17 @@ in terms of effective \textit{d-like} orbitals, $\tilde{d}$, which are mixtures 
 this optimal transformation also remains an unknown. This is a \emph{dual} problem - what are the composite objects 
 ($\tilde{d}_i$ here) that give a compact description of the low energy physics? and given this choice what 
 are the effective interactions between them?
-Moreover, the "best" effective Hamiltonian description depends on the energy scale of interest. 
-Focusing on the lowest energy scales, we first use the exact knowledge of the lowest energy 
-eigenstates of the 3-band and 1-band models and perform a state by state comparison in the low energy sector. 
-Using this comparison gives us a set of 1-band Hubbard parameters which we use to test predictions on a larger cluster (8 unit cells). 
-We then use the standard protocol (N-AIDMD) over a larger energy window and obtain the average parameters 
-that describes the data in the entire window. These parameters are found to be different from 
-the first set, and this indicates the importance of frequency dependent effects when downfolding.
 
-First, we encode the relationship between the bare and effective operators as a linear transformation ${\bf T}$, 
+In addition, the "best" effective Hamiltonian description depends on the energy scale of interest. 
+We first focus on the lowest scales and use our knowledge of the exact 
+eigenstates of the 3-band and 1-band models to perform a state by state comparison. 
+This is verified by the standard protocol (of section 2) in this energy window. Then, to build faith 
+in the results, the predictions of the 1-band Hubbard parameters are tested on a larger cluster (8 unit cells). 
+Finally, the standard protocol is used in a bigger energy window and it is shown that the optimal 
+parameters are dependent on the energy window of interest. This exercise will serve 
+as a guide for other sections. 
+
+We encode the relationship between the bare and effective operators as a linear transformation ${\bf T}$, 
 \begin{equation}
 	\tilde{d}_{i,\sigma} = \sum_{j} T_{ij} c_{j,\sigma}
 \end{equation}
@@ -207,12 +209,14 @@ in the limit of large $\Delta$.
 
 One important check for the downfolded model is its ability to reproduce the low energy spectrum of 
 the full model. Fig.~\ref{fig:energyfit} shows the comparison of the 1-band vs 3-band model energy gaps 
-(here only comprising of $6$ states). In all cases, the fit is reasonably good; 
+for the lowest 6 states, corresponding to 4C2 states of the effective spin model in its $S_z=0$ sector, 
+all of which correspond to \textit{d like} excitations. The states above these states involve p-like excitations something 
+our model is not designed to capture. In all cases, the fit is reasonably good; 
 the best fits seen at larger $U_d$ and larger $\Delta$ consistent with our expectations 
-from the previous plots. We re-emphasize that once the density matrices were transformed 
-only one parameter ($t$) was fit to match five energy gaps between the two models; this indicates 
-it is thus an indicator of the success of the downfolding (rather than a result of overfitting). 
-
+from the previous plots. Despite this good agreement in energy, which is less sensitive to small RDM elements, 
+we caution that the Hubbard parameters (from the standard protocol or eigenstate matching) 
+can be strongly dependent on the energy window of interest, a point we highlight shortly. 
+%We re-emphasize that once the density matrices were transformed %only one parameter ($t$) was fit to match five energy gaps between the two models; this indicates %it is thus an indicator of the success of the downfolding (rather than a result of overfitting). 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_3_number_5.pdf}
