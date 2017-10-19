@@ -90,14 +90,14 @@ Finally, the standard protocol is used in a bigger energy window and it is shown
 parameters are dependent on the energy window of interest. This exercise will serve 
 as a guide for other sections. 
 
-We encode the relationship between the bare and effective operators as a linear transformation ${\bf T}$, 
+We begin by encoding the relationship between the bare and effective operators as a linear transformation ${\bf T}$, 
 \begin{equation}
 	\tilde{d}_{i,\sigma} = \sum_{j} T_{ij} c_{j,\sigma}
 \end{equation}
 where $c_{j,\sigma}$ is the bare hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals. 
 Higher body generalizations are also possible, but have not been considered here. 
-Accounting for all symmetries of the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix, with 
-the numbering of the orbitals corresponds to Fig.~\ref{fig:threeband}, explicitly written out as, 
+For the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix, and accounting for its symmetries 
+for the numbering of the orbitals corresponding to Fig.~\ref{fig:threeband}, it is explicitly written out as, 
 \begin{eqnarray}
 {\bf T} = 
 \left(
@@ -119,18 +119,18 @@ The one particle density matrix calculated in eigenstate $s$ in the transformed 
 \end{equation}
 Using this relationship, we demand two conditions be satisfied, (1) the effective orbitals ($\tilde{d}_{i,\sigma}$) 
 are orthogonal to each other and (2) the sum of all diagonal entries of the 1-RDM of the effective orbitals for all low energy eigenstates 
+(here, chosen to be the lowet three) 
 $\sum_{i} \langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s}$ 
 equals the number of electrons of a given spin $N_{\sigma}$. 
-%(Since we use only the ground and first two excited states, at half filling, which do not break spin or translational symmetry, 
-%we used the equivalent constraint in our calculations, $\langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s} =1/2 $) 
 These conditions are enforced by minimizing a cost function,
 \begin{equation}
 C = \sum_{s} \Big( \sum_{i} \langle \tilde{d}_{i,\sigma}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s} - N_{\sigma} \Big)^{2} + \sum_{mn} ( \Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn})^{2}
 \label{eq:C}
 \end{equation} 
-To give a concrete and representative example of our results, we optimize the transformation 
-according to Eq. and find the optimal parameters $\alpha_1=0.220$, $\alpha_2=0.044$, $\alpha_3=0.020$ 
-and $\alpha_4=0.018$ 
+
+To give a concrete and representative example of our results, for $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$, 
+we find the optimal parameters of ${\bf T}$ to be 
+$\alpha_1=0.220$, $\alpha_2=0.044$, $\alpha_3=0.020$ and $\alpha_4=0.018$ 
 % Get rid of this and possibly put in appendix
 %\begin{small}
 %\begin{eqnarray}
@@ -160,13 +160,19 @@ and $\alpha_4=0.018$
 %\right)
 %\end{eqnarray}
 %\end{small}
-We then ask $U/t$ of the 1-band Hubbard model best describes this transformed 
-1-RDMs. This is state specific and we find $(U/t)_1 = $ 
-The density matrix matching does not provide an absolute energy scale for the matching. 
-We then optimize $t$ (with fixed $(U/t)_2$ obtained from the procedure described 
-previously) to best fit the energy spectra between the two models. This gives the optimal value of 
-$t$. 
-
+The diagonal values closely satisfy the trace condition. In this transformed basis, one can also 
+look at the off diagonal 1-RDM elements corresponding to nearest neighbors $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$; 
+for states 1, 2, and 3 their absolute values are approximately $0.159$, $0.142$ and $0.084$. Since we are equipped with the 
+exact knowledge of the eigenstates of the 1-band Hubbard model, we ask which 
+$U/t$ of the same excited level has the same 1-RDM value; we find $(U/t)_1 = $, $(U/t)_2$, $(U/t)_3 = $. 
+In fact, estimates of $U/t$ could also be made by comparing the 2-RDM elements 
+$\langle \tilde{n}_{\uparrow} \tilde{n}_{\downarrow} \rangle_s$ with qualitatively similar results. 
+These perspectives are unified by performing the standard protocol (N-AIDMD). 
+To mimic the situation characteristic of ab-initio examples, several non eigenstates are generated as 
+random linear combinations of the lowest three eigenstates. This gives us an average estimate of $U/t$ 
+and $t$ in this energy window. As is expected, and observed, when the 1-band 
+description is good, all estimates of $U/t$ (be it from state by state comparison or the standard protocol) 
+essentially agree with each other.
 
 \begin{figure}[]
 \centering
@@ -182,10 +188,6 @@ versus $\Delta/t_{pd}$ for fixed $U_{d}/t_{pd}=8$}
 \centering
 \includegraphics[width=0.48\linewidth]{./Figures/U_and_hopping_combined_vs_Ud_ep_3.pdf}
 \includegraphics[width=0.50\linewidth]{./Figures/U_and_hopping_combined_vs_Ud_ep_5.pdf}
-%\includegraphics[width=0.49\linewidth]{./Figures/downfolded_U_ep_3.pdf}
-%\includegraphics[width=0.49\linewidth]{./Figures/Hopping_vs_U_ep_3.pdf}
-%\includegraphics[width=0.49\linewidth]{./Figures/downfolded_U_ep_5.pdf}
-%\includegraphics[width=0.49\linewidth]{./Figures/Hopping_vs_U_ep_5.pdf}
 \caption{Downfolded values of the effective 1-band Hubbard $U/t$ and $t$ (inset) 
 vs $U_d/t_{pd}$ for two representative values of $\Delta/t_{pd}$}
 \label{fig:hamfitUdvary} 
