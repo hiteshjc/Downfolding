@@ -2,16 +2,16 @@
 
 Given the theoretical framework for downfolding a many-orbital (or many electron) problem to a 
 few orbital (or few electron) problem, we now discuss few examples which also serve to highlight some practical aspects 
-associated with AIDMD. The first example is mostly pedagogical, 
-where we have completely avoided the \textit{ab-initio} related complications of AIDMD. Rather, we use information directly available 
-from \textit{exact} eigenstates themselves to downfold from a lattice model with more orbitals (3-band model) 
-to one with fewer orbitals (1-band model). We then gradually increase the complexity of the problems we address 
-by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and graphene 
-(with up to 32 carbons on a 2D honeycomb lattice). Finally, we use the matching pursuit algorithm discussed 
-in section 2, suited for multiple energy scales, for the case of transition metals 
-by considering the diatomic FeSe molecule.
-
-\lucas{What about this? } \HJC{Yes, this is good} 
+associated with AIDMD. 
+%The first example is mostly pedagogical, 
+%where we have completely avoided the \textit{ab-initio} related complications of AIDMD. Rather, we use information directly available 
+%from \textit{exact} eigenstates themselves to downfold from a lattice model with more orbitals (3-band model) 
+%to one with fewer orbitals (1-band model). We then gradually increase the complexity of the problems we address 
+%by downfolding the hydrogen chain in one dimension (with up to 10 atoms) and graphene 
+%(with up to 32 carbons on a 2D honeycomb lattice). Finally, we use the matching pursuit algorithm discussed 
+%in section 2, suited for multiple energy scales, for the case of transition metals 
+%by considering the diatomic FeSe molecule.
+%\lucas{What about this? } \HJC{Yes, this is good} 
 The examples are as follows:
 \begin{itemize}
 \item Section~\ref{subsection:3band}: Three band Hubbard $\rightarrow$ one band Hubbard at half filling. Demonstrates finding a basis set for the second quantized operators and uses a set of eigenstates directly sampled from the low-energy space to find a one-band model.
@@ -34,10 +34,11 @@ problem. In three out of our four representative examples we work with the singl
 \label{eq:oneband}
 \end{equation}
 where $t$ and $U$ correspond to downfolded (renormalized) parameters and $\tilde{d}$ are the effective one-particle operators, 
-which are obtained from transformations on their bare counterparts. Thus 
-the determination of effective Hamiltonians is a \emph{dual} problem - what are the composite objects ($\tilde{d}_i$ here) 
-that give a compact description of the low energy physics? and given this choice what 
-are the effective interactions between them?
+which are obtained from transformations on their bare counterparts. 
+%Thus 
+%the determination of effective Hamiltonians is a \emph{dual} problem - what are the composite objects ($\tilde{d}_i$ here) 
+%that give a compact description of the low energy physics? and given this choice what 
+%are the effective interactions between them?
 
 \subsection{Three-band Hubbard model to one band Hubbard model at half filling}
 \label{subsection:3band} 
@@ -74,17 +75,29 @@ and interaction parameters.}
 \label{fig:threeband} 
 \end{figure}	
 
-It is our objective to determine what 1-band parameters best describe the 3-band data, the former defined 
+It is our objective to determine what 1-band Hubbard model "best" describe the 3-band data, the former defined 
 in terms of effective \textit{d-like} orbitals, $\tilde{d}$, which are mixtures of copper and oxygen orbitals; 
-this optimal transformation also remains an unknown. We encode the relationship between the 
-bare and effective operators as a linear transformation ${\bf T}$, 
+this optimal transformation also remains an unknown. This is a \emph{dual} problem - what are the composite objects 
+($\tilde{d}_i$ here) that give a compact description of the low energy physics? and given this choice what 
+are the effective interactions between them?
+
+In addition, the "best" effective Hamiltonian description depends on the energy scale of interest. 
+We first focus on the lowest scales and use our knowledge of the exact 
+eigenstates of the 3-band and 1-band models to perform a state by state comparison. 
+This is verified by the standard protocol (of section 2) in this energy window. Then, to build faith 
+in the results, the predictions of the 1-band Hubbard parameters are tested on a larger cluster (8 unit cells). 
+Finally, the standard protocol is used in a bigger energy window and it is shown that the optimal 
+parameters are dependent on the energy window of interest. This exercise will serve 
+as a guide for other sections. 
+
+We begin by encoding the relationship between the bare and effective operators as a linear transformation ${\bf T}$, 
 \begin{equation}
 	\tilde{d}_{i,\sigma} = \sum_{j} T_{ij} c_{j,\sigma}
 \end{equation}
 where $c_{j,\sigma}$ is the bare hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals. 
 Higher body generalizations are also possible, but have not been considered here. 
-Accounting for all symmetries of the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix, with 
-the numbering of the orbitals corresponds to Fig.~\ref{fig:threeband}, explicitly written out as, 
+For the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix, and accounting for its symmetries 
+for the numbering of the orbitals corresponding to Fig.~\ref{fig:threeband}, it is explicitly written out as, 
 \begin{eqnarray}
 {\bf T} = 
 \left(
@@ -106,18 +119,18 @@ The one particle density matrix calculated in eigenstate $s$ in the transformed 
 \end{equation}
 Using this relationship, we demand two conditions be satisfied, (1) the effective orbitals ($\tilde{d}_{i,\sigma}$) 
 are orthogonal to each other and (2) the sum of all diagonal entries of the 1-RDM of the effective orbitals for all low energy eigenstates 
+(here, chosen to be the lowet three) 
 $\sum_{i} \langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s}$ 
 equals the number of electrons of a given spin $N_{\sigma}$. 
-(Since we use only the ground and first two excited states, at half filling, which do not break spin or translational symmetry, 
-we used the equivalent constraint in our calculations, $\langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s} =1/2 $) 
 These conditions are enforced by minimizing a cost function,
 \begin{equation}
-C = \sum_{s} \sum_{i} \Big( \langle \tilde{d}_{i,\uparrow}^{\dagger} \tilde{d}_{i,\uparrow} \rangle_{s} - \frac{1}{2} \Big)^{2} + \sum_{mn} ( \Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn})^{2}
+C = \sum_{s} \Big( \sum_{i} \langle \tilde{d}_{i,\sigma}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s} - N_{\sigma} \Big)^{2} + \sum_{mn} ( \Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn})^{2}
 \label{eq:C}
 \end{equation} 
-To give a concrete and representative example of our results, we optimize the transformation 
-according to Eq. and find the optimal parameters $\alpha_1=0.220$, $\alpha_2=0.044$, $\alpha_3=0.020$ 
-and $\alpha_4=0.018$ 
+
+To give a concrete and representative example of our results, for $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$, 
+we find the optimal parameters of ${\bf T}$ to be 
+$\alpha_1=0.220$, $\alpha_2=0.044$, $\alpha_3=0.020$ and $\alpha_4=0.018$ 
 % Get rid of this and possibly put in appendix
 %\begin{small}
 %\begin{eqnarray}
@@ -147,13 +160,21 @@ and $\alpha_4=0.018$
 %\right)
 %\end{eqnarray}
 %\end{small}
-We then ask $U/t$ of the 1-band Hubbard model best describes this transformed 
-1-RDMs. This is state specific and we find $(U/t)_1 = $ 
-The density matrix matching does not provide an absolute energy scale for the matching. 
-We then optimize $t$ (with fixed $(U/t)_2$ obtained from the procedure described 
-previously) to best fit the energy spectra between the two models. This gives the optimal value of 
-$t$. 
-
+The diagonal values closely satisfy the trace condition. In this transformed basis, one can also 
+look at the off diagonal 1-RDM elements corresponding to nearest neighbors $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$; 
+for states 1, 2, and 3 their absolute values are approximately $0.159$, $0.142$ and $0.084$. Since we are equipped with the 
+exact knowledge of the eigenstates of the 1-band Hubbard model, we ask which 
+$U/t$ of the same excited level has the same 1-RDM value; we find $(U/t)_1 = $, $(U/t)_2$, $(U/t)_3 = $. 
+In fact, estimates of $U/t$ could also be made by comparing the 2-RDM elements 
+$\langle \tilde{n}_{\uparrow} \tilde{n}_{\downarrow} \rangle_s$ with qualitatively similar results. 
+These perspectives are unified by performing the standard protocol (N-AIDMD). 
+To mimic the situation characteristic of ab-initio examples, several non eigenstates are generated as 
+random linear combinations of the lowest three eigenstates. This gives us an average estimate of $U/t$ 
+and $t$ in this energy window. As is expected, and observed, when the 1-band 
+description is good, all estimates of $U/t$ (be it from state by state comparison or the standard protocol) 
+essentially agree with each other. To explore its validity we explore 
+the trends associated with the downfolded parameters as a function of varying $\Delta/t_{pd}$ and 
+$U_d/t_{pd}$.
 
 \begin{figure}[]
 \centering
@@ -169,10 +190,6 @@ versus $\Delta/t_{pd}$ for fixed $U_{d}/t_{pd}=8$}
 \centering
 \includegraphics[width=0.48\linewidth]{./Figures/U_and_hopping_combined_vs_Ud_ep_3.pdf}
 \includegraphics[width=0.50\linewidth]{./Figures/U_and_hopping_combined_vs_Ud_ep_5.pdf}
-%\includegraphics[width=0.49\linewidth]{./Figures/downfolded_U_ep_3.pdf}
-%\includegraphics[width=0.49\linewidth]{./Figures/Hopping_vs_U_ep_3.pdf}
-%\includegraphics[width=0.49\linewidth]{./Figures/downfolded_U_ep_5.pdf}
-%\includegraphics[width=0.49\linewidth]{./Figures/Hopping_vs_U_ep_5.pdf}
 \caption{Downfolded values of the effective 1-band Hubbard $U/t$ and $t$ (inset) 
 vs $U_d/t_{pd}$ for two representative values of $\Delta/t_{pd}$}
 \label{fig:hamfitUdvary} 
@@ -180,28 +197,31 @@ vs $U_d/t_{pd}$ for two representative values of $\Delta/t_{pd}$}
  
 Fig.~\ref{fig:hamfitepdvary} shows our results for the optimal 
 transformation parameters ($\alpha$'s), $t$ and $U/t$ as a function of $\Delta/t_{pd}$
-keeping $U_d/t_{pd}=8$ fixed. $\alpha_1$, which is the primary parameter that mixes (hybridizes) 
+keeping $U_d/t_{pd}=8$ fixed. $\alpha_1$, which is the primary parameter that mixes 
 the copper and oxygen orbitals, \textit{decreases} as $\Delta/t_{pd}$ is increased. 
 This is physically reasonable since an increasing difference in the single particle energies of the copper and oxygen orbitals 
 means that it is even more energetically unfavorable to occupy the oxygen orbitals. 
 Correspondingly the effective hopping between $\tilde{d}$ in the 
 1-band model reduces and the effective $U/t$ increases. 
 
-Next, in Fig.~\ref{fig:hamfitUdvary} we consider analogous results keeping $\Delta/t_{pd}$ fixed to two representative values, 
-and varying $U_d/t_{pd}$. In both cases, $U/t$ increases dramatically with $U_d/t_{pd}$, but $t$ 
-increases marginally little (similar results are seen for the dominant 
-hybridization parameter $\alpha_1$). Also, the different estimates of $U/t$ are closer to each other 
-for the case of larger $\Delta$ indicating the increased effectiveness of the 1-band model 
-in the limit of large $\Delta$. 
+Next, in Fig.~\ref{fig:hamfitUdvary} analogous results are presented by fixing $\Delta/t_{pd}$ 
+to two representative values, and varying $U_d/t_{pd}$. In both cases, $U/t$ increases 
+dramatically with $U_d/t_{pd}$, but $t$ changes only marginally little; 
+similar results were seen for the hybridization parameters. 
+Also, the different estimates of $U/t$ are closer to each other for the case of larger $\Delta$ 
+indicating the increased effectiveness of the 1-band model. 
 
 One important check for the downfolded model is its ability to reproduce the low energy spectrum of 
 the full model. Fig.~\ref{fig:energyfit} shows the comparison of the 1-band vs 3-band model energy gaps 
-(here only comprising of $6$ states). In all cases, the fit is reasonably good; 
-the best fits seen at larger $U_d$ and larger $\Delta$ consistent with our expectations 
-from the previous plots. We re-emphasize that once the density matrices were transformed 
-only one parameter ($t$) was fit to match five energy gaps between the two models; this indicates 
-it is thus an indicator of the success of the downfolding (rather than a result of overfitting). 
-
+for the lowest 6 states, corresponding to 4C2 states of the effective spin model in its $S_z=0$ sector, 
+all of which correspond to \textit{d like} excitations. The eigenstates above this manifold 
+involve \textit{p-like} excitations, an aspect the 1-band model is not designed to capture. 
+In all cases, the fit is reasonably good from an energetic viewpoint; the best fits seen at larger 
+$U_d$ and larger $\Delta$ consistent with our expectations from the previous plots. Despite this good agreement, 
+we caution that the reduced sensitivity of the energy to small RDM elements means 
+that the Hubbard parameters (from the standard protocol or eigenstate matching) 
+can be strongly dependent on the energy window of interest, a point we highlight shortly. 
+%We re-emphasize that once the density matrices were transformed %only one parameter ($t$) was fit to match five energy gaps between the two models; this indicates %it is thus an indicator of the success of the downfolding (rather than a result of overfitting). 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_3_number_5.pdf}
@@ -225,8 +245,7 @@ For the six test cases presented in Fig.~\ref{fig:energyfit}, we performed an ex
 Roughly 200 Lanczos iterations were carried out, enabling convergence of the lowest four energies. 
 We compared the lowest gaps with the corresponding calculation on the single 
 band model with the same square geometry (Hilbert space size of only 4900) using the downfolded 
-parameters obtained from the smaller $2 \times 2 cell$. Our results are summarized in Table xx
-
+parameters obtained from the smaller $2 \times 2$ cell. Our results are summarized in Table xx
 
 \begin{table}[ht]
 \centering
@@ -247,5 +266,8 @@ $\Delta/t_{pd}$=5,$U_d/t_{pd}=12$ &           &           &           &         
 \end{tabular}
 \label{tab:predictivity}
 \end{table} 
+
+\HJC{Once the predicitivity objective is achieved for the lowest eigenstates, discuss the 6 test cases with N-AIDMD. 
+This gets the average parameters that best describes the energy window, not only the extrema}
 
 
