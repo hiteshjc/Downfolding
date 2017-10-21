@@ -4,33 +4,50 @@ In multiscale modeling of many-particle systems, the effective Hamiltonian (or L
 The effective Hamiltonian dictates the behavior of the system on a coarse-grained level, where 'sub-grid' effects are folded into the parameters and form of the effective Hamiltonian. 
 Fundamental concepts in condensed matter physics can be viewed as statements about the behavior of the effective Hamiltonian as the length scales change. 
 For example, in a scale invariant system the effective Hamiltonian does not change as the length scale changes, while a system with emergent physics has a different form of effective Hamiltonian when described at different length scales\lucas{I'm nervous about saying these things; please take a look and comment.}. 
-A major goal in condensed matter physics is to determine what effective Hamiltonians apply to different physical situations. 
+These principles form the basis of the renormalization group\cite{Wilson}.
+A major goal in condensed matter physics is to determine what effective Hamiltonians apply to different physical situations, in particular quantum effective Hamiltonians, which lead to large-scale emergent quantum behavior. 
+
+The dominant effective model for quantum particles in condensed systems is band structure, and for metals, Fermi liquid theory. 
+However, a major challenge is how this paradigm should be altered when it is no longer a good description of the physical system.
+A famous example of this is the high-T$_c$ cuprates and other transition metal oxides, which do not appear to be well-described by these simple and classic effective Hamiltonians. 
+For these systems, many models have been proposed, such as the Hubbard~\cite{Hubbard}, t-J~\cite{tJSpalek} and Heisenberg models.
+While these models have been extensively studied analytically and numerically, and have significantly enhanced our understanding of the physics of correlated electrons, their effectiveness for describing a real complex system of interest is often unclear. 
+At the same time, more complex effective models can be commensurately more difficult to solve, so the desire but also to find an accurate effective model that is tractable. 
 
 
-
-%One of the most sought-after, yet often daunting, endeavors for physicists is to develop an intuitive understanding of physical phenomena involving intrinsically complicated materials using simplified models.
-%These models are expected to capture the essence of the physics, and are formulated in terms of the most relevant physical degrees of freedom related to the observed phenomena. 
-%For example, at high temperature and low density when quantum effects are relatively insignificant, the ideal gas model successfully captures the statistical properties of $10^{23}$ H$_{2}$ molecules in a box, without any detailed knowledge of the fundamental constituent of H$_{2}$. 
-%This approach is valid when we are interested in phenomena at certain energy scale (or length scale), while the degrees of freedom at other length scales which are not dynamically excited simply renormalize the dynamics of the low energy degrees of freedom. 
-
-This principle, the basis of the renormalization group~\cite{Wilson}, has also been widely employed in condensed matter physics. 
-In the past few decades, several studies have been dedicated to describing complex systems (for example, the high $T_c$ cuprates and other transition metal oxides), those of primary interest here are strongly correlated systems. 
-These are systems where the effects of Coulomb interactions are comparable to or more important than the kinetic energy and the picture of localized rather than itinerant electrons is more pertinent. This has motivated an approach beyond the traditional band theory approach, involving model Hamiltonians such as the Hubbard~\cite{Hubbard}, t-J~\cite{tJSpalek} and Heisenberg models, defined only in terms of the valence electrons. 
-While these models have been extensively studied analytically and numerically, and have significantly enhanced our understanding of strongly correlated physics, their effectiveness for describing a real complex system of interest is often unclear. 
-This motivates the need to determine reliable low energy effective Hamiltonians that can capture all the necessary details, while remaining simple enough to be simulated accurately.  
 
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{./Figures/figure1.eps}
-\caption{Schematics for downfolding a simple ab-initio system (here the hydrogen chain) in DFT based methods (left) and the wavefunction based AIDMD (right). 
+\caption{Schematics for downfolding a simple ab-initio system (here the hydrogen chain) in DFT based methods (left) and the wave function based AIDMD (right). 
 Localized one particle functions are constructed in both methods and serve as the one body space for the model Hamiltonian. 
 The DFT based methods use Kohn Sham orbitals and screening models to estimate the interactions. 
-AIDMD uses a database of low energy all electron many-body wavefunctions ($\psi_i$). 
+AIDMD uses a database of low energy all electron many-body wave functions ($\psi_i$). 
 This "low energy basin" (shown abstractly in the space of descriptors) need not consist of exact eigenstates ($E_i$).\lucas{The energy should be a linear function of the density matrix!}}
 \label{fig:lowenergybasin_schematic}
 \end{figure}	
 
 
+To address the need for a link between {\it ab-initio} electron-level  models and larger scale models, downfolding has most commonly been carried out using approaches based on density functional theory (DFT). 
+The kinetic part is obtained from a standard DFT calculation which is projected onto localized Wannier functions and gives an estimate of the effective hoppings of the lattice model~\cite{Pavirini}. 
+Then, to estimate the interactions, one assumes a model of screening of the Coulomb interactions based on constrained DFT, RPA, or some other method. 
+Since effects of interactions between the orbitals of interest have already been accounted for by DFT, a double counting correction is required to obtain the final downfolded Hamiltonian. \lucas{There is a claim of no double-counting for GW-type fitting; can someone comment on this?}
+The approach has been developed and widely applied~\cite{};\lucas{citations} but remains an active area of research~\cite{Haule_doublecounting}.
+There are other downfolding approaches that include the traditional Lowdin method, coupled to a stochastic approach~\cite{Tenno,Zhou_Ceperley} and the related method of canonical transformations~\cite{White_CT, Yanai_CT}. 
+While they have many advantages, all of these methods suffer from a lack of internal checks on the quality of the resultant model--it is typically not possible to know if a given model {\it ansatz} was a good guess or not. \lucas{Check this..} 
+
+The situation described above stands in contrast to the derivation of effective classical models. 
+For concreteness, let us discuss classical force fields computed from {\it ab initio} electronic structure calculations. 
+Typically, a data set is generated using an {\it ab initio} calculation in which the positions of the atoms and molecules are varied, creating a set of positions and energies. 
+The parameters in the force field {\it ansatz} are varied to obtain a best-fit classical model.
+Then, using standard statistical tools, it is possible to assess how well the fit reproduces the {\it ab initio} data within the calculation, without appealing to experiment. 
+While translating that error to error in properties is not a trivial task\lucas{citations}, this approach has the important advantage that in the limit of a high quality fit and high quality {\it ab initio} results, the resultant model is predictive.
+
+Na\"ively, one might think to reconcile the fitting approach used in classical force fields with quantum models by matching eigenstates between the (now quantum) model and {\it ab initio} systems, varying the model parameters until the eigenstates match. 
+However, this strategy does not work well in practice because it is often not possible to obtain exact eigenstates for either the model or the {\it ab initio} system.
+
+
+\lucas{I think the bulk of this could go in Section 4--what use these models will have.} 
 The endeavor we pursue here is to develop a multi-scale approach in which the effective interactions between quasiparticles (such as dressed electrons) are determined after an \textit{ab-initio} simulation (but not necessarily exact solution) of the continuum Schroedinger equation involving all the electrons. 
 This reduction of the Hilbert space is known as ``downfolding."
 The resultant "lattice model" can be efficiently and accurately solved for large system sizes using techniques designed and suited for small local Hilbert spaces- these include exact or selected diagonalization~\cite{DeRaedt,Tubman_selci,Holmes_Tubman_Umrigar}, density matrix renormalization group (DMRG)~\cite{White1992}, tensor networks~\cite{PEPS,Changlani_CPS,NeuscammanCPS}, dynamical mean field theory (DMFT)~\cite{Kotliar2006}, density matrix embedding (DMET)~\cite{DMET_2012} and lattice quantum Monte Carlo (QMC) methods~\cite{Scalapino, Trivedi_Ceperley, Zhang_AFQMC, Sandvik_loops, Prokofiev, Booth2009,SQMC,Holmes_Changlani_Umrigar, Booth2013}. 
@@ -38,21 +55,13 @@ These methods have also been used to obtain excited states and dynamical correla
 In addition to being computationally expensive, \textit{ab-initio} approaches lack the accuracy to resolve low energy scales. 
 They do, however, yield the correct low energy basin in which the effective description of the problem lives, schematically represented in Fig.~\ref{fig:lowenergybasin_schematic}.
 
-Downfolding has most commonly been carried out using approaches based on density functional theory (DFT). 
-The kinetic part is obtained from a standard DFT calculation which is projected onto localized Wannier functions and gives an estimate of the effective hoppings of the lattice model~\cite{Pavirini}. 
-Then, to estimate the interactions, one assumes a model of screening of the Coulomb interactions (based on RPA, for example) which is determined from the knowledge of the single particle (Kohn Sham) DFT orbitals. 
-Since effects of interactions between the orbitals (one body space) of interest, have already been accounted for by DFT, a "double counting correction" is required to obtain the final downfolded Hamiltonian. 
-The approach has been developed and widely applied~\cite{}; but remains an active area of research~\cite{Haule_doublecounting}, due to absence of internal checks on the approximation. 
 
-There are other downfolding approaches that include the traditional Lowdin method, coupled to a stochastic approach~\cite{Tenno,Zhou_Ceperley} and the related method of canonical transformations~\cite{White_CT, Yanai_CT}. 
-These share the same aims as us, in the sense that they work with in a many body setting and involve working with wavefunctions. 
-
-Our primary focus is to downfold based on results of \textit{ab initio} wavefunctions, involving all electrons, these explicitly provide access to properties encoded compactly in the form of reduced density matrices (RDMs) or correlation functions. 
-Crucially, we do not commit ourselves to knowledge of exact eigenstates (a challenging endeavor) - rather we "learn" the effective Hamiltonian from a intelligently constructed database of low energy wavefunctions and their associated expectation values. 
+Our primary focus is to downfold based on results of \textit{ab initio} wave functions, involving all electrons, these explicitly provide access to properties encoded compactly in the form of reduced density matrices (RDMs) or correlation functions. 
+Crucially, we do not commit ourselves to knowledge of exact eigenstates (a challenging endeavor) - rather we "learn" the effective Hamiltonian from a intelligently constructed database of low energy wave functions and their associated expectation values. 
 Our aim is thus to discuss the development and application of a new set of methods, christened "ab-initio density matrix downfolding" (AIDMD)~\cite{Changlani2015},which by nature of their formulation, restore the democracy between kinetic and potential part of the Hamiltonian. 
 There is no double counting involved and it is straightforward to judge the accuracy of the effective Hamiltonian. 
-While our prescription applies to any wavefunction based method, we have primarily chosen to work with the \textit{ab-initio} QMC approach~\cite{Ceperley_Alder,Foulkes_review}. 
-The QMC method works directly in the real space continuum and explicitly introduces correlations (via Jastrow factors) into trial wavefunctions of non-interacting electrons (Slater determinants). 
+While our prescription applies to any wave function based method, we have primarily chosen to work with the \textit{ab-initio} QMC approach~\cite{Ceperley_Alder,Foulkes_review}. 
+The QMC method works directly in the real space continuum and explicitly introduces correlations (via Jastrow factors) into trial wave functions of non-interacting electrons (Slater determinants). 
 The details of the method, relevant for AIDMD, will be clarified at appropriate points in the text. 
 More QMC related specifics are described in our earlier work~\cite{Changlani2015,}, but will not be reiterated here to focus solely on the downfolding aspect of the work. 
 
