@@ -45,6 +45,10 @@ While translating that error to error in properties is not a trivial task\lucas{
 
 Na\"ively, one might think to reconcile the fitting approach used in classical force fields with quantum models by matching eigenstates between the (now quantum) model and {\it ab initio} systems, varying the model parameters until the eigenstates match. 
 However, this strategy does not work well in practice because it is often not possible to obtain exact eigenstates for either the model or the {\it ab initio} system.
+To resolve this, we develop a general theory for generating effective quantum models that is exact when the wave functions are sampled from the manifold of low-energy states, and is a good approximation when the sampled manifold is parallel to that manifold in the model space. 
+Because this method is based on fitting the energy functional, 
+We will show the practical application of this theory using both exact solutions and {\it ab initio} quantum Monte Carlo to derive several different quantum models.
+
 
 
 \lucas{I think the bulk of this could go in Section 4--what use these models will have.} 
@@ -55,7 +59,7 @@ These methods have also been used to obtain excited states and dynamical correla
 In addition to being computationally expensive, \textit{ab-initio} approaches lack the accuracy to resolve low energy scales. 
 They do, however, yield the correct low energy basin in which the effective description of the problem lives, schematically represented in Fig.~\ref{fig:lowenergybasin_schematic}.
 
-
+\lucas{This paragraph can probably go too; I pulled some of it in the other paragraph}
 Our primary focus is to downfold based on results of \textit{ab initio} wave functions, involving all electrons, these explicitly provide access to properties encoded compactly in the form of reduced density matrices (RDMs) or correlation functions. 
 Crucially, we do not commit ourselves to knowledge of exact eigenstates (a challenging endeavor) - rather we "learn" the effective Hamiltonian from a intelligently constructed database of low energy wave functions and their associated expectation values. 
 Our aim is thus to discuss the development and application of a new set of methods, christened "ab-initio density matrix downfolding" (AIDMD)~\cite{Changlani2015},which by nature of their formulation, restore the democracy between kinetic and potential part of the Hamiltonian. 
