@@ -3,7 +3,7 @@
 In multiscale modeling of many-particle systems, the effective Hamiltonian (or Lagrangian) is one of the most core concepts. 
 The effective Hamiltonian dictates the behavior of the system on a coarse-grained level, where 'sub-grid' effects are folded into the parameters and form of the effective Hamiltonian. 
 Fundamental concepts in condensed matter physics can be viewed as statements about the behavior of the effective Hamiltonian as the length scales change. 
-For example, in a scale invariant system the effective Hamiltonian does not change as the length scale changes, while a system with emergent physics has a different form of effective Hamiltonian when described at different length scales\lucas{I'm nervous about saying these things; please take a look and comment.}. 
+For example, in a scale invariant system the effective Hamiltonian does not change as the length scale changes \HJC{eff Ham  changes but its "form" doesnt change? Would that be more technically correct?}, while a system with emergent physics has a different form of effective Hamiltonian when described at different length scales\lucas{I'm nervous about saying these things; please take a look and comment.}. 
 These principles form the basis of the renormalization group\cite{Wilson}.
 A major goal in condensed matter physics is to determine what effective Hamiltonians apply to different physical situations, in particular quantum effective Hamiltonians, which lead to large-scale emergent quantum behavior. 
 
@@ -34,7 +34,7 @@ Then, to estimate the interactions, one assumes a model of screening of the Coul
 Since effects of interactions between the orbitals of interest have already been accounted for by DFT, a double counting correction is required to obtain the final downfolded Hamiltonian. \lucas{There is a claim of no double-counting for GW-type fitting; can someone comment on this?}
 The approach has been developed and widely applied~\cite{};\lucas{citations} but remains an active area of research~\cite{Haule_doublecounting}.
 There are other downfolding approaches that include the traditional Lowdin method, coupled to a stochastic approach~\cite{Tenno,Zhou_Ceperley} and the related method of canonical transformations~\cite{White_CT, Yanai_CT}. 
-While they have many advantages, all of these methods suffer from a lack of internal checks on the quality of the resultant model--it is typically not possible to know if a given model {\it ansatz} was a good guess or not. \lucas{Check this..} 
+While they have many advantages, all of these methods suffer from a lack of internal checks on the quality of the resultant model--it is typically not possible to know if a given model {\it ansatz} was a good guess or not. \lucas{Check this..} \HJC{I think CT may have internal checks of some sort.. need to check} 
 
 The situation described above stands in contrast to the derivation of effective classical models. 
 For concreteness, let us discuss classical force fields computed from {\it ab initio} electronic structure calculations. 
@@ -48,10 +48,11 @@ However, this strategy does not work well in practice because it is often not po
 To resolve this, we develop a general theory for generating effective quantum models that is exact when the wave functions are sampled from the manifold of low-energy states, and is a good approximation when the sampled manifold is parallel to that manifold in the model space. 
 Because this method is based on fitting the energy functional, 
 We will show the practical application of this theory using both exact solutions and {\it ab initio} quantum Monte Carlo to derive several different quantum models.
+\HJC{We should define our acronym "AIDMD" in the above para}
 
 
-
-\lucas{I think the bulk of this could go in Section 4--what use these models will have.} 
+\lucas{I think the bulk of this could go in Section 4--what use these models will have.}
+\HJC{Yes, I agree the bulk should go but we should devote two lines here also} 
 The endeavor we pursue here is to develop a multi-scale approach in which the effective interactions between quasiparticles (such as dressed electrons) are determined after an \textit{ab-initio} simulation (but not necessarily exact solution) of the continuum Schroedinger equation involving all the electrons. 
 This reduction of the Hilbert space is known as ``downfolding."
 The resultant "lattice model" can be efficiently and accurately solved for large system sizes using techniques designed and suited for small local Hilbert spaces- these include exact or selected diagonalization~\cite{DeRaedt,Tubman_selci,Holmes_Tubman_Umrigar}, density matrix renormalization group (DMRG)~\cite{White1992}, tensor networks~\cite{PEPS,Changlani_CPS,NeuscammanCPS}, dynamical mean field theory (DMFT)~\cite{Kotliar2006}, density matrix embedding (DMET)~\cite{DMET_2012} and lattice quantum Monte Carlo (QMC) methods~\cite{Scalapino, Trivedi_Ceperley, Zhang_AFQMC, Sandvik_loops, Prokofiev, Booth2009,SQMC,Holmes_Changlani_Umrigar, Booth2013}. 
@@ -60,6 +61,7 @@ In addition to being computationally expensive, \textit{ab-initio} approaches la
 They do, however, yield the correct low energy basin in which the effective description of the problem lives, schematically represented in Fig.~\ref{fig:lowenergybasin_schematic}.
 
 \lucas{This paragraph can probably go too; I pulled some of it in the other paragraph}
+\HJC{OK} 
 Our primary focus is to downfold based on results of \textit{ab initio} wave functions, involving all electrons, these explicitly provide access to properties encoded compactly in the form of reduced density matrices (RDMs) or correlation functions. 
 Crucially, we do not commit ourselves to knowledge of exact eigenstates (a challenging endeavor) - rather we "learn" the effective Hamiltonian from a intelligently constructed database of low energy wave functions and their associated expectation values. 
 Our aim is thus to discuss the development and application of a new set of methods, christened "ab-initio density matrix downfolding" (AIDMD)~\cite{Changlani2015},which by nature of their formulation, restore the democracy between kinetic and potential part of the Hamiltonian. 
