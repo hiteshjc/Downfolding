@@ -116,12 +116,13 @@ The one particle density matrix calculated in eigenstate $s$ in the transformed 
 	\langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{j,\sigma} \rangle_{s} = \sum_{mn} T^{*}_{im} \langle {c_{m,\sigma}}^{\dagger} c_{n,\sigma} \rangle_{s} T_{jn}
 \end{equation}
 Using this relationship, we demand two conditions be satisfied, (1) the effective orbitals ($\tilde{d}_{i,\sigma}$) 
-are orthogonal to each other and (2) the sum of all diagonal entries of the 1-RDM of the effective orbitals for all low energy eigenstates 
-(here, chosen to be the lowest three) $\sum_{i} \langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s}$ 
+are orthogonal to each other i.e. $\Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} = \delta_{mn}$
+and (2) the sum of all diagonal entries of the 1-RDM- of the effective orbitals for all low energy eigenstates 
+(here, chosen to be the lowest three) $\sum_{i} \sum_{\sigma} \langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s}$ 
 equals the number of electrons of a given spin $N_{\sigma}$. 
 These conditions are enforced by minimizing a cost function,
 \begin{equation}
-C = \sum_{s} \Big( \sum_{i} \langle \tilde{d}_{i,\sigma}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s} - N_{\sigma} \Big)^{2} + \sum_{mn} ( \Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn})^{2}
+C = \sum_{s} \sum_{\sigma} \Big( \sum_{i} \langle \tilde{d}_{i,\sigma}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s} - N_{\sigma} \Big)^{2} + \sum_{mn} ( \Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn})^{2}
 \label{eq:C}
 \end{equation} 
 
@@ -168,49 +169,39 @@ we find $(U/t)_1 = $, $(U/t)_2$, $(U/t)_3 = $. In fact, estimates of $U/t$ could
 made by comparing the 2-RDM elements $\langle \tilde{n}_{\uparrow} \tilde{n}_{\downarrow} \rangle_s$ 
 with qualitatively similar results. 
 
-These perspectives are unified by performing the standard protocol (N-AIDMD). To mimic the situation 
-characteristic of \textit{ab-initio} examples where no eigenstates are generally available, 
-several non eigenstates are generated as random linear combinations of the lowest three eigenstates. 
-This procedure provides an estimate of $U/t = $ 
-and $t = $, in this energy window. As is expected, and observed, when the 1-band 
-description is good, all estimates of $U/t$ (be it from state by state comparison or the standard protocol) 
-essentially agree with each other. 
+These perspectives are unified by performing the standard protocol (N-AIDMD) with the same three states. 
+(To mimic the situation characteristic of \textit{ab-initio} examples where no eigenstates are generally available, 
+several non eigenstates were generated as random linear combinations of the lowest three eigenstates  which led to similar results.) 
+For our test example, this procedure provides an estimate of $U/t = $ and $t = $. 
+As is expected, and observed, when the 1-band description is good, all estimates of $U/t$ (be it from state by state comparison or the standard protocol) essentially agree with each other. 
 
+%\begin{figure}[]
+%\centering
+%\includegraphics[width=0.49\linewidth]{./Figures/Hyb_vs_ep_Ud_8.pdf}
+%\includegraphics[width=0.49\linewidth]{./Figures/U_and_hopping_combined_vs_ep_Ud_8.pdf}
+%\caption{(Left) Optimized values of parameters entering the transformation matrix 
+%($\alpha_1$ through $\alpha_4$) and (Right) Effective 1-band Hubbard $U/t$ and hopping $t$ (inset) 
+%versus $\Delta/t_{pd}$ for fixed $U_{d}/t_{pd}=8$}
+%\label{fig:hamfitepdvary} 
+%\end{figure}	
 \begin{figure}[]
 \centering
-\includegraphics[width=0.49\linewidth]{./Figures/Hyb_vs_ep_Ud_8.pdf}
 \includegraphics[width=0.49\linewidth]{./Figures/U_and_hopping_combined_vs_ep_Ud_8.pdf}
-\caption{(Left) Optimized values of parameters entering the transformation matrix 
-($\alpha_1$ through $\alpha_4$) and (Right) Effective 1-band Hubbard $U/t$ and hopping $t$ (inset) 
-versus $\Delta/t_{pd}$ for fixed $U_{d}/t_{pd}=8$}
-\label{fig:hamfitepdvary} 
-\end{figure}	
-
-\begin{figure}[]
-\centering
 \includegraphics[width=0.48\linewidth]{./Figures/U_and_hopping_combined_vs_Ud_ep_3.pdf}
-\includegraphics[width=0.50\linewidth]{./Figures/U_and_hopping_combined_vs_Ud_ep_5.pdf}
+%\includegraphics[width=0.50\linewidth]{./Figures/U_and_hopping_combined_vs_Ud_ep_5.pdf}
 \caption{Downfolded values of the effective 1-band Hubbard $U/t$ and $t$ (inset) 
 vs $U_d/t_{pd}$ for two representative values of $\Delta/t_{pd}$}
 \label{fig:hamfitUdvary} 
 \end{figure}	
  
-We now explore the validity of the 1-band description by monitoring 
-the trends associated with the downfolded parameters as a function of varying $\Delta/t_{pd}$ and 
-$U_d/t_{pd}$. Fig.~\ref{fig:hamfitepdvary} shows our results for the optimal 
-transformation parameters ($\alpha$'s), $t$ and $U/t$ as a function of $\Delta/t_{pd}$
-keeping $U_d/t_{pd}=8$ fixed. Prominently, 
-$\alpha_1$, which is the parameter that mixes the copper and its nearest neighbor oxygen orbitals, 
-\textit{decreases} as $\Delta/t_{pd}$ is increased. 
+We now explore trends in the 1-band description by monitoring the downfolded parameters as a function 
+of varying $\Delta/t_{pd}$ and $U_d/t_{pd}$ in Fig.~\ref{fig:hamfitepdvary}. For example, 
+when $U_d/t_{pd}=8$ is fixed and $\Delta/t_{pd}$ is increased, we find that the effective 
+hopping in the 1-band model reduces and the $U/t$ increases. 
 This is physically reasonable since an increasing difference in the single particle energies of the copper and oxygen orbitals 
 means the increased unfavorableness of holes to occupy the latter. 
-Correspondingly the effective hopping in the 1-band model reduces and the effective $U/t$ increases. 
-
-Next, in Fig.~\ref{fig:hamfitUdvary} analogous results are presented by fixing $\Delta/t_{pd}$ 
-to two representative values, and varying $U_d/t_{pd}$. In both cases, $U/t$ increases 
-dramatically with $U_d/t_{pd}$, but $t$ changes only marginally; the hybridization parameters also follow this trend. 
-Also, the different estimates of $U/t$ are closer to each other for the case of larger $\Delta$ 
-indicating the increased effectiveness of the 1-band model. 
+In comparison, when $\Delta/t_{pd}$ is fixed and $U_d/t_{pd}$ is increased, $U/t$ increases dramatically, 
+but $t$ changes (increases) only marginally; the hybridization parameters also follow this trend. 
 
 One important check for the downfolded model is its ability to reproduce the low energy spectrum of 
 the full model. Fig.~\ref{fig:energyfit} shows the comparison of the lowest six eigenstates of the 
@@ -228,9 +219,9 @@ can be strongly dependent on the energy window of interest, a point we highlight
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_3_number_5.pdf}
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_3_number_9.pdf}
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_3_number_2.pdf}
-\includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_5.pdf}
-\includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_9.pdf}
-\includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_2.pdf}
+%\includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_5.pdf}
+%\includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_9.pdf}
+%\includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_2.pdf}
 \caption{Comparison for energy gaps between the 3-band and 1-band Hubbard models 
 using the optimized values of $U/t$ and $t$, for different $U_{d}/t_{pd}$ for $\Delta/t_{pd}=3$ (top row) 
 and $\Delta/t_{pd}=5$ (bottom row)}
