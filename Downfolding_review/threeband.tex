@@ -20,21 +20,21 @@ The examples are as follows:
 \item Section~\ref{subsection:fese}: FeSe molecule $\rightarrow$ $d,p,4s$ system. Demonstrates the use of matching pursuit to assess the importance of terms in an effective model and to select compact effective models.
 \end{itemize}
 
-\HJC{Lucas, Is this better?} \lucas{It still looks to me that this really goes in the 3-band part?} 
-\HJC{1-band comes in several subsections, hence the need to define it early?}
+%\HJC{Lucas, Is this better?} \lucas{It still looks to me that this really goes in the 3-band part?} 
+%\HJC{1-band comes in several subsections, hence the need to define it early?}
 In all examples we will highlight the important ingredients associated with AIDMD. First and foremost, is the choice 
 of low energy space or energy window i.e. how our database of wavefunctions was generated. Associated with this is 
 the choice of the one body space in terms of which the effective Hamiltonian is expressed. Finally, we discuss 
 aspects of the functional forms or parameterizations that are expected to describe our physical 
-problem. In three out of our four representative examples we work with the single (or 1-) band Hubbard Hamiltonian,
+problem. An important effective Hamiltonian that enters three out of our four representative examples is 
+the single (or 1-) band Hubbard model,
 \begin{equation}
 	\tilde{H} = -t \;\sum_{\langle i,j \rangle} \tilde{d}_i^{\dagger} \tilde{d}_j + U \;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}
 \label{eq:oneband}
 \end{equation}
-where $t$ and $U$ correspond to downfolded (renormalized) parameters and $\tilde{d}$ are the effective one-particle operators, 
-which are obtained from transformations on their bare counterparts. 
-%Thus 
-%the determination of effective Hamiltonians is a \emph{dual} problem - what are the composite objects ($\tilde{d}_i$ here) 
+where $t$ and $U$ correspond to downfolded (renormalized) parameters and $\tilde{d}$ are the effective one-particle operators. 
+%which are obtained from transformations on their bare counterparts. 
+%Thus %the determination of effective Hamiltonians is a \emph{dual} problem - what are the composite objects ($\tilde{d}_i$ here) 
 %that give a compact description of the low energy physics? and given this choice what 
 %are the effective interactions between them?
 
@@ -111,15 +111,17 @@ where we have defined $F \equiv \sqrt{1-4{\alpha_1}^2 - 2{\alpha_2}^2 - 4 {\alph
 where the parameters $\alpha_1$,$\alpha_2$,$\alpha_3$ and $\alpha_4$ will be optimized to minimize a 
 certain cost function, which will be explained shortly. 
 
-The one particle density matrix calculated in eigenstate $s$ in the transformed basis is related to that in the original basis by,
-\begin{equation}
-	\langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{j,\sigma} \rangle_{s} = \sum_{mn} T^{*}_{im} \langle {c_{m,\sigma}}^{\dagger} c_{n,\sigma} \rangle_{s} T_{jn}
-\end{equation}
-Using this relationship, we demand two conditions be satisfied, (1) the effective orbitals ($\tilde{d}_{i,\sigma}$) 
+The density matrices in eigenstate $s$ in the transformed basis are related to that in the original basis by,
+\begin{subequations}
+\begin{eqnarray}
+	\langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{j,\sigma} \rangle_{s} &=& \sum_{mn} T^{*}_{im} \langle {c_{m,\sigma}}^{\dagger} c_{n,\sigma} \rangle_{s} T_{jn} \\
+	\langle \tilde{n}_{i,\uparrow} \tilde{n}_{i,\downarrow} \rangle_{s} &=& \sum_{jkmn} T^{*}_{ij} T^{*}_{im} \langle {c_{j,\uparrow}}^{\dagger} {c_{m,\downarrow}}^{\dagger} c_{n,\downarrow} c_{k,\uparrow} \rangle_{s} T_{in} T_{ik}
+\end{eqnarray}
+\end{subequations}
+We optimize the transformation by demanding two conditions be satisfied, (1) the effective orbitals ($\tilde{d}_{i,\sigma}$) 
 are orthogonal to each other i.e. $\Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} = \delta_{mn}$
-and (2) the sum of all diagonal entries of the 1-RDM- of the effective orbitals for all low energy eigenstates 
-(here, chosen to be the lowest three) $\sum_{i} \sum_{\sigma} \langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s}$ 
-equals the number of electrons of a given spin $N_{\sigma}$. 
+and (2) the sum of all diagonal entries (trace) of the 1-RDM of the effective orbitals for all low energy eigenstates 
+equals the number of electrons of a given spin i.e. $\sum_{i} \sum_{\sigma} \langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s} = N_{\sigma}$. 
 These conditions are enforced by minimizing a cost function,
 \begin{equation}
 C = \sum_{s} \sum_{\sigma} \Big( \sum_{i} \langle \tilde{d}_{i,\sigma}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s} - N_{\sigma} \Big)^{2} + \sum_{mn} ( \Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn})^{2}
@@ -127,9 +129,10 @@ C = \sum_{s} \sum_{\sigma} \Big( \sum_{i} \langle \tilde{d}_{i,\sigma}^{\dagger}
 \end{equation} 
 
 To give a concrete and representative example of our results, we discuss our results 
-for $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$ where 
-we find the optimal parameters of ${\bf T}$ to be 
-$\alpha_1=0.220$, $\alpha_2=0.044$, $\alpha_3=0.020$ and $\alpha_4=0.018$ 
+for $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. We find the optimal parameters of 
+${\bf T}$ to be $\alpha_1=0.220$, $\alpha_2=0.044$, $\alpha_3=0.020$ and $\alpha_4=0.018$ 
+and the corresponding trace conditions and orthogonality are individually 
+satisfied to a relative error of the order of 0.1 percent.
 % Get rid of this and possibly put in appendix
 %\begin{small}
 %\begin{eqnarray}
@@ -159,21 +162,24 @@ $\alpha_1=0.220$, $\alpha_2=0.044$, $\alpha_3=0.020$ and $\alpha_4=0.018$
 %\right)
 %\end{eqnarray}
 %\end{small}
-In the transformed basis, the diagonal values of the 1-RDM closely 
-satisfy the trace condition. In addition, one can also look at 
-the off diagonal 1-RDM elements corresponding to nearest neighbors $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$; 
-for states 1, 2, and 3; their absolute values are approximately $0.159$, $0.142$ and $0.084$. 
+Importantly, the off diagonal 1-RDM elements corresponding to nearest neighbors $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$; 
+already provide estimates for the parameters of the effective model. 
+For states 1, 2, and 3; their absolute values are approximately $0.159$, $0.142$ and $0.084$. 
 Since one is equipped with the exact knowledge of the eigenstates of the 1-band Hubbard model, we ask which 
 $U/t$ has the same 1-RDM value (computed in the same corresponding eigenstate as the 3-band model); 
-we find $(U/t)_1 = $, $(U/t)_2$, $(U/t)_3 = $. In fact, estimates of $U/t$ could also be 
+we find $(U/t)_1 = $, $(U/t)_2$, $(U/t)_3 = $. Analogous estimates of $U/t$ could also be 
 made by comparing the 2-RDM elements $\langle \tilde{n}_{\uparrow} \tilde{n}_{\downarrow} \rangle_s$ 
 with qualitatively similar results. 
 
-These perspectives are unified by performing the standard protocol (N-AIDMD) with the same three states. 
+This perspective was confirmed by performing the standard protocol (N-AIDMD) with the same three low energy 
+states using their energies and the computed values of  $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
+and $\langle \tilde{n}_{i,\uparrow} \tilde{n}_{i,\downarrow} \rangle_{s}$. 
 (To mimic the situation characteristic of \textit{ab-initio} examples where no eigenstates are generally available, 
-several non eigenstates were generated as random linear combinations of the lowest three eigenstates  which led to similar results.) 
-For our test example, this procedure provides an estimate of $U/t = $ and $t = $. 
-As is expected, and observed, when the 1-band description is good, all estimates of $U/t$ (be it from state by state comparison or the standard protocol) essentially agree with each other. 
+several non eigenstates were generated as random linear combinations of the lowest three eigenstates, with 
+similar outcomes.) For our test example, this procedure provides an estimate of $U/t = $ and $t = $. 
+As is expected, and observed, when the 1-band description is good, all estimates of $U/t$ 
+%(be it from state by state comparison or the standard protocol) 
+essentially agree with each other. 
 
 %\begin{figure}[]
 %\centering
@@ -196,12 +202,15 @@ vs $U_d/t_{pd}$ for two representative values of $\Delta/t_{pd}$}
  
 We now explore trends in the 1-band description by monitoring the downfolded parameters as a function 
 of varying $\Delta/t_{pd}$ and $U_d/t_{pd}$ in Fig.~\ref{fig:hamfitepdvary}. For example, 
-when $U_d/t_{pd}=8$ is fixed and $\Delta/t_{pd}$ is increased, we find that the effective 
-hopping in the 1-band model reduces and the $U/t$ increases. 
-This is physically reasonable since an increasing difference in the single particle energies of the copper and oxygen orbitals 
-means the increased unfavorableness of holes to occupy the latter. 
-In comparison, when $\Delta/t_{pd}$ is fixed and $U_d/t_{pd}$ is increased, $U/t$ increases dramatically, 
-but $t$ changes (increases) only marginally; the hybridization parameters also follow this trend. 
+when $U_d/t_{pd}=8$ is fixed and $\Delta/t_{pd}$ is increased, we find that both 
+the effective hopping in the 1-band model and the hybridization between nearest neighbor copper and oxygen $\alpha_1$ 
+reduce and $U/t$ increases. This is physically reasonable since an increasing difference in the 
+single particle energies of the copper and oxygen orbitals means the increased unfavorableness of holes 
+to occupy the latter. 
+When $\Delta/t_{pd}$ is fixed and $U_d/t_{pd}$ is increased, $U/t$ increases also increases. 
+As a way of avoiding the large $U_d$, the copper orbitals are forced 
+to hybridize more with the oxygen ones, the net result is that the effective $t$ also increases, albeit marginally; 
+a trend also observed in $\alpha_1$.
 
 One important check for the downfolded model is its ability to reproduce the low energy spectrum of 
 the full model. Fig.~\ref{fig:energyfit} shows the comparison of the lowest six eigenstates of the 
@@ -213,7 +222,6 @@ $U_d$ and larger $\Delta$ consistent with our expectations from the previous plo
 we caution that the reduced sensitivity of the energy to small RDM elements means 
 that the Hubbard parameters (from the standard protocol or eigenstate matching) 
 can be strongly dependent on the energy window of interest, a point we highlight shortly. 
-%We re-emphasize that once the density matrices were transformed %only one parameter ($t$) was fit to match five energy gaps between the two models; this indicates %it is thus an indicator of the success of the downfolding (rather than a result of overfitting). 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_3_number_5.pdf}
@@ -228,11 +236,11 @@ and $\Delta/t_{pd}=5$ (bottom row)}
 \label{fig:energyfit} 
 \end{figure}	
 
-We motivated the need for downfolding by suggesting that one of its primary objectives 
-is to reduce the size of the effective Hilbert space; the downfolded Hamiltonian enables 
-simulations of a bigger unit cell. To show that this actually works well in practice for the 3-band case, 
+A primary objective of downfolding is to reduce the size of the effective Hilbert space; thus 
+simulations of bigger unit cells can be carried out with the downfolded Hamiltonian. 
+To show that this actually works well in practice for the 3-band case, 
 we consider the $2\sqrt{2} \times 2 \sqrt{2}$ square unit cell, comprising of 8 copper and 16 oxygen orbitals. 
-For the six test cases presented in Fig.~\ref{fig:energyfit}, we performed an exact diagonalization 
+For the test cases presented in Fig.~\ref{fig:energyfit}, we performed an exact diagonalization 
 (or full configuration interaction) calculation at half filling, the Hilbert space comprises of 112911876 basis states. 
 Roughly 200 Lanczos iterations were carried out, enabling convergence of the lowest four energies. 
 We compared the lowest gaps with the corresponding calculation on the single 
@@ -250,11 +258,11 @@ $\Delta/t_{pd}$=3,$U_d/t_{pd}=8$ &           &           &           &          
 $\Delta/t_{pd}$=3,$U_d/t_{pd}=12$ &           &           &           &           &           &       \\
 \hline
 \hline
-$\Delta/t_{pd}$=5,$U_d/t_{pd}=4$ &           &           &           &           &           &        \\
-$\Delta/t_{pd}$=5,$U_d/t_{pd}=8$ &           &           &           &           &           &        \\
-$\Delta/t_{pd}$=5,$U_d/t_{pd}=12$ &           &           &           &           &           &       \\
-\hline
-\hline
+%$\Delta/t_{pd}$=5,$U_d/t_{pd}=4$ &           &           &           &           &           &        \\
+%$\Delta/t_{pd}$=5,$U_d/t_{pd}=8$ &           &           &           &           &           &        \\
+%$\Delta/t_{pd}$=5,$U_d/t_{pd}=12$ &           &           &           &           &           &       \\
+%\hline
+%\hline
 \end{tabular}
 \label{tab:predictivity}
 \end{table} 
