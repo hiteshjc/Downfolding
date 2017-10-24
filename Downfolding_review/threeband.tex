@@ -216,24 +216,24 @@ For example, when $U_d/t_{pd}=8$ is fixed and $\Delta/t_{pd}$ is increased, we f
 the effective hopping in the 1-band model and the hybridization between nearest neighbor copper and oxygen $\alpha_1$ 
 reduce and $U/t$ increases. This is physically reasonable since an increasing difference in the 
 single particle energies of the copper and oxygen orbitals means the increased unfavorableness of holes 
-to occupy the latter. When $\Delta/t_{pd}$ is fixed and $U_d/t_{pd}$ is increased, $U/t$ increases. 
+to occupy the latter. When $\Delta/t_{pd}=3$ is fixed and $U_d/t_{pd}$ is increased, $U/t$ increases. 
 As a way of avoiding the large $U_d$, the copper orbitals are forced to hybridize more with the oxygen ones; 
-on the other hand the delocalization is suppressed in a bid to maintain only one electron per 
-$\tilde{d}$. The net result of these effects is that the effective $t$ also increases, albeit only marginally; 
-a trend also observed in $\alpha_1$.
+on the other hand the delocalization is suppressed in a bid to maintain mostly 
+one electron per $\tilde{d}$ due to the larger $U/t$. 
+The net result of these effects is that the effective $t$ also increases, albeit only marginally; a trend also observed in $\alpha_1$.
 
-An important check for the 1-band model is its ability to reproduce the low energy eigenstates 
-of the 3-band model. Since the standard protocol uses only information from the 3-band model, it is imperative we 
-perform other sanity checks on the accuracy of the downfolded model. 
-Fig.~\ref{fig:energyfit} shows the comparison of the lowest six eigenstates of the 
-1-band and 3-band models. These six states correspond to 4C2 states of the effective spin model 
-in its $S_z=0$ sector, all of which correspond to \textit{d like} spin excitations. 
+Since the standard protocol uses only information from the full (here, 3-band) model, it is imperative we 
+perform other sanity checks on the accuracy of the downfolded model. An important check for the 1-band model is its 
+ability to reproduce the low energy eigenenergies of the 3-band model. 
+Fig.~\ref{fig:energyfit} shows the comparison of the energy gaps of the 
+lowest six eigenstates of the 1-band and 3-band models. These six states correspond 
+to 4C2 states of the effective spin model in its $S_z=0$ sector, all of which correspond to \textit{d like} spin excitations. 
 The eigenstates above this manifold involve \textit{p-like} excitations, an aspect the 1-band model is not designed to capture. 
 In all cases, the fit is reasonably good from an energetic viewpoint. 
 %the best fits seen at larger $U_d$ and larger $\Delta$ consistent with our expectations from the previous plots. 
-Despite this good agreement, we caution that the reduced sensitivity of the energy to small RDM elements means 
-that the Hubbard parameters (from the standard protocol or eigenstate matching) 
-can be strongly dependent on the energy window of interest, a point we highlight shortly. 
+Despite this good agreement, we caution that the energy is relatively insensitive to small RDM elements, 
+and that the Hubbard parameters can be strongly dependent on the energy window of interest, a point 
+we highlight shortly. 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_3_number_5.pdf}
@@ -248,9 +248,8 @@ and $\Delta/t_{pd}=5$ (bottom row)}
 \label{fig:energyfit} 
 \end{figure}	
 
-A primary objective of downfolding is to reduce the size of the effective Hilbert space; thus 
-simulations of bigger unit cells can be carried out with the downfolded Hamiltonian. 
-To show that this actually works well in practice for the 3-band case, 
+Downfolding enables reduction of the size of the effective Hilbert space; allowing 
+simulations of bigger unit cells to be carried out. To show that this actually works well in practice for the 3-band case, 
 we consider the $2\sqrt{2} \times 2 \sqrt{2}$ square unit cell, comprising of 8 copper and 16 oxygen orbitals. 
 For the test cases presented in Fig.~\ref{fig:energyfit}, we performed an exact diagonalization 
 (or full configuration interaction) calculation at half filling, the Hilbert space comprises of 112911876 basis states. 
