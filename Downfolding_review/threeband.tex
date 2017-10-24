@@ -116,10 +116,9 @@ The one particle density matrix calculated in eigenstate $s$ in the transformed 
 	\langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{j,\sigma} \rangle_{s} = \sum_{mn} T^{*}_{im} \langle {c_{m,\sigma}}^{\dagger} c_{n,\sigma} \rangle_{s} T_{jn}
 \end{equation}
 Using this relationship, we demand two conditions be satisfied, (1) the effective orbitals ($\tilde{d}_{i,\sigma}$) 
-are orthogonal to each other 
-i.e. $\Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn}$
-and (2) the sum of all diagonal entries of the 1-RDM of the effective orbitals for all low energy eigenstates 
-(here, chosen to be the lowest three) $\sum_{i} \langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s}$ 
+are orthogonal to each other i.e. $\Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} = \delta_{mn}$
+and (2) the sum of all diagonal entries of the 1-RDM- of the effective orbitals for all low energy eigenstates 
+(here, chosen to be the lowest three) $\sum_{i} \sum_{\sigma} \langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s}$ 
 equals the number of electrons of a given spin $N_{\sigma}$. 
 These conditions are enforced by minimizing a cost function,
 \begin{equation}
