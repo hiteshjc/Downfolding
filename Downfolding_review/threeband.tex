@@ -239,9 +239,9 @@ we highlight shortly.
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_3_number_5.pdf}
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_3_number_9.pdf}
 \includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_3_number_2.pdf}
-%\includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_5.pdf}
-%\includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_9.pdf}
-%\includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_2.pdf}
+\includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_5.pdf}
+\includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_9.pdf}
+\includegraphics[width=0.325\linewidth]{./Figures/Gap_1_band_3_band_ep_5_number_2.pdf}
 \caption{Comparison for energy gaps between the 3-band and 1-band Hubbard models 
 using the optimized values of $U/t$ and $t$, for different $U_{d}/t_{pd}$ for $\Delta/t_{pd}=3$ (top row) 
 and $\Delta/t_{pd}=5$ (bottom row)}
@@ -255,26 +255,30 @@ For the test cases presented in Fig.~\ref{fig:energyfit}, we performed an exact 
 (or full configuration interaction) calculation at half filling, the Hilbert space comprises of 112911876 basis states. 
 Roughly 200 Lanczos iterations were carried out, enabling convergence of the lowest four energies. 
 We compared the lowest gaps with the corresponding calculation on the single 
-band model with the same square geometry (Hilbert space size of only 4900) using the downfolded 
-parameters obtained from the smaller $2 \times 2$ cell. Our results are summarized in Table xx
+band model with the same square geometry, with a Hilbert space size of only 4900, 
+using the downfolded parameters obtained from the smaller $2 \times 2$ cell. Our results are summarized 
+in Table~\ref{tab:predictivity}
 
 \begin{table}[ht]
 \centering
-\begin{tabular}{c||c|c||c|c||c|c|}
+\begin{tabular}{c|c|c|c||c|c||c|c||c|c}
 \hline
-Case                             & $(E_1-E_0)_3$ & $(E_1-E_0)_1$ & $(E_2-E_0)_3$ & $(E_2-E_0)_1$ & $(E_3-E_0)_3$ & $(E_3-E_0)_1$ \\
-\hline
-$\Delta/t_{pd}$=3,$U_d/t_{pd}=4$ &           &           &           &           &           &        \\ 
-$\Delta/t_{pd}$=3,$U_d/t_{pd}=8$ &           &           &           &           &           &        \\
-$\Delta/t_{pd}$=3,$U_d/t_{pd}=12$ &           &           &           &           &           &       \\
+$\Delta/t_{pd}$ & $U_d/t_{pd}$ & $t$ & $U/t$ & $G_{2-1,3}$ & $G_{2-1,1}$ & $G_{3-1,3}$ & $G_{3-1,1}$ & $G_{4-1,3}$ & $G_{4-1,1}$  \\
+                &              & (eV)&       & (eV)        & (eV)        & (eV)        & (eV)        & (eV)        & (eV)         \\
 \hline
 \hline
-%$\Delta/t_{pd}$=5,$U_d/t_{pd}=4$ &           &           &           &           &           &        \\
-%$\Delta/t_{pd}$=5,$U_d/t_{pd}=8$ &           &           &           &           &           &        \\
-%$\Delta/t_{pd}$=5,$U_d/t_{pd}=12$ &           &           &           &           &           &       \\
-%\hline
-%\hline
+3.0 & 4.0 & 0.29 & 8.8 & 0.0465 & 0.0474 & 0.1505 & 0.1529 & 0.2247 & 0.2244  \\ 
+3.0 & 8.0 & 0.31 & 13.3 & 0.0524 & 0.0542 & 0.1682 & 0.1726 & 0.2063 & 0.2082  \\ 
+3.0 & 12.0 & 0.32 & 16.0 & 0.052 & 0.0538 & 0.1658 & 0.1696 & 0.192 & 0.1936  \\ 
+5.0 & 4.0 & 0.237 & 15.1 & 0.0395 & 0.0405 & 0.1256 & 0.1281 & 0.1466 & 0.1485  \\ 
+5.0 & 8.0 & 0.254 & 23.8 & 0.0344 & 0.0352 & 0.107 & 0.1086 & 0.1142 & 0.1154  \\ 
+5.0 & 12.0 & 0.266 & 29.6 & 0.031 & 0.0316 & 0.0956 & 0.0967 & 0.0998 & 0.1006  \\ 
+\hline
 \end{tabular}
+\caption{Comparison of low energy gaps of the 8 unit cell ($2\sqrt{2} \times 2\sqrt{2}$) at half filling for the 
+1-band Hubbard (Hilbert space 4900) and 3-band Hubbard (Hilbert space 112911876) 
+models from exact diagonalizations, for six representative cases using $t_{pd}=1.3 $ eV. The downfolded parameters ($t$ and $U/t$) 
+for the 1-band model were those obtained from downfolding the 4 unit cell ($2\times2$) case.}
 \label{tab:predictivity}
 \end{table} 
 
