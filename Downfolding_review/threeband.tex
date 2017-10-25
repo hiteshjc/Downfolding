@@ -69,9 +69,10 @@ We work in the hole notation; half filling corresponds to 2$\uparrow$ and 2$\dow
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.8\linewidth]{./Figures/three_band_figure.eps}
-\caption{Schematic for downfolding the three band Hubbard model to the one band Hubbard model. 
-The oxygen orbitals are completely eliminated to give "dressed" $d$-like orbitals of the one band model, with modified hopping 
-and interaction parameters.}
+\caption{Schematic for downfolding the three band Hubbard model to the one band Hubbard model. The oxygen orbitals are 
+eliminated to give "dressed" $d$-like orbitals of the one band model, with modified hopping and interaction parameters. 
+The relationship between the $\tilde{d}$ and the copper and oxygen orbitals is encoded by a linear transformation 
+${\bf T}$ which is parameterized by $\alpha_1$, $\alpha_2$, $\alpha_3$, $\alpha_4$ and $F$ (see text for more details).}
 \label{fig:threeband} 
 \end{figure}	
 
@@ -133,9 +134,12 @@ C = \sum_{s} \sum_{\sigma} \Big( \sum_{i} \langle \tilde{d}_{i,\sigma}^{\dagger}
 \label{eq:C}
 \end{equation} 
 
+Fig.~\ref{fig:varyUdep} shows that in most regimes of the 3-band model, the lowest six eigenstates 
+are separated from the higher energy manifold; we will show that they do 
+correspond to states that can be described by the 1-body space of $\tilde{d}$ and hence can be described by a 1-band model. 
 To give a concrete and representative example of our results, we discuss the case of 
-$U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. We chose the lowest three eigenstates of the 3-band model 
-for computing the cost in Eq.~\ref{eq:C} and found the optimal parameters of 
+$U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. Out of the lowest six, we chose only the lowest three eigenstates 
+of the 3-band model for computing the cost in Eq.~\ref{eq:C} and found the optimal parameters of 
 ${\bf T}$ to be $\alpha_1=0.220$, $\alpha_2=0.044$, $\alpha_3=0.020$ and $\alpha_4=0.018$. 
 The corresponding trace conditions and orthogonality are individually 
 satisfied to a relative error of the order of 0.1 percent, verifying 
@@ -202,11 +206,16 @@ essentially agree with each other.
 %\end{figure}	
 \begin{figure}[]
 \centering
+\includegraphics[width=0.45\linewidth]{./Figures/spectrum_vs_ep_Ud_8.eps}
 \includegraphics[width=0.49\linewidth]{./Figures/U_and_hopping_combined_vs_ep_Ud_8.eps}
+\includegraphics[width=0.45\linewidth]{./Figures/spectrum_vs_Ud_ep_3.eps}
 \includegraphics[width=0.48\linewidth]{./Figures/U_and_hopping_combined_vs_Ud_ep_3.eps}
 %\includegraphics[width=0.50\linewidth]{./Figures/U_and_hopping_combined_vs_Ud_ep_5.pdf}
-\caption{Downfolded values of the effective 1-band Hubbard $U/t$ and $t$ (inset) 
-vs $U_d/t_{pd}$ for two representative values of $\Delta/t_{pd}$}
+\caption{Low energy spectra (relative to the corresponding ground state) 
+and estimates of downfolded parameters of the 1-band model for various parameter regimes of the 3-band Hubbard model. 
+The estimates of $U/t$ were obtained by state matching or by the DMD procedure using 
+the lowest three eigenstates. The top panels show the case of fixed $U_d/t_{pd}=8$ and varying $\Delta/t_{pd}$ 
+and the bottom panels show the case of fixed $\Delta/t_{pd}=3$ and varying $U_d/t_{pd}$.}
 \label{fig:varyUdep} 
 \end{figure}	
  
