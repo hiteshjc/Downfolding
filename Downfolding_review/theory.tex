@@ -58,8 +58,8 @@ for $\ket{\Psi} \in {\mathcal LE}$. Using Theorem~\ref{theorem:criticalpoint}, $
 Similarly, if the derivative is not zero, then the wave function must not be an eigenstate.
 \end{proof}
 
-We have thus reduced the problem of finding an effective Hamiltonian $H_{eff}$ that reproduces the low-energy spectrum of $H$ to matching the corresponding energy functionals $E[\Psi]$ and $E_{eff}[\Psi]$. \HHZ{We still need to find the form of $H_{eff}$ in order to compute $E_{eff}[\Psi]$, right?} 
-\lucas{Yes, that's part of matching the two.}
+We have thus reduced the problem of finding an effective Hamiltonian $H_{eff}$ that reproduces the low-energy spectrum of $H$ to matching the corresponding energy functionals $E[\Psi]$ and $E_{eff}[\Psi]$. 
+This involves both choosing the form of $H_{eff}$ and optimizing the parameters.
 An important implication of this is that it is not necessary to diagonalize either of the Hamiltonians; one must only be able to select wave functions from the low-energy space ${\mathcal LE}$.
 As we shall see, this can be substantially easier than attaining eigenstates.
 
@@ -140,7 +140,11 @@ If two descriptors have a large correlation coefficient, then they are redundant
 This could either mean that the sampling of the low-energy Hilbert space ${\mathcal LE}$ was insufficient, or that they are both proxies for the same differences in states. 
 If two data points have the same or very similar descriptor sets, but different energies, then either the descriptor set is not enough to describe the variations in the low-energy space, or the sampling has generated states that are not in the low-energy space.
 To resolve these possibilities, one should analyze the difference between the two wave functions.  
-\lucas{Choosing the reduced set is not so easy. If you choose wrong then you can get intruder states once you solve the effective model. Super subtle point which is not so easy to get across. That is, which descriptors we use interacts with the model Hilbert space. We want the edges of our Hilbert space to be represented in or at least near our sampled wave functions. This is why it's good to have eigenstates in your set if possible; they are guaranteed to be on the corners of your descriptor space if everything is working correctly.}
+Choosing the reduced set is a matter of some art. 
+If they are chosen incorrectly then intruder states can appear upon solution of the effective model. 
+This can occur if descriptors values available in the reduced Hilbert space are not represented in the sampled wave functions. 
+In that case, the model fitting is an extrapolation instead of an interperlation, which has the usual problems.
+This is why it is desirable to have eigenstates in the set if possible; they are guaranteed to be on the corners of the descriptor space if the model is accurate.
 
 
 \paragraph{Ansatz: $E_i \simeq \sum_i  d_{ij} p_j$} 
