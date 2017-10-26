@@ -19,10 +19,10 @@ At the same time, more complex effective models can be commensurately more diffi
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{./Figures/figure1.eps}
-\caption{Schematics for downfolding a simple ab-initio system (here the hydrogen chain) in DFT based methods (left) and the wave function based AIDMD (right). 
+\caption{Schematics for downfolding a simple ab-initio system (here the hydrogen chain) in DFT based methods (left) and the wave function based DMD (right). 
 Localized one particle functions are constructed in both methods and serve as the one body space for the model Hamiltonian. 
 The DFT based methods use Kohn Sham orbitals and screening models to estimate the interactions. 
-AIDMD uses a database of low energy all electron many-body wave functions ($\psi_i$). 
+DMD uses a database of low energy all electron many-body wave functions ($\psi_i$). 
 This "low energy basin" (shown abstractly in the space of descriptors) need not consist of exact eigenstates ($E_i$).\lucas{The energy should be a linear function of the density matrix!}}
 \label{fig:lowenergybasin_schematic}
 \end{figure}	
@@ -62,7 +62,7 @@ of a cost function that needs to be optimized to connect the many and few body p
 these notions both in terms of physical as well as information science descriptions, which allows us to connect to compression algorithms in the machine learning literature. 
 \item Section 3 discusses several representative examples where we consider multiband lattice models 
 and ab-initio systems to downfold to a simpler lattice model. 
-\item In Section 4, we discuss future prospects of applications of the AIDMD method, ongoing challenges 
+\item In Section 4, we discuss future prospects of applications of the DMD method, ongoing challenges 
 and clear avenues for methodological improvements. 
 \end{itemize}
 
