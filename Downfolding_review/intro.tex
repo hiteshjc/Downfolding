@@ -3,18 +3,14 @@
 In multiscale modeling of many-particle systems, the effective Hamiltonian (or Lagrangian) is one of the most core concepts. 
 The effective Hamiltonian dictates the behavior of the system on a coarse-grained level, where 'sub-grid' effects are folded into the parameters and form of the effective Hamiltonian. 
 Many concepts in condensed matter physics can be viewed as statements about the behavior of the effective Hamiltonian. 
-In particular, identification of 'strongly correlated' materials as materials where band theory is not applicable is a statement about effective Hamiltonians.
+In particular, identification of `strongly correlated' materials as materials where band theory is not applicable is a statement about effective Hamiltonians.
 Effective Hamiltonians at different length scales also form the basis of the renormalization group\cite{Wilson}.
 A major goal in condensed matter physics is to determine what effective Hamiltonians apply to different physical situations, in particular quantum effective Hamiltonians, which lead to large-scale emergent quantum behavior. 
 
-<<<<<<< HEAD
-The dominant effective model for quantum particles in condensed systems is band structure \HHZ{band structure is not an effective model in the context of above discussion but a result of the model}, and for metals, Fermi liquid theory \HHZ{Fermi liquid theory seems also more than an effective model..  How about: The dominant paradigm in condensed matter physics is band structure, and for metals, Fermi liquid theory, with an assumption of a mean field single-body effective Hamiltonian or a weakly correlated interacting Hamiltonian. However this paradigm}. 
-=======
 The dominant effective model for quantum particles in condensed systems is band structure, and for metals, Fermi liquid theory. 
->>>>>>> 02a5cff09c662c68dbc854f9b6b02faf6640f4e0
 However, a major challenge is how this paradigm should be altered when it is no longer a good description of the physical system.
 Examples of these include the high-T$_c$ cuprates and other transition metal oxides, which do not appear to be well-described by these simple and classic effective Hamiltonians. 
-For these systems, many models have been proposed, such as the Hubbard~\cite{Hubbard}, t-J~\cite{tJSpalek} and Heisenberg models.
+For these systems, many models have been proposed, such as the Hubbard~\cite{Hubbard1963}, t-J~\cite{tJSpalek} and Heisenberg models.
 While these models have been extensively studied analytically and numerically, and have significantly enhanced our understanding of the physics of correlated electrons, their effectiveness for describing a real complex system of interest is often unclear. 
 At the same time, more complex effective models can be commensurately more difficult to solve, so the desire but also to find an accurate effective model that is tractable. 
 
@@ -47,7 +43,7 @@ The parameters in the force field {\it ansatz} are varied to obtain a best-fit c
 Then, using standard statistical tools, it is possible to assess how well the fit reproduces the {\it ab initio} data within the calculation, without appealing to experiment. 
 While translating that error to error in properties is not a trivial task\lucas{citations}, this approach has the important advantage that in the limit of a high quality fit and high quality {\it ab initio} results, the resultant model is predictive.
 
-Na\"ively, one might think to reconcile the fitting approach used in classical force fields with quantum models by matching eigenstates between the (now quantum) model and {\it ab initio} systems, varying the model parameters until the eigenstates match. \HHZ{Probably include citation to Lucas's previous work}
+Na\"ively, one might think to reconcile the fitting approach used in classical force fields with quantum models by matching eigenstates between the (now quantum) model and {\it ab initio} systems, varying the model parameters until the eigenstates match \cite{Wagner2013}. 
 However, this strategy does not work well in practice because it is often not possible to obtain exact eigenstates for either the model or the {\it ab initio} system.
 To resolve this, we develop a general theory for generating effective quantum models that is exact when the wave functions are sampled from the manifold of low-energy states, and is a good approximation when the sampled manifold is parallel to that manifold in the model space. \HHZ{The word "parallel" is not very clear. }
 Because this method is based on fitting the energy functional, 
