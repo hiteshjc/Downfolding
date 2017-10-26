@@ -19,8 +19,6 @@ The examples are as follows:
 \item Section~\ref{subsection:fese}: FeSe molecule $\rightarrow$ $d,p,4s$ system. Demonstrates the use of matching pursuit to assess the importance of terms in an effective model and to select compact effective models.
 \end{itemize}
 
-%\HJC{Lucas, Is this better?} \lucas{It still looks to me that this really goes in the 3-band part?} 
-%\HJC{1-band comes in several subsections, hence the need to define it early?}
 In all examples we will highlight the important ingredients associated with DMD. First and foremost, is the choice 
 of low energy space or energy window i.e. how our database of wavefunctions was generated. Associated with this is 
 the choice of the one body space in terms of which the effective Hamiltonian is expressed. Finally, we discuss 
@@ -32,14 +30,9 @@ the single (or 1-) band Hubbard model,
 \label{eq:oneband}
 \end{equation}
 where $t$ and $U$ correspond to downfolded (renormalized) parameters and $\tilde{d}$ are the effective one-particle operators. 
-%which are obtained from transformations on their bare counterparts. 
-%Thus %the determination of effective Hamiltonians is a \emph{dual} problem - what are the composite objects ($\tilde{d}_i$ here) 
-%that give a compact description of the low energy physics? and given this choice what 
-%are the effective interactions between them?
 
 \subsection{Three-band Hubbard model to one band Hubbard model at half filling}
 \label{subsection:3band} 
-\HJC{Still editing - need to incorporate Lucas suggestions for energy dep..}
 Our first example is motivated by the high $T_c$ superconducting cuprates~\cite{Bednorz1986} that 
 have parent Mott insulators with rich phase diagrams on electron or hole doping~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. 
 Many works have been devoted to their model Hamiltonians and corresponding parameter 
@@ -295,13 +288,17 @@ for the 1-band model were those obtained from downfolding the 4 unit cell ($2\ti
 \label{tab:predictivity}
 \end{table} 
 
-\HJC{Once the predicitivity objective is achieved for the lowest eigenstates, discuss the 6 test cases with DMD. 
-This gets the average parameters that best describes the energy window, not only the extrema}
+Till this point, all our results focused on using only the lowest three eigenstates. 
+Using our test example of $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. We now use all six eigenstates 
+for optimizing the cost function in Eq.~\ref{eq:} and find similar values of $\alpha_i$ and hence ${\bf T}$. 
+This confirms our expectation that the low energy space is describable by $\tilde{d_i}$ operators. 
 
-Till this point, all our results focused 
-We note that one could construct 
-a different model (with say an additional next nearest neighbor $t'$) that does not exhibit an energy dependence 
-and describes all six states  
+However, as Fig.~\ref{fig:windows}(A) shows, based on how many eigenstates are used in the DMD 
+one gets different estimates of $U/t$. This is because the DMD aims to provide the 1-band description 
+that. If the model is not perfect within a given energy window, the DMD optimizes different cost functions. 
+This is consistent with intuition from the renormalization group, which argues for the scale dependence 
+of the effective parameters. This is further confirmed by Fig. . When all 6 states are used, 
+a nearest neighbor Hubbard model is insufficient and the DMD tries to minimize the error of the largest energy. 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.49\linewidth]{./Figures/downfolded_params_diffwindows_ep_3.eps}
@@ -311,7 +308,7 @@ and describes all six states
 in a given energy window, increasing windows correspond to 3,5 and 6 low energy eigenstates. 
 (B) Comparison of energy gaps between the 3-band (black circles) and 1-band (red triangles) 
 Hubbard models for different energy windows using the downfolded values in that window.}
-\label{fig:energyfit} 
+\label{fig:windows} 
 \end{figure}	
 
 
