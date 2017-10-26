@@ -1,14 +1,20 @@
 \section{Conclusion and Future prospects}
-To summarize, we have explained the AIDMD method that we have been developing, primarily in conjunction with the 
+To summarize, we have explained the DMD method that we have been developing, primarily in conjunction with the 
 \emph{ab-initio} QMC approach. The practical motivation is to take data from first principles (continuum) 
 calculations as inputs for lattice model (discrete) methods. 
 Since one is mapping a many body problem to a few body one, the relevant quantities of interest are 
 the reduced density matrices associated with the many-body wavefunctions projected to a one-body space. 
 The density matrix based approach is appealing as it is democratic 
 in the determination of the hopping and interaction parts of the effective Hamiltonian, and provides multiple 
-checks on its validity. We have discussed representative examples to present the conceptual and algorithmic aspects of AIDMD. 
+checks on its validity. We have discussed representative examples to present the conceptual and algorithmic aspects of DMD. 
 
-What sort of accuracy should one expect with effective Hamiltonians and AIDMD? The holy grail of quantum chemistry 
+The resultant lattice model can be efficiently and accurately solved for large system sizes using techniques designed and suited for small local Hilbert spaces- these include exact or selected diagonalization~\cite{DeRaedt,Tubman_selci,Holmes_Tubman_Umrigar}, density matrix renormalization group (DMRG)~\cite{White1992}, tensor networks~\cite{PEPS,Changlani_CPS,NeuscammanCPS}, dynamical mean field theory (DMFT)~\cite{Kotliar2006}, density matrix embedding (DMET)~\cite{DMET_2012} and lattice quantum Monte Carlo (QMC) methods~\cite{Scalapino, Trivedi_Ceperley, Zhang_AFQMC, Sandvik_loops, Prokofiev, Booth2009,SQMC,Holmes_Changlani_Umrigar, Booth2013}. 
+These methods have also been used to obtain excited states and dynamical correlation functions, that have been difficult in \textit{ab-initio} approaches. 
+In addition to being computationally expensive, \textit{ab-initio} approaches lack the accuracy to resolve low energy scales. 
+They do, however, yield the correct low energy basin in which the effective description of the problem lives, \HJC{remove this phrase? Since fig 1 was a while ago} schematically represented in Fig.~\ref{fig:lowenergybasin_schematic}.
+
+
+What sort of accuracy should one expect with effective Hamiltonians and DMD? The holy grail of quantum chemistry 
 and electronic structure is to obtain an energy of 1 mHa (0.027 eV) per atom; this 
 remains an open challenge despite decades of work. The effective Hamiltonian approach somewhat ameliorates 
 this problem, only relative energies are important, neither the total energy (nor its accuracy) is of particularly 
@@ -17,18 +23,18 @@ whose role is to primarily renormalize the interactions between the active (vale
 be a major limitation when the core and active electrons are strongly entangled i.e when the separation of energy 
 scales is not prominent (in which case an energy-dependent description may be needed). 
 Thus, it is possibly best suited for extended systems (solids) where this separation exists. 
-In our view, AIDMD (and downfolding in general) opens up many avenues for determination of physical 
+In our view, DMD (and downfolding in general) opens up many avenues for determination of physical 
 quantities not easily calculated in ground state approaches. Our experience suggests excitation spectra 
 can be accurately determined to 0.2 eV (or less)~\cite{Changlani2015} and potentially improved with 
 more \emph{ab-initio} data and more refined effective Hamiltonians.  
 
-Finally we would like to emphasize that AIDMD, though conceptually simple, 
+Finally we would like to emphasize that DMD, though conceptually simple, 
 is still a method in its development stages, with room for algorithmic improvements and new applications. It suffers 
 from the usual problems of optimization and overfitting, but with advances in these fields we believe some of these major 
 concerns may become less problematic. Some of the issues that need further research are,
 \begin{itemize} 
 	\item Construction of wavefunction database:
-	The AIDMD method relies crucially on the availability of a low energy space of \emph{ab initio} wavefunctions, 
+	The DMD method relies crucially on the availability of a low energy space of \emph{ab initio} wavefunctions, 
 	which despite not being eigenstates, reveal the nature of the effective Hamiltonian. Automating its construction 
 	remains somewhat challenging. We propose Slater Jastrow wavefunctions and deforming the orbitals entering the Slater 
 	determinant as one way of probing the low energy manifold.
@@ -44,12 +50,12 @@ concerns may become less problematic. Some of the issues that need further resea
 	or there may be some merit in determining the minimal description with fewest non zero parameters.
 	Note that most models for strong correlation \emph{assume} two body forms. While this appears to work well in practice, 
 	it is by not guaranteed on mathematical grounds. (Even though the Coulomb operator is two body, 
-	its low energy description need not be.) In this regard, AIDMD could also be used to assess 
+	its low energy description need not be.) In this regard, DMD could also be used to assess 
 	the accuracy of DFT based downfolding methods.
 	\item Other (non QMC) wavefunction based electronic structure methods:
 	There are several wavefunction based quantum chemistry 
 	methods for electronic structure like coupled cluster and ab-initio DMRG which work primarily 
-	directly in orbital space. These could also be potentially explored in conjunction with AIDMD.
+	directly in orbital space. These could also be potentially explored in conjunction with DMD.
 \end{itemize} 
 
 In terms of applications, we hope the method will be eventually applied to solids involving transition 
@@ -75,7 +81,7 @@ Some challenging areas include,
 	As previously mentioned, unconventional (non BCS) superconductivity in materials such as the cuprates and iron based 
 	pntictides has fuelled the study of strongly correlated systems.
 	Several parameter sets exist in the literature for multi-band models, but it appears that there is little universal consensus. 
-	We are optimistic that additional \emph{ab-initio} inputs from AIDMD will help constrain the part of parameter 
+	We are optimistic that additional \emph{ab-initio} inputs from DMD will help constrain the part of parameter 
 	space relevant for these materials. Trends of the parameters (and the effectiveness of the three band 
 	or one band model itself) with pressure dependence and doping remain largely unexplored.  
 	%\item Quantum computing (\HJC{tell me if this one is too weird}) : 
