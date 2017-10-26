@@ -16,7 +16,7 @@ without the $\sigma$ electrons, a system of $\pi$ electrons with bare Coulomb in
 insulator instead of a semimetal~\cite{DrutPRL2009, DrutPRB2009,  Smith2014, Zheng2016}. 
 
 In order to probe this further, we disentangle the screening effect of $\sigma$ electrons from the bare interactions 
-between $\pi$ electrons by considering a system of "$\pi$-only" graphene. In this system, the 
+between $\pi$ electrons by considering a system of ``$\pi$-only" graphene. In this system, the 
 $\sigma$ electrons are replaced with a static constant negative charge background. 
 The role of $\sigma$ electrons is then clarified by comparing the effective model Hamiltonians of these two systems. 
 We also study a honeycomb lattice of hydrogen atoms (with the same lattice constant $a=2.46$\AA~as graphene), 
@@ -25,18 +25,18 @@ which has a similar Dirac cone dispersion as graphene~\cite{Zheng2016}.
 %will manifest itself as differently renormalizated electron-electrons interactions. 
 
 The low energy degrees of freedom correspond to the $\pi$ orbitals in graphene (and its $\pi$-only system) 
-and $s$ orbitals in hydrogen (see Fig.~\ref{fig:honeycomb_wan}); these enter the effective 
-1-band Hubbard model description Eq.~\eqref{eq:oneband}. Due to the vanishing density of states at 
-the Fermi level, the Coulomb interaction remains long-ranged, in contrast to usual 
+and $s$ orbitals in hydrogen (see Figure~\ref{fig:honeycomb_wan}). 
+We consider a 1-band Hubbard model. 
+Due to the vanishing density of states at the Fermi level, the Coulomb interaction remains long-ranged, in contrast to usual 
 metals where the formation of electron-hole pairs screens the interactions strongly~\cite{Zheng2016}. 
 However, at least for certain aspects, the long ranged part can be considered as renormalizing the 
 onsite Coulomb interaction $U$ at low energy \cite{Schuler2013, Changlani2015}. 
-Therefore, we expect that Eq.~\eqref{eq:oneband} still remains a reasonable description of the low energy physics. 
+Therefore, we expect that 1-band Hubbard model still remains a reasonable description of the low energy physics. 
 \begin{figure}[hbt]
 \centering
 \includegraphics[width=0.40\textwidth]{./Figures/c_pi.png}
 \includegraphics[width=0.40\textwidth]{./Figures/h_wan.png}
-\caption{Wannier orbitals constructed from Kohn-Sham orbitals: (A) graphene $\pi$ orbitals; (B) hydrogen S orbital. }
+\caption{Wannier orbitals constructed from Kohn-Sham orbitals: (A) graphene $\pi$ orbital; (B) hydrogen $s$ orbital. }
 \label{fig:honeycomb_wan}
 \end{figure}
 
@@ -45,10 +45,10 @@ to the electron-hole excitations within the $\pi$ channel (or $s$ channel for hy
 the Slater-Jastrow wave functions are constructed from occupied $\sigma$ bands and occupied $\pi$ bands, whereas for ``$\pi$-only" graphene, 
 Slater-Jastrow wavefunctions constructed from occupied $\pi$ Kohn-Sham orbitals of graphene. The \textit{ab initio} simulations 
 were performed on a $3\times3$ cell (32 carbons or hydrogens) and the energy and RDMs of these wavefunctions were
-evaluated with VMC. (We expect further renormalizations in the corresponding DMC calculations~\cite{Changlani2015}, 
-but we do not explore that aspect here). The error bars on our downfolded parameters are estimated using the Jackknife method. 
+evaluated with VMC. \footnote{We expect further renormalizations in the corresponding DMC calculations~\cite{Changlani2015}, 
+but we do not explore that aspect here} The error bars on our downfolded parameters are estimated using the Jackknife method. 
 The results from our calculations are summarized in %Table~\ref{tab:grpheffm} 
-Figure.~\ref{fig:ne_aidmd_gh}.% shows the quality of the fits for the three systems.
+Figure~\ref{fig:ne_aidmd_gh}.% shows the quality of the fits for the three systems.
 
 %\begin{table}[ht]
 %\centering
@@ -78,7 +78,7 @@ Figure.~\ref{fig:ne_aidmd_gh}.% shows the quality of the fits for the three syst
 
 
 We find that the 1-band Hubbard model describes graphene and hydrogen very well, as is seen from the small 
-root mean square error of the predicted energies (shown in Fig.~\ref{fig:ne_aidmd_gh}). The ratio of $U/t$ is smaller 
+root mean square error of the predicted energies (shown in Figure~\ref{fig:ne_aidmd_gh}). The ratio of $U/t$ is smaller 
 than the semi-metal-insulator transition critical value (3.8, for the honeycomb lattice \cite{Sorella2012}) in both graphene and hydrogen, 
 which is consistent with both systems being semimetals. The two systems indeed have similar hopping constant $t$, 
 consistent with the fact that they have similar Fermi velocities at the Dirac point. However, 
