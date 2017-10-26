@@ -128,12 +128,16 @@ C = \sum_{s} \sum_{\sigma} \Big( \sum_{i} \langle \tilde{d}_{i,\sigma}^{\dagger}
 \end{equation} 
 
 Fig.~\ref{fig:varyUdep} shows that in most regimes of the 3-band model, the lowest six eigenstates 
-are separated from the higher energy manifold; we will show that they do 
-correspond to states that can be described by the 1-body space of $\tilde{d}$ and hence can be described by a 1-band model. 
+are separated from the higher energy manifold. In the large $U$ limit correspond to the 4C2 states 
+of the effective spin model in its $S_z=0$ sector, all of which correspond to \textit{d like} excitations, 
+an aspect we will verify in this section. The eigenstates above this manifold involve \textit{p like} excitations which 
+the 1-band model is not designed to capture. 
+
 To give a concrete and representative example of our results, we discuss the case of 
-$U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. Out of the lowest six, we chose only the lowest three eigenstates 
-of the 3-band model for computing the cost in Eq.~\ref{eq:C} and found the optimal parameters of 
-${\bf T}$ to be $\alpha_1=0.220$, $\alpha_2=0.044$, $\alpha_3=0.020$ and $\alpha_4=0.018$. 
+$U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. Out of the lowest six, we chose the lowest three eigenstates 
+of the 3-band model for computing the cost in Eq.~\ref{eq:C}. The 
+optimal parameters of ${\bf T}$ were found by a brute force scan with a grid spacing of $0.002$; we find 
+$\alpha_1=0.216$, $\alpha_2=0.042$, $\alpha_3=0.018$ and $\alpha_4=0.016$. 
 The corresponding trace conditions and orthogonality are individually 
 satisfied to a relative error of the order of 0.1 percent, verifying 
 the validity of Eq.~\ref{eq:dc}.
@@ -173,7 +177,7 @@ For our test example, in states 1, 2, and 3 their absolute values of $\langle \t
 are approximately $0.159$, $0.142$ and $0.084$ respectively. Since the exact knowledge of the 
 corresponding eigenstates of the 1-band Hubbard model is directly available for arbitrary 
 $U/t$ by numerical diagonalization, we directly look up the $U/t$ that would produce the same 1-RDM value.
-This matching procedure gives $(U/t)_1 = $, $(U/t)_2$, $(U/t)_3 = $. Analogous estimates of $U/t$ were 
+This matching procedure gives $(U/t)_1 \approx 14.1 $, $(U/t)_2 \approx 13.2 $, $(U/t)_3 \approx 12.7 $. Analogous estimates of $U/t$ were 
 also made by comparing the 2-RDM elements $\langle \tilde{n}_{\uparrow} \tilde{n}_{\downarrow} \rangle_s$ 
 with qualitatively similar results. 
 
@@ -183,9 +187,10 @@ and $\langle \tilde{n}_{i,\uparrow} \tilde{n}_{i,\downarrow} \rangle_{s}$ from E
 and~\eqref{eq:dmstransformations2}. 
 (To mimic the situation characteristic of \textit{ab-initio} examples where no eigenstates are generally available, 
 several non eigenstates were generated as random linear combinations of the lowest three eigenstates, with 
-similar outcomes.) For our test example, this procedure provides an estimate of $U/t = $ and $t = $. 
-As was expected, and observed, when the 1-band description is good, all estimates of $U/t$ 
-essentially agree with each other. 
+similar outcomes.) For our test example, this procedure provides an estimate of $U/t = 13.45 $ and $t = 0.3025 $ eV, 
+the former in the correct range of the state-matching metric. (There is no error bar for this case since there 
+are three unknown parameters including the constant shift and three entries in the DMD procedure). As was expected, and observed, when the 
+1-band description is good, all estimates of $U/t$ essentially agree with each other. 
 
 %\begin{figure}[]
 %\centering
@@ -225,13 +230,8 @@ The net result of these effects is that the effective $t$ also increases, albeit
 
 Since DMD uses only information from the full (here, 3-band) model, it is imperative we 
 perform other sanity checks on the accuracy of the downfolded model. An important check for the 1-band model is its 
-ability to reproduce the low energy eigenenergies of the 3-band model. 
-We focus on the lowest six eigenstates, which in the large $U$ limit correspond to the 4C2 states 
-of the effective spin model in its $S_z=0$ sector, all of which correspond to \textit{d like} excitations. 
-The eigenstates above this manifold involve \textit{p-like} 
-excitations, an aspect the 1-band model is not designed to capture. 
-
-Fig.~\ref{fig:energyfit} shows the comparison of the energy gaps of the downfolded 1-band and full 3-band models. 
+ability to reproduce the low energy eigenenergies of the 3-band model. Fig.~\ref{fig:energyfit} shows 
+the comparison of the energy gaps of the downfolded 1-band and full 3-band models. 
 For the case of $\Delta/t_{pd}=3$ the lowest three eigenstates and the fourth and fifth states (these are degenerate) 
 are reproduced well. The largest error ($\approx 0.1 $ eV) occurs for the highest eigenstate, 
 well outside the energy window used in the DMD to obtain $t$ and $U$. 
