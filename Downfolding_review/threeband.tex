@@ -290,14 +290,19 @@ for the 1-band model were those obtained from downfolding the 4 unit cell ($2\ti
 
 Till this point, all our results focused on using only the lowest three eigenstates. 
 Using our test example of $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. We now use all six eigenstates 
-for optimizing the cost function in Eq.~\ref{eq:} and find similar values of $\alpha_i$ and hence ${\bf T}$. 
-This confirms our expectation that the low energy space is describable by $\tilde{d_i}$ operators. 
+for optimizing the cost function in Eq.~\ref{eq:} and find similar (but not exactly the same) 
+values of $\alpha_i$ and hence ${\bf T}$ in comparison to the case for when only the three lowest states were 
+used. This confirms our expectation that the entire low energy space is described by the same 
+$\tilde{d_i}$ operators. 
 
-However, as Fig.~\ref{fig:windows}(A) shows, based on how many eigenstates are used in the DMD 
-one gets different estimates of $U/t$. This is because the DMD aims to provide the 1-band description 
-that. If the model is not perfect within a given energy window, the DMD optimizes different cost functions. 
-This is consistent with intuition from the renormalization group, which argues for the scale dependence 
-of the effective parameters. This is further confirmed by Fig. . When all 6 states are used, 
+However, as Fig.~\ref{fig:windows}(A) shows, the estimates of $U/t$ and $t$ depend on how many eigenstates 
+are used in the DMD procedure. This is because the DMD aims to provide the 1-band description 
+that describes all states in a given window. If the model is not perfect within a given energy window, 
+an energy window dependent model is expected, consistent with the renormalization group perspective. For our test example, 
+using the lowest three eigenstates vs all the six lowest eigenstates changes $U/t$ from $13.8$ to $9.44$. 
+(The attentive reader would have noticed the slightly different estimate of $U/t\approx 13.45$ when 3 states were used for both the DMD and cost minimization. This is because $\tilde{d}$ are slightly different in the two cases). 
+
+The features associated with the energy dependence  is further confirmed by Fig. . When all 6 states are used, 
 a nearest neighbor Hubbard model is insufficient and the DMD tries to minimize the error of the largest energy. 
 \begin{figure}[]
 \centering
