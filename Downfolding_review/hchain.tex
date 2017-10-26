@@ -1,8 +1,6 @@
 \subsection{One dimensional hydrogen chain}
 \label{subsection:1dhydrogen}
 We now move to one of the simplest extended \emph{ab-initio} systems, a hydrogen chain in one dimension with periodic boundary conditions. 
-%%HHZ: We don't need to say exact eigenstates stuff.
-%In the absence of availability of exact eigenstates, the example will highlight the effectiveness of the N-AIDMD approach. 
 We consider the case of $10$ atoms and work in a regime where the inter-atomic distance $r$ is 
 relatively large ($r=1.5$ to $3.0$ \AA), such that the system is potentially well described by a 1-band Hubbard model 
 in terms of primarily $s$-like orbitals, whose form we discuss here. 
@@ -27,7 +25,7 @@ orthogonalized using the L\"owdin procedure. The resulting orbitals are shown in
 \caption{Orthogonalized intrinsic atomic orbitals for interatomic hydrogen separation distances equal to $1$, and $2$ \AA \:respectively. }\label{fig:h10orb}%,% $1.5$, and $2$ \AA \:respectively}\label{fig:h10orb}
 \end{figure}
 
-To generate a database of wavefunctions needed for the N-AIDMD, we produce a set of Slater-Jastrow 
+To generate a database of wavefunctions needed for the DMD, we produce a set of Slater-Jastrow 
 wavefunctions consisting of singles- and doubles- excitations to the Slater determinant, 
 \begin{subequations}
 \begin{eqnarray}
@@ -40,7 +38,7 @@ and $a_{i}^\dagger$ ($a_{i}$) is a single-electron creation (destruction) operat
 We compute the energies (expectation values of the Hamiltonian) and the reduced density matrices (descriptors) on all the wave functions. 
 %Then, having computed the energies (expectation values of the Hamiltonian) and corresponding 
 %descriptors for these wavefunctions we verify the independence of the $U$ and $t$ descriptors. 
-By computing the trace of the resulting 1-body reduced density matrices, we verify that all the electrons present in the system are represented within the localized basis of $s$-like orbitals. If the trace of the 1-body density matrix falls below the nominal number of electrons for a particular state, this indicates that some higher-energy orbitals are occupied ($p$-like orbitals, in the case of hydrogen), and that the state does not exist within the low-energy manifold. We exclude such states from further analysis. We then fit the 1-band Hubbard Hamiltonian using least-squares fitting according to the N-AIDMD formalism described in Sec. 2.
+By computing the trace of the resulting 1-body reduced density matrices, we verify that all the electrons present in the system are represented within the localized basis of $s$-like orbitals. If the trace of the 1-body density matrix falls below the nominal number of electrons for a particular state, this indicates that some higher-energy orbitals are occupied ($p$-like orbitals, in the case of hydrogen), and that the state does not exist within the low-energy manifold. We exclude such states from further analysis. We then fit the 1-band Hubbard Hamiltonian using least-squares fitting according to the DMD formalism described in Sec. 2.
 
 \begin{figure}
 \centering
@@ -52,7 +50,7 @@ By computing the trace of the resulting 1-body reduced density matrices, we veri
 \label{fig:fit_quality}
 \end{figure}
 
-Fig.~\ref{fig:fit_quality} shows our N-AIDMD fits for two representative $r$. As expected, the RMS error 
+Fig.~\ref{fig:fit_quality} shows our DMD fits for two representative $r$. As expected, the RMS error 
 is significantly smaller for larger $r$, verifying the effectiveness of the Hubbard model 
 in this limit. Fig.~\ref{fig:Parameters-vs-Bond-t} also shows trends of the fitted value of $t$ 
 and $U$ as a function of $r$. Consistent with physical intuition, $t$ decreases towards zero at larger $r$
