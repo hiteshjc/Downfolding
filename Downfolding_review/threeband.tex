@@ -192,7 +192,6 @@ and~\eqref{eq:dmstransformations2}.
 several non eigenstates were generated as random linear combinations of the lowest three eigenstates, with 
 similar outcomes.) For our test example, this procedure provides an estimate of $U/t = $ and $t = $. 
 As was expected, and observed, when the 1-band description is good, all estimates of $U/t$ 
-%(be it from state by state comparison or the standard protocol) 
 essentially agree with each other. 
 
 %\begin{figure}[]
@@ -214,8 +213,8 @@ essentially agree with each other.
 \caption{Low energy spectra (relative to the corresponding ground state) 
 and estimates of downfolded parameters of the 1-band model for various parameter regimes of the 3-band Hubbard model. 
 The estimates of $U/t$ were obtained by state matching or by the DMD procedure using 
-the lowest three eigenstates. The top panels show the case of fixed $U_d/t_{pd}=8$ and varying $\Delta/t_{pd}$ 
-and the bottom panels show the case of fixed $\Delta/t_{pd}=3$ and varying $U_d/t_{pd}$.}
+the lowest three eigenstates. (A) and (B) show the case of fixed $U_d/t_{pd}=8$ and varying $\Delta/t_{pd}$ 
+and (C) and (D) show the case of fixed $\Delta/t_{pd}=3$ and varying $U_d/t_{pd}$.}
 \label{fig:varyUdep} 
 \end{figure}	
  
@@ -231,25 +230,28 @@ on the other hand the delocalization is suppressed in a bid to maintain mostly
 one electron per $\tilde{d}$ due to the larger $U/t$. 
 The net result of these effects is that the effective $t$ also increases, albeit only marginally; a trend also observed in $\alpha_1$.
 
-Since the standard protocol uses only information from the full (here, 3-band) model, it is imperative we 
+Since DMD uses only information from the full (here, 3-band) model, it is imperative we 
 perform other sanity checks on the accuracy of the downfolded model. An important check for the 1-band model is its 
 ability to reproduce the low energy eigenenergies of the 3-band model. 
-Fig.~\ref{fig:energyfit} shows the comparison of the energy gaps of the 
-lowest six eigenstates of the 1-band and 3-band models. These six states correspond 
-to 4C2 states of the effective spin model in its $S_z=0$ sector, all of which correspond to \textit{d like} spin excitations. 
-The eigenstates above this manifold involve \textit{p-like} excitations, an aspect the 1-band model is not designed to capture. 
-In all cases, the fit is reasonably good from an energetic viewpoint. 
-%the best fits seen at larger $U_d$ and larger $\Delta$ consistent with our expectations from the previous plots. 
-However, we also caution that the energy is relatively insensitive to small RDM elements, 
-and that the Hubbard parameters can be strongly dependent on the energy window of interest, a point 
-we highlight shortly. 
+We focus on the lowest six eigenstates, which in the large $U$ limit correspond to the 4C2 states 
+of the effective spin model in its $S_z=0$ sector, all of which correspond to \textit{d like} excitations. 
+The eigenstates above this manifold involve \textit{p-like} 
+excitations, an aspect the 1-band model is not designed to capture. 
+
+Fig.~\ref{fig:energyfit} shows the comparison of the energy gaps of the downfolded 1-band and full 3-band models. 
+For the case of $\Delta/t_{pd}=3$ the lowest three eigenstates and the fourth and fifth states (these are degenerate) 
+are reproduced well. The largest error ($\approx 0.1 $ eV) occurs for the highest eigenstate, 
+well outside the energy window used in the DMD to obtain $t$ and $U$. 
+Similar results are seen for the case of $\Delta/t_{pd}=5$, with the noticeable difference that the energy error of the highest state 
+has reduced. This reflects that the Hubbard parameters we obtain from DMD are, in general, dependent on the energy window of interest. 
+This point will be highlighted shortly. 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.49\linewidth]{./Figures/lowenergy_1and3_vs_Ud_ep_3.eps}
 \includegraphics[width=0.49\linewidth]{./Figures/lowenergy_1and3_vs_Ud_ep_5.eps}
 \caption{Comparison for energy gaps between the 3-band (black circles) and 1-band (red triangles) 
 Hubbard models using the downfolded values of $U$ and $t$ for $t_{pd}=1.3$ eV and 
-various $U_{d}/t_{pd}$ and fixed $\Delta/t_{pd}=3$ (left) and $\Delta/t_{pd}=5$ (right)}
+various $U_{d}/t_{pd}$ and fixed (A) $\Delta/t_{pd}=3$ and (B) $\Delta/t_{pd}=5$}
 \label{fig:energyfit} 
 \end{figure}	
 
@@ -259,6 +261,7 @@ we consider the $2\sqrt{2} \times 2 \sqrt{2}$ square unit cell, comprising of 8 
 For representative test cases, we performed an exact diagonalization 
 (or full configuration interaction) calculation at half filling, the Hilbert space comprises of 112911876 basis states. 
 Roughly 200 Lanczos iterations were carried out, enabling convergence of the lowest four energies. 
+
 We compared the lowest gaps with the corresponding calculation on the single 
 band model with the same square geometry, with a Hilbert space size of only 4900, 
 using the downfolded parameters obtained from the smaller $2 \times 2$ cell. Our results are summarized 
@@ -295,4 +298,8 @@ for the 1-band model were those obtained from downfolding the 4 unit cell ($2\ti
 \HJC{Once the predicitivity objective is achieved for the lowest eigenstates, discuss the 6 test cases with DMD. 
 This gets the average parameters that best describes the energy window, not only the extrema}
 
+Till this point, all our results focused 
+We note that one could construct 
+a different model (with say an additional next nearest neighbor $t'$) that does not exhibit an energy dependence 
+and describes all six states  
 
