@@ -16,7 +16,7 @@ The examples are as follows:
 \item Section~\ref{subsection:3band}: Three-band Hubbard $\rightarrow$ one-band Hubbard at half filling. Demonstrates finding a basis set for the second quantized operators and uses a set of eigenstates directly sampled from the low-energy space to find a one-band model.
 \item Section~\ref{subsection:1dhydrogen}: Hydrogen chain $\rightarrow$ one-band Hubbard model at half filling. Demonstrates basis sets for {\it ab-initio} systems and the possibility to use this technique to determine the quality of a model to a given physical situation.
 \item Section~\ref{subsection:graphene}: Graphene $\rightarrow$ one-band Hubbard model with and without $\sigma$ electrons. Demonstrates using the downfolding procedure to examine the effects of screening due to core electrons. 
-\item Section~\ref{subsection:fese}: FeSe molecule $\rightarrow$ $d,p,4s$ system. Demonstrates the use of matching pursuit to assess the importance of terms in an effective model and to select compact effective models.
+\item Section~\ref{subsection:fese}: FeSe molecule $\rightarrow$ $3d,4p,4s$ system. Demonstrates the use of matching pursuit to assess the importance of terms in an effective model and to select compact effective models.
 \end{itemize}
 
 In all examples we will highlight the important ingredients associated with DMD. First and foremost, is the choice 
@@ -26,19 +26,22 @@ aspects of the functional forms or parameterizations that are expected to descri
 problem. An important effective Hamiltonian that enters three out of our four representative examples is 
 the single (or one-) band Hubbard model,
 \begin{equation}
-	\tilde{H} = -t \;\sum_{\langle i,j \rangle} \tilde{d}_i^{\dagger} \tilde{d}_j + U \;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}
+	H = -t \;\sum_{\langle i,j \rangle, \sigma} \tilde{d}_{i,\sigma}^{\dagger} \tilde{d}_{j,\sigma} + U \;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}
 \label{eq:oneband}
 \end{equation}
-where $t$ and $U$ correspond to downfolded (renormalized) parameters and $\tilde{d}$ are the effective one-particle operators. 
+where $t$ and $U$ are downfolded (renormalized) parameters, $\sigma$ is a spin index, 
+$\tilde{d}_{i,\sigma}$ is the effective one-particle operator associate with spatial orbital (or site) $i$ 
+and $n_{i,\sigma}=\tilde{d}_{i,\sigma}^{\dagger} \tilde{d}_{i,\sigma}$ is the corresponding number operator.
+$\langle i,j \rangle$ is used to denote nearest neighbor pairs.
 
 \subsection{Three-band Hubbard model to one-band Hubbard model at half filling}
 \label{subsection:3band} 
 Our first example is motivated by the high $T_c$ superconducting cuprates~\cite{Bednorz1986} that 
 have parent Mott insulators with rich phase diagrams on electron or hole doping~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. 
 Many works have been devoted to their model Hamiltonians and corresponding parameter 
-values~\cite{Emery, ZhangRice, tJSpalek, Hybertsen_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard} and the 
-emergent consensus of the minimal model involving both the copper and oxygen degrees of freedom 
-is the 3-orbital or three-band Hubbard model, 
+values~\cite{tJSpalek, Emery, ZhangRice, Hybertsen_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard}. 
+The emergent consensus of the minimal model involving both the copper and oxygen degrees of freedom 
+is the three-orbital or three-band Hubbard model, 
 \begin{eqnarray}
 H &=&    \epsilon_p \sum_{j,\sigma} n^{p}_{j,\sigma} + \epsilon_{d} \sum_{i,\sigma}  n^{d}_{i,\sigma} 
 	+ t_{pd} \sum_{\langle i,j \rangle, \sigma} \text{sgn}(p_i,d_j) \Big( d_{i,\sigma}^{\dagger} p_{j,\sigma} + \text{h.c.} \Big) \nonumber \\
@@ -50,12 +53,12 @@ H &=&    \epsilon_p \sum_{j,\sigma} n^{p}_{j,\sigma} + \epsilon_{d} \sum_{i,\sig
 %\end{eqnarray}
 where $d_i,p_j$ refer to the  $d_{x^2 - y^2}$ orbitals of copper (at site $i$) and $p_x$ or $p_y$ 
 oxygen (at site $j$)  respectively and $\text{sgn}(p_i,d_j)$ is the sign of the hopping $t_{pd}$ 
-between them, shown schematically in Fig.~\ref{fig:threeband}. 
+between nearest neighbors, shown schematically in Fig.~\ref{fig:threeband}. 
 $\epsilon_d$,$\epsilon_p$ are orbital energies, $U_d$, $U_p$ are strengths of onsite Hubbard interactions 
 and $V_{pd}$ is the strength of the density-density interactions between a neighboring $p$ and $d$ orbital. 
 We keep the exposition simple and consider only the case where $\epsilon_p$, $U_d$ and $t_{pd}$ 
-are non zero; the latter is chosen throughout this section to be the typical value of $1.3$ eV to give the reader a sense of overall scale. 
-Since we work with fixed number of particles we set our reference zero energy 
+are non zero; the latter is chosen throughout this section to be the typical value of $1.3$ eV to give the reader a sense of overall energy 
+scales. Since we work with fixed number of particles we set our reference zero energy 
 to be $\epsilon_d = 0$, thus the charge transfer energy $\Delta \equiv \epsilon_p - \epsilon_d$ equals $\epsilon_p$ in our notation. 
 We work in the hole notation; half filling corresponds to 2$\uparrow$ and 2$\downarrow$ holes on the $2\times2$ cell.
 \begin{figure}[htpb]
@@ -67,13 +70,11 @@ The relationship between the $\tilde{d}$ and the copper and oxygen orbitals is e
 ${\bf T}$ which is parameterized by $\alpha_1$, $\alpha_2$, $\alpha_3$, $\alpha_4$ and $F$ (see text for more details).}
 \label{fig:threeband} 
 \end{figure}
-
 It is our objective to determine what one-band Hubbard model~(Eq.~\ref{eq:oneband}) 
-"best" describe the three-band data. The effective \textit{d-like} orbitals, $\tilde{d}$ entering the low energy description 
-are mixtures of copper and oxygen orbitals; this optimal transformation also remains an unknown. 
-Thus the model determination is a \emph{dual} problem (1) 
-what are the composite objects that give a compact description of the low energy physics? and (2) 
-given this choice what are the effective interactions between them? 
+"best" describe the three-band data. The effective \textit{d-like} orbitals, $\tilde{d}$ that enter 
+the low energy description are mixtures of copper and oxygen orbitals; this optimal transformation also remains an unknown. 
+Thus the model determination is a \textit{dual} problem (1) what are the composite objects that give a 
+compact description of the low energy physics? and (2) given this choice what are the effective interactions between them? 
 In addition, the "best" effective Hamiltonian description depends on the energy scale of interest. 
 All these issues will be clarified in the remainder of the section. 
 
@@ -83,9 +84,10 @@ We begin by encoding the relationship between the bare and effective operators a
 \label{eq:dc}
 \end{equation}
 where $c_{j,\sigma}$ is the bare hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals. 
-Higher body generalizations are also possible, but have not been considered here. 
-For the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix, and accounting for its symmetries 
-for the numbering of the orbitals corresponding to Fig.~\ref{fig:threeband}, it is explicitly written out as, 
+Higher body generalizations of this relationship are also possible, but have not been considered here. 
+For the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix, which we parameterize by four distinct 
+parameters after accounting for the symmetries of the lattice. 
+Using the numbering of the orbitals corresponding to Fig.~\ref{fig:threeband}, the explicit form of ${\bf T}$ is,
 \begin{eqnarray}
 {\bf T} = 
 \left(
@@ -97,11 +99,12 @@ F        & \alpha_2 &        \alpha_2 &  \alpha_4 & \alpha_1 & \alpha_1 & -\alph
 \end{array}
 \right)
 \end{eqnarray}
-where we have defined $F \equiv \sqrt{1-4{\alpha_1}^2 - 2{\alpha_2}^2 - 4 {\alpha_3}^2 -{\alpha_4}^2}$ and 
-where the parameters $\alpha_1$,$\alpha_2$,$\alpha_3$ and $\alpha_4$ will be optimized to minimize a 
-certain cost function, which will be explained shortly. 
+where we have defined $F \equiv \sqrt{1-4{\alpha_1}^2 - 2{\alpha_2}^2 - 4 {\alpha_3}^2 -{\alpha_4}^2}$. 
+The parameters $\alpha_1$,$\alpha_2$,$\alpha_3$ and $\alpha_4$ will be optimized to minimize a certain cost function, 
+which will be explained shortly. 
 
-The density matrices in eigenstate $s$ in the transformed basis are related to that in the original basis by,
+All RDMs in the three-band and one-band descriptions are also related via ${\bf T}$; 
+the ones that we focus on are those that are evaluated in eigenstate $s$, and are given by,
 \begin{subequations}
 \begin{eqnarray}
 	\langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{j,\sigma} \rangle_{s} &=& \sum_{mn} T^{*}_{im} \langle {c_{m,\sigma}}^{\dagger} c_{n,\sigma} \rangle_{s} T_{jn} \label{eq:dmstransformations1} \\
