@@ -39,7 +39,7 @@ $\langle i,j \rangle$ is used to denote nearest neighbor pairs.
 Our first example is motivated by the high $T_c$ superconducting cuprates~\cite{Bednorz1986} that 
 have parent Mott insulators with rich phase diagrams on electron or hole doping~\cite{Dagotto_RevModPhys, LeeWen_RevModPhys}. 
 Many works have been devoted to their model Hamiltonians and corresponding parameter 
-values~\cite{tJSpalek, Emery, ZhangRice, Hybertsen_PRB1989, Hybertsen_PRB1990, Pavirini, Kent_Hubbard}. 
+values~\cite{tJSpalek, Pavirini, Emery, ZhangRice, Hybertsen_PRB1989, Hybertsen_PRB1990, Kent_Hubbard}. 
 The emergent consensus of the minimal model involving both the copper and oxygen degrees of freedom 
 is the three-orbital or three-band Hubbard model, 
 \begin{eqnarray}
@@ -125,13 +125,14 @@ varied from three to six, depending on the energy window of interest.
 
 Fig.~\ref{fig:varyUdep} shows regimes of the three-band model where 
 the lowest six eigenstates are separated from the higher energy manifold. 
+The lowest fourth and fifth eigenstate are degenerate. 
 In the large $U_d$ limit, charge fluctuations are suppressed and these states 
 correspond to the $4 \choose 2$ states of the effective spin model in its $S_z=0$ sector.
 These states correspond to \textit{d like} excitations, an aspect we will verify in this section. 
 The eigenstates above this manifold involve \textit{p like} excitations which the one-band model is not designed to capture. 
 
 To give a concrete and representative example of our results, we discuss the case of 
-$U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. Out of the lowest six, we chose the lowest three eigenstates 
+$U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. Out of the lowest six, we choose the lowest three eigenstates 
 of the three-band model for computing the cost in Eq.~\ref{eq:C}. The 
 optimal parameters of ${\bf T}$ were found by a brute force scan with a grid spacing of $0.002$; we find 
 $\alpha_1=0.216$, $\alpha_2=0.042$, $\alpha_3=0.018$ and $\alpha_4=0.016$. 
@@ -156,45 +157,46 @@ and~\eqref{eq:dmstransformations2}.
 several non eigenstates were generated as random linear combinations of the lowest three eigenstates, with 
 similar outcomes.) For our test example, DMD provides an estimate of $U/t = 13.45 $ and $t = 0.3025 $ eV, 
 the former in the correct range of the state-matching values. (There is no error bar since there 
-are three unknown parameters including the constant shift and three entries in the DMD procedure). 
-As was expected, and observed, when the one-band description is good within a given window, 
-all estimates of $U/t$ agree with each other. 
-
+are three unknown parameters in the model Hamiltonian, including the constant energy shift, and there 
+are three entries in the DMD procedure). As was expected, and observed, when the one-band description 
+is good within a given window, all estimates of $U/t$ agree with each other. 
 \begin{figure}
 \centering
 \includegraphics[width=0.45\linewidth]{./Figures/spectrum_vs_ep_Ud_8.eps}
 \includegraphics[width=0.49\linewidth]{./Figures/U_and_hopping_combined_vs_ep_Ud_8.eps}
 \includegraphics[width=0.45\linewidth]{./Figures/spectrum_vs_Ud_ep_3.eps}
 \includegraphics[width=0.48\linewidth]{./Figures/U_and_hopping_combined_vs_Ud_ep_3.eps}
-\caption{Low energy spectra (relative to the corresponding ground state) 
-and estimates of downfolded parameters of the one-band model for various parameter regimes of the three-band Hubbard model. 
-The estimates of $U/t$ were obtained by state matching or by the DMD procedure using 
-the lowest three eigenstates. (A) and (B) show the case of fixed $U_d/t_{pd}=8$ and varying $\Delta/t_{pd}$ 
+\caption{Low energy spectra (relative to the corresponding ground state) for $t_{pd}=1.3$ eV 
+and downfolded parameters for various parameter regimes of the three-band Hubbard model. 
+The one-band $U/t$ values were obtained by state matching or by the DMD procedure using 
+the lowest three eigenstates. The insets show $t$ obtained from DMD. 
+(A) and (B) show the case of fixed $U_d/t_{pd}=8$ and varying $\Delta/t_{pd}$ 
 and (C) and (D) show the case of fixed $\Delta/t_{pd}=3$ and varying $U_d/t_{pd}$.}
 \label{fig:varyUdep} 
 \end{figure}
+
 Some trends in the one-band description are explored in Fig.~\ref{fig:varyUdep} 
 by monitoring the downfolded parameters as a function of varying $\Delta/t_{pd}$ and $U_d/t_{pd}$. 
-For example, when $U_d/t_{pd}=8$ is fixed and $\Delta/t_{pd}$ is increased, we find that both 
+For example, when $U_d/t_{pd}=8$ and $\Delta/t_{pd}$ is increased, we find that both 
 the effective hopping in the one-band model and the hybridization between nearest neighbor copper and oxygen $\alpha_1$ 
 reduce and $U/t$ increases. This is physically reasonable since an increasing difference in the 
 single particle energies of the copper and oxygen orbitals means the increased unfavorableness of holes 
-to occupy the latter. When $\Delta/t_{pd}=3$ is fixed and $U_d/t_{pd}$ is increased, $U/t$ increases. 
-As a way of avoiding the large $U_d$, the copper orbitals are forced to hybridize more with the oxygen ones; 
+to occupy the latter. When $\Delta/t_{pd}=3$ and $U_d/t_{pd}$ is increased, $U/t$ increases. 
+As one mechanism of avoiding the large $U_d$, the copper orbitals are forced to hybridize more with the oxygen ones; 
 on the other hand the delocalization is suppressed in a bid to maintain mostly 
 one electron per $\tilde{d}$ due to the larger $U/t$. 
-The net result of these effects is that the effective $t$ also increases, albeit only marginally; a trend also observed in $\alpha_1$.
+The net result of these effects is that the effective $t$ also increases.%, albeit only marginally; a trend also observed in $\alpha_1$.
 
-Since DMD uses only information from the full (here, three-band) model, it is imperative we 
+Since DMD uses only information from the full model (here, three-band model) or \textit{ab-initio} calculation, it is imperative we 
 perform other sanity checks on the accuracy of the downfolded model. An important check for the one-band model is its 
-ability to reproduce the low energy eigenenergies of the three-band model. Fig.~\ref{fig:energyfit} shows 
-the comparison of the energy gaps of the downfolded one-band and full three-band models. 
-For the case of $\Delta/t_{pd}=3$ the lowest three eigenstates and the fourth and fifth states (these are degenerate) 
-are reproduced well. The largest error ($\approx 0.1 $ eV) occurs for the highest eigenstate, 
-well outside the energy window used in the DMD to obtain $t$ and $U$. 
-Similar results are seen for the case of $\Delta/t_{pd}=5$, with the noticeable difference that the energy error of the highest state 
-has reduced. This reflects that the Hubbard parameters we obtain from DMD are, in general, dependent on the energy window of interest. 
-This point will be highlighted shortly. 
+ability to reproduce the low energy gaps of the three-band model; these have been compared in 
+Fig.~\ref{fig:energyfit}. For the case of $\Delta/t_{pd}=3$, we observed that for all $U_d/t_{pd}$ 
+the lowest three eigenstates and the fourth and fifth (degenerate) states are reproduced well. 
+The largest error ($\approx 0.1 $ eV) occurs for the highest eigenstate, well outside the energy window used 
+in the DMD to obtain $t$ and $U$. Similar results are seen for the case of $\Delta/t_{pd}=5$, with the 
+noticeable difference that the energy error of the highest state has reduced. 
+This reflects that the Hubbard parameters we obtain from DMD are, in general, dependent on the energy window of interest, a 
+point which we will highlight by investigating it systematically. 
 
 \begin{figure}
 \centering
