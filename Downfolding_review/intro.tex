@@ -14,8 +14,6 @@ For these systems, many models have been proposed, such as the Hubbard~\cite{Hub
 While these models have been extensively studied analytically and numerically, and have significantly enhanced our understanding of the physics of correlated electrons, their effectiveness for describing a real complex system of interest is often unclear. 
 At the same time, more complex effective models can be commensurately more difficult to solve, so the desire but also to find an accurate effective model that is tractable. 
 
-
-
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{./Figures/figure1.eps}
@@ -26,7 +24,6 @@ DMD uses a database of low energy all electron many-body wave functions ($\psi_i
 This "low energy basin" (shown abstractly in the space of descriptors) need not consist of exact eigenstates ($E_i$).\lucas{The energy should be a linear function of the density matrix!}}
 \label{fig:lowenergybasin_schematic}
 \end{figure}	
-
 
 To address the need for a link between {\it ab-initio} electron-level models and larger scale models, downfolding has most commonly been carried out using approaches based on density functional theory (DFT). 
 The kinetic part is obtained from a standard DFT calculation which is projected onto localized Wannier functions and gives an estimate of the effective hoppings of the lattice model based on Kohn-Sham band structure~\cite{Pavirini}. 
@@ -51,9 +48,8 @@ We will show the practical application of this theory using both exact solutions
 
 
 
-The endeavor we pursue here is to develop a multi-scale approach in which the effective interactions between quasiparticles (such as dressed electrons) are determined after an \textit{ab-initio} simulation (but not necessarily exact solution) of the continuum Schroedinger equation involving all the electrons. 
-The method uses density matrices of low-energy states, not necessarily eigenstates, to cast downfolding as a fitting problem.
-We thus call it density matrix downfolding (DMD).
+The endeavor we pursue here is to develop a multi-scale approach in which the effective interactions between quasiparticles (such as dressed electrons) are determined after an \textit{ab-initio} simulation (but not necessarily exact solution) of the continuum Schroedinger equation involving all the electrons. The method uses reduced density matrices of low-energy states, not necessarily eigenstates, 
+to cast downfolding as a fitting problem. We thus call it density matrix downfolding (DMD).
 The paper is organized as follows:
 \begin{itemize} 
 \item 	In Section 2, we clarify and make precise what it means to downfold 

@@ -2,13 +2,13 @@
 \label{subsection:1dhydrogen}
 We now move to one of the simplest extended \emph{ab-initio} systems, a hydrogen chain in one dimension with periodic boundary conditions. 
 We consider the case of $10$ atoms and work in a regime where the inter-atomic distance $r$ is 
-relatively large ($r=1.5$ to $3.0$ \AA), such that the system is potentially well described by a 1-band Hubbard model 
+relatively large ($r=1.5$ to $3.0$ \AA), such that the system is potentially well described by a one-band Hubbard model 
 in terms of primarily $s$-like orbitals, whose form we discuss here. 
 
 For a given $r$, we first obtain single-particle Kohn-Sham orbitals from a set of spin-unrestricted and 
-spin-restricted DFT-PBE calculations. The localized orbital basis upon which the density matrices (descriptors) 
+spin-restricted DFT-PBE calculations. The localized orbital basis upon which the RDMs (descriptors) 
 are evaluated is obtained by generating intrinsic atomic orbitals (IAO) from the Kohn-Sham orbitals 
-orthogonalized using the L\"owdin procedure. The resulting orbitals are shown in Figure~\ref{fig:h10orb}. These are the orbitals that enter the 1-band Hubbard Hamiltonian. 
+orthogonalized using the L\"owdin procedure. The resulting orbitals are shown in Figure~\ref{fig:h10orb}. These are the orbitals that enter the one-band Hubbard Hamiltonian. 
 
 \begin{figure}[]
 \centering
@@ -34,10 +34,10 @@ wavefunctions consisting of singles- and doubles- excitations to the Slater dete
 \end{subequations}
 where $|KS\rangle$ is the Slater determinant of occupied Kohn-Sham orbitals, $\sigma$ and $\sigma'$ are spin indices, 
 and $a_{i}^\dagger$ ($a_{i}$) is a single-electron creation (destruction) operator corresponding to a particular Kohn-Sham orbital. $e^J$ is a Jastrow factor, optimized by minimizing the variance of the local energy. 
-We compute the energies (expectation values of the Hamiltonian) and the reduced density matrices (descriptors) on all the wave functions. 
+We compute the energies (expectation values of the Hamiltonian) and the RDMs on all the wave functions. 
 %Then, having computed the energies (expectation values of the Hamiltonian) and corresponding 
 %descriptors for these wavefunctions we verify the independence of the $U$ and $t$ descriptors. 
-By computing the trace of the resulting 1-body reduced density matrices, we verify that all the electrons present in the system are represented within the localized basis of $s$-like orbitals. If the trace of the 1-body density matrix falls below the nominal number of electrons for a particular state, this indicates that some higher-energy orbitals are occupied ($p$-like orbitals, in the case of hydrogen), and that the state does not belong to the low-energy manifold. We exclude such states from further analysis. We then fit the 1-band Hubbard Hamiltonian using least-squares fitting according to the DMD formalism described in Sec. \ref{sec:theory}.
+By computing the trace of the resulting 1-RDMs, we verify that all the electrons present in the system are represented within the localized basis of $s$-like orbitals. If the trace of the 1-RDM falls below the nominal number of electrons for a particular state, this indicates that some higher-energy orbitals are occupied ($p$-like orbitals, in the case of hydrogen), and that the state does not belong to the low-energy manifold. We exclude such states from further analysis. We then fit the one-band Hubbard Hamiltonian using least-squares fitting according to the DMD formalism described in Sec. \ref{sec:theory}.
 
 \begin{figure}
 \centering

@@ -1,5 +1,4 @@
 \section{Representative Examples}
-
 Given the theoretical framework for downfolding a many-orbital (or many electron) problem to a 
 few orbital (or few electron) problem, we now discuss examples which elucidate the DMD method. 
 The examples are as follows:
@@ -266,7 +265,12 @@ that "best" describes \textit{all} states in a given window. If the model is not
 an energy dependent model is expected, consistent with the renormalization group perspective. For our test example, 
 increasing the number of eigenstates from three to six changes $U/t$ from $13.8$ to $9.44$~\footnote{The attentive reader 
 would have noticed the slightly different estimate of $U/t\approx 13.45$ when 3 states were used for both the DMD and cost minimization. 
-This is because $\tilde{d}$ are similar yet slightly different in the two cases.} 
+This is because $\tilde{d}$ are similar yet slightly different in the two cases.} and $t$ from $0.3045$ to $0.2750$ eV. 
 
-The features associated with the energy dependence  is further confirmed by Fig. . When all 6 states are used, 
-a nearest neighbor Hubbard model is insufficient and the DMD tries to minimize the error of the largest energy. 
+The features associated with the energy dependence are further confirmed in Fig.~\ref{fig:windows}(B). 
+When only three states are used, the one-band (nearest neighbor) Hubbard model is insufficient for accurately 
+describing states outside the window. When all six states are used, the DMD tries to minimize the error of the 
+largest energy gap at the cost of errors in the smaller energy gaps. This is why the parameters are dependent 
+on the scale at which we view the problem. One could of course choose a different parameterization, say with 
+additional next nearest neighbor $t'$, for which is may be possible to reduce this energy dependence significantly.
+  
