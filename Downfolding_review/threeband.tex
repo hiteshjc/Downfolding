@@ -120,7 +120,7 @@ C = \sum_{s} \sum_{\sigma} \Big( \sum_{i} \langle \tilde{d}_{i,\sigma}^{\dagger}
 \label{eq:C}
 \end{equation} 
 For the $2\times2$ cell, $N_{\uparrow}=N_{\downarrow}=2$ and $i=1,2,3,4$; a 12 orbital problem 
-is mapped to a 4 orbital one. The number of states $s$ is 
+is downfolded to a 4 orbital one. The number of states $s$ is 
 varied from three to six, depending on the energy window of interest.  
 
 Fig.~\ref{fig:varyUdep} shows regimes of the three-band model where 
@@ -137,45 +137,15 @@ optimal parameters of ${\bf T}$ were found by a brute force scan with a grid spa
 $\alpha_1=0.216$, $\alpha_2=0.042$, $\alpha_3=0.018$ and $\alpha_4=0.016$. 
 The corresponding trace conditions and orthogonality are individually 
 satisfied to a relative error of the order of 0.1 percent, verifying 
-the validity of Eq.~\ref{eq:dc}.
-% Get rid of this and possibly put in appendix
-%\begin{small}
-%\begin{eqnarray}
-%\left(
-%\begin{array}{cccc}
-%+0.499 & -0.158 & -0.158 & 0.000  \\
-%-0.158 & +0.499 &  0.000 & -0.158 \\
-%-0.158 &  0.000 & +0.499 & -0.158 \\
-% 0.000 & -0.158 & -0.158 & +0.499 \\
-%\end{array}
-%\right);
-%\left(
-%\begin{array}{cccc}
-%+0.498 & -0.141 & -0.141 & -0.001  \\
-%-0.141 & +0.498 & -0.001 & -0.141 \\
-%-0.141 & -0.001 & +0.498 & -0.141 \\
-%-0.001 & -0.141 & -0.141 & +0.498 \\
-%\end{array}
-%\right)
-%;\left(
-%\begin{array}{cccc}
-%+0.498 & -0.083 & -0.083 & -0.032  \\
-%-0.083 & +0.498 & -0.032 & -0.083 \\
-%-0.083 & -0.032 & +0.498 & -0.083 \\
-%-0.032 & -0.083 & -0.083 & +0.498 \\
-%\end{array}
-%\right)
-%\end{eqnarray}
-%\end{small}
-
+the validity of Eq.~\ref{eq:dc}. 
 Importantly, the 1-RDM elements corresponding to nearest neighbors $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$; 
 already provide estimates for $U/t$ of the effective model. 
-For our test example, in states 1, 2, and 3 their absolute values of $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
-are approximately $0.159$, $0.142$ and $0.084$ respectively. Since the exact knowledge of the 
-corresponding eigenstates of the one-band Hubbard model is directly available for arbitrary 
-$U/t$ by numerical diagonalization, we directly look up the $U/t$ that would produce the same 1-RDM value.
-This matching procedure gives $(U/t)_1 \approx 14.1 $, $(U/t)_2 \approx 13.2 $, $(U/t)_3 \approx 12.7 $. Analogous estimates of $U/t$ were 
-also made by comparing the 2-RDM elements $\langle \tilde{n}_{\uparrow} \tilde{n}_{\downarrow} \rangle_s$ 
+For our test example, absolute values of $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
+in states $s=1,2,3$ are approximately $0.159$, $0.142$ and $0.084$ respectively. 
+Since the exact knowledge of the corresponding eigenstates of the one-band Hubbard model is directly available for arbitrary 
+$U/t$ by numerical diagonalization, we directly look up the $U/t$ with the same 1-RDM value.
+This matching procedure gives $(U/t)_1 \approx 14.1 $, $(U/t)_2 \approx 13.2 $, $(U/t)_3 \approx 12.7 $. 
+Analogous estimates of $U/t$ were also made by comparing the 2-RDM elements $\langle \tilde{n}_{\uparrow} \tilde{n}_{\downarrow} \rangle_s$ 
 with qualitatively similar results. 
 
 This state-matching perspective is confirmed by performing the standard protocol (DMD) with the same three low-energy states, 
@@ -184,10 +154,11 @@ and $\langle \tilde{n}_{i,\uparrow} \tilde{n}_{i,\downarrow} \rangle_{s}$ from E
 and~\eqref{eq:dmstransformations2}. 
 (To mimic the situation characteristic of \textit{ab-initio} examples where no eigenstates are generally available, 
 several non eigenstates were generated as random linear combinations of the lowest three eigenstates, with 
-similar outcomes.) For our test example, this procedure provides an estimate of $U/t = 13.45 $ and $t = 0.3025 $ eV, 
-the former in the correct range of the state-matching metric. (There is no error bar for this case since there 
-are three unknown parameters including the constant shift and three entries in the DMD procedure). As was expected, and observed, when the 
-one-band description is good, all estimates of $U/t$ essentially agree with each other. 
+similar outcomes.) For our test example, DMD provides an estimate of $U/t = 13.45 $ and $t = 0.3025 $ eV, 
+the former in the correct range of the state-matching values. (There is no error bar since there 
+are three unknown parameters including the constant shift and three entries in the DMD procedure). 
+As was expected, and observed, when the one-band description is good within a given window, 
+all estimates of $U/t$ agree with each other. 
 
 \begin{figure}
 \centering
