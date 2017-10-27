@@ -243,11 +243,11 @@ case.}
 \end{table} 
 Till this point, all our results focused on using only the lowest three eigenstates. We now explore 
 the effect of increasing the energy window, by including higher eigenstates, using our 
-test example of $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. First, we 
-use all six low energy eigenstates for optimizing the cost function in Eq.~\ref{eq:}. We 
+test example of $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. We now use all six low energy eigenstates 
+for optimizing the cost function in Eq.~\ref{eq:C}. We 
 find similar (but not exactly the same) values of $\alpha_i$ and hence ${\bf T}$ in comparison to 
 the case when only the three lowest states were used. This confirms our expectation that the entire 
-low energy space is described by the same $\tilde{d_i}$ operators. 
+low energy space is described by the same $\tilde{d}_i$ operators. 
 \begin{figure}
 \centering
 \includegraphics[width=0.49\linewidth]{./Figures/downfolded_params_diffwindows_ep_3.eps}
@@ -269,10 +269,10 @@ would have noticed the slightly different estimate of $U/t\approx 13.45$ when 3 
 This is because $\tilde{d}$ are similar yet slightly different in the two cases.} and $t$ from $0.3045$ to $0.2750$ eV. 
 
 The features associated with the energy dependence are further confirmed in Fig.~\ref{fig:windows}(B). 
-When only three states are used, the one-band (nearest neighbor) Hubbard model is insufficient for accurately 
+When only three states are used, the one-band (nearest neighbor) Hubbard model is insufficient for \textit{accurately}
 describing states outside the window. When all six states are used, the DMD tries to minimize the error of the 
 largest energy gap at the cost of errors in the smaller energy gaps. This is why the parameters are dependent 
-on the scale at which we view the problem. One could of course choose a different parameterization, say with 
+on the scale at which one views the problem. One could of course choose a different parameterization, say with 
 additional next nearest neighbor $t'$, for which is may be possible to reduce this energy dependence significantly.
  
  
