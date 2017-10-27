@@ -3,14 +3,14 @@
 In multiscale modeling of many-particle systems, the effective Hamiltonian (or Lagrangian) is one of the most core concepts. 
 The effective Hamiltonian dictates the behavior of the system on a coarse-grained level, where 'sub-grid' effects are folded into the parameters and form of the effective Hamiltonian. 
 Many concepts in condensed matter physics can be viewed as statements about the behavior of the effective Hamiltonian. 
-In particular, identification of 'strongly correlated' materials as materials where band theory is not applicable is a statement about effective Hamiltonians.
+In particular, identification of `strongly correlated' materials as materials where band theory is not applicable is a statement about effective Hamiltonians.
 Effective Hamiltonians at different length scales also form the basis of the renormalization group\cite{Wilson}.
 A major goal in condensed matter physics is to determine what effective Hamiltonians apply to different physical situations, in particular quantum effective Hamiltonians, which lead to large-scale emergent quantum behavior. 
 
 The dominant effective model for quantum particles in condensed systems is band structure, and for metals, Fermi liquid theory. 
 However, a major challenge is how this paradigm should be altered when it is no longer a good description of the physical system.
 Examples of these include the high-T$_c$ cuprates and other transition metal oxides, which do not appear to be well-described by these simple and classic effective Hamiltonians. 
-For these systems, many models have been proposed, such as the Hubbard~\cite{Hubbard}, t-J~\cite{tJSpalek} and Heisenberg models.
+For these systems, many models have been proposed, such as the Hubbard~\cite{Hubbard1963}, t-J~\cite{tJSpalek} and Heisenberg models.
 While these models have been extensively studied analytically and numerically, and have significantly enhanced our understanding of the physics of correlated electrons, their effectiveness for describing a real complex system of interest is often unclear. 
 At the same time, more complex effective models can be commensurately more difficult to solve, so the desire but also to find an accurate effective model that is tractable. 
 
@@ -32,7 +32,7 @@ To address the need for a link between {\it ab-initio} electron-level models and
 The kinetic part is obtained from a standard DFT calculation which is projected onto localized Wannier functions and gives an estimate of the effective hoppings of the lattice model based on Kohn-Sham band structure~\cite{Pavirini}. 
 Then, to estimate the interactions, one assumes a model of screening of the Coulomb interactions based on constrained DFT, RPA, or some other methods. 
 Since effects of interactions between the orbitals of interest have already been accounted for by DFT, a double counting correction is required to obtain the final downfolded Hamiltonian. \lucas{There is a claim of no double-counting for GW-type fitting; can someone comment on this?}
-The approach has been developed and widely applied~\cite{};\lucas{citations} but remains an active area of research~\cite{Haule_doublecounting}.
+The approach has been developed and widely applied~\cite{Pavirini, Dasgupta, Aryasetiawan2004, Jeschke2013, Fedorova2015};\lucas{citations} but remains an active area of research~\cite{Haule_doublecounting}.
 There are other downfolding approaches that include the traditional Lowdin method, coupled to a stochastic approach~\cite{Tenno,Zhou_Ceperley} and the related method of canonical transformations~\cite{White_CT, Yanai_CT}. 
 While they have many advantages, it is typically not possible to know if a given model {\it ansatz} was a good guess or not, and it is very rare for a technique to provide an estimate of the quality of the resultant model. 
 
@@ -43,7 +43,7 @@ The parameters in the force field {\it ansatz} are varied to obtain a best-fit c
 Then, using standard statistical tools, it is possible to assess how well the fit reproduces the {\it ab initio} data within the calculation, without appealing to experiment. 
 While translating that error to error in properties is not a trivial task\lucas{citations}, this approach has the important advantage that in the limit of a high quality fit and high quality {\it ab initio} results, the resultant model is predictive.
 
-Na\"ively, one might think to reconcile the fitting approach used in classical force fields with quantum models by matching eigenstates between the (now quantum) model and {\it ab initio} systems, varying the model parameters until the eigenstates match. \HHZ{Probably include citation to Lucas's previous work}
+Na\"ively, one might think to reconcile the fitting approach used in classical force fields with quantum models by matching eigenstates between the (now quantum) model and {\it ab initio} systems, varying the model parameters until the eigenstates match \cite{Wagner2013}. 
 However, this strategy does not work well in practice because it is often not possible to obtain exact eigenstates for either the model or the {\it ab initio} system.
 To resolve this, we develop a general theory for generating effective quantum models that is exact when the wave functions are sampled from the manifold of low-energy states, and is a good approximation when the sampled manifold is parallel to that manifold in the model space. \HHZ{The word "parallel" is not very clear. }
 Because this method is based on fitting the energy functional, 
