@@ -176,7 +176,7 @@ This matching procedure gives $(U/t)_1 \approx 14.1 $, $(U/t)_2 \approx 13.2 $, 
 also made by comparing the 2-RDM elements $\langle \tilde{n}_{\uparrow} \tilde{n}_{\downarrow} \rangle_s$ 
 with qualitatively similar results. 
 
-This state-matching perspective was confirmed by performing the standard protocol (DMD) with the same three low-energy states, 
+This state-matching perspective is confirmed by performing the standard protocol (DMD) with the same three low-energy states, 
 using their energies and the computed values of $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
 and $\langle \tilde{n}_{i,\uparrow} \tilde{n}_{i,\downarrow} \rangle_{s}$ from Eqs.~\eqref{eq:dmstransformations1} 
 and~\eqref{eq:dmstransformations2}. 
@@ -186,23 +186,12 @@ similar outcomes.) For our test example, this procedure provides an estimate of 
 the former in the correct range of the state-matching metric. (There is no error bar for this case since there 
 are three unknown parameters including the constant shift and three entries in the DMD procedure). As was expected, and observed, when the 
 one-band description is good, all estimates of $U/t$ essentially agree with each other. 
-
-%\begin{figure}[]
-%\centering
-%\includegraphics[width=0.49\linewidth]{./Figures/Hyb_vs_ep_Ud_8.pdf}
-%\includegraphics[width=0.49\linewidth]{./Figures/U_and_hopping_combined_vs_ep_Ud_8.pdf}
-%\caption{(Left) Optimized values of parameters entering the transformation matrix 
-%($\alpha_1$ through $\alpha_4$) and (Right) Effective one-band Hubbard $U/t$ and hopping $t$ (inset) 
-%versus $\Delta/t_{pd}$ for fixed $U_{d}/t_{pd}=8$}
-%\label{fig:hamfitepdvary} 
-%\end{figure}	
 \begin{figure}[]
 \centering
 \includegraphics[width=0.45\linewidth]{./Figures/spectrum_vs_ep_Ud_8.eps}
 \includegraphics[width=0.49\linewidth]{./Figures/U_and_hopping_combined_vs_ep_Ud_8.eps}
 \includegraphics[width=0.45\linewidth]{./Figures/spectrum_vs_Ud_ep_3.eps}
 \includegraphics[width=0.48\linewidth]{./Figures/U_and_hopping_combined_vs_Ud_ep_3.eps}
-%\includegraphics[width=0.50\linewidth]{./Figures/U_and_hopping_combined_vs_Ud_ep_5.pdf}
 \caption{Low energy spectra (relative to the corresponding ground state) 
 and estimates of downfolded parameters of the one-band model for various parameter regimes of the three-band Hubbard model. 
 The estimates of $U/t$ were obtained by state matching or by the DMD procedure using 
@@ -210,7 +199,6 @@ the lowest three eigenstates. (A) and (B) show the case of fixed $U_d/t_{pd}=8$ 
 and (C) and (D) show the case of fixed $\Delta/t_{pd}=3$ and varying $U_d/t_{pd}$.}
 \label{fig:varyUdep} 
 \end{figure}	
- 
 Some trends in the one-band description are explored in Fig.~\ref{fig:varyUdep} 
 by monitoring the downfolded parameters as a function of varying $\Delta/t_{pd}$ and $U_d/t_{pd}$. 
 For example, when $U_d/t_{pd}=8$ is fixed and $\Delta/t_{pd}$ is increased, we find that both 
@@ -242,7 +230,6 @@ Hubbard models using the downfolded values of $U$ and $t$ for $t_{pd}=1.3$ eV an
 various $U_{d}/t_{pd}$ and fixed (A) $\Delta/t_{pd}=3$ and (B) $\Delta/t_{pd}=5$}
 \label{fig:energyfit} 
 \end{figure}	
-
 Downfolding enables reduction of the size of the effective Hilbert space; allowing 
 simulations of bigger unit cells to be carried out. To show that this actually works well in practice for the three-band case, 
 we consider the $2\sqrt{2} \times 2 \sqrt{2}$ square unit cell, comprising of 8 copper and 16 oxygen orbitals. 
@@ -256,7 +243,6 @@ using the downfolded parameters obtained from the smaller $2 \times 2$ cell. Our
 in Table~\ref{tab:predictivity} and in all cases the agreement between the three-band and one-band models 
 is remarkably good. The largest gap error is of the order of $0.005$ eV which in relative terms is 
 about 3 percent. 
-
 \begin{table}[ht]
 \centering
 \begin{tabular}{c|c|c|c||c|c||c|c||c|c}
@@ -298,7 +284,7 @@ using the lowest three eigenstates vs all the six lowest eigenstates changes $U/
 
 The features associated with the energy dependence  is further confirmed by Fig. . When all 6 states are used, 
 a nearest neighbor Hubbard model is insufficient and the DMD tries to minimize the error of the largest energy. 
-\begin{figure}[]
+\begin{figure}
 \centering
 \includegraphics[width=0.49\linewidth]{./Figures/downfolded_params_diffwindows_ep_3.eps}
 \includegraphics[width=0.49\linewidth]{./Figures/lowenergygaps_diffwindows_ep_3.eps}
