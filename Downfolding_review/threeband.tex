@@ -16,12 +16,12 @@ aspects of the functional forms or parameterizations that are expected to descri
 problem. An important effective Hamiltonian that enters three out of our four representative examples is 
 the single (or one-) band Hubbard model,
 \begin{equation}
-	H = -t \;\sum_{\langle i,j \rangle, \sigma} \tilde{d}_{i,\sigma}^{\dagger} \tilde{d}_{j,\sigma} + U \;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}
+	H = -t \;\sum_{\langle i,j \rangle, \eta} \tilde{d}_{i,\eta}^{\dagger} \tilde{d}_{j,\eta} + U \;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}
 \label{eq:oneband}
 \end{equation}
-where $t$ and $U$ are downfolded (renormalized) parameters, $\sigma$ is a spin index, 
-$\tilde{d}_{i,\sigma}$ is the effective one-particle operator associated with spatial orbital (or site) $i$ 
-and $n_{i,\sigma}=\tilde{d}_{i,\sigma}^{\dagger} \tilde{d}_{i,\sigma}$ is the corresponding number operator.
+where $t$ and $U$ are downfolded (renormalized) parameters, $\eta$ is a spin index, 
+$\tilde{d}_{i,\eta}$ is the effective one-particle operator associated with spatial orbital (or site) $i$ 
+and $n_{i,\eta}=\tilde{d}_{i,\eta}^{\dagger} \tilde{d}_{i,\eta}$ is the corresponding number operator.
 $\langle i,j \rangle$ is used to denote nearest neighbor pairs.
 A constant energy shift has been dropped from Eq.~\ref{eq:oneband}, but practically 
 needs to be incorporated when carrying out DMD with total energies and 1-RDM and 2-RDM data. 
@@ -35,8 +35,8 @@ values~\cite{tJSpalek, Pavirini, Emery, ZhangRice, Hybertsen_PRB1989, Hybertsen_
 The emergent consensus of the minimal model involving both the copper and oxygen degrees of freedom 
 is the three-orbital or three-band Hubbard model, 
 \begin{eqnarray}
-H &=&    \epsilon_p \sum_{j,\sigma} n^{p}_{j,\sigma} + \epsilon_{d} \sum_{i,\sigma}  n^{d}_{i,\sigma} 
-	+ t_{pd} \sum_{\langle i,j \rangle, \sigma} \text{sgn}(p_i,d_j) \Big( d_{i,\sigma}^{\dagger} p_{j,\sigma} + \text{h.c.} \Big) \nonumber \\
+H &=&    \epsilon_p \sum_{j,\eta} n^{p}_{j,\eta} + \epsilon_{d} \sum_{i,\eta}  n^{d}_{i,\eta} 
+	+ t_{pd} \sum_{\langle i,j \rangle, \eta} \text{sgn}(p_i,d_j) \Big( d_{i,\eta}^{\dagger} p_{j,\eta} + \text{h.c.} \Big) \nonumber \\
   & &   + U_p \sum_{j} n^{p}_{j,\uparrow} n^{p}_{j,\downarrow} + U_d \sum_{i} n^{d}_{i,\uparrow} n^{d}_{i,\downarrow} + V_{pd} \sum_{\langle i,j \rangle} n^{j}_p n^{i}_d 
 \end{eqnarray}
 where $d_i,p_j$ refer to the  $d_{x^2 - y^2}$ orbitals of copper (at site $i$) and $p_x$ or $p_y$ 
@@ -61,7 +61,7 @@ ${\bf T}$ which is parameterized by $\alpha_1$, $\alpha_2$, $\alpha_3$, $\alpha_
 \end{figure}
 
 It is our objective to determine what one-band Hubbard model~(Eq.~\ref{eq:oneband}) 
-"best" describes the three-band data. The effective \textit{d-like} orbitals $\tilde{d}_{i,\sigma}$, 
+"best" describes the three-band data. The effective \textit{d-like} orbitals $\tilde{d}_{i,\eta}$, 
 that enter the low energy description are mixtures of copper and oxygen orbitals; this optimal transformation also remains an unknown. 
 Thus the model determination is a \textit{dual} problem (1) what are the composite objects that give a 
 compact description of the low energy physics? and (2) given this choice what are the effective interactions between them? 
@@ -71,10 +71,10 @@ All these issues will be clarified in the remainder of the section.
 
 We begin by encoding the relationship between the bare and effective operators as a linear transformation ${\bf T}$, 
 \begin{equation}
-	\tilde{d}_{i,\sigma} = \sum_{j} T_{ij} c_{j,\sigma}
+	\tilde{d}_{i,\eta} = \sum_{j} T_{ij} c_{j,\eta}
 \label{eq:dc}
 \end{equation}
-where $c_{j,\sigma}$ is the hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals. 
+where $c_{j,\eta}$ is the hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals. 
 Higher body generalizations of this relationship are also possible, but have not been considered here. 
 For the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix, which we parameterize by four distinct 
 parameters after accounting for the symmetries of the lattice. 
@@ -98,18 +98,18 @@ All RDMs in the three-band and one-band descriptions are also related via ${\bf 
 the ones that we focus on are evaluated in eigenstate $s$ and are given by,
 \begin{subequations}
 \begin{eqnarray}
-	\langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{j,\sigma} \rangle_{s} &=& \sum_{mn} T^{*}_{im} \langle {c_{m,\sigma}}^{\dagger} c_{n,\sigma} \rangle_{s} T_{jn} \label{eq:dmstransformations1} \\
+	\langle {\tilde{d}_{i,\eta}}^{\dagger} \tilde{d}_{j,\eta} \rangle_{s} &=& \sum_{mn} T^{*}_{im} \langle {c_{m,\eta}}^{\dagger} c_{n,\eta} \rangle_{s} T_{jn} \label{eq:dmstransformations1} \\
 	\langle \tilde{n}_{i,\uparrow} \tilde{n}_{i,\downarrow} \rangle_{s} &=& \sum_{jkmn} T^{*}_{ij} T^{*}_{im} \langle {c_{j,\uparrow}}^{\dagger} {c_{m,\downarrow}}^{\dagger} c_{n,\downarrow} c_{k,\uparrow} \rangle_{s} T_{in} T_{ik}
 \label{eq:dmstransformations2}
 \end{eqnarray}
 \end{subequations}
-We optimize ${\bf T}$ by demanding two conditions be satisfied, (1) the effective orbitals ($\tilde{d}_{i,\sigma}$) 
+We optimize ${\bf T}$ by demanding two conditions be satisfied, (1) the effective orbitals ($\tilde{d}_{i,\eta}$) 
 are orthogonal to each other i.e. $\Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} = \delta_{mn}$
 and (2) the sum of all diagonal entries (trace) of the 1-RDM of the effective orbitals for all low energy eigenstates 
-equals the number of electrons of a given spin i.e. $\sum_{i} \sum_{\sigma} \langle {\tilde{d}_{i,\sigma}}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s} = N_{\sigma}$. 
+equals the number of electrons of a given spin i.e. $\sum_{i} \sum_{\eta} \langle {\tilde{d}_{i,\eta}}^{\dagger} \tilde{d}_{i,\eta} \rangle_{s} = N_{\eta}$. 
 These conditions are enforced by minimizing a cost function,
 \begin{equation}
-C = \sum_{s} \sum_{\sigma} \Big( \sum_{i} \langle \tilde{d}_{i,\sigma}^{\dagger} \tilde{d}_{i,\sigma} \rangle_{s} - N_{\sigma} \Big)^{2} + \sum_{mn} ( \Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn})^{2}
+C = \sum_{s} \sum_{\eta} \Big( \sum_{i} \langle \tilde{d}_{i,\eta}^{\dagger} \tilde{d}_{i,\eta} \rangle_{s} - N_{\eta} \Big)^{2} + \sum_{mn} ( \Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn})^{2}
 \label{eq:C}
 \end{equation} 
 For the $2\times2$ cell, $N_{\uparrow}=N_{\downarrow}=2$ and $i=1,2,3,4$. 
@@ -182,12 +182,12 @@ $U/t$. The net result of these effects is that the $t$ also increases.%, albeit 
 Since DMD uses only information from the full model (here, three-band model) or \textit{ab-initio} calculation, it is imperative we 
 perform other sanity checks on the accuracy of the downfolded model. An important check for the one-band model is its 
 ability to reproduce the low energy gaps of the three-band model; these have been compared in 
-Fig.~\ref{fig:energyfit}. For the case of $\Delta/t_{pd}=3$, we observed that for all $U_d/t_{pd}$ 
-the lowest three eigenstates and the fourth and fifth (degenerate) states are reproduced well. 
-The largest error ($\approx 0.1 $ eV) occurs for the highest eigenstate, well outside the energy window used 
-in the DMD to obtain $t$ and $U$. Similar results are seen for the case of $\Delta/t_{pd}=5$, with the 
-noticeable difference that the energy error of the highest state has reduced. 
-This reflects that the Hubbard parameters we obtain from DMD are, in general, dependent on the energy window of interest, a 
+Fig.~\ref{fig:energyfit}. For the case of $\Delta/t_{pd}=3$, we observe that for all $U_d/t_{pd}$ 
+the lowest three eigenstates were reproduced well, with an increased error for the fourth and fifth (degenerate) 
+states and the largest error ($\approx 0.1 $ eV) for the sixth eigenstate. This last eigenstate is 
+well outside the energy window used in the DMD to obtain $t$ and $U$. Similar trends are seen for the case of $\Delta/t_{pd}=5$, 
+with the noticeable difference being that the energy error of the highest state has reduced. 
+This reflects that the Hubbard parameters one obtains from DMD are, in general, dependent on the energy window of interest, a 
 point which we will highlight shortly by investigating it systematically. 
 
 \begin{figure}
@@ -203,11 +203,10 @@ fixed (A) $\Delta/t_{pd}=3$ and (B) $\Delta/t_{pd}=5$}
 Downfolding enables reduction of the size of the effective Hilbert space; allowing 
 simulations of bigger unit cells to be carried out. To show that this actually works well in practice for the three-band case, 
 we consider the $2\sqrt{2} \times 2 \sqrt{2}$ square unit cell, comprising of 8 copper and 16 oxygen orbitals. 
-For representative test cases, we performed an exact diagonalization 
-(or full configuration interaction) calculation at half filling, the Hilbert space comprises of 112911876 basis states. 
-Roughly 200 Lanczos iterations were carried out, enabling convergence of the lowest four energies. 
-We compared the lowest gaps with the corresponding calculation on the single 
-band model with the same square geometry, with a Hilbert space size of only 4900, 
+For representative test cases, we performed exact diagonalization calculations at half filling; 
+the Hilbert space comprises of 112911876 basis states. Roughly 200 Lanczos iterations were carried out, 
+enabling convergence of the lowest four energies. We compared the lowest gaps with the 
+corresponding calculation on the single band model on the same square geometry, with a Hilbert space size of only 4900, 
 using the downfolded parameters obtained from the smaller $2 \times 2$ cell. Our results are summarized 
 in Table~\ref{tab:predictivity}. 
 
@@ -216,9 +215,9 @@ The lowest energy gap error is of the order of $0.0004$ eV or less, which in rel
 of 1 percent. The largest gap error in the third gap is of the order of $0.005$ eV which in relative terms is about 3 percent. 
 These results indicate the reliability of the downfolding procedure 
 and highlight its predictive power, as long as one appreciates the limitations of the downfolded 
-model and its regime of validity. In more general situations, with long range interactions, 
-finite size dependence of the downfolded parameters may also be important; systematically understanding this case is 
-an endeavor we leave to future work. 
+model and its regime of validity. In more general situations, for example for models 
+with long range interactions, finite size dependence of the downfolded parameters may also be important. 
+Systematically understanding these cases is an endeavor we leave to future work. 
 \begin{table}
 \centering
 \begin{tabular}{c|c|c|c||c|c||c|c||c|c}
@@ -246,11 +245,12 @@ case.}
 
 Till this point, all our results focused on using only the lowest three eigenstates. We now explore 
 the effect of increasing the energy window, by including higher eigenstates, using our 
-test example of $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. We now use all six low energy eigenstates 
-for optimizing the cost function in Eq.~\ref{eq:C}. We 
-find similar (but not exactly the same) values of $\alpha_i$ and hence ${\bf T}$ in comparison to 
-the case when only the three lowest states were used. This confirms our expectation that the entire 
-low energy space is described by the same $\tilde{d}_i$ operators. 
+test example of $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. To do so, we now use 
+all six low energy eigenstates for optimizing the cost function in Eq.~\ref{eq:C}. We 
+find similar (but not exactly the same) values of $\alpha_i$ compared to 
+the case when only the three lowest states were used. The fact that a low cost solution can be attained 
+confirms our expectation that the entire low energy space of six states is consistently 
+described by a set of $\tilde{d}_i$ operators. 
 \begin{figure}
 \centering
 \includegraphics[width=0.49\linewidth]{./Figures/downfolded_params_diffwindows_ep_3.eps}
@@ -262,19 +262,20 @@ in a given energy window, increasing windows correspond to 3,5 and 6 low energy 
 Hubbard models for different energy windows using the downfolded values in that window.}
 \label{fig:windows} 
 \end{figure}	
+
 However, as Fig.~\ref{fig:windows}(A) shows, the estimates of $U/t$ and $t$ depend on how many eigenstates 
 are used in the DMD procedure. This is because the DMD aims to provide the one-band description 
 that "best" describes \textit{all} states in a given window. If the model is not perfect within a given energy window, 
 an energy dependent model is expected, consistent with the renormalization group perspective. For our test example, 
-increasing the number of eigenstates from three to six changes $U/t$ from $13.8$ to $9.44$~\footnote{The attentive reader 
+increasing the number of eigenstates from three to six changed $U/t$ from $13.8$ to $9.44$~\footnote{The attentive reader 
 would have noticed the slightly different estimate of $U/t\approx 13.45$ when 3 states were used for both the DMD and cost minimization. 
 This is because $\tilde{d}$ are similar yet slightly different in the two cases.} and $t$ from $0.3045$ to $0.2750$ eV. 
-
 The features associated with the energy dependence are further confirmed in Fig.~\ref{fig:windows}(B). 
 When only three states are used, the one-band (nearest neighbor) Hubbard model is insufficient for \textit{accurately}
 describing states outside the window. When all six states are used, the DMD tries to minimize the error of the 
-largest energy gap at the cost of errors in the smaller energy gaps. This is why the parameters are dependent 
-on the scale at which one views the problem. One could of course choose a different parameterization, say with 
-additional next nearest neighbor $t'$, for which is may be possible to reduce this energy dependence significantly.
+largest energy gap at the cost of errors in the smaller energy gaps. 
+One could of course choose a different parameterization, say with additional next nearest neighbor $t'$, for which is 
+may be possible to reduce this energy dependence significantly and thus have a model that describes the smaller 
+and larger energy scales equally well.
  
  
