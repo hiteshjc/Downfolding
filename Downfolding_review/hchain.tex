@@ -1,6 +1,6 @@
 \subsection{One dimensional hydrogen chain}
 \label{subsection:1dhydrogen}
-We now move to one of the simplest extended \emph{ab-initio} systems, a hydrogen chain in one dimension with periodic boundary conditions. 
+We now move on to one of the simplest extended \emph{ab-initio} systems, a hydrogen chain in one dimension with periodic boundary conditions. 
 We consider the case of $10$ atoms and work in a regime where the inter-atomic distance $r$ is 
 relatively large ($r=1.5$ to $3.0$ \AA), such that the system is potentially well described by a one-band Hubbard model 
 in terms of primarily $s$-like orbitals. 
@@ -9,24 +9,29 @@ For a given $r$, we first obtain single-particle Kohn-Sham orbitals from a set o
 spin-restricted DFT-PBE calculations. The localized orbital basis upon which the RDMs (descriptors) 
 are evaluated is obtained by generating intrinsic atomic orbitals (IAO) from the Kohn-Sham orbitals 
 orthogonalized using the L\"owdin procedure. These are the orbitals that enter the one-band Hubbard Hamiltonian. 
-To generate a database of wavefunctions needed for the DMD, we produce a set of Slater-Jastrow 
+Then, to generate a database of wavefunctions needed for the DMD, we produce a set of Slater-Jastrow 
 wavefunctions consisting of singles- and doubles- excitations to the Slater determinant, 
 \begin{subequations}
 \begin{eqnarray}
-| s \rangle = & e^J \Big[a^\dagger_{i \sigma} a_{k \sigma}   | KS \rangle \Big] \,,\\
-| d \rangle = & \: e^J \Big[a^\dagger_{i \sigma} a^\dagger_{j \sigma'} a_{k \sigma'} c_{l \sigma}   | KS \rangle\Big] ,
+| s \rangle = & e^J \Big[a^\dagger_{i \eta} a_{k \eta}   | KS \rangle \Big] \,,\\
+| d \rangle = & \: e^J \Big[a^\dagger_{i \eta} a^\dagger_{j \eta'} a_{k \eta'} a_{l \eta}   | KS \rangle\Big] ,
 \end{eqnarray}
 \end{subequations}
-where $|KS\rangle$ is the Slater determinant of occupied Kohn-Sham orbitals, $\sigma$ and $\sigma'$ are spin indices, 
+where $|KS\rangle$ is the Slater determinant of occupied Kohn-Sham orbitals, $\eta$ and $\eta'$ are spin indices, 
 and $a_{i}^\dagger$ ($a_{i}$) is a single-electron creation (destruction) operator corresponding to a particular Kohn-Sham orbital. $e^J$ is a Jastrow factor, optimized by minimizing the variance of the local energy. 
-We compute the energies (expectation values of the Hamiltonian) and the RDMs on all the wave functions. 
-By computing the trace of the resulting 1-RDMs, we verify that all the electrons present in the system are represented within the localized basis of $s$-like orbitals. If the trace of the 1-RDM falls below the nominal number of electrons for a particular state, this indicates that some higher-energy orbitals are occupied ($p$-like orbitals, in the case of hydrogen), and that the state does not belong to the low-energy manifold. We exclude such states from further analysis. We then fit the one-band Hubbard Hamiltonian using least-squares fitting according to the DMD formalism described in Sec. \ref{sec:theory}.
+We compute the energies (expectation values of the Hamiltonian) and the RDMs on all the wave functions within Diffusion Monte Carlo (DMC). 
+By computing the trace of the resulting 1-RDMs, we verify that all the electrons present in the system are represented within the localized basis of $s$-like orbitals. If the trace of the 1-RDM falls below the nominal number of electrons for a particular state, it 
+indicates that some higher-energy orbitals are occupied ($p$-like orbitals, in the case of hydrogen), and that the state can not be described by the low-energy model Hamiltonian. We exclude such states from further analysis. The acquired data set is then used in DMD to 
+downfold to a one-band Hubbard Hamiltonian.% described in Sec. \ref{sec:theory}.
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.5]{{./Figures/H_chain_fit_model_length1.5_tUs_inset}.pdf}
 \includegraphics[scale=0.5]{{./Figures/H_chain_fit_model_length2.25_tUs_inset}.pdf}
-\caption{DMC energy vs. model energy for the H$_{10}$ chain at 1.5 \AA \:(left) and 2.25 \AA \:(right). Note that the energy range narrows significantly for larger interatomic separation. Insets show intrinsic atomic orbitals upon which we calculated the density matrix descriptors.
+\caption{Diffusion Monte Carlo energy versus the reconstructed 
+model energy for the H$_{10}$ chain at (A) 1.5 \AA \: and (B) 2.25 \AA \:. The energy range of excitations 
+narrows significantly for larger interatomic separation. Insets show the intrinsic atomic orbitals which constitute the one-body space 
+which was used for calculating the reduced density matrices (descriptors).
 }
 \label{fig:fit_quality}
 \end{figure}
