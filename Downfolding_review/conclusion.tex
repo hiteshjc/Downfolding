@@ -2,7 +2,7 @@
 We have explained the DMD method that we have been developing, primarily in conjunction with the 
 \textit{ab-initio} QMC approach. The practical motivation is to take data from first principles (continuum) 
 calculations as inputs for lattice model (discrete) methods. 
-Since one is mapping a many body problem to a few body one, the relevant quantities of interest are 
+Since one is mapping a many-body problem to a few-body one, the relevant quantities of interest are 
 the reduced density matrices associated with the many-body wavefunctions projected to a one-body space. 
 The density matrix based approach is appealing as it is democratic 
 in the determination of the hopping and interaction parts of the effective Hamiltonian, and provides multiple 
@@ -16,9 +16,6 @@ dynamical mean field theory (DMFT)~\cite{Kotliar2006}, density matrix embedding 
 lattice QMC methods~\cite{Scalapino, Trivedi_Ceperley, Zhang_AFQMC, Sandvik_loops, Prokofiev, 
 Booth2009,SQMC,Holmes_Changlani_Umrigar, Booth2013}. These methods have also been used to obtain excited states 
 and dynamical correlation functions, that have been difficult to obtain in \textit{ab-initio} approaches. 
-%In addition to being computationally expensive, \textit{ab-initio} approaches lack the accuracy to target 
-%low energy scales. They do, however, yield the correct low energy basin in which the effective description of 
-%the problem lives, a feature we use in DMD to learn the effective Hamiltonian. 
 
 What sort of accuracy should one expect with effective Hamiltonians and DMD? The holy grail of quantum chemistry 
 and electronic structure is to obtain an energy of 1 mHa (0.027 eV) per atom; this 
@@ -30,14 +27,14 @@ and more refined effective Hamiltonians. However, it is clear that the entire ap
 cancellation of the large energy associated with the core electrons, 
 whose role is to primarily renormalize the interactions between the active (valence) electrons. 
 This aspect can be a limitation when the core and active electrons are strongly entangled i.e. 
-when the separation of energy scales is not prominent, in which case an energy-dependent description may be needed. 
+when the separation of energy scales is not prominent, in which case an energy-dependent description is needed. 
 Thus, DMD and downfolding in general is possibly best suited for extended systems (solids) where this separation exists. 
 
 Finally we would like to emphasize that DMD, though conceptually simple, 
 is still a method in its development stages, with room for algorithmic improvements and new applications. 
 Advances in the field of inverse problems~\cite{Berg2017} could be incorporated into DMD to 
 mitigate the problems associated with optimization and overfitting. 
-Some of the issues that need further research are,
+Here we briefly outline some aspects that need further research,
 \begin{itemize} 
 	\item Construction of wavefunction database:
 	The DMD method relies crucially on the availability of a low energy space of \textit{ab initio} wavefunctions, 
@@ -46,7 +43,7 @@ Some of the issues that need further research are,
 	determinant as one way of probing the low energy manifold.
 	\item Optimal choice of active orbitals (one body space):
 	In the present work, we chose DFT orbitals (in a certain energy window) and localized them to get the one body orbitals. 
-	The choice could only be justified based on looking at the trace of the 1-RDM and ensuring that it 
+	The choice could only be justified based on inspecting the trace of the 1-RDM and ensuring that it 
 	equalled the expected number of electrons. We expect to use intrinisic atomic orbitals (pointed out to us by G. K. Chan) which 
 	mitigate this issue. 
 	\item Form of the low energy model Hamiltonian:
@@ -76,7 +73,7 @@ Some challenging areas include,
 	for such a state amongst a zoo of many other low energy candidates. Thus, 
 	downfolding such materials~\cite{Jeschke2013} appears to be a useful way for accessing low energy scales. 
 	We caution that energy scales associated with magnetism can be in the meV range, and no electronic structure 
-	method currently offers the accuracy needed to resolve such small energy differences without unbiased approximations. 
+	method currently offers the accuracy needed to directly resolve such small energy differences without unbiased approximations. 
 	It may thus be necessary to perform multiple downfolding steps to map from the Schrodinger equation to a spin model.
 	\item Multiband models for superconductors:
 	As previously mentioned, unconventional (non BCS) superconductivity in materials such as the cuprates and iron based 
