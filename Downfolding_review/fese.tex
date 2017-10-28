@@ -13,7 +13,7 @@ To our knowledge, this FeSe diatom does not exist in nature, but nevertheless se
 The bond distance is chosen to match the unconventional superconductor, FeSe~\cite{kumar_crystal_2010}, and therefore offer insight into a model description for that system in future calculations.
 
 We consider a multiband Hubbard model including one iron $s$, five iron $d$ states, and three selenium $p$ states:
-\begin{align*}
+\begin{align}
   H 
   &=
   \epsilon_{xy} \sum_{\eta} (n^{d_{xy}}_{\eta}  + n^{d_{x^2-y^2}}_{\eta})
@@ -21,19 +21,19 @@ We consider a multiband Hubbard model including one iron $s$, five iron $d$ stat
   \epsilon_s \sum_{\eta} n^{s}_{\eta} 
   +
   \epsilon_{p_{z}} \sum_{i,\eta} n^{p_{z}}_{i,\eta} 
-  \\
+  \nonumber \\
   &+ 
   t_{\sigma,d} \sum_{\eta} \left( d_{z^2,\eta}^{\dagger} p_{z,\eta} + \text{h.c.} \right)
   +
   t_{\sigma,s} \sum_{\eta} \left(s_{\eta}^{\dagger}  p_{z,\eta} + \text{h.c.} \right)
-  \\
+  \nonumber \\
   &+
   U_d \sum_{i} n^{d}_{i,\uparrow} n^{d}_{i,\downarrow} 
   +
   J_d \sum_{i\ne j} S_i \cdot S_j.
   +
-  E_0
-\end{align*}
+  E_0 \label{eq:fesemodel}
+\end{align}
 Here, $\eta$ represents the spin index and $i$ represents orbital index.
 The $\epsilon_i$ terms represent single-particle orbital energies, while the $U_d$ is an on-site interaction among the $d$ orbitals and the $J_d$ is a Hund's coupling among the $d$ orbitals.
 $E_0$ is an overall energy shift compared to the \textit{ab initio} hamiltonian.
