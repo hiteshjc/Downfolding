@@ -40,7 +40,7 @@ $E_0$ is an overall energy shift compared to the \textit{ab initio} hamiltonian.
 This set of parameters was chosen based on the matching pursuit method described in Sec.~\ref{sec:theory}.
 We considered the set of 21 symmetry allowed $\epsilon$, $t$, $U$, and $J$ parameters. 
 For this demonstration, we add parameters one at a time until the RMS error drops by less than 0.05 eV. 
-With this criteria, the final RMS error is 0.61 eV, the final $R^2$ is 0.84, and the next parameter in the algorithm reduces the $R^2$ by less than 0.01.
+With this criteria, the final RMS error is 0.61 eV, the final coefficient of determination ($R^2$) is 0.84, and the next parameter in the algorithm reduces the $R^2$ by less than 0.01.
 For example, $U_p$, an on-site interaction for the Se $p$-electrons, does not correlate strongly enough with the residuals, and is not added included before the algorithm halts.
 The states sampled consisted of singles and doubles excitations from PBE0 calculations with total spin 0, 2, and 4, which were then relaxed via a DMC projection.
 243 states fit within an energy window of 8 eV from the ground state, and were selected as the low energy space.
