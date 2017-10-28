@@ -50,6 +50,8 @@ If $E_{eff}[\Psi] = E[\Psi], \forall \ket{\Psi} \in {\mathcal LE}$, then $H_{eff
 	\left.\frac{\delta E[\Psi]}{\delta\Psi}\right|_{\Psi=\Phi_i} = 0 
 	\end{equation}
 If this is true, then certainly the derivative on the low-energy manifold is also zero.
+\HJC{I am slightly confused. This is because the earlier derivative was in the space of all many body wavefunctions. But now the derivative is 
+constrained somehow because of loss of degrees of freedom.. }
 Since $E_{eff}[\Psi] = E[\Psi]$, 
 \begin{equation}
 	\left.\frac{\delta E_{eff}[\Psi]}{\delta\Psi}\right|_{\Psi=\Phi_i} = 0 
@@ -114,8 +116,10 @@ This will allow us to use techniques from statistical learning to efficiently de
 
 A practical protocol is presented in Fig~\ref{fig:protocol}. 
 Let's go through this step by step.
+\HJC{We go through... Let's sounds informal?}
 
 \paragraph{Generating $\ket{\Psi_i}\in {\mathcal LE}$}. 
+\HJC{The period at the end of the above phrase appears as a start of the next sentence for some reason}
 Ideally one would be able to sample the entire low-energy space. 
 Typically, however, the space will be too large and it will need to be sampled. 
 The optimal wave functions to use depend on the models one expects to fit, which we will discuss in detail  in later steps. 
@@ -123,6 +127,8 @@ Simple strategies that we will use in the examples below include excitations wit
 
 
 \paragraph{Generate $d_j[\Psi_i]$ and $E[\Psi_i]$}. 
+\HJC{The period at the end of the above phrase appears as a start of the next sentence for some reason}
+\HJC{Can we define the acronym one-body and two body reduced density matrices here. This place seems appropriate. I have added some lines as a comment below}
 The choice of descriptor is fundamental to the success of the downfolding. 
 In the case of a second-quantized Hamiltonian
 \begin{equation}
@@ -130,6 +136,7 @@ In the case of a second-quantized Hamiltonian
 \end{equation}
 a set of linear descriptors by simply taking the expectation value of both sides of the equation. 
 Then for example, the occupation descriptor for orbital $k$ is $d_{occ(k)}[\Psi_i] = \braket{\Psi_i | c_k^\dagger c_k | \Psi}$; the double occupation descriptor for orbital $k$ is $d_{double(k)}[\Psi_i] = \braket{\Psi_i | n_{k\uparrow}n_{k\downarrow} | \Psi}$. 
+\HJC{Depending on the number of terms that enter the expectation value, the corresponding objects are referred to as one or two body reduced density matrices. We use the acronym 1-RDM and 2-RDM to refer to these.} 
 The orbital that $c_k$ represents is part of the descriptor, and in the examples below we will discuss this choice as well.
 One is not limited to static orbital descriptors; they may have a more complex functional dependence on the trial function to include orbital relaxation.
 
@@ -140,10 +147,10 @@ If two descriptors have a large correlation coefficient, then they are redundant
 This could either mean that the sampling of the low-energy Hilbert space ${\mathcal LE}$ was insufficient, or that they are both proxies for the same differences in states. 
 If two data points have the same or very similar descriptor sets, but different energies, then either the descriptor set is not enough to describe the variations in the low-energy space, or the sampling has generated states that are not in the low-energy space.
 To resolve these possibilities, one should analyze the difference between the two wave functions.  
-Choosing the reduced set is a matter of some art. 
+Choosing the reduced set is a matter of some art. \HJC{The statement about "art" worries me, since we do not want to suggest the method has knobs we do not understand or cannot explain fully.} 
 If they are chosen incorrectly then intruder states can appear upon solution of the effective model. 
 This can occur if descriptors values available in the reduced Hilbert space are not represented in the sampled wave functions. 
-In that case, the model fitting is an extrapolation instead of an interperlation, which has the usual problems.
+In that case, the model fitting is an extrapolation instead of an interperlation \HJC{interpolation?}, which has the usual problems.
 This is why it is desirable to have eigenstates in the set if possible; they are guaranteed to be on the corners of the descriptor space if the model is accurate.
 
 
