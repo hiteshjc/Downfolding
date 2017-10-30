@@ -119,31 +119,31 @@ The number of states $s$ was varied from three to six, depending on the energy w
 
 Fig.~\ref{fig:varyUdep} shows regimes of the three-band model where 
 the lowest six eigenstates are separated from the higher energy manifold; the 
-fourth and fifth eigenstates are exactly degenerate. 
+fourth and fifth eigenstates are degenerate. 
 In the large $U_d$ limit, charge fluctuations are suppressed and these six 
 states correspond to the Hilbert space of $4 \choose 2$ states of the effective spin model in its $S_z=0$ sector.
-These states have primarily \textit{d like} character, an aspect we will verify in this section. 
-The eigenstates above this manifold involve \textit{p like} excitations which the one-band model is not designed to capture. 
+These states have primarily \textit{d-like} character, an aspect we will verify in this section. 
+The eigenstates outside of this manifold involve \textit{p-like} excitations which the one-band model is not designed \HHZ{able?} to capture. 
 
 To give a concrete and representative example of our results, we discuss the case of 
 $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. We chose the lowest three eigenstates 
-of the three-band model for computing the cost in Eq.~\ref{eq:C}. The 
+of the three-band model for computing the cost in Eq.~\eqref{eq:C}. The 
 optimal parameters of ${\bf T}$ were determined by a brute force scan in the four dimensional space of parameters 
 with a linear grid spacing of $0.002$; yielding $\alpha_1=0.216$, $\alpha_2=0.042$, $\alpha_3=0.018$ and $\alpha_4=0.016$. 
-The corresponding trace conditions and orthogonality are individually 
-satisfied to a relative error of the order of 0.5 percent, verifying 
-the validity of Eq.~\ref{eq:dc}. 
-Importantly, the 1-RDM elements corresponding to nearest neighbors $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$; 
+The corresponding trace conditions and orthogonality are simultaneously %individually 
+satisfied to a relative error within 0.5 percent, verifying \HHZ{confirming?}  
+the validity of Eq.~\eqref{eq:dc}. 
+Importantly, the 1-RDM elements corresponding to nearest neighbors $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
 already provide estimates for $U/t$ of the effective model. 
 For our test example, the absolute values of $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
 in states $s=1,2,3$ are approximately $0.159$, $0.142$ and $0.084$ respectively. 
 Since the exact knowledge of the corresponding eigenstates of the one-band Hubbard model is directly available for arbitrary 
-$U/t$ by numerical diagonalization, we directly look up the $U/t$ with 
+$U/t$ by exact diagonalization, we directly look up the $U/t$ with 
 the same 1-RDM value. This matching procedure gives $(U/t)_1 \approx 14.1 $, $(U/t)_2 \approx 13.2 $, $(U/t)_3 \approx 12.7 $. 
 Analogous estimates of $U/t$ were also made by comparing the 2-RDM elements $\langle \tilde{n}_{\uparrow} \tilde{n}_{\downarrow} \rangle_s$ 
-with qualitatively similar results. 
+with qualitatively \HHZ{not quantatively?} similar results. 
 
-The state-matching perspective was supported by DMD performed 
+The state-matching perspective \HHZ{approach?} was supported by DMD performed 
 with the same three low-energy states, using their energies and 
 the computed values of $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
 and $\langle \tilde{n}_{i,\uparrow} \tilde{n}_{i,\downarrow} \rangle_{s}$ from Eqs.~\eqref{eq:dmstransformations1} 
@@ -170,25 +170,29 @@ and (C) and (D) show the case of fixed $\Delta/t_{pd}=3$ and varying $U_d/t_{pd}
 \label{fig:varyUdep} 
 \end{figure}
 
-Some trends in the one-band description are explored in Fig.~\ref{fig:varyUdep} 
+Some trends in the one-band description are explored in Figure~\ref{fig:varyUdep} 
 by monitoring the downfolded parameters as a function of varying $\Delta/t_{pd}$ and $U_d/t_{pd}$. 
-For example, when $U_d/t_{pd}=8$ is fixed and $\Delta/t_{pd}$ is increased, we find that both 
+For example, when $U_d/t_{pd}=8$ is fixed and $\Delta/t_{pd}$ is increased, we find that 
 the effective hopping $t$ decreases and $U/t$ increases. This is physically reasonable since an increasing difference in the 
-single particle energies of the copper and oxygen orbitals means the increased unfavorableness of holes 
+single particle energies of the copper and oxygen orbitals means the increased unfavorableness \HHZ{decreased favorableness?  or make it energetically unfavorable to hop between the two orbitals?} of holes 
 to occupy the latter. When $\Delta/t_{pd}=3$ is fixed and $U_d/t_{pd}$ is increased, $U/t$ increases. 
 As one mechanism of avoiding the large $U_d$, the copper orbitals are forced to hybridize more with the oxygen ones; 
 on the other hand, hole delocalization is suppressed in a bid to maintain mostly one hole per $\tilde{d}$ due to the larger 
 $U/t$. The net result of these effects is that the $t$ also increases.%, albeit only marginally; a trend also observed in $\alpha_1$.
 
-Since DMD uses only information from the full model (here, three-band model) or \textit{ab-initio} calculation, it is imperative we 
+Since DMD uses only information from the full model (here, three-band model) or \textit{ab-initio} calculation, it is imperative that we 
 perform other sanity checks on the accuracy of the downfolded model. An important check for the one-band model is its 
 ability to reproduce the low energy gaps of the three-band model; these have been compared in 
-Fig.~\ref{fig:energyfit}. For the case of $\Delta/t_{pd}=3$, we observe that for all $U_d/t_{pd}$ 
-the lowest three eigenstates were reproduced well, with an increased error for the fourth and fifth (degenerate) 
-states and the largest error ($\approx 0.1 $ eV) for the sixth eigenstate. This last eigenstate is 
-well outside the energy window used in the DMD to obtain $t$ and $U$. Similar trends are seen for the case of $\Delta/t_{pd}=5$, 
+Figure~\ref{fig:energyfit}. For the case of $\Delta/t_{pd}=3$, we observe that for all $U_d/t_{pd}$ 
+the lowest three eigenstates were reproduced well. 
+%with an increased error  for the fourth and fifth (degenerate) 
+%states and the largest error ($\approx 0.1 $ eV) for the sixth eigenstate.
+This model also reproduces the states outside of the DMD energy window, although with a slightly larger errors. 
+% This last eigenstate is 
+%well outside the energy window used in the DMD to obtain $t$ and $U$. 
+Similar trends are seen for the case of $\Delta/t_{pd}=5$, 
 with the noticeable difference being that the energy error of the highest state has reduced. 
-This reflects that the Hubbard parameters one obtains from DMD are, in general, dependent on the energy window of interest, a 
+This reflects that the Hubbard parameters obtained from DMD are, in general, dependent on the energy window of interest, a 
 point which we will highlight shortly by investigating it systematically. 
 
 \begin{figure}
@@ -205,18 +209,21 @@ Downfolding enables reduction of the size of the effective Hilbert space; allowi
 simulations of bigger unit cells to be carried out. To show that this actually works well in practice for the three-band case, 
 we consider the $2\sqrt{2} \times 2 \sqrt{2}$ square unit cell, comprising of 8 copper and 16 oxygen orbitals. 
 For representative test cases, we performed exact diagonalization calculations at half filling; 
-the Hilbert space comprises of 112911876 basis states. Roughly 200 Lanczos iterations were carried out, 
+the Hilbert space comprises of 112,911,876 basis states (\HHZ{compared to XXXX }). Roughly 200 Lanczos iterations were carried out, 
 enabling convergence of the lowest four energies. We compared the lowest gaps with the 
 corresponding calculation on the single band model on the same square geometry, with a Hilbert space size of only 4900, 
 using the downfolded parameters obtained from the smaller $2 \times 2$ cell. Our results are summarized 
 in Table~\ref{tab:predictivity}. 
 
 In all cases the agreement between the three-band and one-band models is remarkably good. 
-The lowest energy gap error is of the order of $0.0004$ eV or less, which in relative terms was a maximum error 
-of 1 percent. The largest gap error in the third gap is of the order of $0.005$ eV which in relative terms is about 3 percent. 
+The lowest energy gap error is within $0.0004$ eV (1\% relative error).%, which in relative terms was a maximum error 
+of 1 percent. The largest gap error in the third gap is of the order of $0.005$ eV (3\% relative error). %which in relative terms is about 3 percent. 
 These results indicate the reliability of the downfolding procedure 
-and highlight its predictive power, as long as one appreciates the limitations of the downfolded 
-model and its regime of validity. In more general situations, for example for models 
+and highlight its predictive power. 
+This suggests that one could perform DMD on a small size system to obtain the effective model at a low cost. In the spirit of multiscale simulation, one could then solve this effective model (within its regime of validity) for larger systems at a significantly reduced cost compared to solving the original model or \textit{ab-initio} Hamiltonians.
+%as long as one appreciates the limitations of the downfolded 
+%model and its regime of validity.
+Although, in more general situations, for example, models 
 with long range interactions, finite size dependence of the downfolded parameters may also be important. 
 Systematically understanding these cases is an endeavor we leave to future work. 
 \begin{table}
