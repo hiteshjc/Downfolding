@@ -1,6 +1,6 @@
 \subsection{One dimensional hydrogen chain}
 \label{subsection:1dhydrogen}
-We now move on to one of the simplest extended \emph{ab-initio} systems, a hydrogen chain in one dimension with periodic boundary conditions, which has been used as a test model for cross-checks and validation of a variety of modern \textit{ab-initio} many-body methods \cite{Motta_Simons}. 
+We now move on to one of the simplest extended \emph{ab-initio} systems, a hydrogen chain in one dimension with periodic boundary conditions. The one-dimensional hydrogen chain has been used as a model for validating a variety of modern \textit{ab-initio} many-body methods \cite{Motta_Simons}. 
 We consider the case of $10$ atoms and work in a regime where the inter-atomic distance $r$ is 
 relatively large ($r=1.5$ to $3.0$ \AA), such that the system is potentially well described by a one-band Hubbard model 
 in terms of primarily $s$-like orbitals. 
@@ -26,13 +26,13 @@ downfold to a one-band Hubbard Hamiltonian.% described in Sec. \ref{sec:theory}.
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.32]{{./Figures/H_chain_fit_model_length1.5_tUs_inset}.eps}
-\includegraphics[scale=0.32]{{./Figures/H_chain_fit_model_length2.25_tUs_inset}.eps}
-\includegraphics[scale=0.32]{{./Figures/r2_ut_vs_separation_h_chain}.eps}
+\includegraphics[scale=0.35]{{./Figures/H_chain_fit_model_length1.5_tUs_inset}.eps}
+\includegraphics[scale=0.35]{{./Figures/H_chain_fit_model_length2.25_tUs_inset}.eps}
+\includegraphics[scale=0.35]{{./Figures/r2_ut_vs_separation_h_chain}.eps}
 \caption{Diffusion Monte Carlo energy versus the reconstructed 
 model energy for the H$_{10}$ chain at (A) 1.5 \AA \: and (B) 2.25 \AA \:. The energy range of excitations 
 narrows significantly for larger interatomic separation. Insets show the intrinsic atomic orbitals which constitute the one-body space 
-which was used for calculating the reduced density matrices (descriptors).
+which was used for calculating the reduced density matrices (descriptors). (C) The R$^2$ fit parameters obtained from fitting the $U$-$t$ model to the H$_{10}$ chain, as a function of interatomic separation.  
 }
 \label{fig:fit_quality}
 \end{figure}
@@ -40,9 +40,8 @@ which was used for calculating the reduced density matrices (descriptors).
 Fig.~\ref{fig:fit_quality} shows our DMD fits for two representative $r$. The model energy is the energy 
 reconstructed from the optimized parameters $t$ and $U$ and the RDMs. For $r=1.5$ \AA \:, there is 
 considerable spread in the data from the 45 degree line indicating that the simple short range Hubbard model 
-is insufficient for an \textit{accurate} description in the corresponding energy window. 
-In contrast, the root mean square (RMS) error is significantly smaller for larger $r$, suggesting the increased 
-effectiveness of the one-band Hubbard model. The insets show the intrinsic atomic orbitals for which we calculated 
+is insufficient for an \textit{accurate} description in the corresponding energy window. In contrast, the R$^2$ fit parameter is significantly larger for larger $r$, suggesting the increased 
+effectiveness of the one-band Hubbard model, as seen in Fig.~\ref{fig:fit_quality}(C). The insets show the intrinsic atomic orbitals for which we calculated 
 the RDMs (descriptors). 
 
 \begin{figure}
