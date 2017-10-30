@@ -16,7 +16,7 @@ aspects of the functional forms or parameterizations that are expected to descri
 problem. An important effective Hamiltonian that enters three out of our four representative examples is 
 the single (or one-) band Hubbard model,
 \begin{equation}
-	H = -t \;\sum_{\langle i,j \rangle, \eta} \tilde{d}_{i,\eta}^{\dagger} \tilde{d}_{j,\eta} + U \;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}
+	H = -t \;\sum_{\langle i,j \rangle, \eta} \tilde{d}_{i,\eta}^{\dagger} \tilde{d}_{j,\eta} + U \;\sum_{i} \tilde{n}^{i}_{\uparrow} \tilde{n}^{i}_{\downarrow}\,,
 \label{eq:oneband}
 \end{equation}
 where $t$ and $U$ are downfolded (renormalized) parameters, $\eta$ is a spin index, 
@@ -37,7 +37,7 @@ is the three-orbital or three-band Hubbard model,
 \begin{eqnarray}
 H &=&    \epsilon_p \sum_{j,\eta} n^{p}_{j,\eta} + \epsilon_{d} \sum_{i,\eta}  n^{d}_{i,\eta} 
 	+ t_{pd} \sum_{\langle i,j \rangle, \eta} \text{sgn}(p_i,d_j) \Big( d_{i,\eta}^{\dagger} p_{j,\eta} + \text{h.c.} \Big) \nonumber \\
-  & &   + U_p \sum_{j} n^{p}_{j,\uparrow} n^{p}_{j,\downarrow} + U_d \sum_{i} n^{d}_{i,\uparrow} n^{d}_{i,\downarrow} + V_{pd} \sum_{\langle i,j \rangle} n^{j}_p n^{i}_d 
+  & &   + U_p \sum_{j} n^{p}_{j,\uparrow} n^{p}_{j,\downarrow} + U_d \sum_{i} n^{d}_{i,\uparrow} n^{d}_{i,\downarrow} + V_{pd} \sum_{\langle i,j \rangle} n^{j}_p n^{i}_d\,,
 \end{eqnarray}
 where $d_i,p_j$ refer to the  $d_{x^2 - y^2}$ orbitals of copper (at site $i$) and $p_x$ or $p_y$ 
 oxygen (at site $j$)  respectively and $\text{sgn}(p_i,d_j)$ is the sign of the hopping $t_{pd}$ 
@@ -98,8 +98,8 @@ All RDMs in the three-band and one-band descriptions are also related via ${\bf 
 the ones that we focus on are evaluated in eigenstate $s$ and are given by,
 \begin{subequations}
 \begin{eqnarray}
-	\langle {\tilde{d}_{i,\eta}}^{\dagger} \tilde{d}_{j,\eta} \rangle_{s} &=& \sum_{mn} T^{*}_{im} \langle {c_{m,\eta}}^{\dagger} c_{n,\eta} \rangle_{s} T_{jn} \label{eq:dmstransformations1} \\
-	\langle \tilde{n}_{i,\uparrow} \tilde{n}_{i,\downarrow} \rangle_{s} &=& \sum_{jkmn} T^{*}_{ij} T^{*}_{im} \langle {c_{j,\uparrow}}^{\dagger} {c_{m,\downarrow}}^{\dagger} c_{n,\downarrow} c_{k,\uparrow} \rangle_{s} T_{in} T_{ik}
+	\langle {\tilde{d}_{i,\eta}}^{\dagger} \tilde{d}_{j,\eta} \rangle_{s} &=& \sum_{mn} T^{*}_{im} \langle {c_{m,\eta}}^{\dagger} c_{n,\eta} \rangle_{s} T_{jn} \label{eq:dmstransformations1} \,,\\
+	\langle \tilde{n}_{i,\uparrow} \tilde{n}_{i,\downarrow} \rangle_{s} &=& \sum_{jkmn} T^{*}_{ij} T^{*}_{im} \langle {c_{j,\uparrow}}^{\dagger} {c_{m,\downarrow}}^{\dagger} c_{n,\downarrow} c_{k,\uparrow} \rangle_{s} T_{in} T_{ik}\,.
 \label{eq:dmstransformations2}
 \end{eqnarray}
 \end{subequations}
@@ -109,7 +109,7 @@ and (2) the sum of all diagonal entries (trace) of the 1-RDM of the effective or
 equals the number of electrons of a given spin i.e. $\sum_{i} \sum_{\eta} \langle {\tilde{d}_{i,\eta}}^{\dagger} \tilde{d}_{i,\eta} \rangle_{s} = N_{\eta}$. 
 These conditions are enforced by minimizing a cost function,
 \begin{equation}
-C = \sum_{s} \sum_{\eta} \Big( \sum_{i} \langle \tilde{d}_{i,\eta}^{\dagger} \tilde{d}_{i,\eta} \rangle_{s} - N_{\eta} \Big)^{2} + \sum_{mn} ( \Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn})^{2}
+C = \sum_{s} \sum_{\eta} \Big( \sum_{i} \langle \tilde{d}_{i,\eta}^{\dagger} \tilde{d}_{i,\eta} \rangle_{s} - N_{\eta} \Big)^{2} + \sum_{mn} ( \Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} -\delta_{mn})^{2}\,.
 \label{eq:C}
 \end{equation} 
 For the $2\times2$ cell, $N_{\uparrow}=N_{\downarrow}=2$ and $i=1,2,3,4$. 
