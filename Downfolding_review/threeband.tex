@@ -64,11 +64,11 @@ ${\bf T}$ which is parameterized by $\alpha_1$, $\alpha_2$, $\alpha_3$, $\alpha_
 It is our objective to determine what one-band Hubbard model~[Eq.~\eqref{eq:oneband}]
 ``best" describes the three-band data. The effective \textit{d-like} orbitals $\tilde{d}_{i,\eta}$, 
 that enter the low energy description are mixtures of copper and oxygen orbitals; this optimal transformation also remains an unknown. 
-Thus the model determination is a \textit{dual} problem \HHZ{dual usually means two are counterpart to each other in certain sense, if we know one, we know another as well. How about Thus the model determinations include the following two aspects} (1) what are the composite objects that give a 
+Thus the model determination involves two aspects (1) what are the composite objects that give a 
 compact description of the low energy physics? and (2) given this choice what are the effective interactions between them? 
 (A similar problem was posed and solved by one of us in the context of spin systems~\cite{Changlani_percolation}.)
 In addition, the "best" effective Hamiltonian description depends on the energy scale of interest. 
-All these issues will be clarified \HHZ{addressed?} in the remainder of the section. 
+All these issues will be addressed in the remainder of the section. 
 
 We begin by encoding the relationship between the bare and effective operators as a linear transformation ${\bf T}$, 
 \begin{equation}
@@ -76,7 +76,7 @@ We begin by encoding the relationship between the bare and effective operators a
 \label{eq:dc}
 \end{equation}
 where $c_{j,\eta}$ is the hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals. 
-Higher body generalizations \HHZ{Higher body is not clear enough. Do you mean d=T c + .. c' c'' dagger c' + ... ?} of this relationship are also possible, but have not been considered here. 
+Further generalizations of this relationship (for example, including higher body terms) are also possible, but have not been considered here. 
 For the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix, which we parameterize by four distinct 
 parameters after accounting for the symmetries of the lattice. 
 Using the numbering of the orbitals corresponding to Fig.~\ref{fig:threeband}, the explicit form of ${\bf T}$ is
@@ -123,7 +123,8 @@ fourth and fifth eigenstates are degenerate.
 In the large $U_d$ limit, charge fluctuations are suppressed and these six 
 states correspond to the Hilbert space of $4 \choose 2$ states of the effective spin model in its $S_z=0$ sector.
 These states have primarily \textit{d-like} character, an aspect we will verify in this section. 
-The eigenstates outside of this manifold involve \textit{p-like} excitations which the one-band model is not designed \HHZ{designed $\to$ able?} to capture. 
+The eigenstates outside of this manifold involve \textit{p-like} excitations which the one-band model is not designed 
+to capture. 
 
 To give a concrete and representative example of our results, we discuss the case of 
 $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. We chose the lowest three eigenstates 
@@ -131,8 +132,7 @@ of the three-band model for computing the cost in Eq.~\eqref{eq:C}. The
 optimal parameters of ${\bf T}$ were determined by a brute force scan in the four dimensional space of parameters 
 with a linear grid spacing of $0.002$; yielding $\alpha_1=0.216$, $\alpha_2=0.042$, $\alpha_3=0.018$ and $\alpha_4=0.016$. 
 The corresponding trace conditions and orthogonality are simultaneously %individually 
-satisfied to a relative error within 0.5 percent, verifying \HHZ{verifying $\to$ confirming?}  
-the validity of Eq.~\eqref{eq:dc}. 
+satisfied to a relative error within 0.5 percent, confirming the validity of Eq.~\eqref{eq:dc}. 
 Importantly, the 1-RDM elements corresponding to nearest neighbors $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
 already provide estimates for $U/t$ of the effective model. 
 For our test example, the absolute values of $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
@@ -141,9 +141,9 @@ Since the exact knowledge of the corresponding eigenstates of the one-band Hubba
 $U/t$ by exact diagonalization, we directly look up the $U/t$ with 
 the same 1-RDM value. This matching procedure gives $(U/t)_1 \approx 14.1 $, $(U/t)_2 \approx 13.2 $, $(U/t)_3 \approx 12.7 $. 
 Analogous estimates of $U/t$ were also made by comparing the 2-RDM elements $\langle \tilde{n}_{\uparrow} \tilde{n}_{\downarrow} \rangle_s$ 
-with qualitatively \HHZ{not quantatively?} similar results. 
+with similar results. 
 
-The state-matching perspective \HHZ{perspective $\to$ approach?} was supported by DMD performed 
+The state-matching approach was supported by DMD performed 
 with the same three low-energy states, using their energies and 
 the computed values of $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
 and $\langle \tilde{n}_{i,\uparrow} \tilde{n}_{i,\downarrow} \rangle_{s}$ from Eqs.~\eqref{eq:dmstransformations1} 
@@ -174,8 +174,8 @@ Some trends in the one-band description are explored in Figure~\ref{fig:varyUdep
 by monitoring the downfolded parameters as a function of varying $\Delta/t_{pd}$ and $U_d/t_{pd}$. 
 For example, when $U_d/t_{pd}=8$ is fixed and $\Delta/t_{pd}$ is increased, we find that 
 the effective hopping $t$ decreases and $U/t$ increases. This is physically reasonable since an increasing difference in the 
-single particle energies of the copper and oxygen orbitals means the increased unfavorableness \HHZ{decreased favorableness?  or make it energetically unfavorable to hop between the two orbitals?} of holes 
-to occupy the latter. When $\Delta/t_{pd}=3$ is fixed and $U_d/t_{pd}$ is increased, $U/t$ increases. 
+single particle energies of the copper and oxygen orbitals makes it energetically unfavorable for holes 
+to hop between the two orbitals. When $\Delta/t_{pd}=3$ is fixed and $U_d/t_{pd}$ is increased, $U/t$ increases. 
 As one mechanism of avoiding the large $U_d$, the copper orbitals are forced to hybridize more with the oxygen ones; 
 on the other hand, hole delocalization is suppressed in a bid to maintain mostly one hole per $\tilde{d}$ due to the larger 
 $U/t$. The net result of these effects is that the $t$ also increases.%, albeit only marginally; a trend also observed in $\alpha_1$.
@@ -209,7 +209,7 @@ Downfolding enables reduction of the size of the effective Hilbert space; allowi
 simulations of bigger unit cells to be carried out. To show that this actually works well in practice for the three-band case, 
 we consider the $2\sqrt{2} \times 2 \sqrt{2}$ square unit cell, comprising of 8 copper and 16 oxygen orbitals. 
 For representative test cases, we performed exact diagonalization calculations at half filling; 
-the Hilbert space comprises of 112,911,876 basis states (\HHZ{compared to XXXX in the three-band model}). Roughly 200 Lanczos iterations were carried out, 
+the Hilbert space comprises of 112,911,876 basis states. Roughly 200 Lanczos iterations were carried out, 
 enabling convergence of the lowest four energies. We compared the lowest gaps with the 
 corresponding calculation on the single band model on the same square geometry, with a Hilbert space size of only 4900, 
 using the downfolded parameters obtained from the smaller $2 \times 2$ cell. Our results are summarized 
