@@ -10,9 +10,9 @@ In particular, utilizing matching pursuit and DMD to find minimal descriptions c
 
 As a test of DMD for transition metal oxide systems, we consider an FeSe diatomic molecule with atomic separation 2.43 \AA~in the $z$-direction.
 To our knowledge, this FeSe diatom does not exist in nature, but nevertheless serves as a simple illustration of a model for the interaction between a transition metal and a ligand. 
-The bond distance is chosen to match FeSe solid which is an unconventional superconductor~\cite{kumar_crystal_2010}, and therefore offer insight into a model description for FeSe solid in future studies.
+The bond distance is chosen to match the unconventional superconductor, FeSe~\cite{kumar_crystal_2010}, and therefore offer insight into a model description for FeSe solid in future studies.
 
-We consider a multiband Hubbard model including one iron $s$ (\HHZ{4s?}), five iron $d$ states (\HHZ{3d?}), and three selenium $p$ states (\HHZ{3p or 4p?}):
+We consider a model including one iron $4s$, five iron $3d$ states, and three selenium $4p$ states:
 \begin{align}
   H 
   &=
@@ -36,16 +36,16 @@ We consider a multiband Hubbard model including one iron $s$ (\HHZ{4s?}), five i
 \end{align}
 Here, $\eta$ is the spin index and $i$ is the orbital index.
 The $\epsilon_i$'s are single-particle orbital energies, while the $U_d$ is an on-site interaction among the $d$ orbitals and the $J_d$ is a Hund's coupling among the $d$ orbitals.
-$E_0$ is an overall energy shift compared to the \textit{ab initio} hamiltonian.\HHZ{this sentence not very clear, maybe just say it is an overall energy shift without say "compared to"...}.
+$E_0$ is an overall energy shift.
 This set of parameters was chosen based on the matching pursuit method described in Sec.~\ref{sec:theory}.
-We considered the set of 21 symmetry allowed $\epsilon$, $t$, $U$, and $J$ parameters.  \HHZ{I guess you have a set of parameters to consider, and then based on the matching pursuit, a subset stands out. So is 21 the total number of the big set?}
+The MP was able to choose from a set of 21 symmetry allowed $\epsilon$, $t$, $U$, and $J$ parameters as it included parameters.  
 For this demonstration, we add parameters one at a time until the RMS error drops by less than 0.05 eV. 
-With this criteria, \HHZ{maybe say XX parameters with most importance are selected?}  the final RMS error is 0.61 eV, the final coefficient of determination ($R^2$) is 0.84, and the next parameter in the algorithm reduces the $R^2$ by less than 0.01. 
+With this criteria, the 8 parameters in Eq.~\ref{eq:fesemodel} are included, the final RMS error is 0.61 eV, the final coefficient of determination ($R^2$) is 0.84, and the next parameter in the algorithm increases the $R^2$ by less than 0.02. 
 For example, $U_p$, an on-site interaction for the Se $p$-electrons, does not correlate strongly enough with the residuals, and is not added included before the algorithm halts.
 The states sampled consisted of singles and doubles excitations from PBE0 calculations with total spin 0, 2, and 4, which were then relaxed via a DMC projection.
-243 states fit within an energy window of 8 eV from the ground state, and were selected as the low energy space.
-Out of these states, 8 states because the sum of all occupation descriptors was more than 0.5 less than the number of electrons.
-These states generally have a significant iron $p$ component relative to the ground state, and therefore were excluded, as they are not describable without several additional parameters describing the iron $p$ states.
+233 states fit within an energy window of 8 eV from the ground state, and were selected as the low energy space.
+Eight states within the window are not considered because the sum of all occupation descriptors was more than 0.5 less than the number of electrons.
+These states generally have a significant iron $4p$ component relative to the ground state, and therefore were excluded, as they are not describable without several additional parameters describing the iron $p$ states.
 
 \begin{figure*}
   \centering
@@ -63,11 +63,9 @@ These states generally have a significant iron $p$ component relative to the gro
 \end{figure*}
 
 Applying the MP approach to the system produced reasonable parameter estimates, and suggested the Hund's coupling to be an important component of this model.
-Analysis of the MP results are shown in Figure~\ref{fig:fese}. 
 Figure~\ref{fig:fese}(a) and (b) show the evolution of the parameters and RMS error of the fit parameters are added one by one.
-All previous parameters may change at each step because the entire model is refitted with \HHZ{with$\to$ at?} each iteration.
+All previous parameters may change at each step because the entire model is refitted in each iteration.
 The parameters are smoothly varying with the inclusion of new parameters, and their values are physically reasonable.
-%generally take reasonable values.
 The matching pursuit algorithm would suggest that minimal models can be built by disregarding the descriptors added in later steps.
 For this system, $J$ is considered the most important parameter in the model, and an absolute minimal model for the system would be $H_\text{minimal} = E_0 + J_d \sum_i S_i \cdot S_j$. 
 Such a model would have an RMS error 1.11 eV. 
