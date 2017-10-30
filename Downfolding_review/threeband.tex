@@ -42,13 +42,14 @@ H &=&    \epsilon_p \sum_{j,\eta} n^{p}_{j,\eta} + \epsilon_{d} \sum_{i,\eta}  n
 where $d_i,p_j$ refer to the  $d_{x^2 - y^2}$ orbitals of copper (at site $i$) and $p_x$ or $p_y$ 
 oxygen (at site $j$)  respectively and $\text{sgn}(p_i,d_j)$ is the sign of the hopping $t_{pd}$ 
 between nearest neighbors, shown schematically in Fig.~\ref{fig:threeband}. 
-$\epsilon_d$,$\epsilon_p$ are orbital energies, $U_d$, $U_p$ are strengths of onsite Hubbard interactions 
+$\epsilon_d$ and $\epsilon_p$ are orbital energies, $U_d$ and $U_p$ are strengths of onsite Hubbard interactions,  
 and $V_{pd}$ is the strength of the density-density interactions between a neighboring $p$ and $d$ orbital. 
 We keep the exposition simple and consider only the case where $\epsilon_p$, $U_d$ and $t_{pd}$ 
 are non zero; the latter is chosen throughout this section to be the typical value of $1.3$ eV to give the reader a sense of overall energy 
 scales. Since we work with fixed number of particles we set our reference zero energy 
 to be $\epsilon_d = 0$, thus the charge transfer energy $\Delta \equiv \epsilon_p - \epsilon_d$ equals $\epsilon_p$ in our notation. 
-We work in the hole notation; half filling corresponds to 2$\uparrow$ and 2$\downarrow$ holes on the $2\times2$ cell.
+We work in the hole notation; half filling corresponds to two spin-up and two spin down holes on the $2\times2$ cell.
+%$\uparrow$ and 2$\downarrow$ holes on the $2\times2$ cell.
 
 \begin{figure}
 \centering
@@ -60,14 +61,14 @@ ${\bf T}$ which is parameterized by $\alpha_1$, $\alpha_2$, $\alpha_3$, $\alpha_
 \label{fig:threeband} 
 \end{figure}
 
-It is our objective to determine what one-band Hubbard model~(Eq.~\ref{eq:oneband}) 
-"best" describes the three-band data. The effective \textit{d-like} orbitals $\tilde{d}_{i,\eta}$, 
+It is our objective to determine what one-band Hubbard model~[Eq.~\eqref{eq:oneband}]
+``best" describes the three-band data. The effective \textit{d-like} orbitals $\tilde{d}_{i,\eta}$, 
 that enter the low energy description are mixtures of copper and oxygen orbitals; this optimal transformation also remains an unknown. 
-Thus the model determination is a \textit{dual} problem (1) what are the composite objects that give a 
+Thus the model determination is a \textit{dual} problem \HHZ{dual usually means two are counterpart to each other in certain sense, if we know one, we know another as well. How about Thus the model determinations include the following two aspects} (1) what are the composite objects that give a 
 compact description of the low energy physics? and (2) given this choice what are the effective interactions between them? 
 (A similar problem was posed and solved by one of us in the context of spin systems~\cite{Changlani_percolation}.)
 In addition, the "best" effective Hamiltonian description depends on the energy scale of interest. 
-All these issues will be clarified in the remainder of the section. 
+All these issues will be clarified \HHZ{addressed?} in the remainder of the section. 
 
 We begin by encoding the relationship between the bare and effective operators as a linear transformation ${\bf T}$, 
 \begin{equation}
@@ -75,10 +76,10 @@ We begin by encoding the relationship between the bare and effective operators a
 \label{eq:dc}
 \end{equation}
 where $c_{j,\eta}$ is the hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals. 
-Higher body generalizations of this relationship are also possible, but have not been considered here. 
+Higher body generalizations \HHZ{Higher body is not clear enough. Do you mean d=T c + .. c' c'' dagger c' + ... ?} of this relationship are also possible, but have not been considered here. 
 For the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix, which we parameterize by four distinct 
 parameters after accounting for the symmetries of the lattice. 
-Using the numbering of the orbitals corresponding to Fig.~\ref{fig:threeband}, the explicit form of ${\bf T}$ is,
+Using the numbering of the orbitals corresponding to Fig.~\ref{fig:threeband}, the explicit form of ${\bf T}$ is
 \begin{eqnarray}
 {\bf T} = 
 \left(
@@ -88,10 +89,10 @@ F        & \alpha_2 &        \alpha_2 &  \alpha_4 & \alpha_1 & \alpha_1 & -\alph
 \alpha_2 & \alpha_4 & F               &  \alpha_2 & -\alpha_1 & \alpha_3 & -\alpha_3 & \alpha_1 & \alpha_1 & -\alpha_1 & -\alpha_3 & \alpha_3 \\
 \alpha_4 & \alpha_2 & \alpha_2        &   F       & -\alpha_3 & -\alpha_3 & \alpha_3 & \alpha_3 & -\alpha_1 & \alpha_1 & -\alpha_1 & \alpha_1 \\
 \end{array}
-\right)
+\right)\,,
 \end{eqnarray}
 where we have defined $F \equiv \sqrt{1-4{\alpha_1}^2 - 2{\alpha_2}^2 - 4 {\alpha_3}^2 -{\alpha_4}^2}$. 
-The parameters $\alpha_1$,$\alpha_2$,$\alpha_3$ and $\alpha_4$ will be optimized to minimize a certain cost function, 
+The parameters $\alpha_1$, $\alpha_2$, $\alpha_3$ and $\alpha_4$ will be optimized to minimize a certain cost function, 
 which will be explained shortly. 
 
 All RDMs in the three-band and one-band descriptions are also related via ${\bf T}$; 
