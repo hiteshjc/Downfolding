@@ -44,13 +44,13 @@ Na\"ively, one might think to reconcile the fitting approach used in classical f
 However, this strategy does not work well in practice because it is often not possible to obtain exact eigenstates for either the model or the {\it ab initio} system.
 To resolve this, we develop a general theory for generating effective quantum models that is exact when the wave functions are sampled from the manifold of low-energy states. 
 Because this method is based on fitting the energy functional, 
-We will show the practical application of this theory using both exact solutions and {\it ab initio} quantum Monte Carlo to derive several different quantum models.
+We will show the practical application of this theory using both exact solutions and {\it ab-initio} quantum Monte Carlo (QMC) to derive several different quantum models.\HHZ{We have to include some text about QMC here somewhere}
 
 The endeavor we pursue here is to develop a multi-scale approach in which the effective interactions between quasiparticles (such as dressed electrons) are determined after an \textit{ab-initio} simulation (but not necessarily exact solution) of the continuum Schroedinger equation involving all the electrons. 
 The method uses reduced density matrices (RDMs) of low-energy states, not necessarily eigenstates, 
 to cast downfolding as a fitting problem. 
 We thus call it density matrix downfolding (DMD).
-In this paper, these states will typically be generated using quantum Monte Carlo techniques to come close to the low energy manifold.
+In this paper, these states will typically be generated using QMC techniques [either variational Monte Carlo (VMC) or diffusion Monte Carlo (DMC)] to come close to the low energy manifold.
 The remainder of the paper is organized as follows:
 \begin{itemize} 
 \item 	In Section 2, we clarify and make precise what it means to downfold 

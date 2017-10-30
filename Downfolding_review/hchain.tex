@@ -19,7 +19,7 @@ wavefunctions consisting of singles- and doubles- excitations to the Slater dete
 \end{subequations}
 where $|KS\rangle$ is the Slater determinant of occupied Kohn-Sham orbitals, $\eta$ and $\eta'$ are spin indices, 
 and $a_{i}^\dagger$ ($a_{i}$) is a single-electron creation (destruction) operator corresponding to a particular Kohn-Sham orbital. $e^J$ is a Jastrow factor, optimized by minimizing the variance of the local energy. 
-We compute the energies (expectation values of the Hamiltonian) and the RDMs on all the wave functions within Diffusion Monte Carlo (DMC). 
+We compute the energies (expectation values of the Hamiltonian) and the RDMs on all the wave functions within DMC. 
 By computing the trace of the resulting 1-RDMs, we verify that all the electrons present in the system are represented within the localized basis of $s$-like orbitals. If the trace of the 1-RDM falls below the nominal number of electrons for a particular state, it 
 indicates that some higher-energy orbitals are occupied ($p$-like orbitals, in the case of hydrogen), and that the state can not be described by the low-energy model Hamiltonian. We exclude such states from further analysis. The acquired data set is then used in DMD to 
 downfold to a one-band Hubbard Hamiltonian.% described in Sec. \ref{sec:theory}.
@@ -29,7 +29,7 @@ downfold to a one-band Hubbard Hamiltonian.% described in Sec. \ref{sec:theory}.
 \includegraphics[scale=0.35]{{./Figures/H_chain_fit_model_length1.5_tUs_inset}.eps}
 \includegraphics[scale=0.35]{{./Figures/H_chain_fit_model_length2.25_tUs_inset}.eps}
 \includegraphics[scale=0.35]{{./Figures/r2_ut_vs_separation_h_chain}.eps}
-\caption{Diffusion Monte Carlo energy versus the reconstructed 
+\caption{DMC energy versus the reconstructed 
 model energy for the H$_{10}$ chain at (A) 1.5 \AA \: and (B) 2.25 \AA \:. The energy range of excitations 
 narrows significantly for larger interatomic separation. Insets show the intrinsic atomic orbitals which constitute the one-body space 
 which was used for calculating the reduced density matrices (descriptors). (C) The R$^2$ fit parameters obtained from fitting the $U$-$t$ model to the H$_{10}$ chain, as a function of interatomic separation.  
