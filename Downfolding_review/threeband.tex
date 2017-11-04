@@ -137,6 +137,7 @@ similar outcomes.
 %\HJC{Removed line about estimates, I am avoiding mention of "state matching" totally now}
 %As was expected, and observed, when the one-band description 
 %is good within a given window, all estimates of $U/t$ agree with each other.\lucas{This is confusing to me. What estimates are they?} 
+
 \renewcommand{\subfigimg}[3][,]{%
   \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
   \leavevmode\rlap{\usebox1}% Print image
@@ -145,11 +146,11 @@ similar outcomes.
 }
 \begin{figure}
 \centering
- \begin{tabular}{@{}p{0.90\linewidth}@{\quad}p{\linewidth}@{}}
-\subfigimg[width=0.45\linewidth]{(A)}{./Figures/spectrum_vs_ep_Ud_8.eps}
-\subfigimg[width=0.49\linewidth]{(B)}{./Figures/U_and_hopping_combined_vs_ep_Ud_8.eps}
-\subfigimg[width=0.45\linewidth]{(C)}{./Figures/spectrum_vs_Ud_ep_3.eps}
-\subfigimg[width=0.48\linewidth]{(D)}{./Figures/U_and_hopping_combined_vs_Ud_ep_3.eps}
+ \begin{tabular}{@{}p{\linewidth}@{\quad}p{\linewidth}@{}}
+\subfigimg[width=0.47\linewidth]{(A)}{./Figures/spectrum_vs_ep_Ud_8.eps}
+\subfigimg[width=0.52\linewidth]{(B)}{./Figures/U_and_hopping_combined_vs_ep_Ud_8.eps}
+\subfigimg[width=0.47\linewidth]{(C)}{./Figures/spectrum_vs_Ud_ep_3.eps}
+\subfigimg[width=0.52\linewidth]{(D)}{./Figures/U_and_hopping_combined_vs_Ud_ep_3.eps}
 \end{tabular}
 \caption{Low energy spectra (relative to the corresponding ground state) for $t_{pd}=1.3$ eV 
 and downfolded parameters for various parameter regimes of the three-band Hubbard model. 
@@ -158,11 +159,28 @@ with the corresponding one-band model eigenstates or by the DMD procedure using
 the lowest three eigenstates. The insets show $t$ obtained from DMD. 
 (A) and (B) show the case of fixed $U_d/t_{pd}=8$ and varying $\Delta/t_{pd}$ 
 and (C) and (D) show the case of fixed $\Delta/t_{pd}=3$ and varying $U_d/t_{pd}$.
-%\HJC{I have removed mention of "state matching", I now explicitly state in the caption  what the other estimates are. Is this better?}
-%\lucas{This still has state-matching stuff which I thought we agreed to remove. At best you can use these to establish uncertainties?}
+\HJC{I have removed mention of "state matching", I now explicitly state in the caption  what the other estimates are. Is this better?}
+\lucas{This still has state-matching stuff which I thought we agreed to remove. At best you can use these to establish uncertainties?}
 }
 \label{fig:varyUdep} 
 \end{figure}
+
+
+%\begin{figure}
+%	\subfigure[]{\includegraphics[width=0.45\textwidth]{./Figures/spectrum_vs_ep_Ud_8.eps}}
+%	\subfigure[]{\includegraphics[width=0.45\textwidth]{./Figures/spectrum_vs_ep_Ud_8.eps}}
+%	%\caption{Low energy spectra (relative to the corresponding ground state) for $t_{pd}=1.3$ eV 
+%	%and downfolded parameters for various parameter regimes of the three-band Hubbard model. 
+%	%The one-band $U/t$ values were obtained either by comparing $\langle \tilde{d}_1^{\dagger} \tilde{d}_2\rangle_s$ 
+%	%with the corresponding one-band model eigenstates or by the DMD procedure using 
+%	%the lowest three eigenstates. The insets show $t$ obtained from DMD. 
+%	%(A) and (B) show the case of fixed $U_d/t_{pd}=8$ and varying $\Delta/t_{pd}$ 
+%	%and (C) and (D) show the case of fixed $\Delta/t_{pd}=3$ and varying $U_d/t_{pd}$.
+%	%\HJC{I have removed mention of "state matching", I now explicitly state in the caption  what the other estimates are. Is this better?}
+%	%\lucas{This still has state-matching stuff which I thought we agreed to remove. At best you can use these to establish uncertainties?}
+%	%}
+%	%\label{fig:varyUdep} 
+%\end{figure}
 
 Some trends in the one-band description are explored in Figure~\ref{fig:varyUdep} 
 by monitoring the downfolded parameters as a function of varying $\Delta/t_{pd}$ and $U_d/t_{pd}$. 
