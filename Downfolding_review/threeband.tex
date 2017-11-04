@@ -87,6 +87,7 @@ F        & \alpha_2 &        \alpha_2 &  \alpha_4 & \alpha_1 & \alpha_1 & -\alph
 \right)\,,
 \end{eqnarray}
 \lucas{Can we not put this in the supplementary?}
+\HJC{good idea... looking into an "appendix"}
 where we have defined $F \equiv \sqrt{1-4{\alpha_1}^2 - 2{\alpha_2}^2 - 4 {\alpha_3}^2 -{\alpha_4}^2}$. 
 The parameters $\alpha_1$, $\alpha_2$, $\alpha_3$ and $\alpha_4$ will be optimized to minimize a certain cost function, 
 which will be explained shortly. 
@@ -122,6 +123,7 @@ These states have primarily \textit{d-like} character, an aspect we will verify 
 The eigenstates outside of this manifold involve \textit{p-like} excitations which the one-band model is not designed 
 to capture. 
 
+\HJC{Need to look into this para as suggested by lucas and decide what goes in appendix and what stays}
 To give a concrete and representative example of our results, we discuss the case of 
 $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. We chose the lowest three eigenstates 
 of the three-band model for computing the cost in Eq.~\eqref{eq:C}. The 
@@ -139,8 +141,10 @@ the same 1-RDM value. This matching procedure gives $(U/t)_1 \approx 14.1 $, $(U
 Analogous estimates of $U/t$ were also made by comparing the 2-RDM elements $\langle \tilde{n}_{\uparrow} \tilde{n}_{\downarrow} \rangle_s$ 
 with similar results. 
 
-The state-matching approach\lucas{state-matching approach? We never explain this.} was supported by DMD performed 
-with the same three low-energy states, using their energies and 
+\HJC{Removed mention of "state-matching" now}
+%The state-matching approach
+\lucas{state-matching approach? We never explain this.} 
+We performed DMD with the same three low-energy states, using their energies and 
 the computed values of $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
 and $\langle \tilde{n}_{i,\uparrow} \tilde{n}_{i,\downarrow} \rangle_{s}$ from Eqs.~\eqref{eq:dmstransformations1} 
 and~\eqref{eq:dmstransformations2}. 
@@ -151,8 +155,9 @@ For our test example, we find $U/t = 13.45 $ and $t = 0.3025 $ eV,
 the former in the correct range of the state-matching values. There is no error bar since there 
 are three unknown parameters in the model Hamiltonian, including the constant energy shift, and there 
 are three entries in the DMD procedure. 
-As was expected, and observed, when the one-band description 
-is good within a given window, all estimates of $U/t$ agree with each other.\lucas{This is confusing to me. What estimates are they?} 
+\HJC{Removed line about estimates, I am avoiding mention of "state matching" totally now}
+%As was expected, and observed, when the one-band description 
+%is good within a given window, all estimates of $U/t$ agree with each other.\lucas{This is confusing to me. What estimates are they?} 
 \begin{figure}
 \centering
 \includegraphics[width=0.45\linewidth]{./Figures/spectrum_vs_ep_Ud_8.eps}
@@ -161,7 +166,8 @@ is good within a given window, all estimates of $U/t$ agree with each other.\luc
 \includegraphics[width=0.48\linewidth]{./Figures/U_and_hopping_combined_vs_Ud_ep_3.eps}
 \caption{Low energy spectra (relative to the corresponding ground state) for $t_{pd}=1.3$ eV 
 and downfolded parameters for various parameter regimes of the three-band Hubbard model. 
-The one-band $U/t$ values were obtained by state matching or by the DMD procedure using 
+The one-band $U/t$ values were obtained by comparing $\langle d_1^{\dagger} d_2\rangle$ 
+with the corresponding one-band model eigenstates or by the DMD procedure using 
 the lowest three eigenstates. The insets show $t$ obtained from DMD. 
 (A) and (B) show the case of fixed $U_d/t_{pd}=8$ and varying $\Delta/t_{pd}$ 
 and (C) and (D) show the case of fixed $\Delta/t_{pd}=3$ and varying $U_d/t_{pd}$.
@@ -213,17 +219,12 @@ using the downfolded parameters obtained from the smaller $2 \times 2$ cell. Our
 in Table~\ref{tab:predictivity}. 
 
 In all cases the agreement between the three-band and one-band models is remarkably good. 
-The lowest energy gap error is within $0.0004$ eV (1\% relative error).%, which in relative terms was a maximum error of 1 percent. 
-The largest error in the third gap is of the order of $0.005$ eV (3\% relative error). %which in relative terms is about 3 percent. 
+The lowest energy gap error is within $0.0004$ eV (1\% relative error). 
+The largest error in the third gap is of the order of $0.005$ eV (3\% relative error).
 These results indicate the reliability of the downfolding procedure 
 and highlight its predictive power. 
 This suggests that one could perform DMD on a small size system to obtain the effective model at a low cost. 
 In the spirit of multiscale simulation, one could then solve this effective model within its regime of validity\lucas{What does this mean specifically?} for larger systems at a significantly reduced cost compared to solving the original model or \textit{ab initio} Hamiltonians.
-
-
-%Although, in more general situations, for example, models 
-%with long range interactions, finite size dependence of the downfolded parameters may also be important. 
-%Systematically understanding these cases is an endeavor we leave to future work. 
 
 \begin{table}
 \centering
@@ -246,7 +247,9 @@ models from exact diagonalizations, for six representative cases using $t_{pd}=1
 has been used to indicate the gap (energy difference) between state $i$ and $j$ and $m=1,3$ is a label that 
 refers to the 1- or three-band models. 
 The downfolded parameters, $t$ and $U/t$, for the one-band model were those obtained from downfolding the 4 ($2\times2$) unit cell 
-case. \lucas{What is this table supposed to show? Is it different from Fig 4?} }
+case. 
+\HJC{Not sure how to fix this... but will look into it}
+\lucas{What is this table supposed to show? Is it different from Fig 4?} }
 \label{tab:predictivity}
 \end{table} 
 
