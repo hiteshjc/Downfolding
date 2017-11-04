@@ -109,11 +109,11 @@ to capture.
 
 %\lucas{what insight does knowing these alphas give? If it's how much d and p character I don't think anyone will know what they mean; I certainly don't. I think most of this paragraph can be supplementary or appendix.}. 
 %{Transferred most of it, gave a compact example and combined with DMD para}
-We chose the lowest three eigenstates of the three-band model for computing the cost in Eq.~\eqref{eq:C}. 
-A brute force scan in the four dimensional space of parameters was performed to optimize ${\bf T}$ 
-and the corresponding trace conditions and orthogonality are simultaneously 
-satisfied to a relative error within 0.5 percent, confirming the validity of Eq.~\eqref{eq:dc}. 
-Importantly, the 1-RDM elements corresponding to nearest neighbors $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
+We chose the lowest three eigenstates of the three-band model for minimizing 
+the cost in Eq.~\eqref{eq:C}. The four dimensional space of parameters of ${\bf T}$ 
+was scanned for this purpose. The corresponding trace conditions and orthogonality are simultaneously 
+satisfied with only small deviations, confirming the validity of Eq.~\eqref{eq:dc}. 
+Importantly, the 1-RDM elements in the transformed basis corresponding to nearest neighbors $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
 already provide estimates for $U/t$ of the effective model. Since the exact knowledge of the corresponding eigenstates of 
 the one-band Hubbard model is available for arbitrary $U/t$ by exact diagonalization, we directly look up the $U/t$ with 
 the same 1-RDM value. These estimates complement the one obtained by DMD which was carried out 
@@ -166,7 +166,7 @@ As one mechanism of avoiding the large $U_d$, the copper orbitals are forced to 
 on the other hand, hole delocalization is suppressed in a bid to maintain mostly one hole per $\tilde{d}$ due to the larger 
 $U/t$. The net result of these effects is that the $t$ also increases.%, albeit only marginally; a trend also observed in $\alpha_1$.
 
-We now perform checks on the accuracy of the downfolded model. 
+%We now perform checks on the accuracy of the downfolded model. 
 An important check for the one-band model is its ability to reproduce the low energy gaps of the three-band model; these have been compared in Figure~\ref{fig:energyfit}. 
 For the case of $\Delta/t_{pd}=3$, we observe that for all $U_d/t_{pd}$ the lowest three eigenstates were reproduced well. 
 This model also reproduces the states outside of the DMD energy window, although with a slightly larger errors. 
