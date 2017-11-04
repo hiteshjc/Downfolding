@@ -107,38 +107,34 @@ These states have primarily \textit{d-like} character, an aspect we will verify 
 The eigenstates outside of this manifold involve \textit{p-like} excitations which the one-band model is not designed 
 to capture. 
 
-\HJC{Need to look into this para as suggested by lucas and decide what goes in appendix and what stays}
-To give a concrete and representative example of our results, we discuss the case of 
-$U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. We chose the lowest three eigenstates 
-of the three-band model for computing the cost in Eq.~\eqref{eq:C}. The 
-optimal parameters of ${\bf T}$ were determined by a brute force scan in the four dimensional space of parameters 
-with a linear grid spacing of $0.002$; yielding $\alpha_1=0.216$, $\alpha_2=0.042$, $\alpha_3=0.018$ and $\alpha_4=0.016$. \lucas{what insight does knowing these alphas give? If it's how much d and p character I don't think anyone will know what they mean; I certainly don't. I think most of this paragraph can be supplementary or appendix.}
-The corresponding trace conditions and orthogonality are simultaneously %individually 
+%\lucas{what insight does knowing these alphas give? If it's how much d and p character I don't think anyone will know what they mean; I certainly don't. I think most of this paragraph can be supplementary or appendix.}. 
+%{Transferred most of it, gave a compact example and combined with DMD para}
+We chose the lowest three eigenstates of the three-band model for computing the cost in Eq.~\eqref{eq:C}. 
+A brute force scan in the four dimensional space of parameters was performed to optimize ${\bf T}$ 
+and the corresponding trace conditions and orthogonality are simultaneously 
 satisfied to a relative error within 0.5 percent, confirming the validity of Eq.~\eqref{eq:dc}. 
 Importantly, the 1-RDM elements corresponding to nearest neighbors $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
-already provide estimates for $U/t$ of the effective model. 
-For our test example, the absolute values of $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
-in states $s=1,2,3$ are approximately $0.159$, $0.142$ and $0.084$ respectively. 
-Since the exact knowledge of the corresponding eigenstates of the one-band Hubbard model is directly available for arbitrary 
-$U/t$ by exact diagonalization, we directly look up the $U/t$ with 
-the same 1-RDM value. This matching procedure gives $(U/t)_1 \approx 14.1 $, $(U/t)_2 \approx 13.2 $, $(U/t)_3 \approx 12.7 $. 
-Analogous estimates of $U/t$ were also made by comparing the 2-RDM elements $\langle \tilde{n}_{\uparrow} \tilde{n}_{\downarrow} \rangle_s$ 
-with similar results. 
-
-\HJC{Removed mention of "state-matching" now}
-%The state-matching approach
-\lucas{state-matching approach? We never explain this.} 
-We performed DMD with the same three low-energy states, using their energies and 
+already provide estimates for $U/t$ of the effective model. Since the exact knowledge of the corresponding eigenstates of 
+the one-band Hubbard model is available for arbitrary $U/t$ by exact diagonalization, we directly look up the $U/t$ with 
+the same 1-RDM value. These estimates complement the one obtained by DMD which was carried out 
+with the same three low-energy eigenstates, using their energies and 
 the computed values of $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
 and $\langle \tilde{n}_{i,\uparrow} \tilde{n}_{i,\downarrow} \rangle_{s}$ from Eqs.~\eqref{eq:dmstransformations1} 
 and~\eqref{eq:dmstransformations2}. 
-To mimic the situation characteristic of \textit{ab initio} examples where no eigenstates are generally available, 
-several non eigenstates were generated as random linear combinations of the lowest three eigenstates, with 
+For example for $U_{d}/t_{pd}=8$ and $\Delta/t_{pd}=3$, the comparisons with eigenstates yielded 
+$(U/t)_1 \approx 14.1 $, $(U/t)_2 \approx 13.2 $, $(U/t)_3 \approx 12.7 $ and the DMD results were 
+$U/t = 13.45 $ and $t = 0.3025 $ eV. We also mimicked the situation characteristic of \textit{ab initio} 
+examples where no eigenstates are generally available several non eigenstates were generated as random linear combinations of 
+the lowest three eigenstates and input into the DMD procedure, with 
 similar outcomes.
-For our test example, we find $U/t = 13.45 $ and $t = 0.3025 $ eV. There is no error bar since there 
-are three unknown parameters in the model Hamiltonian, including the constant energy shift, and there 
-are three entries in the DMD procedure. 
-\HJC{Removed line about estimates, I am avoiding mention of "state matching" totally now}
+
+%\HJC{Removed mention of "state-matching" now}
+%The state-matching approach
+%\lucas{state-matching approach? We never explain this.} 
+%For our test example, we find $U/t = 13.45 $ and $t = 0.3025 $ eV. There is no error bar since there 
+%are three unknown parameters in the model Hamiltonian, including the constant energy shift, and there 
+%are three entries in the DMD procedure. 
+%\HJC{Removed line about estimates, I am avoiding mention of "state matching" totally now}
 %As was expected, and observed, when the one-band description 
 %is good within a given window, all estimates of $U/t$ agree with each other.\lucas{This is confusing to me. What estimates are they?} 
 \begin{figure}
@@ -154,8 +150,9 @@ with the corresponding one-band model eigenstates or by the DMD procedure using
 the lowest three eigenstates. The insets show $t$ obtained from DMD. 
 (A) and (B) show the case of fixed $U_d/t_{pd}=8$ and varying $\Delta/t_{pd}$ 
 and (C) and (D) show the case of fixed $\Delta/t_{pd}=3$ and varying $U_d/t_{pd}$.
-\HJC{I have removed mention of "state matching", I now explicitly state in the caption  what the other estimates are. Is this better?}
-\lucas{This still has state-matching stuff which I thought we agreed to remove. At best you can use these to establish uncertainties?}}
+%\HJC{I have removed mention of "state matching", I now explicitly state in the caption  what the other estimates are. Is this better?}
+%\lucas{This still has state-matching stuff which I thought we agreed to remove. At best you can use these to establish uncertainties?}
+}
 \label{fig:varyUdep} 
 \end{figure}
 
@@ -203,7 +200,7 @@ is within $0.0004$ eV (1\% relative error).
 The largest error in the third gap is of the order of $0.005$ eV (3\% relative error).
 These results indicate the reliability of the downfolding procedure 
 and highlight its predictive power. 
-%\HJC{Commented problematic linea because we made that point anyway in the last para}
+%\HJC{Commented problematic lines because we made that point anyway in the last para}
 %This suggests that one could perform DMD on a small size system to obtain the effective model at a low cost. 
 %In the spirit of multiscale simulation, one could then solve this effective model within its regime of validity\lucas{What does this mean specifically?} for larger systems at a significantly reduced cost compared to solving the original model or \textit{ab initio} Hamiltonians.
 
