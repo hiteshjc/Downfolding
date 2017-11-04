@@ -24,10 +24,18 @@ If the trace of the 1-RDM falls below the nominal number of electrons for a part
 indicates that some higher-energy orbitals are occupied ($p$-like orbitals, in the case of hydrogen\lucas{could be 2s}), and that the state can not be described by the low-energy model Hamiltonian.\lucas{Are these very high energy states?}
  We exclude such states from the data set. 
 The acquired data set is then used in DMD to downfold to a one-band Hubbard Hamiltonian.ab initio
+\renewcommand{\subfigimg}[3][,]{%
+  \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
+  \leavevmode\rlap{\usebox1}% Print image
+  \rlap{\hspace*{40pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-7.0\baselineskip}{#2}}% Print label
+  \phantom{\usebox1}
+}
 \begin{figure}
 \centering
-\includegraphics[scale=0.45]{{./Figures/H_chain_fit_model_length1.5_tUs_inset}.eps}
-\includegraphics[scale=0.45]{{./Figures/H_chain_fit_model_length2.25_tUs_inset}.eps}
+ \begin{tabular}{@{}p{0.90\linewidth}@{\quad}p{\linewidth}@{}}
+\subfigimg[scale=0.45]{(A)}{{./Figures/H_chain_fit_model_length1.5_tUs_inset}.eps}
+\subfigimg[scale=0.45]{(B)}{{./Figures/H_chain_fit_model_length2.25_tUs_inset}.eps}
+ \end{tabular}
 \caption{DMC energy versus the reconstructed 
 model energy for the H$_{10}$ chain at (A) 1.5 \AA \: and (B) 2.25 \AA \:. The energy range of excitations 
 narrows significantly for larger interatomic separation. Insets show the intrinsic atomic orbitals which constitute the one-body space 
@@ -43,12 +51,19 @@ For $r=1.5$ \AA, there is considerable spread in the data from the 45 degree lin
 is insufficient for an \textit{accurate} description in the corresponding energy window. 
 In contrast, the R$^2$ fit parameter is significantly larger for larger $r$, suggesting the increased 
 effectiveness of the one-band Hubbard model, as seen in Figure~\ref{fig:Parameters-vs-Bond-t}(C).   \lucas{What is the conclusion of this paragraph?}
-
+\renewcommand{\subfigimg}[3][,]{%
+  \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
+  \leavevmode\rlap{\usebox1}% Print image
+  \rlap{\hspace*{36pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-1.37\baselineskip}{#2}}% Print label
+  \phantom{\usebox1}
+}
 \begin{figure}
 \centering
-\includegraphics[scale=0.35]{./Figures/fitted_t_values_no_offset_h10_chain.eps}
-\includegraphics[scale=0.35]{./Figures/Ust_ratio_vs_separation_h_chain.eps}
-\includegraphics[scale=0.35]{{./Figures/r2_ut_vs_separation_h_chain}.eps}
+ \begin{tabular}{@{}p{0.90\linewidth}@{\quad}p{\linewidth}@{}}
+    \subfigimg[scale=0.35]{(A)}{./Figures/fitted_t_values_no_offset_h10_chain.eps}
+    \subfigimg[scale=0.35]{(B)}{./Figures/Ust_ratio_vs_separation_h_chain.eps}
+    \subfigimg[scale=0.35]{(C)}{{./Figures/r2_ut_vs_separation_h_chain}.eps}
+ \end{tabular}
 \caption{(A) The one-body hopping $t$ parameter as a function of interatomic distance for the periodic H$_{10}$ chain, obtained from a fitted $U$-$t$ model. $t$ declines to zero as $r$ increases. (B) The ratio $U/t$ for the fitted parameter values as a function of interatomic separation. The ratio is small at lower bond-lengths, where $t$ is more relevant in describing the system, and larger at longer bond-lengths, where inter-site hopping is less significant. (C) The R$^2$ fit parameters obtained from fitting the $U$-$t$ model to the H$_{10}$ chain, as a function of interatomic separation. }\label{fig:Parameters-vs-Bond-t}
 \end{figure}
 

@@ -32,11 +32,18 @@ However, for certain aspects, the long ranged part can be considered as renormal
 onsite Coulomb interaction $U$ at low energy~\cite{Schuler2013, Changlani2015}. 
 %Therefore, we expect that one-band Hubbard model is a reasonable description of the low energy physics. 
 \lucas{Last sentence is not well-supported. In fact we know it has deficiencies and said so in our 2015 paper.}  \HHZ{I removed the last sentence.}
-
+\renewcommand{\subfigimg}[3][,]{%
+  \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
+  \leavevmode\rlap{\usebox1}% Print image
+  \rlap{\hspace*{20pt}\vspace*{18pt}\raisebox{\dimexpr\ht1-1.37\baselineskip}{#2}}% Print label
+  \phantom{\usebox1}
+}
 \begin{figure}
 \centering
-\includegraphics[width=0.40\textwidth]{./Figures/c_pi.eps}
-\includegraphics[width=0.40\textwidth]{./Figures/h_wan.eps}
+ \begin{tabular}{@{}p{0.90\linewidth}@{\quad}p{\linewidth}@{}}
+   \subfigimg[clip, width=0.45\textwidth]{(A)}{./Figures/c_pi.eps}
+   \subfigimg[clip, width=0.45\textwidth]{(B)}{./Figures/h_wan.eps}
+ \end{tabular}
 \caption{Wannier orbitals constructed from Kohn-Sham orbitals: (A) graphene $\pi$ orbital; (B) hydrogen $s$ orbital. \lucas{Need some kind of titles to differentiate the graphs. $E[\Psi]$ versus $E_{eff}[\Psi]$ }\HHZ{I assume you meant next figure.}}
 \label{fig:honeycomb_wan}
 \end{figure}
@@ -67,6 +74,12 @@ Figure~\ref{fig:ne_aidmd_gh}.% shows the quality of the fits for the three syste
 
 %\label{tab:grpheffm}
 %\end{table} 
+\renewcommand{\subfigimg}[3][,]{%
+  \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
+  \leavevmode\rlap{\usebox1}% Print image
+  \rlap{\hspace*{42pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-1.37\baselineskip}{#2}}% Print label
+  \phantom{\usebox1}
+}
 
 \begin{figure}
 \centering
