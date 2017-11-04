@@ -72,24 +72,8 @@ We begin by encoding the relationship between the bare and effective operators a
 \end{equation}
 where $c_{j,\eta}$ is the hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals. 
 Further generalizations of this relationship (for example, including higher body terms) are also possible, but have not been considered here. 
-For the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix, which we parameterize by four distinct 
-parameters after accounting for the symmetries of the lattice. 
-Using the numbering of the orbitals corresponding to Fig.~\ref{fig:threeband}, the explicit form of ${\bf T}$ is
-\begin{eqnarray}
-{\bf T} = 
-\left(
-\begin{array}{cccccccccccc}
-F        & \alpha_2 &        \alpha_2 &  \alpha_4 & \alpha_1 & \alpha_1 & -\alpha_1 & -\alpha_1 & \alpha_3 & -\alpha_3 & \alpha_3 & -\alpha_3 \\
-\alpha_2 &  F       &        \alpha_4 &  \alpha_2 & \alpha_3 & -\alpha_1 & \alpha_1 & -\alpha_3 & -\alpha_3 & \alpha_3 & \alpha_1 & -\alpha_1 \\
-\alpha_2 & \alpha_4 & F               &  \alpha_2 & -\alpha_1 & \alpha_3 & -\alpha_3 & \alpha_1 & \alpha_1 & -\alpha_1 & -\alpha_3 & \alpha_3 \\
-\alpha_4 & \alpha_2 & \alpha_2        &   F       & -\alpha_3 & -\alpha_3 & \alpha_3 & \alpha_3 & -\alpha_1 & \alpha_1 & -\alpha_1 & \alpha_1 \\
-\end{array}
-\right)\,,
-\end{eqnarray}
-\lucas{Can we not put this in the supplementary?}
-\HJC{good idea... looking into an "appendix"}
-where we have defined $F \equiv \sqrt{1-4{\alpha_1}^2 - 2{\alpha_2}^2 - 4 {\alpha_3}^2 -{\alpha_4}^2}$. 
-The parameters $\alpha_1$, $\alpha_2$, $\alpha_3$ and $\alpha_4$ will be optimized to minimize a certain cost function, 
+For the $2\times2$ unit cell, {\bf T} is a $4 \times 12 $ matrix, which we parameterize by four distinct parameters $\alpha_1$, $\alpha_2$, $\alpha_3$ and $\alpha_4$. 
+The explicit form  after accounting for the symmetries of the lattice has been shown in the Appendix. These parameters are optimized to minimize a certain cost function, 
 which will be explained shortly. 
 
 All RDMs in the three-band and one-band descriptions are also related via ${\bf T}$; 
