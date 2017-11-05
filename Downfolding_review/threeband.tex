@@ -124,13 +124,14 @@ the same 1-RDM value. These estimates complement the one obtained by DMD which w
 with the same three low-energy eigenstates, using their energies and 
 the computed values of $\langle \tilde{d}_1^{\dagger} \tilde{d}_2 \rangle_s$ 
 and $\langle \tilde{n}_{i,\uparrow} \tilde{n}_{i,\downarrow} \rangle_{s}$ from Eqs.~\eqref{eq:dmstransformations1} 
-and~\eqref{eq:dmstransformations2}. 
-For example for $U_{d}/t_{pd}=8$ and $\Delta/t_{pd}=3$, the comparisons with eigenstates yielded 
-$(U/t)_1 \approx 14.1 $, $(U/t)_2 \approx 13.2 $, $(U/t)_3 \approx 12.7 $ and the DMD results were 
-$U/t = 13.45 $ and $t = 0.3025 $ eV. We also mimicked the situation characteristic of \textit{ab initio} 
+and~\eqref{eq:dmstransformations2}~\footnote{We also mimicked the situation characteristic of \textit{ab initio} 
 examples where no eigenstates are generally available. Several non eigenstates were generated as random linear combinations of 
 the lowest three eigenstates and input into the DMD procedure, with 
-similar outcomes.
+similar outcomes.}. A respresentative example of our results for $U_{d}/t_{pd}=8$ and $\Delta/t_{pd}=3$ 
+has been discussed in the Appendix. 
+%the comparisons with eigenstates yielded 
+%$(U/t)_1 \approx 14.1 $, $(U/t)_2 \approx 13.2 $, $(U/t)_3 \approx 12.7 $ and the DMD results were 
+%$U/t = 13.45 $ and $t = 0.3025 $ eV. 
 
 %\HJC{Removed mention of "state-matching" now}
 %The state-matching approach
@@ -332,9 +333,8 @@ are used in the DMD procedure. This is because the DMD aims to provide the one-b
 that best describes \textit{all} states in a given window. If the model is not perfect within a given energy window, 
 an energy dependent model is expected, consistent with the renormalization group perspective. For our test example, 
 increasing the number of eigenstates from three to six changed $U/t$ from $13.8$ to $9.44$ and $t$ from $0.3045$ to $0.2750$ eV.
-\footnote{The attentive reader would have noticed the slightly different estimates of $U/t\approx 13.45$ and $t=0.3025$ eV when 
-three states were used for both the DMD and cost minimization used to obtain effective orbitals. This is because 
-$\tilde{d}$ are slightly different in the two cases.} 
+\footnote{When three states were used for optimizing the orbitals and for the DMD, we found $U/t\approx 13.45$ and $t=0.3025$ eV. 
+This is because $\tilde{d}$ are slightly different in the two cases.} 
 The features associated with the energy dependence are further confirmed in Fig.~\ref{fig:windows}(B). 
 When only three states are used, the one-band (nearest neighbor) Hubbard model is insufficient for \textit{accurately}
 describing states outside the window. When all six states are used, the DMD tries to minimize the error of the 
