@@ -72,22 +72,23 @@ Then
 \begin{align}
 \left.\frac{\delta  E[\Phi] }{\delta \Phi^*}\right|_{\Phi=\Psi} =  \left[\frac{\delta  E[\Phi] }{\delta \Psi^*} + \frac{\delta  E[\Phi] }{\delta \Psi_{HE}^*} \right]_{\Phi=\Psi}.
 \end{align}
-\HHZ{This proof is not rigorous. if $y=a+b$, we don't have $\frac{\partial f}{\partial y} =\frac{\partial f}{\partial a} +\frac{\partial f}{\partial b} $. One needs to have rigorous chain rule to deduce some results like this. For example, define another variable $x=a-b$, ... }
 $\frac{\delta  E[\Phi] }{\delta \Psi^*}=0$ because $\frac{\delta E_{eff}[\Psi]}{\delta \Psi^*} =0$. 
 $\frac{\delta  E[\Phi] }{\delta \Psi_{HE}^*}=0$ can easily be verified by noting that $\ket{\Psi_{HE}}= \sum_{i=N+1}^\infty c_i \ket{\Phi_i}$.
 Since the zeros coincide, the eigenstates also coincide. 
 \end{proof}
-\HHZ{The whole theorem does not work. You can see clearly if I write H as the following form, 
-\begin{eqnarray}
-H = 
-\begin{pmatrix}
- H_{LE}  & H_c\\
-H_c^\dagger & H_{HE}
-\end{pmatrix}\,,
-\end{eqnarray}
-Then, based on all your definition, we have $H_{eff}=H_{LE}$ (this selection of $H_{eff}$ satisfies all the requirement you imposed on $H_{eff}$). For sure this, satisfies the condition $E_{eff}[\Psi]= E[\Psi]$. But $H$ and $H_{eff}$ might not have coincide eigen spectrums if $H_c\ne0$. In other words, if and only if the high energy manifold and low energy manifold are decoupled with each other, we have coincide eigen spectrums for H and $H_{eff}$. 
+\HHZ{We could add the following theorem, 
+\begin{theorem}
+If $E[\Psi] = E_{eff}[\Psi]$, for any $\Psi$ in $LE$, then $H_{eff}|\Psi\rangle = H |\Psi\rangle$ for any $\Psi$ in LE. 
+\end{theorem}
+This theorem also implies Theorem 2. $H_{eff}|\Psi\rangle = H |\Psi\rangle$ is saying that within LE, $H_{eff}$ behaves the same way as $H$. This gives the definition of effective Hamiltonian, and the theorem itself provides a way to find the $H_{eff}$. 
 
-In short, Theorem 2 does not work because when we apply $H$ to $\Psi$ (belong to LE), it in general will generate HE components. This is the same concern that Hitesh expressed in his comment. 
+\begin{proof}
+Since $E[\Psi] = E_{eff}[\Psi]$, we have $\frac{\delta E[\Psi]}{\delta \Psi^*}=\frac{\delta E_{eff}[\Psi]}{\delta \Psi^*}$. Note that
+$\frac{\delta E[\Psi]}{\delta \Psi^*}=\frac{(H-E[\Psi])|\Psi\rangle }{\langle\Psi|\Psi\rangle}$ and $\frac{\delta E_{eff}[\Psi]}{\delta \Psi^*}=\frac{(H_{eff}-E_{eff}[\Psi])|\Psi\rangle }{\langle\Psi|\Psi\rangle}$. We have $H_{eff}|\Psi\rangle = H |\Psi\rangle$. 
+\end{proof}
+Such $H_{eff}$ always exists. Let $H_{eff} = \sum_{n} e_n |n\rangle \langle n|$ where $|n\rangle$'s are eigenstates belong to $LE$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $\Psi$ in LE.  
+
+If we are not comfortable with the derivative of $E[\Psi]$, we could prove $\langle m| H_{eff} | n\rangle = \langle m| H| n\rangle$ by considering $E[\Psi]$ on four states: $|n\rangle+ |m\rangle$,$|n\rangle- |m\rangle$,$|n\rangle+ i|m\rangle$ and $|n\rangle- i|m\rangle$. 
 }
 
 We have thus reduced the problem of finding an effective Hamiltonian $H_{eff}$ that reproduces the low-energy spectrum of $H$ to matching the corresponding energy functionals $E[\Psi]$ and $E_{eff}[\Psi]$. 
