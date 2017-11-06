@@ -78,15 +78,15 @@ Since the zeros coincide, the eigenstates also coincide.
 \end{proof}
 \HHZ{We could add the following theorem, 
 \begin{theorem}
-If $E[\Psi] = E_{eff}[\Psi]$, for any $\Psi$ in $LE$, then $H_{eff}|\Psi\rangle = H |\Psi\rangle$ for any $\Psi$ in LE. 
+If $E[\Psi] = E_{eff}[\Psi]$, for any $\Psi$ in ${\mathcal LE(H,N)}$, then $H_{eff}|\Psi\rangle = H |\Psi\rangle$ for any $\Psi$ in ${\mathcal LE(H,N)}$. 
 \end{theorem}
-This theorem also implies Theorem 2. $H_{eff}|\Psi\rangle = H |\Psi\rangle$ is saying that within LE, $H_{eff}$ behaves the same way as $H$. This gives the definition of effective Hamiltonian, and the theorem itself provides a way to find the $H_{eff}$. 
+This theorem also implies Theorem 2. $H_{eff}|\Psi\rangle = H |\Psi\rangle$ is saying that within ${\mathcal LE(H,N)}$, $H_{eff}$ behaves the same way as $H$. This gives the definition of effective Hamiltonian, and the theorem itself provides a way to find the $H_{eff}$. 
 
 \begin{proof}
-Since $E[\Psi] = E_{eff}[\Psi]$, we have $\frac{\delta E[\Psi]}{\delta \Psi^*}=\frac{\delta E_{eff}[\Psi]}{\delta \Psi^*}$. Note that
+Since $E[\Psi] = E_{eff}[\Psi]$ for any $\Psi \in {\mathcal LE(H,N)}$, we have $\frac{\delta E[\Psi]}{\delta \Psi^*}=\frac{\delta E_{eff}[\Psi]}{\delta \Psi^*}$ for $\delta \Psi \in {\mathcal LE(H,N)}$. Note that
 $\frac{\delta E[\Psi]}{\delta \Psi^*}=\frac{(H-E[\Psi])|\Psi\rangle }{\langle\Psi|\Psi\rangle}$ and $\frac{\delta E_{eff}[\Psi]}{\delta \Psi^*}=\frac{(H_{eff}-E_{eff}[\Psi])|\Psi\rangle }{\langle\Psi|\Psi\rangle}$. We have $H_{eff}|\Psi\rangle = H |\Psi\rangle$. 
 \end{proof}
-Such $H_{eff}$ always exists. Let $H_{eff} = \sum_{n} e_n |n\rangle \langle n|$ where $|n\rangle$'s are eigenstates belong to $LE$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $\Psi$ in LE.  
+Such $H_{eff}$ always exists. Let $H_{eff} = \sum_{n} e_n |n\rangle \langle n|$ where $|n\rangle$'s are eigenstates belong to ${\mathcal LE(H,N)}$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $\Psi$ in ${\mathcal LE(H,N)}$.  
 
 If we are not comfortable with the derivative of $E[\Psi]$, we could prove $\langle m| H_{eff} | n\rangle = \langle m| H| n\rangle$ by considering $E[\Psi]$ on four states: $|n\rangle+ |m\rangle$,$|n\rangle- |m\rangle$,$|n\rangle+ i|m\rangle$ and $|n\rangle- i|m\rangle$. 
 }
