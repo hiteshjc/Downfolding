@@ -15,15 +15,21 @@ wavefunctions consisting of singles and doubles excitations to the Slater determ
 | d \rangle = & \: e^J \Big[a^\dagger_{i \eta} a^\dagger_{j \eta'} a_{k \eta'} a_{l \eta}   | KS \rangle\Big] ,
 \end{eqnarray}
 \end{subequations}
-where $|KS\rangle$ is the Slater determinant of occupied Kohn-Sham orbitals, $\eta$ and $\eta'$ are spin indices, \lucas{it is unclear here if $\eta$ and $\eta'$ are allowed to be different. }
-and $a_{i}^\dagger$ ($a_{i}$) is a single-electron creation (destruction) operator corresponding to a particular Kohn-Sham orbital. $k,l$ refer to occupied orbitals in the original Slater determinant, while $i,j$ are virtual orbitals. 
+where $|KS\rangle$ is the Slater determinant of occupied Kohn-Sham orbitals, $\eta \neq \eta'$ are spin indices, 
+%\lucas{it is unclear here if $\eta$ and $\eta'$ are allowed to be different. }
+and $a_{i}^\dagger$ ($a_{i}$) is a single-electron creation (destruction) operator corresponding to a particular Kohn-Sham orbital. The $k,l$ indices label occupied orbitals in the original Slater determinant, while $i,j$ are virtual orbitals. 
 $e^J$ is a Jastrow factor optimized by minimizing the variance of the local energy. 
-We compute the energies (expectation values of the Hamiltonian) and the RDMs on all the wave functions within DMC. 
+
+We compute the energies (expectation values of the Hamiltonian) and the RDMs on each wave function within DMC. 
 By computing the trace of the resulting 1-RDMs, we verify that all the electrons present in the system are represented within the localized basis of $s$-like orbitals. 
-If the trace of the 1-RDM falls below the nominal number of electrons for a particular state,\lucas{be more specific. What are the thresholds?} it 
-indicates that some higher-energy orbitals are occupied ($p$-like orbitals or  2s orbital), and that the state can not be described by the low-energy model Hamiltonian.\lucas{Are these very high energy states?}
- We exclude such states from the data set. 
-The acquired data set is then used in DMD to downfold to a one-band Hubbard Hamiltonian.
+If the trace of the 1-RDM deviates from the nominal number of electrons for a particular state by more than some chosen threshold - 2\% in this example -
+%lucas{be more specific. What are the thresholds? - Done, K} 
+it indicates that some orbitals are occupied ($2s$- or $2p$-like orbitals for hydrogen)
+%\lucas{could be 2s -  Sure, K}
+that are not represented within the localized IAO basis used for computing the descriptors. 
+Hence, these states do not exist within the $\mathcal LE$ space, and cannot be described by a one-band $s$-orbital model. We exclude such states from the wave function set. 
+ %\lucas{Are these very high energy states? - Reworded to be more clear}
+The acquired data is then used in DMD to downfold to a one-band Hubbard Hamiltonian.
 \renewcommand{\subfigimg}[3][,]{%
   \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
   \leavevmode\rlap{\usebox1}% Print image
@@ -40,17 +46,19 @@ The acquired data set is then used in DMD to downfold to a one-band Hubbard Hami
 model energy for the H$_{10}$ chain at (A) 1.5 \AA \: and (B) 2.25 \AA \:. The energy range of excitations 
 narrows significantly for larger interatomic separation. Insets show the intrinsic atomic orbitals which constitute the one-body space 
 which was used for calculating the reduced density matrices (descriptors).  
-%\lucas{Need A,B,C labels. $R^2$ should be in the next figure with other vs $r$ things}. 
-\lucas{Should standardize these graphs as $E[\Psi]$ and $E_{eff}[\Psi]$}}
+%\lucas{Need A,B,C labels. $R^2$ should be in the next figure with other vs $r$ things - Done, Huihuo+K}. 
+%\lucas{Should standardize these graphs as $E[\Psi]$ and $E_{eff}[\Psi]$ - Done, K}
+}
 \label{fig:fit_quality}
 \end{figure*}
 
 
-Figure~\ref{fig:fit_quality} shows the fitting results of the energy functional $E[\Psi]$ within the sampled $\mathcal LE$ for two representative distances (1.5 and 2.25\AA). As we can see, the model $E_{eff}[\Psi]$ reproduces the \textit{ab-initio} $E[\Psi]$ with certain error. The fitting becomes better as distance increases. 
+Figure~\ref{fig:fit_quality} shows the fitting results of the energy functional $E[\Psi]$ within the sampled $\mathcal LE$ for two representative distances (1.5 and 2.25\AA). As we can see, the model $E_{eff}[\Psi]$ reproduces the \textit{ab-initio} $E[\Psi]$ up to certain error that decreases with atomic separation. That is, the fitted Hubbard model provides a more accurate description as separation distance increases, and the system becomes more atomic-like. 
 
 Figure~\ref{fig:Parameters-vs-Bond-t} shows the fitted values of the downfolding paramaters $t$ and $U/t$ at various distances. 
-$t$ decreases as the interatomic distance increases, and the value of $U/t$ increases. The single-band Hubbard model qualitatively captures how the system approaches atomic limit. 
-\lucas{What is the conclusion of this paragraph?}
+$t$ decreases as the interatomic distance increases, and the value of $U/t$ increases. The single-band Hubbard model qualitatively captures how the system approaches the atomic limit, in which $t$ becomes zero. 
+
+%\lucas{What is the conclusion of this paragraph? - Paragraph broken up and reworded, Huihuo+K}
  
 \renewcommand{\subfigimg}[3][,]{%
   \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
@@ -71,8 +79,10 @@ $t$ decreases as the interatomic distance increases, and the value of $U/t$ incr
 (C) The R$^2$ fit parameters obtained from fitting the $U$-$t$ model to the H$_{10}$ chain, as a function of interatomic separation. }\label{fig:Parameters-vs-Bond-t}
 \end{figure}
 
-The R$^2$ value [see Figure~\ref{fig:Parameters-vs-Bond-t}(C)] shows that the single-band Hubbard model is a good description of the \textit{ab-initio} system at large distance but not at small distances. 
-This is mainly because at small distance, the dynamics of other degree of freedoms (e.g. 2S and 2P orbitals) become important to the low energy spectrum; other interaction terms beyond the on-site Hubbard U, such as nearest-neighbor Coulomb interaction, and Heisenberg coupling also become important. 
-Without including higher orbitals and other many-body interaction terms,  the model gives rise an incorrect insulator states for small distance. 
-On the other hand, at large distance ($r>1.8$\AA), the system is at insulator phase \cite{Stella2011}, the model does give a better description. 
-\lucas{this paragraph does not have a clear point. Separate your ideas more. What are you trying to say?} \HHZ{I rewrote this paragraph, maybe Kiel could help to check.}
+The R$^2$ values obtained from fitting the descriptors to the \textit{ab-initio} energy [see Figure~\ref{fig:Parameters-vs-Bond-t}(C)] also show that the single-band Hubbard model is a good description of the system at large distances, but not at small distances. 
+This is primarily because the dynamics of other degrees of freedom (e.g. $2s$ and $2p$ orbitals) become important to the low energy spectrum at small distances. Other interaction terms beyond the on-site Hubbard $U$ - such as nearest-neighbor Coulomb interactions, and Heisenberg coupling - can also become significant. 
+Without including higher orbitals or additional many-body interaction terms, the model gives rise to an incorrect insulator state at small distances. 
+Conversely, at larger separations ($r>1.8$\AA), where the system is in an insulator phase \cite{Stella2011}, the model provides a better description. 
+
+%\lucas{this paragraph does not have a clear point. Separate your ideas more. What are you trying to say?} 
+%\HHZ{I rewrote this paragraph, maybe Kiel could help to check. - Read over revised paragraph and made some small additional revisions - K}
