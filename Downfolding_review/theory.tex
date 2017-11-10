@@ -1,31 +1,18 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
 
 
 \section{Downfolding as a compression of the energy functional}
 \label{sec:theory}
 \subsection{Theory} 
 
+\subsubsection{Energy functional}
 Suppose we start with a quantum system with Hamiltonian $H$ and Hilbert space ${\mathcal H}$.
 
 \begin{definition}
 Let the energy functional be $E[\Psi] = \frac{\bra{\Psi}H\ket{\Psi}}{\braket{\Psi|\Psi}}$ for a wavefunction $\ket{\Psi} \in {\mathcal H}$.
 \end{definition}
-
-
-\begin{definition}
-Let ${\mathcal LE}(H,N)$ be a subset of ${\mathcal H}$ spanned by $N$ vectors given by the lowest energy solutions to $H\ket{\Phi_i}=E_i{\Phi_i}$. 
-\end{definition}
-
-\begin{definition}
-$H_{eff}$ is an operator on the Hilbert space ${\mathcal LE(H,N)}$.	 
-\end{definition}
-
-
-\begin{definition}
-The effective model $E_{eff}[\Psi]=\frac{\bra{\Psi}H_{eff}\ket{\Psi}}{\braket{\Psi|\Psi}}$ is a functional from ${\mathcal LE} \rightarrow \mathbb{R}$
-\end{definition}
-
 
 
 \begin{theorem}
@@ -40,61 +27,80 @@ Therefore,
 $\frac{\delta }{\delta \Psi^*}  E[\Psi] = 0$ if and only if $(H-E[\Psi])|\Psi\rangle =0$, i.e., $\Psi$ is an eigenvector of $H$ corresponding to eigenvalue $E[\Psi]$.  
 \end{proof}
 
+\subsubsection{Low energy space} 
 
-%\begin{theorem} 	
-%If $E_{eff}[\Psi] = E[\Psi], \forall \ket{\Psi} \in {\mathcal LE}$, then $H_{eff} \ket{\Phi_i} = E_i\ket{\Phi_i}$ for all eigenstates $\ket{\Phi_i}\in {\mathcal LE}$.
-%\end{theorem}
-%\begin{proof}
-%	Suppose that $\ket{\Phi_i}$ is an eigenstate of $H$. Then 
-%	\begin{equation}
-%	\left.\frac{\delta E[\Psi]}{\delta\Psi}\right|_{\Psi=\Phi_i} = 0 
-%	\end{equation}
-%If this is true, then certainly the derivative on the low-energy manifold is also zero.
-%\HJC{I am slightly confused. This is because the earlier derivative was in the space of all many body wavefunctions. But now the derivative is 
-%constrained somehow because of loss of degrees of freedom.. }
-%Since $E_{eff}[\Psi] = E[\Psi]$, 
-%\begin{equation}
-%	\left.\frac{\delta E_{eff}[\Psi]}{\delta\Psi}\right|_{\Psi=\Phi_i} = 0 
-%\end{equation}
-%for $\ket{\Psi} \in {\mathcal LE}$. Using Theorem~\ref{theorem:criticalpoint}, $H_{eff} \ket{\Phi_i} = E_i\ket{\Phi_i}$. 
-%Similarly, if the derivative is not zero, then the wave function must not be an eigenstate.
-%\end{proof}
+\begin{definition}
+Let ${\mathcal LE}(H,N)$ be a subset of ${\mathcal H}$ spanned by $N$ vectors given by the lowest energy solutions to $H\ket{\Phi_i}=E_i{\Phi_i}$. 
+\end{definition}
+
+\begin{definition}
+$H_{eff}$ is an operator on the Hilbert space ${\mathcal LE(H,N)}$.	 
+\end{definition}
+
+\begin{definition}
+The effective model $E_{eff}[\Psi]=\frac{\bra{\Psi}H_{eff}\ket{\Psi}}{\braket{\Psi|\Psi}}$ is a functional from ${\mathcal LE} \rightarrow \mathbb{R}$
+\end{definition}
+
+If $\ket{\Psi}\in {\mathcal LE}$ and $\ket{\Phi}\in {\mathcal H} \setminus {\mathcal LE}$, then $\ket{\Psi} \oplus \ket{\Phi} \in {\mathcal H}$.
+In general in the following, we will use $\oplus 0$ to translate between the larger ${\mathcal H}$ and the smaller ${\mathcal LE}$. 
+
+\begin{lemma}
+\label{lemma:zeroderiv}
+Suppose that $\ket{\Psi}\in {\mathcal LE}$ and $\ket{\Phi} \in {\mathcal H} \setminus {\mathcal LE}$. 
+Then $\left.\frac{\delta E[\Psi \oplus \Phi]}{\delta \Phi}\right|_{\Phi=0}=0$. 
+\end{lemma}
+\begin{proof}
+$\langle \Psi\oplus 0 | H | 0\oplus \Phi \rangle=0$ because the two states have non-overlapping expansions in the eigenstates of $H$. 
+Using that fact, we can evaluate
+\begin{align}
+\left.\frac{\delta E[\Psi \oplus \Phi]}{\delta \Phi}\right|_{\Phi=0} &= \left.\frac{\left(H-E[\Psi\oplus\Phi]\right) \ket{\Phi} }{\braket{\Psi|\Psi} + \braket{\Phi|\Phi}} \right|_{\Phi=0} = 0.
+\end{align}
+\end{proof}
+This is equivalent to noting that $H$ is block diagonal in the partitioning of ${\mathcal H}$ into ${\mathcal LE}$ and ${\mathcal H} \setminus {\mathcal LE}$.
+Importantly, if $\ket{\Psi} \in {\mathcal LE}$, then $\frac{\delta  E[\Psi\oplus 0] }{\delta (\Psi\oplus 0)^*} = \ket{\Psi'} \oplus 0$, where $\ket{\Psi'} \in {\mathcal LE} $
+
 \begin{theorem}
 \label{theorem:matching}
-Assume $\ket{\Psi } \in {\mathcal LE}$ and $E_{eff}[\Psi] = E[\Psi]$.
-Then $H_{eff}\ket{\Psi}  = E \ket{\Psi} \iff H\ket{\Psi} = E\ket{\Psi}$.
+Assume $\ket{\Psi } \in {\mathcal LE}$ and $\frac{\delta  E[\Psi\oplus 0] }{\delta (\Psi\oplus 0)^*}  = \frac{\delta E_{eff}[\Psi]}{\delta \Psi^*} \oplus 0 $.
+Then $(H_{eff}+C)|\Psi\rangle\oplus 0 = H (|\Psi\rangle \oplus 0)$, where $C$ is a constant.
 \end{theorem}
 \begin{proof}
-Since $E_{eff}[\Psi] = E[\Psi]$, $\frac{\delta  E[\Psi] }{\delta \Psi^*}  = \frac{\delta E_{eff}[\Psi]}{\delta \Psi^*}  $.
-If $\frac{\delta  E[\Psi] }{\delta \Psi^*} =0$, then $\frac{\delta E_{eff}[\Psi]}{\delta \Psi^*} =0$ since ${\mathcal LE}$ is a subset of ${\mathcal H}$.
-If $\frac{\delta E_{eff}[\Psi]}{\delta \Psi^*} =0$, then write a state $\ket{\Phi}\in {\mathcal H} = \ket{\Psi} + \ket{\Psi_{HE}}$, where $\ket{\Psi}$ is the projection of $\ket{\Phi}$ into ${\mathcal LE}$. 
-Then
+Note that
 \begin{align}
-\left.\frac{\delta  E[\Phi] }{\delta \Phi^*}\right|_{\Phi=\Psi} =  \left[\frac{\delta  E[\Phi] }{\delta \Psi^*} + \frac{\delta  E[\Phi] }{\delta \Psi_{HE}^*} \right]_{\Phi=\Psi}.
+	\frac{\delta E[\Psi\oplus 0]}{\delta (\Psi\oplus 0)^*}=\frac{(H-E[\Psi\oplus 0])\ket{\Psi\oplus 0} }{\braket{\Psi|\Psi}}
+	\label{eqn:psider}
 \end{align}
-$\frac{\delta  E[\Phi] }{\delta \Psi^*}=0$ because $\frac{\delta E_{eff}[\Psi]}{\delta \Psi^*} =0$. 
-$\frac{\delta  E[\Phi] }{\delta \Psi_{HE}^*}=0$ can easily be verified by noting that $\ket{\Psi_{HE}}= \sum_{i=N+1}^\infty c_i \ket{\Phi_i}$. \HHZ{Verifying $\frac{\delta  E[\Phi] }{\delta \Psi_{HE}^*}=0$ is not so obvious to readers. Maybe present the details? If it is too much, we could put it in the appendix.}
-Since the zeros coincide, the eigenstates also coincide. 
+and 
+\begin{align}
+	\frac{\delta E_{eff}[\Psi]}{\delta \Psi^*}=\frac{(H_{eff}-E_{eff}[\Psi])\ket{\Psi} }{\braket{\Psi|\Psi}}
+	\label{eqn:psieffder}
+\end{align}
+Since the derivatives are equal, $E[\Psi\oplus 0] - E_{eff}[\Psi]=C$ for some constant $C$.
+So, setting Eqn~\ref{eqn:psider} equal to Eqn~\ref{eqn:psieffder},
+\begin{align}
+	 H\ket{\Psi\oplus 0}= (H_{eff}+E[\Psi\oplus 0]-E_{eff}[\Psi])\ket{\Psi}\oplus 0 =(H_{eff}+C)\ket{\Psi}\oplus 0
+\end{align}
 \end{proof}
-\HHZ{We could add the following theorem, 
-\begin{theorem}
-If $E[\Psi] = E_{eff}[\Psi]$, for any $\Psi$ in ${\mathcal LE(H,N)}$, then $H_{eff}|\Psi\rangle = H |\Psi\rangle$ for any $\Psi$ in ${\mathcal LE(H,N)}$. 
-\end{theorem}
-This theorem also implies Theorem 2. $H_{eff}|\Psi\rangle = H |\Psi\rangle$ is saying that within ${\mathcal LE(H,N)}$, $H_{eff}$ behaves the same way as $H$. This gives the definition of effective Hamiltonian, and the theorem itself provides a way to find the $H_{eff}$. 
 
-\begin{proof}
-Since $E[\Psi] = E_{eff}[\Psi]$ for any $\Psi \in {\mathcal LE(H,N)}$, we have $\frac{\delta E[\Psi]}{\delta \Psi^*}=\frac{\delta E_{eff}[\Psi]}{\delta \Psi^*}$ for $\delta \Psi \in {\mathcal LE(H,N)}$. Note that
-$\frac{\delta E[\Psi]}{\delta \Psi^*}=\frac{(H-E[\Psi])|\Psi\rangle }{\langle\Psi|\Psi\rangle}$ and $\frac{\delta E_{eff}[\Psi]}{\delta \Psi^*}=\frac{(H_{eff}-E_{eff}[\Psi])|\Psi\rangle }{\langle\Psi|\Psi\rangle}$. We have $H_{eff}|\Psi\rangle = H |\Psi\rangle$. 
-\end{proof}
-Such $H_{eff}$ always exists. Let $H_{eff} = \sum_{n} e_n |n\rangle \langle n|$ where $|n\rangle$'s are eigenstates belong to ${\mathcal LE(H,N)}$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $\Psi$ in ${\mathcal LE(H,N)}$.  
 
-If we are not comfortable with the derivative of $E[\Psi]$, we could prove $\langle m| H_{eff} | n\rangle = \langle m| H| n\rangle$ by considering $E[\Psi]$ on four states: $|n\rangle+ |m\rangle$,$|n\rangle- |m\rangle$,$|n\rangle+ i|m\rangle$ and $|n\rangle- i|m\rangle$. 
-}
+Theorem~\ref{theorem:matching} combined with Lemma~\ref{lemma:zeroderiv} mean that the eigenstates of $H_{eff}$ are be the same as the eigenstates of $H$ if its derivatives match $H$. 
+Such $H_{eff}$ always exists. 
+Let $H_{eff} = \sum_{n} e_n |n\rangle \langle n|$ where $|n\rangle$'s are eigenstates belong to ${\mathcal LE(H,N)}$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $\Psi$ in ${\mathcal LE(H,N)}$.  
 
 We have thus reduced the problem of finding an effective Hamiltonian $H_{eff}$ that reproduces the low-energy spectrum of $H$ to matching the corresponding energy functionals $E[\Psi]$ and $E_{eff}[\Psi]$. 
-This involves both choosing the form of $H_{eff}$ and optimizing the parameters.
+This involves sampling the low-energy space, choosing the form of $H_{eff}$, and optimizing the parameters.
 An important implication of this is that it is not necessary to diagonalize either of the Hamiltonians; one must only be able to select wave functions from the low-energy space ${\mathcal LE}$.
 As we shall see, this can be substantially easier than attaining eigenstates.
+
+Some further notes about this derivation:
+\begin{itemize}
+\item Fitting $\Psi$'s must come from ${\mathcal LE}$. It is not enough that the energy functional $E[\Psi]$ is less than some cutoff.
+\item In the case of sampling an approximate LE, the error comes from non-parallelity of $E[\Psi]$ with the correct low energy manifold, up to a constant offset.
+\item While $H_eff$ is unique, it has many potential representations and approximations. 
+\item Our method can be applied to any manifold spanned by eigenstates
+\item Model fitting is finding a compact approximation to $H_eff[\Psi]$. This is a high-dimensional space, so we use descriptors to do this.	
+\item For operators that are not the Hamiltonian, it is possible to fit ${\mathcal O}_{eff}[\Psi] \simeq {\mathcal O}[\Psi]$ in a similar way. However, the eigenstates of ${\mathcal O}$ and ${\mathcal O}_{eff}$ will not coincide in general unless ${\mathcal O}$ commutes with the Hamiltonian.
+\end{itemize}
 
 
 The theory presented above maps coarse-graining into a functional approximation problem. 
