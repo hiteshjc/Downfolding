@@ -22,6 +22,7 @@ This is equivalent to assuming that the eigenstates included in $\mathcal{L}$ do
 \lucas{why are we ok excluding them?} \BDB{Does this answer this properly? if not, we can discuss}
 
 We consider a set of 21 possible descriptors consisting of local operators on one iron $4s$, five iron $3d$ states, and three selenium $4p$ states.
+We use the same IAO construction as Sec.~\ref{subsection:1dhydrogen} to generate the basis for these operators.
 We consider orbital energy descriptors: 
 \begin{align*}
   &\epsilon_{s} n^s,&
@@ -29,8 +30,8 @@ We consider orbital energy descriptors:
   &\epsilon_{z} n^{p_z},&
   \\
   &\epsilon_{z^2} n^{d_{z^2}},& 
-  &\epsilon_{\pi,\mathrm{Fe}} (n^{d_{xy}} + n^{d_{x^2-y^2}}),&
-  &\epsilon_{\delta} (n^{d_{xz}} + n^{d_{yz}}).& 
+  &\epsilon_{\pi,\mathrm{Fe}} (n^{d_{xz}} + n^{d_{yz}}).& 
+  &\epsilon_{\delta} (n^{d_{xy}} + n^{d_{x^2-y^2}}),&
 \end{align*}
 We also consider the symmetry-allowed hopping terms:
 \begin{align*}
@@ -42,10 +43,10 @@ As before, $\eta$ represents the spin index.
 We consider Hubbard interactions:
 \begin{align*}
   &U_p \sum_{i \in P} n^{i,\uparrow} n^{i,\downarrow},&
-  &U_d \sum_{i \in D} n^{i,\uparrow} n^{i,\downarrow},&
+  &U_{d,\delta} \sum_{i=d_{xy},d_{x^2-y^2}} n^{i,\uparrow} n^{i,\downarrow},&
   \\
-  &U_{d,\pi} \sum_{i=d_{xz},d_{x^2-y^2}} n^{i,\uparrow} n^{i,\downarrow},&
-  &U_{d,\delta} \sum_{i=d_{xz},d_{yz}} n^{i,\uparrow} n^{i,\downarrow},&
+  &U_d \sum_{i \in D} n^{i,\uparrow} n^{i,\downarrow},&
+  &U_{d,\pi} \sum_{i=d_{xz},d_{yz}} n^{i,\uparrow} n^{i,\downarrow},&
   &U_{d_{z^2}} n^{d_{z^2},\uparrow} n^{d_{z^2},\downarrow},&
 \end{align*}
 where $P$ refers to the Se-$4p$ orbitals and $D$ refers to the Fe-$3d$ orbitals. 
@@ -53,11 +54,11 @@ We also consider Hund coupling terms for the iron atom:
 \begin{align*}
   &J \sum_{i\ne j} S_i \cdot S_j,&
   &J_{\delta} S_{d_{xy}} \cdot S_{d_{x^2-y^2}},&
-  &J_{\pi,d_{z^2}} (S_{d_{xy}} + S_{d_{x^2-y^2}}) \cdot S_{d_{z^2}},&
+  &J_{\delta,d_{z^2}} (S_{d_{xy}} + S_{d_{x^2-y^2}}) \cdot S_{d_{z^2}},&
   \\
   &J_{\pi} S_{d_{xz}} \cdot S_{d_{yz}},&
-  &J_{\delta,d_{z^2}} (S_{d_{xz}} + S_{d_{yz}}) \cdot S_{d_{z^2}}.&
-  &J_{\pi,\delta} (S_{d_{xy}} + S_{d_{x^2-y^2}}) \cdot (S_{d_{xz}} + S_{d_{yz}}),&
+  &J_{\pi,d_{z^2}} (S_{d_{xz}} + S_{d_{yz}}) \cdot S_{d_{z^2}}.&
+  &J_{\pi,\delta} (S_{d_{xz}} + S_{d_{yz}}) \cdot (S_{d_{xy}} + S_{d_{x^2-y^2}}),&
 \end{align*}
 We also considered a nearest neighbor Hubbard interaction: $V \sum_{i\in P, j\in D} n^{i} n^j$.
 
@@ -72,7 +73,7 @@ Applying matching pursuit to the FeSe diatomic molecule produces the following m
 \begin{align}
   H 
   &=
-  \epsilon_{\pi,\mathrm{Fe}} (n^{d_{xy}} + n^{d_{x^2-y^2}})
+  \epsilon_{\delta,\mathrm{Fe}} (n^{d_{xy}} + n^{d_{x^2-y^2}})
   +
   \epsilon_s n^{s}
   +
