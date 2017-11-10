@@ -66,12 +66,17 @@ To generate a minimal description of the system, we employed a matching pursuit 
 This greedy algorithm builds a model by including parameters one by one, and considering the error of each model as parameters are included.
 It starts by choosing the descriptor with the largest correlation coefficient, which in this case is the Hund coupling, $J$.
 It then examines the residuals of the model with this descriptor and an overall energy shift: the difference between $E[\Psi_i]$ and the energy produced by the model $H_{eff} = E_0 + J \sum_{i\ne j}S_i \cdot S_j$ for each $|\Psi_i\rangle$ in the sample set.
-Next, it includes the parameter that correlates most strongly with the residuals of this first minimal model, and continues in this manner until some convergence criteria is met.
+Of the parameters considered, this produces the two parameter model (including $E_0$) with the lowest RMS error~\cite{MP_Zhang1993}.\BDB{should check that I interpreted this correctly.}.
+The fact that the Hund coupling is chosen first is consistent with the several studies in the literature, which find a prominent Hund coupling can explain some of the properties of bulk FeSe.~\cite{demedici_hunds_2011,de_medici_janus-faced_2011,georges_strong_2013,busemeyer_competing_2016}.
+Next, it includes the parameter that correlates most strongly with the residuals of this first minimal model, which in turn reduces the error the most out of the remaining parameters. 
+The proceedure can continue on until some convergence criterion is met, such as a maximum RMS error, a measure of overfitting like the Bayesian information criterion, a desired number of parameters, or others.
 Thus, with this procedure, it is possible to systematically step from a minimal description to an accurate description of the full \textit{ab inito} space.
 
-Applying matching pursuit to the FeSe diatomic molecule produces the following model:
+As an example, we applied matching pursuit to the FeSe diatomic molecule, and chose to stop including parameters when the RMS error drops by less than 0.05 eV.
+This criterion was chosen to strike a balance between the complexity of the model and the accuracy in reproducing the sample set.
+The following model was produced:
 \begin{align}
-  H 
+  H_{eff}
   &=
   \epsilon_{\delta,\mathrm{Fe}} (n^{d_{xy}} + n^{d_{x^2-y^2}})
   +
@@ -95,11 +100,11 @@ As before, $\eta$ is the spin index and $i$ is the orbital index, and $D$ is the
 $E_0$ is an overall energy shift, also included as a fit parameter.
 \lucas{clarify notation. There are some orbitals in superscripts. some in subscripts. Should be $\hat{n}'s$. }
 \BDB{I fixed most of this, but the hat notation isn't used in the rest of the paper, so I didn't use it here}
-For this demonstration we chose to stop including parameters when the RMS error drops by less than 0.05 eV.
-This criterion was chosen to strike a balance between the complexity of the model and the accuracy in reproducing the sample set.
-The final RMS error for the model above is 0.61 eV.
-All previous parameters may change at each step because the entire model is refitted in each iteration.
+The parameter values and corresponding error of each model produced by MP are shown in Fig.~\ref{fig:fese}.
+Note that all previous parameters may change at each step because the entire model is refitted in each iteration.
 The parameters are smoothly varying with the inclusion of new parameters, and they take the correct signs based on symmtery (where applicable). 
+The RMS error decreases with each additional parameter, but less so as the algorithm appends additional parameters. 
+Eventually the dimishing improvements do not merrit the additional complexity of more parameters, and the minimal model (according to our criterion) is built.
 
 \lucas{Why did we stop there? There are much better ways like I mentioned before like test/training, even something like BIC is better.} 
 \BDB{
@@ -112,22 +117,6 @@ The parameters are smoothly varying with the inclusion of new parameters, and th
   I agree the tolerances feel like they are pulled out of a hat, but I'm unsure what to say if I don't want to get into dicussing the properties of the more complex model.
 }
 
-\BDB{I tried to be more precise with this paragraph}
-
-We now turn to quantifying the relative importance of each of the parameters for a minimal model.
-Note that the magnitudes of each parameter do not necessarily suggest they affect the properties of the model.
-Large parameters may be insignificant if most states in $\mathcal{L}E$ take small values of that descriptor.
-Instead, the correlation coefficients between the energy or residuals and each descriptor is a quantitative measure of the utility of that descriptor for that step.
-At MP each step, the next parameter added will reduce the error the most from the previous step, compared to the other parameters considered~\cite{MP_Zhang1993}.\BDB{should check that I interpreted this correctly.}
-For this system, $J$ is selected first, and most accurate two parameter (including $E_0$) minimal model for the system would be $H_\text{minimal} = E_0 + J_d \sum_i S_i \cdot S_j$. 
-The relevance of Hund coupling is consistent with the several studies in the literature, which find a prominent Hund coupling can explain some of the properties of bulk FeSe.~\cite{demedici_hunds_2011,de_medici_janus-faced_2011,georges_strong_2013,busemeyer_competing_2016}.
-\BDB{Probably unnecessary [[[}Additionally, excluding $J$ from the final model increases the error to 0.75 eV, and descriptor multiplying $J$ has a correlation coefficient with the residuals of -0.45.\BDB{]]]}
-The next chosen parameter is the $t_{\sigma,d}$, with the interpretation that adding this hopping term to $H_\text{minimal} = E_0 + J_d \sum_i S_i \cdot S_j$ will decrease the error more than any other parameter. 
-Similarly each new parameter decreases the error the most from the previous step.
-Note that this greedy algorithm does not necessary produce the best model for a set number of parameters.
-We could, for example, try all 116,280 combinations of 7 parameters from our set of 21 possible parameters and potentially find a lower error.
-However, the correlation coefficient provides a simple way to quantify the importance of the possible set of degrees of freedom and therefore generate minimal models.
-
 \begin{figure*}
   \centering
   \includegraphics[width=0.8\textwidth]{./Figures/fese.eps}
@@ -136,8 +125,8 @@ However, the correlation coefficient provides a simple way to quantify the impor
     (Left) Parameter values for each fit generated in the MP algorithm, labeled at the step where they are included in the model. 
     A zero value indicates that parameter is not yet added to the model.
     The sign of $J$ is consistent with Hund's rules, and the signs of $t_{\sigma,d}$ and $t_{\sigma,s}$ are consistent with Se being located in positive $z$ with respect to Fe. 
-    The $\epsilon_i$ states adjust the energies of the single particle orbitals relative to the energy of the other orbitals.
     (Right) RMS error of each model generated by MP as the algorithm includes parameters. 
+    The RMS error of the largest model considered was 0.61~eV.
   }
 \end{figure*}
 

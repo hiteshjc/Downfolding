@@ -5,7 +5,7 @@ We consider the case of $10$ atoms with periodic boundary conditions and work in
 
 For a given $r$, we first obtain single-particle Kohn-Sham orbitals from a set of spin-unrestricted and 
 spin-restricted DFT-PBE calculations. The localized orbital basis upon which the RDMs (descriptors) 
-are evaluated is obtained by generating intrinsic atomic orbitals (IAO) from the Kohn-Sham orbitals 
+are evaluated is obtained by generating intrinsic atomic orbitals (IAO)\BDB{Need citaton?} from the Kohn-Sham orbitals 
 orthogonalized using the L\"owdin procedure (see Figure~\ref{fig:fit_quality}). These are the orbitals that enter the one-band Hubbard Hamiltonian. 
 Then, to generate a database of wavefunctions needed for the DMD, we produce a set of Slater-Jastrow 
 wavefunctions consisting of singles and doubles excitations to the Slater determinant:
@@ -49,12 +49,13 @@ which was used for calculating the reduced density matrices (descriptors).
 %\lucas{Need A,B,C labels. $R^2$ should be in the next figure with other vs $r$ things - Done, Huihuo+K}. 
 %\lucas{Should standardize these graphs as $E[\Psi]$ and $E_{eff}[\Psi]$ - Done, K}
 \HHZ{Check whether you mislabelled x and y. Normally, $E[\Psi]$ means the ab-initio energy whereas $E_{eff}[\Psi]$ means the model energy. We usually put ab-initio energy to the x-axis. }
-}
+  \BDB{why is the energy scale larger than the spread of the data?} 
 \label{fig:fit_quality}
+  }
 \end{figure*}
 
 
-Figure~\ref{fig:fit_quality} shows the fitting results of the energy functional $E[\Psi]$ within the sampled $\mathcal LE$ for two representative distances (1.5 and 2.25\AA). As we can see, the model $E_{eff}[\Psi]$ reproduces the \textit{ab-initio} $E[\Psi]$ up to certain error that decreases with atomic separation. That is, the fitted Hubbard model provides a more accurate description as separation distance increases, and the system becomes more atomic-like. 
+Figure~\ref{fig:fit_quality} shows the fitting results of the energy functional $E[\Psi]$ within the sampled $\mathcal LE$ for two representative distances (1.5 and 2.25\AA). As we can see, the model $E_{eff}[\Psi]$ reproduces the \textit{ab initio} $E[\Psi]$ up to certain error that decreases with atomic separation. That is, the fitted Hubbard model provides a more accurate description as separation distance increases, and the system becomes more atomic-like. 
 
 Figure~\ref{fig:Parameters-vs-Bond-t} shows the fitted values of the downfolding paramaters $t$ and $U/t$ at various distances. 
 $t$ decreases as the interatomic distance increases, and the value of $U/t$ increases. The single-band Hubbard model qualitatively captures how the system approaches the atomic limit, in which $t$ becomes zero. 
@@ -81,7 +82,7 @@ $t$ decreases as the interatomic distance increases, and the value of $U/t$ incr
 \end{figure}
 
 The R$^2$ values obtained from fitting the descriptors to the \textit{ab-initio} energy [see Figure~\ref{fig:Parameters-vs-Bond-t}(C)] also show that the single-band Hubbard model is a good description of the system at large distances, but not at small distances. 
-This is primarily because the dynamics of other degrees of freedom (e.g. $2s$ and $2p$ orbitals) become important to the low energy spectrum at small distances. Other interaction terms beyond the on-site Hubbard $U$ - such as nearest-neighbor Coulomb interactions, and Heisenberg coupling - can also become significant. 
+This is primarily because the dynamics of other degrees of freedom (e.g. $2s$ and $2p$ orbitals) become important to the low energy spectrum at small distances. Other interaction terms beyond the on-site Hubbard $U$, such as nearest-neighbor Coulomb interactions and Heisenberg coupling, can also become significant. 
 Without including higher orbitals or additional many-body interaction terms, the model gives rise to an incorrect insulator state at small distances. 
 Conversely, at larger separations ($r>1.8$\AA), where the system is in an insulator phase \cite{Stella2011}, the model provides a better description. 
 
