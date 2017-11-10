@@ -131,7 +131,7 @@ $^{3}$Department of Physics and Institute for Condensed Matter Theory, Universit
 %\renewcommand\abstractname{}
 %\title[Multi-scale modelling]{From real materials to model lattice Hamiltonians: multi-scale modelling of strongly correlated electronic systems 
 %       with information from many body wavefunctions}
-\title[Density matrix downfolding]{From real materials to model lattice Hamiltonians with density matrix downfolding}
+\title[Density matrix downfolding]{From real materials to model Hamiltonians with density matrix downfolding}
 \author[\firstAuthorLast ]{\Authors} %This field will be automatically populated
 \address{} %This field will be automatically populated
 \correspondance{} %This field will be automatically populated
@@ -156,13 +156,16 @@ $^{3}$Department of Physics and Institute for Condensed Matter Theory, Universit
 
 %\textbf{
 \begin{abstract}
-Given a realistic quantum material with all its intrinsic complications, how does one develop a simple reliable model for understanding its properties? 
-Theoretical insight and effective Hamiltonians have been a key driver of this process leading to simple few-band pictures. 
-%When the interactions are comparable to or much stronger than the kinetic energy, it is convenient to adopt the real space lattice approach and work with Hubbard or Kanamori Hamiltonians involving only the low energy electrons. 
-However, this is not an easy task, since the effective Hamiltonian involves a considerable change both of parameters and the form of the Hamiltonian with respect to the bare Coulomb values. 
-While the kinetic energy is dominated by contributions from bands or states energetically near the Fermi level, screened interactions depend on states even \textit{far} away from it, leading to Hubbard U's that have been traditionally hard to reliably determine. \lucas{reconsider previous sentence}
-Here we discuss an approach that treats the kinetic and potential parts\lucas{one-body and two-body?} of the Hamiltonian democratically, avoids ``double counting", and one\lucas{same one?} that provides a transparent way of obtaining effective Hamiltonians using data from many body wavefunctions, and whose validity can be systematically checked.\lucas{This is a run-on sentence}
-%We emphasize that determining the effective Hamiltonian reliably is crucial for several applications in physics and chemistry not only for quantitative accuracy, but also a correct qualitative picture of strongly correlated materials. 
+%Given a realistic quantum material with all its intrinsic complications, how does one develop a simple reliable model for understanding its properties? 
+%Theoretical insight and effective Hamiltonians have been a key driver of this process leading to simple few-band pictures. 
+%However, this is not an easy task, since the effective Hamiltonian involves a considerable change both of parameters and the form of the Hamiltonian with respect to the bare Coulomb values. 
+%While the kinetic energy is dominated by contributions from bands or states energetically near the Fermi level, screened interactions depend on states even \textit{far} away from it, leading to Hubbard U's that have been traditionally hard to reliably determine. \lucas{reconsider previous sentence}
+%Here we discuss an approach that treats the kinetic and potential parts\lucas{one-body and two-body?} of the Hamiltonian democratically, avoids ``double counting", and one\lucas{same one?} that provides a transparent way of obtaining effective Hamiltonians using data from many body wavefunctions, and whose validity can be systematically checked.\lucas{This is a run-on sentence}
+Due to advances in computer hardware and new algorithms, it is now possible to perform highly accurate many-body simulations of realistic materials with all their intrinsic complications.
+The success of these simulations leaves us with a conundrum: how do we extract useful physical models and insight from these simulations? 
+In this article, we present a formal theory of downfolding--extracting an effective Hamiltonian from first principles calculations. 
+The theory maps the downfolding problem into fitting information derived from wave functions sampled from a low-energy subspace of the full Hilbert space. 
+Since this fitting process most commonly uses reduced density matrices, we term it density matrix downfolding (DMD).
 \tiny
  \keyFont{ \section{Keywords:} downfolding, effective model, strongly correlated system} %All article types: you may provide up to 8 keywords; at least 5 are mandatory.
 \end{abstract}
