@@ -1,28 +1,82 @@
 %\subsection{FeSe diatomic molecule (NE-DMD)}
 \subsection{FeSe diatomic molecule}
 \label{subsection:fese}
-\lucas{The basic problem we are trying to solve here is to choose parameterization. This needs to be up front.} 
-Transition metal oxide systems are challenging to describe using most electronic structure methods because of the strong electron correlations and multiple oxidation states possible in these systems. %, and therefore, are an important test case for DMD. 
-DMC has been shown to be a highly accurate method on transition metal oxide materials, where it has been shown to improve the description of the ground state properties and energy gaps~\cite{Foyevtsova2014, Wagner_Abbamonte, Zheng2015, Wagner2016}. % for the types of orbital excitations used to sample the Hilbert space.
-However, given the expense of large DMC calculations, finding effective models consistent with DMC would be valuable for studying extended transition metal oxide systems at large scale.
-Additionally, these complex systems usually involve competing interactions that give rise to novel phenomena. 
-DMD could help\lucas{could help? vague} to identify important physics degrees of freedom relevant to macroscopic phenomena.
-In particular, utilizing matching pursuit \lucas{we haven't explained matching pursuit} and DMD to find minimal descriptions could offer a way to quantify the relative importance of different interactions.
+Transition metal systems are often difficult to model due to the additional orbital and possibly magnetic degrees of freedom introduced by $d$ electrons.
+Models containing all of these degrees of freedom are unwieldy, yet it is difficult to determine which degrees of freedom are needed for a minimal model to reproduce an interesting effect.
+Transition metal oxide systems are challenging to describe using most electronic structure methods because of the strong electron correlations and multiple oxidation states possible in these systems. 
+Fixed node DMC has been shown to be a highly accurate method on transition metal oxide materials, where it has been shown to improve the description of the ground state properties and energy gaps~\cite{Foyevtsova2014, Wagner_Abbamonte, Zheng2015, Wagner2016}. % for the types of orbital excitations used to sample the Hilbert space.
+\BDB{This sentence might be unnecessary:[[[}
+However, fixed-node DMC calculations currently cannot access excited state information without advanced knowledge of the symmetries of the state, and are too expensive to access the length and energy scales required for some phenomena, such as superconductivity. 
+\BDB{]]]}
+Additionally, fixed-node DMC calculations alone cannot yet not quantitatively assess the importance of various degrees of freedom.
 
-As a test\lucas{what are we testing? I didn't see any test.} of DMD for transition metal oxide systems, we consider an FeSe diatomic molecule with atomic separation 2.43 \AA~in the $z$-direction.
+In this section, we apply DMD to quantify the importance of interaction parameters in a FeSe diatomic molecule with a bond length equal to that of the iron based superconductor, FeSe~\cite{kumar_crystal_2010}.
 To our knowledge, this FeSe diatom does not exist in nature, but nevertheless serves as a simple illustration of a model for the interaction between a transition metal and a ligand. 
-The bond distance is chosen to match the unconventional superconductor, FeSe~\cite{kumar_crystal_2010}, and therefore offer insight into a model description for FeSe solid in future studies.
 
-\lucas{This paragraph is trying to do too many things. It needs to be separated. One paragraph for generation of low energy states, one for the model parameterization, one for the MP method, maybe another?}
-We consider a model including one iron $4s$, five iron $3d$ states, and three selenium $4p$ states:
+The states sampled consisted of singles and doubles excitations from PBE0 calculations with total spin 0, 2, and 4, which were then relaxed via a DMC projection.
+233 states fit within an energy window of 8 eV from the ground state, and were selected as the low energy space.
+Eight states within the window are not considered because the sum of all occupation descriptors was more than 0.5 less than the number of electrons.
+These states have a significant iron $4p$ component relative to the ground state. 
+Rather than including descriptors associated with the iron $4p$ orbitals, we assume this indicates that these states carry a component outside the low energy space. 
+This is equivalent to assuming that the eigenstates included in $\mathcal{L}$ do not have a significant Fe-$4p$ component.
+\lucas{why are we ok excluding them?} \BDB{Does this answer this properly? if not, we can discuss}
+
+We consider a set of 21 possible descriptors consisting of local operators on one iron $4s$, five iron $3d$ states, and three selenium $4p$ states.
+We consider orbital energy descriptors: 
+\begin{align*}
+  &\epsilon_{s} n^s,&
+  &\epsilon_{\pi,\mathrm{Se}} (n^{p_x} + n^{p_y}), &
+  &\epsilon_{z} n^{p_z},&
+  \\
+  &\epsilon_{z^2} n^{d_{z^2}},& 
+  &\epsilon_{\pi,\mathrm{Fe}} (n^{d_{xy}} + n^{d_{x^2-y^2}}),&
+  &\epsilon_{\delta} (n^{d_{xz}} + n^{d_{yz}}).& 
+\end{align*}
+We also consider the symmetry-allowed hopping terms:
+\begin{align*}
+  &t_{\sigma,d} \sum_{\eta} \left( c_{d_{z^2},\eta}^{\dagger} c_{p_z,\eta} + \text{h.c.} \right),&
+  &t_{\sigma,s} \sum_{\eta} \left(c_{s,\eta}^{\dagger}  c_{p_z,\eta} + \text{h.c.} \right),&
+  &t_{\pi} \sum_{\eta} \left(c_{d_{xz},\eta}^{\dagger}  c_{p_x,\eta} + c_{d_{yz},\eta}^{\dagger}  c_{p_y,\eta} + \text{h.c.} \right).&
+\end{align*}
+As before, $\eta$ represents the spin index.
+We consider Hubbard interactions:
+\begin{align*}
+  &U_p \sum_{i \in P} n^{i,\uparrow} n^{i,\downarrow},&
+  &U_d \sum_{i \in D} n^{i,\uparrow} n^{i,\downarrow},&
+  \\
+  &U_{d,\pi} \sum_{i=d_{xz},d_{x^2-y^2}} n^{i,\uparrow} n^{i,\downarrow},&
+  &U_{d,\delta} \sum_{i=d_{xz},d_{yz}} n^{i,\uparrow} n^{i,\downarrow},&
+  &U_{d_{z^2}} n^{d_{z^2},\uparrow} n^{d_{z^2},\downarrow},&
+\end{align*}
+where $P$ refers to the Se-$4p$ orbitals and $D$ refers to the Fe-$3d$ orbitals. 
+We also consider Hund coupling terms for the iron atom:
+\begin{align*}
+  &J \sum_{i\ne j} S_i \cdot S_j,&
+  &J_{\delta} S_{d_{xy}} \cdot S_{d_{x^2-y^2}},&
+  &J_{\pi,d_{z^2}} (S_{d_{xy}} + S_{d_{x^2-y^2}}) \cdot S_{d_{z^2}},&
+  \\
+  &J_{\pi} S_{d_{xz}} \cdot S_{d_{yz}},&
+  &J_{\delta,d_{z^2}} (S_{d_{xz}} + S_{d_{yz}}) \cdot S_{d_{z^2}}.&
+  &J_{\pi,\delta} (S_{d_{xy}} + S_{d_{x^2-y^2}}) \cdot (S_{d_{xz}} + S_{d_{yz}}),&
+\end{align*}
+We also considered a nearest neighbor Hubbard interaction: $V \sum_{i\in P, j\in D} n^{i} n^j$.
+
+To generate a minimal description of the system, we employed a matching pursuit (MP) method~\cite{MP_Zhang1993}.
+This greedy algorithm builds a model by including parameters one by one, and considering the error of each model as parameters are included.
+It starts by choosing the descriptor with the largest correlation coefficient, which in this case is the Hund coupling, $J$.
+It then examines the residuals of the model with this descriptor and an overall energy shift: the difference between $E[\Psi_i]$ and the energy produced by the model $H_{eff} = E_0 + J \sum_{i\ne j}S_i \cdot S_j$ for each $|\Psi_i\rangle$ in the sample set.
+Next, it includes the parameter that correlates most strongly with the residuals of this first minimal model, and continues in this manner until some convergence criteria is met.
+Thus, with this procedure, it is possible to systematically step from a minimal description to an accurate description of the full \textit{ab inito} space.
+
+Applying matching pursuit to the FeSe diatomic molecule produces the following model:
 \begin{align}
   H 
   &=
-  \epsilon_{xy} \sum_{\eta} (n^{d_{xy}}_{\eta}  + n^{d_{x^2-y^2}}_{\eta})
+  \epsilon_{\pi,\mathrm{Fe}} (n^{d_{xy}} + n^{d_{x^2-y^2}})
   +
-  \epsilon_s \sum_{\eta} n^{s}_{\eta} 
+  \epsilon_s n^{s}
   +
-  \epsilon_{p_{z}} \sum_{i,\eta} n^{p_{z}}_{i,\eta} 
+  \epsilon_{z} n^{p_z}
   \nonumber \\
   &+ 
   t_{\sigma,d} \sum_{\eta} \left( d_{z^2,\eta}^{\dagger} p_{z,\eta} + \text{h.c.} \right)
@@ -30,27 +84,48 @@ We consider a model including one iron $4s$, five iron $3d$ states, and three se
   t_{\sigma,s} \sum_{\eta} \left(s_{\eta}^{\dagger}  p_{z,\eta} + \text{h.c.} \right)
   \nonumber \\
   &+
-  U_d \sum_{i} n^{d}_{i,\uparrow} n^{d}_{i,\downarrow} 
+  U_d \sum_{i \in D} n^{d}_{i,\uparrow} n^{d}_{i,\downarrow} 
   +
-  J_d \sum_{i\ne j} S_i \cdot S_j
+  J \sum_{\substack{i\ne j \\i,j \in D}} S_i \cdot S_j
   +
   E_0. \label{eq:fesemodel}
 \end{align}
+As before, $\eta$ is the spin index and $i$ is the orbital index, and $D$ is the set of iron $3d$ orbitals, as above.
+$E_0$ is an overall energy shift, also included as a fit parameter.
 \lucas{clarify notation. There are some orbitals in superscripts. some in subscripts. Should be $\hat{n}'s$. }
-Here, $\eta$ is the spin index and $i$ is the orbital index.
-The $\epsilon_i$'s are single-particle orbital energies, while the $U_d$ is an on-site interaction among the $d$ orbitals and the $J_d$ is a Hund's coupling among the $d$ orbitals.
-$E_0$ is an overall energy shift.
-This set of parameters was chosen based on the matching pursuit method described in Sec.~\ref{sec:theory}.
-\lucas{It was not described there.}
-The MP was able to choose from a set of 21 symmetry allowed $\epsilon$, $t$, $U$, and $J$ parameters as it included parameters.  \lucas{List the parameters that we chose from.}
-For this demonstration, we add parameters one at a time until the RMS error drops by less than 0.05 eV. 
+\BDB{I fixed most of this, but the hat notation isn't used in the rest of the paper, so I didn't use it here}
+For this demonstration we chose to stop including parameters when the RMS error drops by less than 0.05 eV.
+This criterion was chosen to strike a balance between the complexity of the model and the accuracy in reproducing the sample set.
+The final RMS error for the model above is 0.61 eV.
+All previous parameters may change at each step because the entire model is refitted in each iteration.
+The parameters are smoothly varying with the inclusion of new parameters, and they take the correct signs based on symmtery (where applicable). 
+
 \lucas{Why did we stop there? There are much better ways like I mentioned before like test/training, even something like BIC is better.} 
-With this criteria, the 8 parameters in Eq.~\ref{eq:fesemodel} are included, the final RMS error is 0.61 eV, the final coefficient of determination ($R^2$) is 0.84, and the next parameter in the algorithm increases the $R^2$ by less than 0.02. \lucas{We are switching between RMS and R$^2$}
-For example, $U_p$, an on-site interaction for the Se $p$-electrons, does not correlate strongly enough\lucas{strongly enough is vague} with the residuals, and is not included before the algorithm halts.
-The states sampled consisted of singles and doubles excitations from PBE0 calculations with total spin 0, 2, and 4, which were then relaxed via a DMC projection.
-233 states fit within an energy window of 8 eV from the ground state, and were selected as the low energy space.
-Eight states within the window are not considered because the sum of all occupation descriptors was more than 0.5 less than the number of electrons.
-These states generally\lucas{generally is vague.} have a significant iron $4p$ component relative to the ground state, and therefore were excluded, since they are not describable without several additional parameters describing the iron $p$ states. \lucas{why are we ok excluding them?}
+\BDB{
+  I tried to justify it a bit more.
+  As to why I don't use those other criteria, we actually discussed this a bit a few weeks ago: 
+  after this point, the additional Hund's parameters enter, and are difficult to interpret. 
+  I've checked the BIC and that measure suggests to add more parameters; I'm pretty sure the test/training will agree. 
+  The reason I stopped here is model complexity rather than overfitting.
+  If I add all the parameters that improve the fit (according to BIC, for instance), the model will be huge and difficult to understand, and I think this detracts from our point about finding the minimal description. 
+  I agree the tolerances feel like they are pulled out of a hat, but I'm unsure what to say if I don't want to get into dicussing the properties of the more complex model.
+}
+
+\BDB{I tried to be more precise with this paragraph}
+
+We now turn to quantifying the relative importance of each of the parameters for a minimal model.
+Note that the magnitudes of each parameter do not necessarily suggest they affect the properties of the model.
+Large parameters may be insignificant if most states in $\mathcal{L}E$ take small values of that descriptor.
+Instead, the correlation coefficients between the energy or residuals and each descriptor is a quantitative measure of the utility of that descriptor for that step.
+At MP each step, the next parameter added will reduce the error the most from the previous step, compared to the other parameters considered~\cite{MP_Zhang1993}.\BDB{should check that I interpreted this correctly.}
+For this system, $J$ is selected first, and most accurate two parameter (including $E_0$) minimal model for the system would be $H_\text{minimal} = E_0 + J_d \sum_i S_i \cdot S_j$. 
+The relevance of Hund coupling is consistent with the several studies in the literature, which find a prominent Hund coupling can explain some of the properties of bulk FeSe.~\cite{demedici_hunds_2011,de_medici_janus-faced_2011,georges_strong_2013,busemeyer_competing_2016}.
+\BDB{Probably unnecessary [[[}Additionally, excluding $J$ from the final model increases the error to 0.75 eV, and descriptor multiplying $J$ has a correlation coefficient with the residuals of -0.45.\BDB{]]]}
+The next chosen parameter is the $t_{\sigma,d}$, with the interpretation that adding this hopping term to $H_\text{minimal} = E_0 + J_d \sum_i S_i \cdot S_j$ will decrease the error more than any other parameter. 
+Similarly each new parameter decreases the error the most from the previous step.
+Note that this greedy algorithm does not necessary produce the best model for a set number of parameters.
+We could, for example, try all 116,280 combinations of 7 parameters from our set of 21 possible parameters and potentially find a lower error.
+However, the correlation coefficient provides a simple way to quantify the importance of the possible set of degrees of freedom and therefore generate minimal models.
 
 \begin{figure*}
   \centering
@@ -65,16 +140,4 @@ These states generally\lucas{generally is vague.} have a significant iron $4p$ c
   }
 \end{figure*}
 
-Applying the MP approach to the system produced reasonable parameter estimates, and suggested the Hund's coupling to be an important component of this model.
-\lucas{too much passive, 'reasonable,' 'suggested'}
-Figure~\ref{fig:fese}(a) and (b) show the evolution of the parameters and RMS error of the fit parameters are added one by one.
-All previous parameters may change at each step because the entire model is refitted in each iteration.
-The parameters are smoothly varying with the inclusion of new parameters, and their values are physically reasonable.
-The matching pursuit algorithm would suggest that minimal models can be built by disregarding the descriptors added in later steps.
-For this system, $J$ is considered the most important parameter\lucas{'most important' is vague. Don't use that construction.} in the model, and an absolute minimal model for the system would be $H_\text{minimal} = E_0 + J_d \sum_i S_i \cdot S_j$. 
-Such a model would have an RMS error 1.11 eV. 
-According to matching pursuit, the next most important interactions to include are (1) hopping between $d_{z^2}$ and $p_z$, (2) on-site $d$ Coulomb interactions, and (3) hopping between the $4s$ and the $p_z$, and so on. 
-Including these degrees of freedom brings the RMS error to 0.75 eV.\lucas{What does this mean?} 
-In this way, MP would suggest\lucas{MP doesn't suggest anything. Things don't suggest.}  that the most important interactions in the system at low energy are Hund's coupling, hopping between iron $3d$ and selenium $4p$, and on-site Coulomb repulsion, in that order.
-This observation is consistent with the several studies in the literature, which find Hund's coupling in bulk FeSe to be an important part of its description~\cite{demedici_hunds_2011,de_medici_janus-faced_2011,georges_strong_2013,busemeyer_competing_2016}.
 
