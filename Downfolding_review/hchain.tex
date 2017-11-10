@@ -5,8 +5,9 @@ We consider the case of $10$ atoms with periodic boundary conditions and work in
 
 For a given $r$, we first obtain single-particle Kohn-Sham orbitals from a set of spin-unrestricted and 
 spin-restricted DFT-PBE calculations. The localized orbital basis upon which the RDMs (descriptors) 
-are evaluated is obtained by generating intrinsic atomic orbitals (IAO)\BDB{Need citaton?} from the Kohn-Sham orbitals 
+are evaluated is obtained by generating intrinsic atomic orbitals (IAO) \cite{knizia_intrinsic_2013} from the Kohn-Sham orbitals 
 orthogonalized using the L\"owdin procedure (see Figure~\ref{fig:fit_quality}). These are the orbitals that enter the one-band Hubbard Hamiltonian. 
+%\BDB{Need citaton? - Yep, done,  K} 
 Then, to generate a database of wavefunctions needed for the DMD, we produce a set of Slater-Jastrow 
 wavefunctions consisting of singles and doubles excitations to the Slater determinant:
 \begin{subequations}
