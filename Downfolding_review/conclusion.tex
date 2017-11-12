@@ -1,4 +1,7 @@
 \section{Conclusion and Future prospects}
+
+
+
 We have explained the DMD method that we have been developing, primarily in conjunction with the 
 \textit{ab initio} QMC approach. The practical motivation is to take data from first principles (continuum) 
 calculations as inputs for lattice model (discrete) methods. 
@@ -7,27 +10,10 @@ the reduced density matrices associated with the many-body wave functions projec
 The density matrix based approach is appealing as it is democratic in the determination of the hopping and interaction parts of the effective Hamiltonian, and provides multiple checks on its validity. 
 We have discussed representative examples to present the conceptual and algorithmic aspects of DMD. 
 
-The resultant lattice model can be efficiently and accurately solved for large system sizes~\cite{LeBlanc_PRX} 
-using techniques designed and suited for small local Hilbert spaces; these include exact or 
-selected diagonalization~\cite{DeRaedt,Tubman_selci,Holmes_Tubman_Umrigar}, 
-density matrix renormalization group (DMRG)~\cite{White1992}, tensor networks~\cite{PEPS,Changlani_CPS,NeuscammanCPS}, 
-dynamical mean field theory (DMFT)~\cite{Kotliar2006}, density matrix embedding (DMET)~\cite{DMET_2012} and 
-lattice QMC methods~\cite{Scalapino, Trivedi_Ceperley, Zhang_AFQMC, Sandvik_loops, Prokofiev, 
-Booth2009,SQMC,Holmes_Changlani_Umrigar, Booth2013}. These methods have also been used to obtain excited states, 
-dynamical correlation functions and thermal properties, that have been difficult to obtain in \textit{ab initio} approaches. 
+The resultant lattice model can be efficiently and accurately solved for large system sizes~\cite{LeBlanc_PRX} using techniques designed and suited for small local Hilbert spaces; these include exact or selected diagonalization~\cite{DeRaedt,Tubman_selci,Holmes_Tubman_Umrigar}, density matrix renormalization group (DMRG)~\cite{White1992}, tensor networks~\cite{PEPS,Changlani_CPS,NeuscammanCPS}, dynamical mean field theory (DMFT)~\cite{Kotliar2006}, density matrix embedding (DMET)~\cite{DMET_2012} and lattice QMC methods~\cite{Scalapino, Trivedi_Ceperley, Zhang_AFQMC, Sandvik_loops, Prokofiev, 
+Booth2009,SQMC,Holmes_Changlani_Umrigar, Booth2013}. 
+These methods have also been used to obtain excited states, dynamical correlation functions and thermal properties, that have been difficult to obtain in \textit{ab initio} approaches. 
 
-What sort of accuracy should one expect with effective Hamiltonians and DMD? The holy grail of quantum chemistry 
-and electronic structure is to obtain an energy of 1 mHa (0.027 eV) per atom; this 
-remains an open challenge despite decades of work. The effective Hamiltonian approach 
-ameliorates this problem, only relative energies are important, and 
-the total energy is not of particularly fundamental interest. Our experience with DMD in the present and past work~\cite{Changlani2015} 
-suggests excitation spectra can be accurately determined and potentially improved with more \textit{ab initio} data 
-and more refined effective Hamiltonians. However, it is clear that the entire approach is contingent on the 
-cancellation of the large energy associated with the core electrons, 
-whose role is to primarily renormalize the interactions between the active (valence) electrons. 
-This aspect can be a limitation when the core and active electrons are strongly entangled i.e. 
-when the separation of energy scales is not prominent, in which case an energy-dependent description is needed. 
-Thus, DMD and downfolding in general is possibly best suited for extended systems (solids) where this separation exists. 
 
 Finally we would like to emphasize that DMD, though conceptually simple, 
 is still a method in its development stages, with room for algorithmic improvements and new applications. 
@@ -35,17 +21,9 @@ Advances in the field of inverse problems~\cite{Berg2017} could be incorporated 
 mitigate the problems associated with optimization and over-fitting. 
 Here we briefly outline some aspects that need further research,
 \begin{itemize} 
-	\item Construction of wavefunction database:
-	The DMD method relies crucially on the availability of a low energy space of \textit{ab initio} wavefunctions, 
-	which despite not being eigenstates, reveal the nature of the effective Hamiltonian. Automating its construction 
-	remains challenging. We propose Slater Jastrow wavefunctions and deforming the orbitals entering the Slater 
-	determinant as one way of probing the low energy manifold.
-	\item Optimal choice of active orbitals (one body space):
-	In the present work, we chose DFT orbitals (in a certain energy window) and localized them to get the one body orbitals. 
-	The choice could only be justified based on inspecting the trace of the 1-RDM and ensuring that it 
-	equalled the expected number of electrons. We expect to use intrinsic atomic orbitals (pointed out to us by G. K. Chan) which 
-	mitigate this issue. 
-    \BDB{We do use these! Should we change this?}
+	\item Construction of wave function database:
+	The DMD method relies crucially on the availability of a low energy space of \textit{ab-initio} wave functions, which despite not being eigenstates. Automating its construction remains challenging and requires knowledge of the 
+	\item Optimal choice of basis functions. Ultimately, Intrinsic atomic orbitals (pointed out to us by G. K. Chan) which mitigate this issue. 
 	\item Form of the low energy model Hamiltonian:
 	Extensive work in the literature has been devoted to parameterizing compact effective Hamiltonians~\cite{Georges, Oles, Coury}. 
 	Since the low energy effective Hamiltonian is not unique, there is not necessarily one right way of downfolding. 
