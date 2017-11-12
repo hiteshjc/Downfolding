@@ -29,9 +29,8 @@ $\frac{\delta }{\delta \Psi^*}  E[\Psi] = 0$ if and only if $(H-E[\Psi])|\Psi\ra
 
 \subsubsection{Low energy space} 
 
-\BDB{Did you intend the E in the $\mathcal{L}E$ to be nonscript?}
 \begin{definition}
-Let ${\mathcal LE}(H,N)$ be a subset of ${\mathcal H}$ spanned by $N$ vectors given by the lowest energy solutions to $H\ket{\Phi_i}=E_i{\Phi_i}$. 
+Let $\mathcal{LE}(H,N)$ be a subset of ${\mathcal H}$ spanned by $N$ vectors given by the lowest energy solutions to $H\ket{\Phi_i}=E_i{\Phi_i}$. 
 \end{definition}
 
 \begin{definition}
@@ -39,16 +38,15 @@ $H_{eff}$ is an operator on the Hilbert space ${\mathcal LE(H,N)}$.
 \end{definition}
 
 \begin{definition}
-The effective model $E_{eff}[\Psi]=\frac{\bra{\Psi}H_{eff}\ket{\Psi}}{\braket{\Psi|\Psi}}$ is a functional from ${\mathcal LE} \rightarrow \mathbb{R}$
+The effective model $E_{eff}[\Psi]=\frac{\bra{\Psi}H_{eff}\ket{\Psi}}{\braket{\Psi|\Psi}}$ is a functional from $\mathcal{LE} \rightarrow \mathbb{R}$
 \end{definition}
 
-\BDB{Specify that $\oplus$ means direct sum? Maybe define what that means too? I'm not sure everyone will be familiar with this notation}
-If $\ket{\Psi}\in {\mathcal LE}$ and $\ket{\Phi}\in {\mathcal H} \setminus {\mathcal LE}$, then $\ket{\Psi} \oplus \ket{\Phi} \in {\mathcal H}$.
-In general in the following, we will use $\oplus 0$ to translate between the larger ${\mathcal H}$ and the smaller ${\mathcal LE}$. 
+If $\ket{\Psi}\in \mathcal{LE}$ and $\ket{\Phi}\in {\mathcal H} \setminus \mathcal{LE}$, then $\ket{\Psi} \oplus \ket{\Phi} \in {\mathcal H}$.
+In the following, we will use the direct sum operator $\oplus 0$ to translate between the larger ${\mathcal H}$ and the smaller $\mathcal{LE}$. 
 
 \begin{lemma}
 \label{lemma:zeroderiv}
-Suppose that $\ket{\Psi}\in {\mathcal LE}$ and $\ket{\Phi} \in {\mathcal H} \setminus {\mathcal LE}$. 
+Suppose that $\ket{\Psi}\in \mathcal{LE}$ and $\ket{\Phi} \in {\mathcal H} \setminus \mathcal{LE}$. 
 Then $\left.\frac{\delta E[\Psi \oplus \Phi]}{\delta \Phi}\right|_{\Phi=0}=0$. 
 \end{lemma}
 \begin{proof}
@@ -58,12 +56,12 @@ Using that fact, we can evaluate
 \left.\frac{\delta E[\Psi \oplus \Phi]}{\delta \Phi}\right|_{\Phi=0} &= \left.\frac{\left(H-E[\Psi\oplus\Phi]\right) \ket{\Phi} }{\braket{\Psi|\Psi} + \braket{\Phi|\Phi}} \right|_{\Phi=0} = 0.
 \end{align}
 \end{proof}
-This is equivalent to noting that $H$ is block diagonal in the partitioning of ${\mathcal H}$ into ${\mathcal LE}$ and ${\mathcal H} \setminus {\mathcal LE}$.
-Importantly, if $\ket{\Psi} \in {\mathcal LE}$, then $\frac{\delta  E[\Psi\oplus 0] }{\delta (\Psi\oplus 0)^*} = \ket{\Psi'} \oplus 0$, where $\ket{\Psi'} \in {\mathcal LE} $
+This is equivalent to noting that $H$ is block diagonal in the partitioning of ${\mathcal H}$ into $\mathcal{LE}$ and ${\mathcal H} \setminus \mathcal{LE}$.
+Importantly, if $\ket{\Psi} \in \mathcal{LE}$, then $\frac{\delta  E[\Psi\oplus 0] }{\delta (\Psi\oplus 0)^*} = \ket{\Psi'} \oplus 0$, where $\ket{\Psi'} \in \mathcal{LE} $
 
 \begin{theorem}
 \label{theorem:matching}
-Assume $\ket{\Psi } \in {\mathcal LE}$ and $\frac{\delta  E[\Psi\oplus 0] }{\delta (\Psi\oplus 0)^*}  = \frac{\delta E_{eff}[\Psi]}{\delta \Psi^*} \oplus 0 $.
+Assume $\ket{\Psi } \in \mathcal{LE}$ and $\frac{\delta  E[\Psi\oplus 0] }{\delta (\Psi\oplus 0)^*}  = \frac{\delta E_{eff}[\Psi]}{\delta \Psi^*} \oplus 0 $.
 Then $(H_{eff}+C)|\Psi\rangle\oplus 0 = H (|\Psi\rangle \oplus 0)$, where $C$ is a constant.
 \end{theorem}
 \begin{proof}
@@ -91,16 +89,16 @@ Let $H_{eff} = \sum_{n} e_n |n\rangle \langle n|$ where $|n\rangle$'s are eigens
 
 We have thus reduced the problem of finding an effective Hamiltonian $H_{eff}$ that reproduces the low-energy spectrum of $H$ to matching the corresponding energy functionals $E[\Psi]$ and $E_{eff}[\Psi]$. 
 This involves sampling the low-energy space, choosing the form of $H_{eff}$, and optimizing the parameters.
-An important implication of this is that it is not necessary to diagonalize either of the Hamiltonians; one must only be able to select wave functions from the low-energy space ${\mathcal LE}$.
+An important implication of this is that it is not necessary to diagonalize either of the Hamiltonians; one must only be able to select wave functions from the low-energy space $\mathcal{LE}$.
 As we shall see, this can be substantially easier than attaining eigenstates.
 
 Some further notes about this derivation:
 \begin{itemize}
-\item Fitting $\Psi$'s must come from ${\mathcal LE}$. It is not enough that the energy functional $E[\Psi]$ is less than some cutoff.
-\item In the case of sampling an approximate LE\BDB{Typo?}, the error comes from non-parallelity of $E[\Psi]$ with the correct low energy manifold, up to a constant offset.
+\item Fitting $\Psi$'s must come from $\mathcal{LE}$. It is not enough that the energy functional $E[\Psi]$ is less than some cutoff.
+\item In the case of sampling an approximate $\mathcal{LE}$, the error comes from non-parallelity of $E[\Psi]$ with the correct low energy manifold, up to a constant offset.
 \item While $H_{eff}$ is unique, it has many potential representations and approximations. 
 \item Our method can be applied to any manifold spanned by eigenstates
-\item Model fitting is finding a compact approximation to $H_{eff}[\Psi]$\BDB{you mean $E_{eff}[\Psi]$ or $H_{eff}$?}. This is a high-dimensional space, so we use descriptors to do this.	
+\item Model fitting is finding a compact approximation to $E_{eff}[\Psi]$. This is a high-dimensional space, so we use descriptors to do this.	
 \item For operators that are not the Hamiltonian, it is possible to fit ${\mathcal O}_{eff}[\Psi] \simeq {\mathcal O}[\Psi]$ in a similar way. However, the eigenstates of ${\mathcal O}$ and ${\mathcal O}_{eff}$ will not coincide in general unless ${\mathcal O}$ commutes with the Hamiltonian.
 \end{itemize}
 
@@ -128,7 +126,7 @@ This will allow us to use techniques from statistical learning to efficiently de
 \begin{figure*}[hbt]
 \begin{tikzpicture}[scale=2,node distance = 3cm, auto]
     % Place nodes
-    \node [block] (wfs) {Generate $\ket{\Psi_i} \in {\mathcal LE}$};
+    \node [block] (wfs) {Generate $\ket{\Psi_i} \in \mathcal{LE}$};
     \node [block, right of=wfs] (descriptors) {Generate $d_j[\Psi_i]$,$E[\Psi_i]$};
     \node [block, right of=descriptors] (assess) {Assess descriptors};
     \node [block, right of=assess] (ansatz) {Ansatz: $E_i \simeq \sum_j p_j d_{ij}$};
@@ -156,8 +154,8 @@ This will allow us to use techniques from statistical learning to efficiently de
 A practical protocol is presented in Fig~\ref{fig:protocol}. 
 In this section we go through this procedure step by step.
 
-\paragraph{Generating $\ket{\Psi_i}\in {\mathcal LE}$}
-Ideally\BDB{need comma?} one would be able to sample the entire low-energy space. 
+\paragraph{Generating $\ket{\Psi_i}\in \mathcal{LE}$}
+Ideally one would be able to sample the entire low-energy space. 
 Typically, however, the space will be too large and it will need to be sampled. 
 The optimal wave functions to use depend on the models one expects to fit, which we will discuss in detail  in later steps. 
 Simple strategies that we will use in the examples below include excitations with respect to a determinant and varying spin states.
@@ -167,12 +165,10 @@ Simple strategies that we will use in the examples below include excitations wit
 The choice of descriptor is fundamental to the success of the downfolding. 
 In the case of a second-quantized Hamiltonian
 \begin{equation}
-\hat{H}_{eff} = E_0 + \sum_{ij} t_{ij} (c_i^\dagger c_j + h.c.) + \sum_{ijkl} V_{ijkl} c_i^\dagger c_j^\dagger c_k c_l,
+H_{eff} = E_0 + \sum_{ij} t_{ij} (c_i^\dagger c_j + h.c.) + \sum_{ijkl} V_{ijkl} c_i^\dagger c_j^\dagger c_k c_l,
 \end{equation}
-\BDB{Hat notation not used above}
 a set of linear descriptors by simply taking the expectation value of both sides of the equation. 
-Then for example, the occupation descriptor for orbital $k$ is $d_{occ(k)}[\Psi_i] = \braket{\Psi_i | c_k^\dagger c_k | \Psi}$; the double occupation descriptor for orbital $k$ is $d_{double(k)}[\Psi_i] = \braket{\Psi_i | n_{k\uparrow}n_{k\downarrow} | \Psi}$. 
-\BDB{Add $_i$ to ket's?}
+Then for example, the occupation descriptor for orbital $k$ is $d_{occ(k)}[\Psi_i] = \braket{\Psi_i | c_k^\dagger c_k | \Psi_i}$; the double occupation descriptor for orbital $k$ is $d_{double(k)}[\Psi_i] = \braket{\Psi_i | n_{k\uparrow}n_{k\downarrow} | \Psi_i}$. 
 The orbital that $c_k$ represents is part of the descriptor, and in the examples below we will discuss this choice as well.
 One is not limited to static orbital descriptors; they may have a more complex functional dependence on the trial function to include orbital relaxation.
 
@@ -180,18 +176,14 @@ One is not limited to static orbital descriptors; they may have a more complex f
 \paragraph{Assess descriptors}
 At this point, one has collected the data $E_i$ and $d_{ij}$. 
 If two descriptors have a large correlation coefficient, then they are redundant in the data set. 
-This could either mean that the sampling of the low-energy Hilbert space ${\mathcal LE}$ was insufficient, or that they are both proxies for the same differences in states. 
+This could either mean that the sampling of the low-energy Hilbert space $\mathcal{LE}$ was insufficient, or that they are both proxies for the same differences in states. 
 If two data points have the same or very similar descriptor sets, but different energies, then either the descriptor set is not enough to describe the variations in the low-energy space, or the sampling has generated states that are not in the low-energy space.
 To resolve these possibilities, one should analyze the difference between the two wave functions.  
-Choosing the reduced set requires some intuition or somewhat advanced analysis of the many possibilities. 
-\BDB{What many possiblities? Referring to the two possibilities in the previous sentence?}
+
 In either case, when the model is accurate, the fits will be accurate.
-If they \BDB{what are they?} are chosen incorrectly then intruder states can appear upon solution of the effective model. 
-This can occur if descriptors values available in the reduced Hilbert space are not represented in the sampled wave functions. 
-\BDB{Suggestion: combine previous two sentences as "If descriptor values available in the reduced Hilbert space are not represented in the sampled wave functions, then intruder states can appear in the solution of the effective model."}
-In that case, the model fitting is an extrapolation instead of an interpolation, which has the usual problems \BDB{maybe should be more explicit?}.
-This is why it is desirable to have eigenstates in the set if possible; they are guaranteed to be on the corners of the descriptor space if the model is accurate.
-\BDB{Suggest: "For this reason it is also desirable...". For some reason this language makes me think this point was discussed before, but actually, we said we don't need the eigenstates at all in the above.}
+This can occur if descriptors values available in the reduced Hilbert space are not represented in the sampled wave functions, then intruder states can appear upon solution of the effective model. 
+In that case, the model fitting is an extrapolation instead of an interpolation.
+For this reason it is desirable to have eigenstates or near-eigenstates in the sample set if possible; they are guaranteed to be on the corners of the descriptor space if the model is accurate.
 
 
 \paragraph{Ansatz: $E_i \simeq \sum_i  d_{ij} p_j$} 
