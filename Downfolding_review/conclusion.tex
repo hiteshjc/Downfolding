@@ -2,68 +2,62 @@
 
 
 
-We have explained the DMD method that we have been developing, primarily in conjunction with the 
-\textit{ab initio} QMC approach. The practical motivation is to take data from first principles (continuum) 
-calculations as inputs for lattice model (discrete) methods. 
-Since one is mapping a many-body problem to a few-body one, the relevant quantities of interest are 
-the reduced density matrices associated with the many-body wave functions projected to a one-body space. 
-The density matrix based approach is appealing as it is democratic in the determination of the hopping and interaction parts of the effective Hamiltonian, and provides multiple checks on its validity. 
-We have discussed representative examples to present the conceptual and algorithmic aspects of DMD. 
+The density matrix downfolding (DMD) technique uses data derived from low-energy approximate solutions to a high energy Hamiltonian to systematically determine an effective Hamiltonian that describes the low-energy behavior of the system.
+It is based on several rather simple proofs which occupy a role similar to the variational principle; they allow us to know which effective models are closer to the correct solution than others. 
+The method is very general and does not require a quasiparticle picture to apply, and neither does it have double-counting issues.
+It treats all interactions on an equal footing, so hopping parameters are naturally modified by interaction parameters and so on.
+While most of the applications have used the first principles quantum Monte Carlo method to obtain the low-energy solutions, the method is completely general and can be used with any solution method that can produce high quality energy and reduced density matrices.  
+We have discussed several examples to present the conceptual and algorithmic aspects of DMD. 
 
 The resultant lattice model can be efficiently and accurately solved for large system sizes~\cite{LeBlanc_PRX} using techniques designed and suited for small local Hilbert spaces; these include exact or selected diagonalization~\cite{DeRaedt,Tubman_selci,Holmes_Tubman_Umrigar}, density matrix renormalization group (DMRG)~\cite{White1992}, tensor networks~\cite{PEPS,Changlani_CPS,NeuscammanCPS}, dynamical mean field theory (DMFT)~\cite{Kotliar2006}, density matrix embedding (DMET)~\cite{DMET_2012} and lattice QMC methods~\cite{Scalapino, Trivedi_Ceperley, Zhang_AFQMC, Sandvik_loops, Prokofiev, 
 Booth2009,SQMC,Holmes_Changlani_Umrigar, Booth2013}. 
 These methods have also been used to obtain excited states, dynamical correlation functions and thermal properties, that have been difficult to obtain in \textit{ab initio} approaches. 
 
 
-Finally we would like to emphasize that DMD, though conceptually simple, 
-is still a method in its development stages, with room for algorithmic improvements and new applications. 
+DMD, though conceptually simple, is still a method in its development stages, with room for algorithmic improvements and new applications. 
 Advances in the field of inverse problems~\cite{Berg2017} could be incorporated into DMD to 
 mitigate the problems associated with optimization and over-fitting. 
-Here we briefly outline some aspects that need further research,
-\begin{itemize} 
-	\item Construction of wave function database:
+Here we briefly outline some aspects that need further research:
+\begin{enumerate}
+	\item The wave function database ($\ket{\Psi} \in {\mathcal LE}$):
 	The DMD method relies crucially on the availability of a low energy space of \textit{ab-initio} wave functions, which despite not being eigenstates. Automating its construction remains challenging and requires knowledge of the 
-	\item Optimal choice of basis functions. Ultimately, Intrinsic atomic orbitals (pointed out to us by G. K. Chan) which mitigate this issue. 
-	\item Form of the low energy model Hamiltonian:
-	Extensive work in the literature has been devoted to parameterizing compact effective Hamiltonians~\cite{Georges, Oles, Coury}. 
-	Since the low energy effective Hamiltonian is not unique, there is not necessarily one right way of downfolding. 
-	One could catalogue all functional forms based on previous parameterizations 
-	or there may be some merit in determining the minimal description with fewest non zero parameters.
-	Most models for strong correlation \textit{assume} two body forms which appears to work well in practice, 
-	but is not guaranteed on mathematical grounds. (Even though the Coulomb operator is two body, 
-	its low energy description need not be.) In this regard, DMD could also be used to assess 
-	the accuracy of commonly used Hamiltonians and associated parameter sets.
-	\item Other (non QMC) wavefunction based electronic structure methods:
-	There are several wavefunction based quantum chemistry 
-	methods for electronic structure like coupled cluster and ab initio DMRG which work primarily 
-	directly in orbital space. These could also be potentially used in conjunction with DMD.
-\end{itemize} 
+	\item Optimal choice of basis functions. The second-quantized operators in the effective Hamiltonian correspond to a basis in the continuum. The quality of the model depends on the
+	\item Form of the low energy model Hamiltonian. While the exact effective Hamiltonian is unique, there may be many ways of approximating it with varying levels
+\end{enumerate} 
+The advantage of the DMD framework is that all these can be resolved internally.
+Given a good sampling of ${\mathcal LE}$, (2) and (3) can be resolved using regression. 
+Given that (2) and (3) are correct or near correct, then (1) can be resolved by finding binding planes, as noted in Section~\ref{sec:theory}.
+The method thus has a degree of self consistency; it will return low errors only when 1-3 are correct.
 
-In terms of applications, we hope the method will be eventually applied to solids involving transition 
-metals and/or rare earth elements, which are in the strongly correlated regime due to the presence of localized orbitals. 
-Some challenging areas include,
-\begin{itemize} 
-	\item Spin models for magnetism: 
-	The magnetism associated with strongly correlated Mott insulators, compounded by effects such as geometrical frustration, 
-	is highly non trivial and has seen immense research activity in the last few years. 
-	For example, herbertsmithite harbors an exotic topological phase of matter - a "quantum spin liquid"~\cite{NormanRMP}; 
-	lattice simulations of idealized kagome Heisenberg models~\cite{Yan_Huse_White, Changlani_kagome} have built evidence 
-	for such a state amongst a zoo of many other low energy candidates. Thus, 
-	downfolding such materials~\cite{Jeschke2013} appears to be a useful way for accessing low energy scales. 
-	We caution that energy scales associated with magnetism can be in the meV range, and no electronic structure 
-	method currently offers the accuracy needed to directly resolve such small energy differences without unbiased approximations. 
-	It may thus be necessary to perform multiple downfolding steps to map from the Schroedinger equation to a spin model.
-	\item Multi-band models for superconductors:
-	As previously mentioned, unconventional (non BCS) superconductivity in materials such as the cuprates and iron based 
-	pnictides has fuelled the study of strongly correlated systems.
-	Several parameter sets exist in the literature for multi-band models, but it appears that there is little universal consensus. 
-	We are optimistic that additional \textit{ab initio} inputs from DMD will help constrain the part of parameter 
-	space relevant for these materials. Trends of the parameters, and the effectiveness of the multi-band model itself, 
-	with pressure dependence and doping remain largely unexplored.  
-\end{itemize} 
-In summary, the DMD method offers a new route to connecting the worlds of lattice models and \textit{ab initio} approaches. 
-We believe making this relationship precise will be crucial for a detailed and definitive 
-understanding of strongly correlated quantum materials. 
+We have shown applications to strongly correlated models (3-band), {\it ab initio} bulk systems hydrogen chain and graphene, and a transition metal molecule FeSe.
+The technique is on the verge of being applied to transition metal bulk systems; there are no major barriers to this other than a polynomially scaling computational cost and the substantial amount of work involved in parameterizing and fitting models to these systems.
+Looking into the future, we anticipate that this technique can help with the definition of a correlated materials genome--what effective Hamiltonian best describes a given material is highly relevant to its behavior.
+
+
+%In terms of applications, we hope the method will be eventually applied to solids involving transition 
+%metals and/or rare earth elements, which are in the strongly correlated regime due to the presence of localized orbitals. 
+%Some challenging areas include,
+%\begin{itemize} 
+%	\item Spin models for magnetism: 
+%	The magnetism associated with strongly correlated Mott insulators, compounded by effects such as geometrical frustration, 
+%	is highly non trivial and has seen immense research activity in the last few years. 
+%	For example, herbertsmithite harbors an exotic topological phase of matter - a "quantum spin %liquid"~\cite{NormanRMP}; 
+%	lattice simulations of idealized kagome Heisenberg models~\cite{Yan_Huse_White, Changlani_kagome} have built evidence 
+%	for such a state amongst a zoo of many other low energy candidates. Thus, 
+%	downfolding such materials~\cite{Jeschke2013} appears to be a useful way for accessing low energy scales. 
+%	We caution that energy scales associated with magnetism can be in the meV range, and no electronic structure 
+%	method currently offers the accuracy needed to directly resolve such small energy differences without unbiased approximations. 
+%	It may thus be necessary to perform multiple downfolding steps to map from the Schroedinger equation to a spin model.
+%	\item Multi-band models for superconductors:
+%	As previously mentioned, unconventional (non BCS) superconductivity in materials such as the cuprates and iron based 
+%	pnictides has fuelled the study of strongly correlated systems.
+%	Several parameter sets exist in the literature for multi-band models, but it appears that there is little universal consensus. 
+%	We are optimistic that additional \textit{ab initio} inputs from DMD will help constrain the part of parameter 
+%	space relevant for these materials. Trends of the parameters, and the effectiveness of the multi-band model itself, 
+%	with pressure dependence and doping remain largely unexplored.  
+%\end{itemize} 
+%In summary, the DMD method offers a new route to connecting the worlds of lattice models and \textit{ab initio} approaches. 
+%We believe making this relationship precise will be crucial for a detailed and definitive understanding of strongly correlated quantum materials. 
 
 \section{Acknowledgements} 
 We thank  David Ceperley,  Richard Martin, Cyrus Umrigar,  Garnet Chan,  Shiwei Zhang, Steven White,  
