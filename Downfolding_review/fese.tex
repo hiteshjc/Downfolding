@@ -7,8 +7,8 @@ Transition metal oxide systems are challenging to describe using most electronic
 Fixed node DMC has been shown to be a highly accurate method on transition metal oxide materials, where it has been shown to improve the description of the ground state properties and energy gaps~\cite{Foyevtsova2014, Wagner_Abbamonte, Zheng2015, Wagner2016}. % for the types of orbital excitations used to sample the Hilbert space.
 \BDB{This sentence might be unnecessary:[[[}
 However, fixed-node DMC calculations currently cannot access excited state information without advanced knowledge of the symmetries of the state, and are too expensive to access the length and energy scales required for some phenomena, such as superconductivity. 
-\BDB{]]]}
-Additionally, fixed-node DMC calculations alone cannot yet not quantitatively assess the importance of various degrees of freedom.
+\BDB{]]]}\HHZ{Probably you could omit the part regarding ``excited state information". I think we want to emphasize that FN-DMC is a good tool to provide information needed for downfolding because of its accurate description of electron correlations. But the other part of the sentence could remain. It is true that it is generally expensive to perform large scale calculation using DMC. So our ideal is to perform DMC at small scale to obtain the downfolded model, and then do large scale calculation using the model with less cost.}
+Additionally, fixed-node DMC calculations alone cannot yet not quantitatively assess the importance of various degrees of freedom. \HHZ{Probably you could change it into a sentence more ``positive" like, ``Combing the accurate ab-intio DMC with DMD we could quantitatively assess the importance of various degrees of freedom". Because DMC is not made to compete with DMD. }
 
 In this section, we apply DMD to quantify the importance of interaction parameters in a FeSe diatomic molecule with a bond length equal to that of the iron based superconductor, FeSe~\cite{kumar_crystal_2010}.
 To our knowledge, this FeSe diatom does not exist in nature, but nevertheless serves as a simple illustration of a model for the interaction between a transition metal and a ligand. 
@@ -66,8 +66,8 @@ To generate a minimal description of the system, we employed a matching pursuit 
 This greedy algorithm builds a model by including parameters one by one, and considering the error of each model as parameters are included.
 It starts by choosing the descriptor with the largest correlation coefficient, which in this case is the Hund coupling, $J$.
 It then examines the residuals of the model with this descriptor and an overall energy shift: the difference between $E[\Psi_i]$ and the energy produced by the model $H_{eff} = E_0 + J \sum_{i\ne j}S_i \cdot S_j$ for each $|\Psi_i\rangle$ in the sample set.
-Of the parameters considered, this produces the two parameter model (including $E_0$) with the lowest RMS error~\cite{MP_Zhang1993}.\BDB{should check that I interpreted this correctly.}.
-The fact that the Hund coupling is chosen first is consistent with the several studies in the literature, which find a prominent Hund coupling can explain some of the properties of bulk FeSe.~\cite{demedici_hunds_2011,de_medici_janus-faced_2011,georges_strong_2013,busemeyer_competing_2016}.
+Of the parameters considered, this produces the two-parameter model (including $E_0$) with the lowest RMS error~\cite{MP_Zhang1993}.\BDB{should check that I interpreted this correctly.}.
+The fact that the Hund coupling is chosen first in MP is consistent with the several studies in the literature, which find a prominent Hund coupling can explain some of the properties of bulk FeSe.~\cite{demedici_hunds_2011,de_medici_janus-faced_2011,georges_strong_2013,busemeyer_competing_2016}.
 Next, it includes the parameter that correlates most strongly with the residuals of this first minimal model, which in turn reduces the error the most out of the remaining parameters. 
 The proceedure can continue on until some convergence criterion is met, such as a maximum RMS error, a measure of overfitting like the Bayesian information criterion, a desired number of parameters, or others.
 Thus, with this procedure, it is possible to systematically step from a minimal description to an accurate description of the full \textit{ab inito} space.
