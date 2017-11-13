@@ -33,10 +33,11 @@ values~\cite{tJSpalek, Pavirini, Emery, ZhangRice, Hybertsen_PRB1989, Hybertsen_
 A minimal model involving both the copper and oxygen degrees of freedom 
 is the three-orbital or three-band Hubbard model, 
 \begin{eqnarray}
-H &=&    \epsilon_p \sum_{j,\eta} n_{j,\eta} + \epsilon_{d} \sum_{i,\eta}  n_{i,\eta} 
-	+ t_{pd} \sum_{\langle i,j \rangle, \eta} \text{sgn}(p_i,d_j) \Big( d_{i,\eta}^{\dagger} p_{j,\eta} + \text{h.c.} \Big) \nonumber \\
-  & &   + U_p \sum_{j} n^{p}_{j,\uparrow} n^{p}_{j,\downarrow} + U_d \sum_{i} n_{i,\uparrow} n_{i,\downarrow} + V_{pd} \sum_{\langle i,j \rangle} n_j n_i\,,
+H &=&    \epsilon_p \sum_{j\in p,\eta} n_{j,\eta} + \epsilon_{d} \sum_{i \in d,\eta}  n_{i,\eta} 
+        + t_{pd} \sum_{\langle i\in d ,j \in p \rangle, \eta} \text{sgn}(p_i,d_j) \Big( c_{i,\eta}^{\dagger} c_{j,\eta} + \text{h.c.} \Big) \nonumber \\
+          & &   + U_p \sum_{j\in p} n_{j,\uparrow} n_{j,\downarrow} + U_d \sum_{i\in d} n_{i,\uparrow} n_{i,\downarrow} + V_{pd} \sum_{\langle i \in p ,j \in d \rangle} n_j n_i\,,
 \end{eqnarray}
+
 where $d_i,p_j$ refer to the  $d_{x^2 - y^2}$ orbitals of copper at site $i$ and $p_x$ or $p_y$ 
 oxygen at site $j$, respectively. 
 $\text{sgn}(p_i,d_j)$ is the sign of the hopping $t_{pd}$ 
