@@ -7,9 +7,9 @@
 %effective low energy model Hamiltonian must satisfy are,
 %\begin{itemize}
 %\item (a) The reduced density matrices (RDM) of the ground and excited states (computed in a basis) 
-%          obtained from the \emph{ab-initio} calculation must match with that of the model calculation. 
+%          obtained from the \emph{ab initio} calculation must match with that of the model calculation. 
 %
-%\item (b) The energy spectra of the \emph{ab-initio} and model systems must match in the energy window of interest. 
+%\item (b) The energy spectra of the \emph{ab initio} and model systems must match in the energy window of interest. 
 %
 %\item(c) The model must be simple enough and must contain the essential physics to avoid over-parameterization and over-fitting. 
 %\end{itemize}
@@ -69,7 +69,7 @@
 %systems where a physical constraint is that density-density 
 %interaction must decrease monotonically with distance between orbitals. 
 %
-%While having many excited states from \emph{ab-initio} calculations 
+%While having many excited states from \emph{ab initio} calculations 
 %is desirable, we note that certain methods only work best for 
 %determining ground states in symmetry sectors. 
 %In the case of FN-DMC, 
@@ -93,7 +93,7 @@
 %even within the ansatz chosen. For example, one may demand that 
 %the cross expectation values of certain operators 
 %(say $\langle \psi_1 | c_i^{\dagger} c_j | \psi_2 \rangle$) 
-%between the \emph{ab-initio} and model calculations must match. 
+%between the \emph{ab initio} and model calculations must match. 
 %This information could also be added as an 
 %additional criterion for matching. 
 %
@@ -134,7 +134,7 @@
 %of the Hubbard $U$ can vary over large factors~\cite{Fei_Lin} 
 %(of the order of $2$ or more): this is partly attributed to insensitivity 
 %of correlation-functions in the ground state to its precise value. 
-%Any inaccuracy in the \emph{ab-initio} calculation reflects as 
+%Any inaccuracy in the \emph{ab initio} calculation reflects as 
 %large changes in the estimated $U$. This point 
 %will become clearer in later sections of the paper.
 % 
@@ -151,7 +151,7 @@
 %\HJC {Given data, how do we achieve what we want...}
 %\subsection{Fitting procedure: $Ax=E$ method}
 %\label{sec:AxE}
-%Consider a set of \emph{ab-initio} 
+%Consider a set of \emph{ab initio} 
 %energies $E_s$ (in general, expectation values of the Hamiltonian) 
 %and corresponding 1 and 2 body RDMs $\langle c_i^{\dagger} c_j \rangle_s$ 
 %$\langle c_i^{\dagger}c_j^{\dagger} c_l c_k \rangle_s$ 
@@ -239,7 +239,7 @@
 %\frac{1} {Z^{m}} \exp(-\beta H^{m})  = \frac{1} {Z^{a}} \exp(-\beta H^{a})
 %\label{eq:Z_Zstar}
 %\end {equation}
-%where indices $m$ and $a$ refer to the model and ab-initio (true) systems, $\beta$ 
+%where indices $m$ and $a$ refer to the model and ab initio (true) systems, $\beta$ 
 %is an inverse temperature and $Z$ is the partition function
 %In contrast, our "energy-weighting" function is a box-function: it weighs all the energies 
 %in a given window equally. The form of the cost function (including the 
@@ -247,11 +247,11 @@
 %
 %In summary, our approach solves 
 %linear equations in terms of the unknown parameters, by using the density matrices 
-%from an \emph{ab-initio} method. This concept works only when we 
+%from an \emph{ab initio} method. This concept works only when we 
 %know the model Hamiltonian that describes the data, and all we want is the numerical 
 %values of the parameters. Thus to verify the validity of the calculation, 
 %one must use the derived parameters and calculate many-body eigenstates 
-%in the model and check their correspondence with the \emph{ab-initio} 
+%in the model and check their correspondence with the \emph{ab initio} 
 %calculations.
 %
 %\HJC{What does the A matrix encode - standard tricks of fitting...}

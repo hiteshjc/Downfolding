@@ -17,7 +17,7 @@ At the same time, more complex effective models can be commensurately more diffi
 %\begin{figure}
 %\centering
 %\includegraphics[width=1\linewidth]{./Figures/figure1.eps}
-%\caption{Schematics for downfolding a simple ab-initio system (here the hydrogen chain) in DFT based methods (left) and the wave function based DMD (right). 
+%\caption{Schematics for downfolding a simple ab initio system (here the hydrogen chain) in DFT based methods (left) and the wave function based DMD (right). 
 %Localized one particle functions are constructed in both methods and serve as the one body space for the model Hamiltonian. 
 %The DFT based methods use Kohn Sham orbitals and screening models to estimate the interactions. 
 %DMD uses a database of low energy all electron many-body wave functions ($\psi_i$). 
@@ -25,7 +25,7 @@ At the same time, more complex effective models can be commensurately more diffi
 %\label{fig:lowenergybasin_schematic}
 %\end{figure}	
 
-To address the need for a link between {\it ab-initio} electron-level models and larger scale models, downfolding has most commonly been carried out using approaches based on density functional theory (DFT). 
+To address the need for a link between {\it ab initio} electron-level models and larger scale models, downfolding has most commonly been carried out using approaches based on density functional theory (DFT). 
 The kinetic part\BDB{kinetic part of what?} \HHZ{using single-body terms instead?}is obtained from a standard DFT calculation which is projected onto localized Wannier functions and gives an estimate of the effective hoppings of the lattice model based on Kohn-Sham band structure calculations~\cite{Pavirini}. 
 Then, to estimate the interactions, one assumes a model of screening of the Coulomb interactions based on constrained DFT, RPA, or some other methods. 
 Since effects of interactions between the orbitals of interest have already been accounted for by DFT, a double counting correction is required to obtain the final downfolded Hamiltonian. 
@@ -44,10 +44,10 @@ Na\"ively, one might think to reconcile the fitting approach used in classical f
 However, this strategy does not work well in practice because it is often not possible to obtain exact eigenstates for either the model or the {\it ab initio} system.
 To resolve this, we develop a general theory for generating effective quantum models that is exact when the wave functions are sampled from the manifold of low-energy states. 
 Because this method is based on fitting the energy functional, 
-We will show the practical application of this theory using both exact solutions and {\it ab-initio} quantum Monte Carlo (QMC) to derive several different quantum models.
+We will show the practical application of this theory using both exact solutions and {\it ab initio} quantum Monte Carlo (QMC) to derive several different quantum models.
 
 
-The endeavor we pursue here is to develop a multi-scale approach in which the effective interactions between quasiparticles (such as dressed electrons) are determined after an \textit{ab-initio} simulation (but not necessarily exact solution) of the continuum Schroedinger equation involving all the electrons. 
+The endeavor we pursue here is to develop a multi-scale approach in which the effective interactions between quasiparticles (such as dressed electrons) are determined after an \textit{ab initio} simulation (but not necessarily exact solution) of the continuum Schroedinger equation involving all the electrons. 
 The method uses reduced density matrices (RDMs) of low-energy states, not necessarily eigenstates, 
 to cast downfolding as a fitting problem. 
 We thus call it density matrix downfolding (DMD).
@@ -59,7 +59,7 @@ a many-electron problem to a few-electron problem. We recast the problem into mi
 of a cost function that needs to be optimized to connect the many and few body problems. We further 
 these notions both in terms of physical as well as information science descriptions, which allows us to connect to compression algorithms in the machine learning literature. 
 \item Section 3 discusses several representative examples where we consider multiband lattice models 
-and ab-initio systems to downfold to a simpler lattice model. 
+and ab initio systems to downfold to a simpler lattice model. 
 \item In Section 4, we discuss future prospects of applications of the DMD method, ongoing challenges 
 and clear avenues for methodological improvements. 
 \end{itemize}
