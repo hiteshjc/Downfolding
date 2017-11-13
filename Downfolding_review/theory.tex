@@ -78,14 +78,14 @@ and
 Since the derivatives are equal, $E[\Psi\oplus 0] - E_{eff}[\Psi]=C$ for some constant $C$.
 So, setting Eqn~\ref{eqn:psider} equal to Eqn~\ref{eqn:psieffder},
 \begin{align}
-	 H\ket{\Psi\oplus 0}= (H_{eff}+E[\Psi\oplus 0]-E_{eff}[\Psi])\ket{\Psi}\oplus 0 =(H_{eff}+C)\ket{\Psi}\oplus 0
+	 H\ket{\Psi\oplus 0}= (H_{eff}+E[\Psi\oplus 0]-E_{eff}[\Psi])\ket{\Psi}\oplus 0 =(H_{eff}+C)\ket{\Psi}\oplus 0.
 \end{align}
 \end{proof}
 
 
 Theorem~\ref{theorem:matching} combined with Lemma~\ref{lemma:zeroderiv} mean that the eigenstates of $H_{eff}$ are be the same as the eigenstates of $H$ if its derivatives match $H$. 
 Such $H_{eff}$ always exists. 
-Let $H_{eff} = \sum_{n} e_n |n\rangle \langle n|$ where $|n\rangle$'s are eigenstates belong to ${\mathcal LE(H,N)}$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $\Psi$ in ${\mathcal LE(H,N)}$.  
+Let $H_{eff} = \sum_{n} E_n |n\rangle \langle n|$ where $|n\rangle$'s are eigenstates belong to ${\mathcal LE(H,N)}$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $\Psi$ in ${\mathcal LE(H,N)}$.  
 
 We have thus reduced the problem of finding an effective Hamiltonian $H_{eff}$ that reproduces the low-energy spectrum of $H$ to matching the corresponding energy functionals $E[\Psi]$ and $E_{eff}[\Psi]$. 
 This involves sampling the low-energy space, choosing the form of $H_{eff}$, and optimizing the parameters.
@@ -151,7 +151,7 @@ This will allow us to use techniques from statistical learning to efficiently de
 \label{fig:protocol} 
 \end{figure*}
 
-A practical protocol is presented in Fig~\ref{fig:protocol}. 
+A practical protocol is presented in Figure~\ref{fig:protocol}. 
 In this section we go through this procedure step by step.
 
 \paragraph{Generating $\ket{\Psi_i}\in \mathcal{LE}$}
@@ -201,7 +201,7 @@ More complex functions of the descriptors are also possible, although at the cos
 
 
 \paragraph{Fit optimal model}
-Finally, one wishes to find a set of parameters such that Eqn~\ref{eqn:EdP} is satisfied as closely as possible. 
+Finally, one wishes to find a set of parameters such that Eq.~\eqref{eqn:EdP} is satisfied as closely as possible. 
 There are many choices to make in this step, which will often depend on the desired properties of the final model. 
 One can imagine choosing different cost functions to minimize, which can also include a penalty for complicated models. 
 In our tests, we have successfully used LASSO \cite{Lasso} and matching pursuit techniques \cite{MP_Zhang1993} to select high quality and compact model parameters. 
