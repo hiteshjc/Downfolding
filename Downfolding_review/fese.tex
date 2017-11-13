@@ -42,17 +42,17 @@ We also consider the symmetry-allowed hopping terms:
 As before, $\eta$ represents the spin index.
 We consider Hubbard interactions:
 \begin{align*}
-  &U_p \sum_{i \in P} n_{i,\uparrow} n_{i,\downarrow},&
+  &U_p \sum_{i \in p} n_{i,\uparrow} n_{i,\downarrow},&
   &U_{d,\delta} \sum_{i=d_{xy},d_{x^2-y^2}} n_{i,\uparrow} n_{i,\downarrow},&
   \\
-  &U_d \sum_{i \in D} n_{i,\uparrow} n_{i,\downarrow},&
+  &U_d \sum_{i \in d} n_{i,\uparrow} n_{i,\downarrow},&
   &U_{d,\pi} \sum_{i=d_{xz},d_{yz}} n_{i,\uparrow} n_{i,\downarrow},&
   &U_{d_{z^2}} n_{d_{z^2},\uparrow} n_{d_{z^2},\downarrow},&
 \end{align*}
-where $P$ refers to the Se-$4p$ orbitals and $D$ refers to the Fe-$3d$ orbitals. 
+where $p$ refers to the Se-$4p$ orbitals and $d$ refers to the Fe-$3d$ orbitals. 
 We also consider Hund coupling terms for the iron atom:
 \begin{align*}
-  &J \sum_{i\ne j} S_i \cdot S_j,&
+  &J \sum_{\substack{i\ne j \\i,j \in d}} S_i \cdot S_j,&
   &J_{\delta} S_{d_{xy}} \cdot S_{d_{x^2-y^2}},&
   &J_{\delta,d_{z^2}} (S_{d_{xy}} + S_{d_{x^2-y^2}}) \cdot S_{d_{z^2}},&
   \\
@@ -60,7 +60,7 @@ We also consider Hund coupling terms for the iron atom:
   &J_{\pi,d_{z^2}} (S_{d_{xz}} + S_{d_{yz}}) \cdot S_{d_{z^2}}.&
   &J_{\pi,\delta} (S_{d_{xz}} + S_{d_{yz}}) \cdot (S_{d_{xy}} + S_{d_{x^2-y^2}}),&
 \end{align*}
-We also considered a nearest neighbor Hubbard interaction: $V \sum_{i\in P, j\in D} n_{i} n_j$.
+We also considered a nearest neighbor Hubbard interaction: $V \sum_{i\in p, j\in d} n_{i} n_j$.
 
 To generate a minimal description of the system, we employed a matching pursuit (MP) method~\cite{MP_Zhang1993}.
 This greedy algorithm builds a model by including parameters one by one, and considering the error of each model as parameters are included.
@@ -90,13 +90,13 @@ The following model was produced:
   t_{\sigma,s} \sum_{\eta} \left(c_{s,\eta}^{\dagger}  c_{p_z,\eta} + \text{h.c.} \right)
   \nonumber \\
   &+
-  U_d \sum_{i \in D} n_{i,\uparrow} n_{i,\downarrow} 
+  U_d \sum_{i \in d} n_{i,\uparrow} n_{i,\downarrow} 
   +
-  J \sum_{\substack{i\ne j \\i,j \in D}} S_i \cdot S_j
+  J \sum_{\substack{i\ne j \\i,j \in d}} S_i \cdot S_j
   +
   E_0. \label{eq:fesemodel}
 \end{align}
-As before, $\eta$ is the spin index and $i$ is the orbital index, and $D$ is the set of iron $3d$ orbitals, as above.
+As before, $\eta$ is the spin index and $i$ is the orbital index, and $d$ is the set of iron $3d$ orbitals, as above.
 $E_0$ is an overall energy shift, also included as a fit parameter.
 \lucas{clarify notation. There are some orbitals in superscripts. some in subscripts. Should be $\hat{n}'s$. }
 \BDB{I fixed most of this, but the hat notation isn't used in the rest of the paper, so I didn't use it here}
