@@ -37,7 +37,7 @@ The acquired data is then used in DMD to downfold to a one-band Hubbard Hamilton
   \rlap{\hspace*{45pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-7.0\baselineskip}{#2}}% Print label
   \phantom{\usebox1}
 }
-\begin{figure*}[hbt]
+\begin{figure}[hbt]
 \begin{tabular}{@{}p{0.95\linewidth}@{\quad\quad}p{}@{}}
 \centering
    \subfigimg[width=0.45\linewidth]{(A)}{{./Figures/H_chain_fit_model_length1.5_tUs_inset}.eps}
@@ -53,7 +53,7 @@ which was used for calculating the reduced density matrices (descriptors).
 %\HHZ{Check whether you mislabelled x and y. Normally, $E[\Psi]$ means the ab initio energy whereas $E_{eff}[\Psi]$ means the model energy. We usually put ab initio energy to the x-axis. - Done. Nothing was mislabeled; I've just always put ab initio E on the y, not the x. I flipped it, K}
 \label{fig:fit_quality}
   }
-\end{figure*}
+\end{figure}
 
 
 Figure~\ref{fig:fit_quality} shows the fitting results of the energy functional $E[\Psi]$ within the sampled $\mathcal{LE}$ for two representative distances (1.5 and 2.25\AA). As we can see, the model $E_{eff}[\Psi]$ reproduces the \textit{ab initio} $E[\Psi]$ up to certain error that decreases with atomic separation. That is, the fitted Hubbard model provides a more accurate description as separation distance increases, and the system becomes more atomic-like. 
