@@ -19,13 +19,13 @@ Advances in the field of inverse problems~\cite{Berg2017} could be incorporated 
 mitigate the problems associated with optimization and over-fitting. 
 Here we briefly outline some aspects that need further research:
 \begin{enumerate}
-	\item The wave function database ($\ket{\Psi} \in {\mathcal LE}$):
+	\item The wave function database ($\ket{\Psi} \in \mathcal{LE}$):
 	The DMD method relies crucially on the availability of a low energy space of \textit{ab initio} wave functions. While these wave functions do not have to be eigenstates, automating their construction remains challenging and realistically requires knowledge of the physics to be described.
 	\item Optimal choice of basis functions. The second-quantized operators in the effective Hamiltonian correspond to a basis in the continuum. The quality of the model depends on the basis describing the changes between low-energy wave functions accurately.
 	\item Form of the low energy model Hamiltonian. While the exact effective Hamiltonian is unique, there may be many ways of approximating it with varying levels of compactness and accuracy.
 \end{enumerate} 
 The advantage of the DMD framework is that all these can be resolved internally.
-Given a good sampling of ${\mathcal LE}$, (2) and (3) can be resolved using regression. 
+Given a good sampling of $\mathcal{LE}$, (2) and (3) can be resolved using regression. 
 Given that (2) and (3) are correct or near correct, then (1) can be resolved by finding binding planes, as noted in Section~\ref{sec:theory}.
 The method thus has a degree of self consistency; it will return low errors only when 1-3 are correct.
 
