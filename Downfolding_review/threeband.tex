@@ -247,19 +247,16 @@ enabling convergence of the lowest four energies. We compared the lowest gaps wi
 corresponding calculation on the single band model on the same square geometry, with a Hilbert space size of only 4900, 
 using the downfolded parameters obtained from the smaller $2 \times 2$ cell. 
 
-Our results are summarized in Table~\ref{tab:predictivity}. In all cases, 
+Our results are summarized in Fig.~\ref{fig:predictivity}. In all cases, 
 the agreement between the three-band and one-band models is remarkably good. The lowest energy gap error 
 is within $0.0004$ eV (1\% relative error). 
 The largest error in the third gap is of the order of $0.005$ eV (3\% relative error).
 These results indicate the reliability of the downfolding procedure 
 and highlight its predictive power. 
-%\HJC{Commented problematic lines because we made that point anyway in the last para}
-%This suggests that one could perform DMD on a small size system to obtain the effective model at a low cost. 
-%In the spirit of multiscale simulation, one could then solve this effective model within its regime of validity\lucas{What does this mean specifically?} for larger systems at a significantly reduced cost compared to solving the original model or \textit{ab initio} Hamiltonians.
 
 \begin{figure}[hbt]
 \centering
-\begin{minipage}{0.45\linewidth}
+\begin{minipage}{0.42\linewidth}
 %\begin{tabular}{c|c|c|c||c|c||c|c||c|c}
 \begin{tabular}{c|c||c|c}
 \hline
@@ -275,20 +272,23 @@ $\Delta/t_{pd}$ & $U_d/t_{pd}$ & $t$ & $U/t$ \\%& $G_{2-1,3}$ & $G_{2-1,1}$ & $G
 \hline
 \end{tabular}
 \end{minipage}
-\begin{minipage}{0.45\linewidth}
-\subfigimg[width=0.95\linewidth]{}{./Figures/lowenergy_1and3_vs_Ud_ep_3.eps}
+\begin{minipage}{0.52\linewidth}
+\subfigimg[width=0.485\linewidth]{}{./Figures/Predict_8site_Ep_3.eps}
+\subfigimg[width=0.485\linewidth]{}{./Figures/Predict_8site_Ep_5.eps}
 \end{minipage}
-\caption{Comparison of low energy gaps of the 8-copper ($2\sqrt{2} \times 2\sqrt{2}$) unit cell 
-at half filling for the one-band Hubbard (Hilbert space 4900) and three-band Hubbard (Hilbert space 112,911,876) 
-models from exact diagonalizations, for six representative cases using $t_{pd}=1.3 $ eV. \HHZ{(Left) XXX; (Right) XXX} The notation $G_{i-j,m}$ 
-has been used to indicate the energy difference between eigenstate $i$ and $j$ and $m=1,3$ is a label that 
-refers to the 1- or three-band models. 
-The downfolded parameters, $t$ and $U/t$, for the one-band model were those obtained from downfolding the 4-copper ($2\times2$) unit cell 
-case. 
-%\HJC{Not sure how to fix this... but will look into it}
-%\lucas{What is this table supposed to show? Is it different from Fig 4?} 
-}
-\label{tab:predictivity}
+\caption{(Left) Effective parameters $t$ and $U/t$, for the one-band model obtained from downfolding the 4-copper ($2\times2$) unit cell 
+for six representative test cases. These parameters were used for the 8-copper ($2\sqrt{2} \times 2\sqrt{2}$) unit cell calculation at half filling. 
+(Right) Comparison of the three lowest energy gaps for the 8-copper unit cell between the three-band and downfolded one-band 
+models.}
+%\caption{Comparison of low energy gaps of the 8-copper ($2\sqrt{2} \times 2\sqrt{2}$) unit cell 
+%at half filling for the one-band Hubbard (Hilbert space 4900) and three-band Hubbard (Hilbert space 112,911,876) 
+%models from exact diagonalizations, for six representative cases using $t_{pd}=1.3 $ eV. \HHZ{(Left) XXX; (Right) XXX} The notation $G_{i-j,m}$ 
+%has been used to indicate the energy difference between eigenstate $i$ and $j$ and $m=1,3$ is a label that 
+%refers to the 1- or three-band models. 
+%The downfolded parameters, $t$ and $U/t$, for the one-band model were those obtained from downfolding the 4-copper ($2\times2$) unit cell 
+%case. 
+%}
+\label{fig:predictivity}
 \end{figure} 
 
 Until this point, all our results focused on using only the lowest three eigenstates. We now explore 
