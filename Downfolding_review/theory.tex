@@ -30,7 +30,7 @@ $\frac{\delta }{\delta \Psi^*}  E[\Psi] = 0$ if and only if $(H-E[\Psi])|\Psi\ra
 \subsubsection{Low energy space} 
 
 \begin{definition}
-Let $\mathcal{LE}(H,N)$ be a subset of ${\mathcal H}$ spanned by $N$ vectors given by the lowest energy solutions to $H\ket{\Phi_i}=E_i{\Phi_i}$. \HHZ{Changing $\Phi_i$ to $\Psi_i$? Because, in the following part, $\Psi$ is used to denote vectors in the low energy manifold.} 
+Let $\mathcal{LE}(H,N)$ be a subset of ${\mathcal H}$ spanned by $N$ vectors given by the lowest energy solutions to $H\ket{\Psi_i}=E_i{\Psi_i}$. 
 \end{definition}
 
 \begin{definition}
@@ -61,8 +61,8 @@ Importantly, if $\ket{\Psi} \in \mathcal{LE}$, then $\frac{\delta  E[\Psi\oplus 
 
 \begin{theorem}
 \label{theorem:matching}
-Assume $\ket{\Psi } \in \mathcal{LE}$ and $\frac{\delta  E[\Psi\oplus 0] }{\delta (\Psi\oplus 0)^*}  = \frac{\delta E_{eff}[\Psi]}{\delta \Psi^*} \oplus 0 $. \HHZ{Is it better to  use $E[\Psi\oplus 0] - E_{eff}[\Psi]=C$  as condition of the theorem, since other parts are based on matching  $E[\Psi]$  and $E_{eff}[\Psi]$?}
-Then $(H_{eff}+C)|\Psi\rangle\oplus 0 = H (|\Psi\rangle \oplus 0)$, where $C$ is a constant.
+Assume $\ket{\Psi } \in \mathcal{LE}$ and $ E[\Psi\oplus 0]  = E_{eff}[\Psi]+C$, where $C$ is a constant. 
+Then $(H_{eff}+C)|\Psi\rangle\oplus 0 = H (|\Psi\rangle \oplus 0)$.
 \end{theorem}
 \begin{proof}
 Note that
@@ -75,8 +75,7 @@ and
 	\frac{\delta E_{eff}[\Psi]}{\delta \Psi^*}=\frac{(H_{eff}-E_{eff}[\Psi])\ket{\Psi} }{\braket{\Psi|\Psi}}
 	\label{eqn:psieffder}
 \end{align}
-Since the derivatives are equal, $E[\Psi\oplus 0] - E_{eff}[\Psi]=C$ for some constant $C$.
-So, setting Eq.~\eqref{eqn:psider} equal to Eq~\eqref{eqn:psieffder},
+Since the derivatives are equal, setting Eq.~\eqref{eqn:psider} equal to Eq~\eqref{eqn:psieffder},
 \begin{align}
 	 H\ket{\Psi\oplus 0}= (H_{eff}+E[\Psi\oplus 0]-E_{eff}[\Psi])\ket{\Psi}\oplus 0 =(H_{eff}+C)\ket{\Psi}\oplus 0.
 \end{align}
@@ -85,7 +84,7 @@ So, setting Eq.~\eqref{eqn:psider} equal to Eq~\eqref{eqn:psieffder},
 
 Theorem~\ref{theorem:matching} combined with Lemma~\ref{lemma:zeroderiv} mean that the eigenstates of $H_{eff}$ are be the same as the eigenstates of $H$ if its derivatives match $H$. 
 Such $H_{eff}$ always exists. 
-Let $H_{eff} = \sum_{i}^N E_i |\Psi_i\rangle \langle \Psi_i|$ where $|\Psi_i\rangle$'s are eigenstates belong to ${\mathcal LE(H,N)}$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $\Psi$ in ${\mathcal LE(H,N)}$.  
+Let $H_{eff} = \sum_{i}^N E_i |\Psi_i\rangle \langle \Psi_i|$ where $|\Psi_i\rangle$'s are eigenstates belong to $\mathcal{LE}(H,N)$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $\Psi$ in $\mathcal{LE}(H,N)$.  
 
 We have thus reduced the problem of finding an effective Hamiltonian $H_{eff}$ that reproduces the low-energy spectrum of $H$ to matching the corresponding energy functionals $E[\Psi]$ and $E_{eff}[\Psi]$. 
 This involves sampling the low-energy space, choosing the form of $H_{eff}$, and optimizing the parameters.
@@ -99,7 +98,7 @@ Some further notes about this derivation:
 \item While $H_{eff}$ is unique, it has many potential representations and approximations. 
 \item Our method can be applied to any manifold spanned by eigenstates
 \item Model fitting is finding a compact approximation to $E_{eff}[\Psi]$. This is a high-dimensional space, so we use descriptors to do this.	
-\item For operators that are not the Hamiltonian, it is possible to fit ${\mathcal O}_{eff}[\Psi] \simeq {\mathcal O}[\Psi]$ in a similar way. However, the eigenstates of ${\mathcal O}$ and ${\mathcal O}_{eff}$ will not coincide in general unless ${\mathcal O}$ commutes with the Hamiltonian.
+\item For operators that are not the Hamiltonian, it is possible to fit $\mathcal{O}_{eff}[\Psi] \simeq {\mathcal O}[\Psi]$ in a similar way. However, the eigenstates of ${\mathcal O}$ and ${\mathcal O}_{eff}$ will not coincide in general unless $\mathcal{O}$ commutes with the Hamiltonian.
 \end{itemize}
 
 
