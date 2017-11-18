@@ -1,6 +1,4 @@
-%\documentclass[prl,12pt,onecolumn,nofootinbib,notitlepage,english,superscriptaddress]{revtex4-1}
 \documentclass[utf8,latin9]{frontiersFPHY} 
-%\usepackage[latin9]{inputenc}
 
 \usepackage{url,lineno,microtype,subcaption}
 \usepackage[onehalfspacing]{setspace}
@@ -105,26 +103,22 @@
 %\title{From real materials to model lattice Hamiltonians: multi-scale modelling of strongly correlated electronic systems 
  %      with information from many body wavefunctions}
 %\title{From real materials to model lattice Hamiltonians using \textit{ab initio} density matrix downfolding}
-%\linenumbers
+\linenumbers
 
 \def\keyFont{\fontsize{8}{11}\helveticabold }
 \def\firstAuthorLast{H. Zheng et al.} %use et al only if is more than 1 author
-\def\Authors{Huihuo Zheng\,$^{1}$, Hitesh J. Changlani\,$^{2}$, Kiel Williams\,$^{1}$, Brian Busemeyer\,$^{1}$, and Lucas K. Wagner\,$^{*1}$}
+\def\Authors{Huihuo Zheng\,$^{1}$, Hitesh J. Changlani\,$^{2}$, Kiel T. Williams\,$^{3}$, Brian Busemeyer\,$^{3}$, and Lucas K. Wagner\,$^{*3}$}
 % Affiliations should be keyed to the author's name with superscript numbers and be listed as follows: Laboratory, Institute, Department, Organization, City, State abbreviation (USA, Canada, Australia), and Country (without detailed address information such as city zip codes or street names).
 % If one of the authors has a change of address, list the new address below the correspondence details using a superscript symbol and use the same symbol to indicate the author in the author list.
-\def\Address{$^{1}$Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
-1110 West Green St, Urbana IL 61801, USA\footnote{Huihuo Zheng is currently at Argonne Leadership Computing Facility, Argonne National Laboratory, 9700 South Cass Avenue, Lemont, 60439, Illinois, USA}\\
-
-$^{2}$Department of Physics and Astronomy and Institute for Quantum Matter, Johns Hopkins University, 3400 North Charles Street, Baltimore, Maryland 21218, USA}
-%Johns Hopkins University, Baltimore, MD 21218 \HHZ{Check whether this is OK. I grouped the two together; also we have to decide whether to put street address or not.}\\
-%$^{3}$Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
-%1110 West Green St, Urbana IL 61801, USA }
+\def\Address{$^{1}$Argonne Leadership Computing Facility, Argonne National Laboratory, IL USA \\
+$^{2}$Department of Physics and Astronomy and Institute for Quantum Matter, Johns Hopkins University, Baltimore, MD, USA\\
+%Johns Hopkins University, Baltimore, MD 21218 
+$^{3}$Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, Urbana, IL, USA}
+% 1110 West Green St, Urbana IL 61801, USA }
 % The Corresponding Author should be marked with an asterisk
 % Provide the exact contact address (this time including street name and city zip code) and email of the corresponding author
 \def\corrAuthor{Lucas K. Wagner}
-
 \def\corrEmail{lkwagner@illinois.edu}
-
 \begin{document}
 \onecolumn
 \firstpage{1}
@@ -138,37 +132,15 @@ $^{2}$Department of Physics and Astronomy and Institute for Quantum Matter, John
 \correspondance{} %This field will be automatically populated
 \extraAuth{}
 \maketitle
-%\author{Hitesh J. Changlani}
-%\affiliation{Department of Physics and Astronomy, Johns Hopkins University, Baltimore, Maryland 21218, USA}
-%\author{Huihuo Zheng}
-%\affiliation{
-%Argonne Leadership Computing Facility, Argonne National Laboratory, 9700 South Cass Avenue, Lemont, 60439, Illinois, USA}
-%\author{Kiel Williams}
-%\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
-%1110 West Green St, Urbana IL 61801, USA}
-%\author{Brian Busemeyer}
-%\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
-%1110 West Green St, Urbana IL 61801, USA}
-%\author{Lucas K. Wagner}
-%\affiliation{Department of Physics and Institute for Condensed Matter Theory, University of Illinois at Urbana-Champaign, 
-%1110 West Green St, Urbana IL 61801, USA}
-%\date{\today}
-%\maketitle
-
-%\textbf{
 \begin{abstract}
-%Given a realistic quantum material with all its intrinsic complications, how does one develop a simple reliable model for understanding its properties? 
-%Theoretical insight and effective Hamiltonians have been a key driver of this process leading to simple few-band pictures. 
-%However, this is not an easy task, since the effective Hamiltonian involves a considerable change both of parameters and the form of the Hamiltonian with respect to the bare Coulomb values. 
-%While the kinetic energy is dominated by contributions from bands or states energetically near the Fermi level, screened interactions depend on states even \textit{far} away from it, leading to Hubbard U's that have been traditionally hard to reliably determine. \lucas{reconsider previous sentence}
-%Here we discuss an approach that treats the kinetic and potential parts\lucas{one-body and two-body?} of the Hamiltonian democratically, avoids ``double counting", and one\lucas{same one?} that provides a transparent way of obtaining effective Hamiltonians using data from many body wavefunctions, and whose validity can be systematically checked.\lucas{This is a run-on sentence}
 Due to advances in computer hardware and new algorithms, it is now possible to perform highly accurate many-body simulations of realistic materials with all their intrinsic complications.
 The success of these simulations leaves us with a conundrum: how do we extract useful physical models and insight from these simulations? 
 In this article, we present a formal theory of downfolding--extracting an effective Hamiltonian from first-principles calculations. 
 The theory maps the downfolding problem into fitting information derived from wave functions sampled from a low-energy subspace of the full Hilbert space. 
 Since this fitting process most commonly uses reduced density matrices, we term it density matrix downfolding (DMD).
 \tiny
- \keyFont{ \section{Keywords:} downfolding, effective model, strongly correlated system} %All article types: you may provide up to 8 keywords; at least 5 are mandatory.
+ \keyFont{ \section{Keywords:} downfolding, effective model, strongly correlated systems, quantum Monte Carlo, machine learning} 
+ %All article types: you may provide up to 8 keywords; at least 5 are mandatory.
 \end{abstract}
 %}
 \input{intro.tex}
