@@ -166,7 +166,7 @@ has been discussed in the Appendix.
 \subfigimgthree[width=0.47\linewidth]{(C)}{./Figures/spectrum_vs_Ud_ep_3.eps}
 \subfigimgfour[width=0.52\linewidth]{(D)}{./Figures/U_and_hopping_combined_vs_Ud_ep_3.eps}
 \end{tabular}
-\caption{Panels (A) and (C) show the low energy spectra of the three-band model 
+\caption{Downfolding of a three-band Hubbard model to an effective one-band Hubbard model of d-like orbitals. Panels (A) and (C) show the low energy spectra of the three-band model 
 (relative to the corresponding ground state) for the cases of (A) fixed $U_d/t_{pd}=8$ and 
 varying $\Delta/t_{pd}$ and (C) fixed $\Delta/t_{pd}=3$ and varying $U_d/t_{pd}$. 
 In all the cases, $t_{pd}$ is set to be $1.3$ eV. 
@@ -214,10 +214,8 @@ point which we will highlight shortly by investigating it systematically.
 \subfigimgone[width=0.49\linewidth]{(A)}{./Figures/lowenergy_1and3_vs_Ud_ep_3.eps}
 \subfigimgtwo[width=0.49\linewidth]{(B)}{./Figures/lowenergy_1and3_vs_Ud_ep_5.eps}
 \end{tabular}
-\caption{Comparison of energy gaps of the three-band (black circles) and 
-one-band (red triangles) Hubbard models on the $2\times2$ cell using the 
-downfolded values of $U$ and $t$ for $t_{pd}=1.3$ eV and various $U_{d}/t_{pd}$ and 
-fixed (A) $\Delta/t_{pd}=3$ and (B) $\Delta/t_{pd}=5$.}
+\caption{Reconstruction of the energy spectra of the original three-band model (black circles) from the effective one-band model (red triangles). The three-band model is on a $2\times 2$ cell. 
+(A) and (B) show the energy spectra reconstruction for three-band models of different parameters: (A) $\Delta/t_{pd}=3$ and various $U_{d}/t_{pd}$; (B) $\Delta/t_{pd}=5$ and various $U_{d}/t_{pd}$. In all the cases, $t_{pd}=1.3$ eV.  }
 \label{fig:energyfit} 
 \end{figure}	
 
@@ -228,7 +226,7 @@ we consider the $2\sqrt{2} \times 2 \sqrt{2}$ square unit cell, comprising of 8 
 For representative test cases, we performed exact diagonalization calculations at half filling; 
 the Hilbert space comprises of 112,911,876 basis states. Roughly 200 Lanczos iterations were carried out, 
 enabling convergence of the lowest four energies. We compared the lowest gaps with the 
-corresponding calculation on the one-band model on the same square geometry, with a Hilbert space size of only 4900, 
+corresponding calculation on the one-band model on the same square geometry, with a Hilbert space size of only 4,900, 
 using the downfolded parameters obtained from the smaller $2 \times 2$ cell. 
 
 Our results are summarized in Figure~\ref{fig:predictivity}. Panel (A) shows the six representative parameter sets 
@@ -279,11 +277,7 @@ $\Delta/t_{pd}$ & $U_d/t_{pd}$ & $t$ & $U/t$\\%& $G_{2-1,3}$ & $G_{2-1,1}$ & $G_
 \subfigimgone[width=0.485\linewidth]{(B)}{./Figures/Predict_8site_Ep_3.eps}
 \subfigimgtwo[width=0.485\linewidth]{(C)}{./Figures/Predict_8site_Ep_5.eps}
 \end{minipage}
-\caption{Panel (A) shows the effective parameters $t$ and $U/t$, for the one-band model obtained from downfolding the 4-copper ($2\times2$) unit cell 
-for six representative test cases of the three-band model, using $t_{pd}=1.3$ eV. 
-These parameters were used for the 8-copper ($2\sqrt{2} \times 2\sqrt{2}$) unit cell calculation at half filling. 
-Panels (B) and (C) show the comparison of the three lowest energy gaps for the 8-copper unit cell between the three-band (black circles) 
-and downfolded one-band (red triangles) models on varying $U_d/t_{pd}$ for (B) $\Delta/t_{pd}=3$ and (C) $\Delta/t_{pd}=5$ }
+\caption{Multiscale prediction of the effective one-band model. (A) shows the parameters of the effective one-band model obtained from DMD on a small cell, a 4-copper ($2\times2$) cell. These parameters were then directly used to predict the energy spectra of a larger cell, an 8-copper ($2\sqrt{2} \times 2\sqrt{2}$) cell. (B) and (C) show the predicted spectra (red triangles) in comparison to the exact spectra (black circles) of the three-band model of different parameters (different $\Delta/t_{pd}$ and $U_d/t_{pd}$ where $t_{pd}=1.3$ eV). }
 \label{fig:predictivity}
 \end{figure} 
 
@@ -313,12 +307,9 @@ described by a set of $\tilde{d}_i$ operators.
 \subfigimgone[width=0.49\linewidth]{(A)}{./Figures/downfolded_params_diffwindows_ep_3.eps}
 \subfigimgtwo[width=0.50\linewidth]{(B)}{./Figures/lowenergygaps_diffwindows_ep_3.eps}
 \end{tabular}
-\caption{All results are for the $2\times2$ cell 
-for $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$ and $t_{pd}=1.3$ eV. 
-Panel (A) shows the downfolded values of $U/t$ and $t$ (inset) obtained by the DMD procedure using all eigenstates 
-in a given energy window; increasing windows correspond to 3,5 and 6 low energy eigenstates. 
-Panel (B) shows the comparison of energy gaps between the three-band (black circles) and one-band (red triangles) 
-Hubbard models for different energy windows using the downfolded parameter values in that window.}
+\caption{Dependence of the downfolding parameters on the chosen low energy manifold. (A) shows the variation of downfolded parameters $U/t$ and $t$ (inset) with low energy manifolds of different energy windows (corresponding to 3,5 and 6 low energy eigenstates); 
+(B) shows the reconstructed energy spectra from one-band model (red triangles) in comparison to the spectra of the original three-band model (black circles). The three-band Hubbard model is on a $2\times 2$ cell with $U_d/t_{pd}=8$, $\Delta/t_{pd}=3$, and $t_{pd}=1.3$.
+}
 \label{fig:windows} 
 \end{figure}	
 
