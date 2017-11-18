@@ -132,22 +132,7 @@ examples where no eigenstates are generally available. Several non eigenstates w
 the lowest three eigenstates and input into the DMD procedure, with 
 similar outcomes.}. A representative example of our results for $U_{d}/t_{pd}=8$ and $\Delta/t_{pd}=3$ 
 has been discussed in the Appendix. 
-%the comparisons with eigenstates yielded 
-%$(U/t)_1 \approx 14.1 $, $(U/t)_2 \approx 13.2 $, $(U/t)_3 \approx 12.7 $ and the DMD results were 
-%$U/t = 13.45 $ and $t = 0.3025 $ eV. 
 
-%\HJC{Removed mention of "state-matching" now}
-%The state-matching approach
-%\lucas{state-matching approach? We never explain this.} 
-%For our test example, we find $U/t = 13.45 $ and $t = 0.3025 $ eV. There is no error bar since there 
-%are three unknown parameters in the model Hamiltonian, including the constant energy shift, and there 
-%are three entries in the DMD procedure. 
-%\HJC{Removed line about estimates, I am avoiding mention of "state matching" totally now}
-%As was expected, and observed, when the one-band description 
-%is good within a given window, all estimates of $U/t$ agree with each other.\lucas{This is confusing to me. What estimates are they?} 
-
-
-%%%% To Hitesh: this arrangement is great!!!!
 \renewcommand{\subfigimgone}[3][,]{%
   \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
   \leavevmode\rlap{\usebox1}% Print image
@@ -247,7 +232,7 @@ enabling convergence of the lowest four energies. We compared the lowest gaps wi
 corresponding calculation on the single band model on the same square geometry, with a Hilbert space size of only 4900, 
 using the downfolded parameters obtained from the smaller $2 \times 2$ cell. 
 
-Our results are summarized in Fig.~\ref{fig:predictivity}. In all cases, 
+Our results are summarized in Figure~\ref{fig:predictivity}. In all cases, 
 the agreement between the three-band and one-band models is remarkably good. The lowest energy gap error 
 is within $0.0004$ eV (1\% relative error). 
 The largest error in the third gap is of the order of $0.005$ eV (3\% relative error).
@@ -294,17 +279,10 @@ $\Delta/t_{pd}$ & $U_d/t_{pd}$ & $t$ & $U/t$\\%& $G_{2-1,3}$ & $G_{2-1,1}$ & $G_
 \subfigimgtwo[width=0.485\linewidth]{(C)}{./Figures/Predict_8site_Ep_5.eps}
 \end{minipage}
 \caption{(A) Effective parameters $t$ and $U/t$, for the one-band model obtained from downfolding the 4-copper ($2\times2$) unit cell 
-for six representative test cases. These parameters were used for the 8-copper ($2\sqrt{2} \times 2\sqrt{2}$) unit cell calculation at half filling. 
+for six representative test cases of the three-band model, using $t_{pd}=1.3$ eV. 
+These parameters were used for the 8-copper ($2\sqrt{2} \times 2\sqrt{2}$) unit cell calculation at half filling. 
 (B and C) Comparison of the three lowest energy gaps for the 8-copper unit cell between the three-band and downfolded one-band 
 models on varying $U_d/t_{pd}$ for (B) $\Delta/t_{pd}=3$ and (C) $\Delta/t_{pd}=5$ }
-%\caption{Comparison of low energy gaps of the 8-copper ($2\sqrt{2} \times 2\sqrt{2}$) unit cell 
-%at half filling for the one-band Hubbard (Hilbert space 4900) and three-band Hubbard (Hilbert space 112,911,876) 
-%models from exact diagonalizations, for six representative cases using $t_{pd}=1.3 $ eV. \HHZ{(Left) XXX; (Right) XXX} The notation $G_{i-j,m}$ 
-%has been used to indicate the energy difference between eigenstate $i$ and $j$ and $m=1,3$ is a label that 
-%refers to the 1- or three-band models. 
-%The downfolded parameters, $t$ and $U/t$, for the one-band model were those obtained from downfolding the 4-copper ($2\times2$) unit cell 
-%case. 
-%}
 \label{fig:predictivity}
 \end{figure} 
 
