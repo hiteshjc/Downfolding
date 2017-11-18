@@ -172,8 +172,6 @@ with the corresponding one-band model eigenstates or by the DMD procedure using
 the lowest three eigenstates. The insets show $t$ obtained from DMD. 
 (A) and (B) show the case of fixed $U_d/t_{pd}=8$ and varying $\Delta/t_{pd}$ 
 and (C) and (D) show the case of fixed $\Delta/t_{pd}=3$ and varying $U_d/t_{pd}$.
-%\HJC{I have removed mention of "state matching", I now explicitly state in the caption  what the other estimates are. Is this better?}
-%\lucas{This still has state-matching stuff which I thought we agreed to remove. At best you can use these to establish uncertainties?}
 }
 \label{fig:varyUdep} 
 \end{figure}
@@ -188,7 +186,6 @@ As one mechanism of avoiding the large $U_d$, the copper orbitals are forced to 
 on the other hand, hole delocalization is suppressed in a bid to maintain mostly one hole per $\tilde{d}$ due to the larger 
 $U/t$. The net result of these effects is that the $t$ also increases.%, albeit only marginally; a trend also observed in $\alpha_1$.
 
-%We now perform checks on the accuracy of the downfolded model. 
 An important check for the one-band model is its ability to reproduce the low energy gaps of the three-band model; these have been compared in Figure~\ref{fig:energyfit}. 
 For the case of $\Delta/t_{pd}=3$, we observe that for all $U_d/t_{pd}$ the lowest three eigenstates were reproduced well. 
 This model also reproduces the states outside of the DMD energy window, although with slightly larger errors. 
@@ -221,7 +218,6 @@ fixed (A) $\Delta/t_{pd}=3$ and (B) $\Delta/t_{pd}=5$.}
 \label{fig:energyfit} 
 \end{figure}	
 
-%\HJC{Can someone check the grammar of the 1st sentence?}
 %A promise of downfolding is to enable one to reduce the size of the effective Hilbert space; allowing 
 A promise of downfolding is the reduction of the size of the effective Hilbert space; allowing 
 simulations of bigger unit cells to be carried out. To show that this actually works well in practice for the three-band case, 
@@ -232,10 +228,12 @@ enabling convergence of the lowest four energies. We compared the lowest gaps wi
 corresponding calculation on the single band model on the same square geometry, with a Hilbert space size of only 4900, 
 using the downfolded parameters obtained from the smaller $2 \times 2$ cell. 
 
-Our results are summarized in Figure~\ref{fig:predictivity}. In all cases, 
-the agreement between the three-band and one-band models is remarkably good. The lowest energy gap error 
-is within $0.0004$ eV (1\% relative error). 
-The largest error in the third gap is of the order of $0.005$ eV (3\% relative error).
+Our results are summarized in Figure~\ref{fig:predictivity}. Panel (A) shows the six representative parameter sets 
+of the three-band model and the corresponding downfolded one-band parameters. Panels (B) and (C) show the lowest three energy 
+gaps for representative values of $U_d/t_{pd}=4,8,12$ for $\Delta/t_{pd}=3$ and $\Delta/t_{pd}=5$ respectively. 
+In all cases, the agreement between the three-band and one-band models is remarkably good. The 
+energy gap error of the lowest gap is within $0.0004$ eV (1\% relative error). The largest error in the third gap is 
+of the order of $0.005$ eV (3\% relative error). 
 These results indicate the reliability of the downfolding procedure 
 and highlight its predictive power. 
 
@@ -291,7 +289,7 @@ We now explore the effect of increasing the energy window, by including higher e
 test example of $U_d/t_{pd}=8$ and $\Delta/t_{pd}=3$. To do so, we now use 
 all six low energy eigenstates for optimizing the cost function in Eq.~\eqref{eq:C}. We 
 find similar (but not exactly the same) values of $\alpha_i$ compared to 
-the case when only the three lowest states were used. The fact that a low cost solution can be attained 
+the case when only the three lowest states were used. The fact that a solution with small cost can be attained 
 confirms our expectation that the entire low energy space of six states is consistently 
 described by a set of $\tilde{d}_i$ operators. 
 \renewcommand{\subfigimgone}[3][,]{%
@@ -327,7 +325,9 @@ an energy dependent model is expected, consistent with the renormalization group
 increasing the number of eigenstates from three to six changed $U/t$ from $13.8$ to $9.44$ and $t$ from $0.3045$ to $0.2750$ eV.
 \footnote{When three states were used for optimizing the orbitals and for the DMD, we found $U/t\approx 13.45$ and $t=0.3025$ eV. 
 This is because $\tilde{d}$ are slightly different in the two cases.} 
+
 The features associated with the energy dependence are further confirmed in Figure~\ref{fig:windows}(B). 
+which shows a comparison of energy gaps of the three-band and downfolded one-band model on the $2\times2$ cell. 
 When only three states are used, the one-band (nearest neighbor) Hubbard model is insufficient for \textit{accurately}
 describing states outside the window. When all six states are used, the DMD tries to minimize the error of the 
 largest energy gap at the cost of errors in the smaller energy gaps. 
