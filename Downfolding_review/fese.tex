@@ -8,10 +8,10 @@ Transition metal oxide systems are challenging to describe using most electronic
 Fixed node DMC has been shown to be a highly accurate method on transition metal oxide materials, where it has been shown to improve the description of the ground state properties and energy gaps~\cite{Foyevtsova2014, Wagner_Abbamonte, Zheng2015, Wagner2016}. % for the types of orbital excitations used to sample the Hilbert space.
 In this section, we apply DMD using fixed node DMC to quantify the importance of interaction parameters in a FeSe diatomic molecule with a bond length equal to that of the iron based superconductor, FeSe~\cite{kumar_crystal_2010}, in order to help identify the descriptors that may be relevant in the bulk material.
 
-We considered a low-energy space spanned by the Se 4p, Fe 3d, and Fe 4s orbitals.
-We sampled singles and doubles excitations from a reference Slater determinant of Kohn-Sham orbitals taken from PBE0 with total spin 0, 2, and 4, which were then multiplied by a Jastrow and further optimized using fixed node DMC.
+We considered a low-energy space spanned by the Se $4p$, Fe $3d$, and Fe $4s$ orbitals. We sampled singles and doubles excitations from a reference Slater determinant 
+of Kohn-Sham orbitals taken from PBE0 with total spin 0, 2, and 4, which were then multiplied by a Jastrow and further optimized using fixed node DMC. 
 After this procedure, 241 states were within an energy window of 8 eV from the ground state. 
-Of these, eight states had a significant iron $4p$ component, which excludes them from the low-energy space.
+Of these, eight states had a significant iron $4p$ component, which excludes them from the low-energy space. 
 This leaves us with 233 states in the low-energy subspace.
 
 We consider a set of 21 possible descriptors consisting of local operators on the iron $4s$, iron $3d$ states, and selenium $4p$ states, which is a total of 9 single-particle orbitals.
@@ -93,8 +93,6 @@ Note that all parameters may change at each step because the entire model is ref
 The parameters are smoothly varying with the inclusion of new parameters, and they take the correct signs based on symmetry (where applicable). 
 The RMS error decreases with each additional parameter, but less so as the algorithm appends additional parameters. 
 Eventually the diminishing improvements do not merit the additional complexity of more parameters.
-
-
 \begin{figure*}
   \centering
   \includegraphics[width=0.8\textwidth]{./Figures/fese.eps}
@@ -107,5 +105,3 @@ Eventually the diminishing improvements do not merit the additional complexity o
     The RMS error of the largest model considered was 0.61~eV.
   }
 \end{figure*}
-
-
