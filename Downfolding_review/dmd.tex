@@ -1,9 +1,4 @@
-\documentclass[aps, prb, 11pt]{revtex4-1}
-
-%\usepackage{url,lineno,microtype,subcaption}
-%\usepackage[onehalfspacing]{setspace}
-%\renewcommand{\rmdefault}{cmr}
-%\usepackage[T1]{fontenc}
+\documentclass[aps, prl, 11pt]{revtex4-1}
 \setcounter{secnumdepth}{2}
 \setcounter{tocdepth}{2}
 \usepackage{color}
@@ -17,16 +12,19 @@
 %\usepackage{times}   %% Times Roman font
 \usepackage{esint}
 %\usepackage{subfig}
-%\usepackage{subfigure}
-\usepackage{subcaption}
+\usepackage{subfigure}
+%\usepackage{subcaption}
 \usepackage{verbatim}
 \usepackage{braket}
 \usepackage{footmisc}
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows,calc}
 
-\usepackage[unicode=true,pdfusetitle,
- bookmarks=false,colorlinks=true,citecolor=blue,urlcolor=blue,linkcolor=red]{hyperref}
+\usepackage[bookmarks, hyperindex, colorlinks=true,
+            linkcolor=red,
+            urlcolor=blue, citecolor=blue]{hyperref}
+%\usepackage[unicode=true,%pdfusetitle,
+% bookmarks=false,colorlinks=true,citecolor=blue,urlcolor=blue,linkcolor=red]{hyperref}
 %\makeatletter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
 %\special{papersize=\the\paperwidth,\the\paperheight}
@@ -116,6 +114,7 @@
 % Provide the exact contact address (this time including street name and city zip code) and email of the corresponding author
 \def\corrAuthor{Lucas K. Wagner}
 \def\corrEmail{lkwagner@illinois.edu}
+\graphicspath{{./Figures/}}
 \begin{document}
 %\onecolumn
 %\firstpage{1}
@@ -464,7 +463,7 @@ We work in the hole notation; half filling corresponds to two spin-up and two sp
 
 \begin{figure}[hbt]
 \centering
-\includegraphics[width=0.9\linewidth]{./Figures/three_band_figure.eps}
+\includegraphics[width=0.9\linewidth]{three_band_figure.eps}
 \caption
 {Schematic for downfolding the three-band Hubbard model on the $2\times2$ cell 
 to the one-band Hubbard model. The oxygen orbitals are eliminated to give ``dressed" $d$-like orbitals of the one-band model, 
@@ -546,39 +545,14 @@ the lowest three eigenstates and input into the DMD procedure, with
 similar outcomes.}
 A representative example of our results for $U_{d}/t_{pd}=8$ and $\Delta/t_{pd}=3$ 
 has been discussed in the Appendix. 
+\renewcommand{\thesubfigure}{(\Alph{subfigure})}
 
-\renewcommand{\subfigimgone}[3][,]{%
-  \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
-  \leavevmode\rlap{\usebox1}% Print image
-  \rlap{\hspace*{110pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-8\baselineskip}{#2}}% Print label
-  \phantom{\usebox1}
-}
-\renewcommand{\subfigimgtwo}[3][,]{%
-  \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
-  \leavevmode\rlap{\usebox1}% Print image
-  \rlap{\hspace*{95pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-11.3\baselineskip}{#2}}% Print label
-  \phantom{\usebox1}
-}
-\renewcommand{\subfigimgthree}[3][,]{%
-  \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
-  \leavevmode\rlap{\usebox1}% Print image
-  \rlap{\hspace*{125pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-9.7\baselineskip}{#2}}% Print label
-  \phantom{\usebox1}
-}
-\renewcommand{\subfigimgfour}[3][,]{%
-  \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
-  \leavevmode\rlap{\usebox1}% Print image
-  \rlap{\hspace*{95pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-11.5\baselineskip}{#2}}% Print label
-  \phantom{\usebox1}
-}
 \begin{figure}[hbt]
 \centering
- \begin{tabular}{@{}p{\linewidth}@{\quad}p{\linewidth}@{}}
-\subfigimgone[width=0.47\linewidth]{(A)}{./Figures/spectrum_vs_ep_Ud_8.eps}
-\subfigimgtwo[width=0.52\linewidth]{(B)}{./Figures/U_and_hopping_combined_vs_ep_Ud_8.eps}
-\subfigimgthree[width=0.47\linewidth]{(C)}{./Figures/spectrum_vs_Ud_ep_3.eps}
-\subfigimgfour[width=0.52\linewidth]{(D)}{./Figures/U_and_hopping_combined_vs_Ud_ep_3.eps}
-\end{tabular}
+\subfigure[]{\includegraphics[width=0.47\linewidth]{spectrum_vs_ep_Ud_8.eps}}
+\subfigure[]{\includegraphics[width=0.52\linewidth]{U_and_hopping_combined_vs_ep_Ud_8.eps}}
+\subfigure[]{\includegraphics[width=0.47\linewidth]{spectrum_vs_Ud_ep_3.eps}}
+\subfigure[]{\includegraphics[width=0.52\linewidth]{U_and_hopping_combined_vs_Ud_ep_3.eps}}
 \caption{Downfolding of a three-band Hubbard model to an effective one-band Hubbard model of d-like orbitals. Panels (A) and (C) show the low energy spectra of the three-band model 
 (relative to the corresponding ground state) for the cases of (A) fixed $U_d/t_{pd}=8$ and 
 varying $\Delta/t_{pd}$ and (C) fixed $\Delta/t_{pd}=3$ and varying $U_d/t_{pd}$. 
@@ -587,8 +561,7 @@ Panels (B) and (D) show the downfolded parameters for the one-band model corresp
 choices in (A) and (C) respectively.  
 The one-band $U/t$ values were obtained either by comparing $\langle \tilde{d}_1^{\dagger} \tilde{d}_2\rangle_s$ 
 with the corresponding one-band model eigenstates or by the DMD procedure using 
-the lowest three eigenstates. The insets show $t$ obtained from DMD. 
-}
+the lowest three eigenstates. The insets show $t$ obtained from DMD. }
 \label{fig:varyUdep} 
 \end{figure}
 
@@ -613,20 +586,20 @@ point which we will highlight shortly by investigating it systematically.
 \renewcommand{\subfigimgone}[3][,]{%
   \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
   \leavevmode\rlap{\usebox1}% Print image
-  \rlap{\hspace*{120pt}\vspace*{1200pt}\raisebox{\dimexpr\ht1-2.0\baselineskip}{#2}}% Print label
+  \rlap{\hspace*{110pt}\vspace*{1200pt}\raisebox{\dimexpr\ht1-1.7\baselineskip}{#2}}% Print label
   \phantom{\usebox1}
 }
 \renewcommand{\subfigimgtwo}[3][,]{%
   \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
   \leavevmode\rlap{\usebox1}% Print image
-  \rlap{\hspace*{120pt}\vspace*{1200pt}\raisebox{\dimexpr\ht1-2.2\baselineskip}{#2}}% Print label
+  \rlap{\hspace*{110pt}\vspace*{1200pt}\raisebox{\dimexpr\ht1-1.9\baselineskip}{#2}}% Print label
   \phantom{\usebox1}
 }
 \begin{figure}[tbh]
 \centering
  \begin{tabular}{@{}p{0.90\linewidth}@{\quad}p{\linewidth}@{}}
-\subfigimgone[width=0.49\linewidth]{(A)}{./Figures/lowenergy_1and3_vs_Ud_ep_3.eps}
-\subfigimgtwo[width=0.49\linewidth]{(B)}{./Figures/lowenergy_1and3_vs_Ud_ep_5.eps}
+\subfigimgone[width=0.49\linewidth]{(A)}{lowenergy_1and3_vs_Ud_ep_3.eps}
+\subfigimgtwo[width=0.49\linewidth]{(B)}{lowenergy_1and3_vs_Ud_ep_5.eps}
 \end{tabular}
 \caption{Comparison of energy spectra of the original three-band model (black circles) and the effective one-band model (red triangles). The three-band model is on the $2\times 2$ cell. 
 (A) and (B) show the energy spectra for different parameter sets of the three-band model: (A) $\Delta/t_{pd}=3$ and various $U_{d}/t_{pd}$; (B) $\Delta/t_{pd}=5$ and various $U_{d}/t_{pd}$. 
@@ -655,20 +628,20 @@ and highlight its predictive power.
 \renewcommand{\subfigimgone}[3][,]{%
   \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
   \leavevmode\rlap{\usebox1}% Print image
-  \rlap{\hspace*{75pt}\vspace*{100pt}\raisebox{\dimexpr\ht1-10.0\baselineskip}{#2}}% Print label
+  \rlap{\hspace*{75pt}\vspace*{100pt}\raisebox{\dimexpr\ht1-9.5\baselineskip}{#2}}% Print label
   \phantom{\usebox1}
 }
 \renewcommand{\subfigimgtwo}[3][,]{%
   \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
   \leavevmode\rlap{\usebox1}% Print image
-  \rlap{\hspace*{75pt}\vspace*{100pt}\raisebox{\dimexpr\ht1-10.0\baselineskip}{#2}}% Print label
+  \rlap{\hspace*{75pt}\vspace*{100pt}\raisebox{\dimexpr\ht1-9.5\baselineskip}{#2}}% Print label
   \phantom{\usebox1}
 }
 \begin{figure}[hbt]
 \begin{minipage}{0.42\linewidth}
 \centering
  \leavevmode\rlap{\usebox1}% Print image
-  \rlap{\hspace*{85pt}\vspace*{100pt}\raisebox{\dimexpr\ht1-5.5\baselineskip}{(A)}}% Print label
+  \rlap{\hspace*{85pt}\vspace*{100pt}\raisebox{\dimexpr\ht1-5.0\baselineskip}{(A)}}% Print label
   \phantom{\usebox1}
 \hbox{% Store image in box
 %\begin{tabular}{c|c|c|c||c|c||c|c||c|c}
@@ -688,8 +661,8 @@ $\Delta/t_{pd}$ & $U_d/t_{pd}$ & $t$ & $U/t$\\%& $G_{2-1,3}$ & $G_{2-1,1}$ & $G_
 \end{tabular}}
 \end{minipage}
 \begin{minipage}{0.57\linewidth}
-\subfigimgone[width=0.485\linewidth]{(B)}{./Figures/Predict_8site_Ep_3.eps}
-\subfigimgtwo[width=0.485\linewidth]{(C)}{./Figures/Predict_8site_Ep_5.eps}
+\subfigimgone[width=0.488\linewidth]{(B)}{Predict_8site_Ep_3.eps}
+\subfigimgtwo[width=0.488\linewidth]{(C)}{Predict_8site_Ep_5.eps}
 \end{minipage}
 \caption{Multiscale prediction of the effective one-band model. (A) shows the parameters of the effective one-band model obtained from DMD on a small cell, the 4-copper ($2\times2$) cell. 
 These parameters were then directly used to predict the energy spectra of a larger cell, the 8-copper ($2\sqrt{2} \times 2\sqrt{2}$) cell. (B) and (C) show the predicted spectra (red triangles) 
@@ -709,20 +682,20 @@ described by a set of $\tilde{d}_i$ operators.
 \renewcommand{\subfigimgone}[3][,]{%
   \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
   \leavevmode\rlap{\usebox1}% Print image
-  \rlap{\hspace*{120pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-10.6\baselineskip}{#2}}% Print label
+  \rlap{\hspace*{100pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-8\baselineskip}{#2}}% Print label
   \phantom{\usebox1}
 }
 \renewcommand{\subfigimgtwo}[3][,]{%
   \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
   \leavevmode\rlap{\usebox1}% Print image
-  \rlap{\hspace*{120pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-10.5\baselineskip}{#2}}% Print label
+  \rlap{\hspace*{100pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-8\baselineskip}{#2}}% Print label
   \phantom{\usebox1}
 }
 \begin{figure}[hbt]
 \centering
  \begin{tabular}{@{}p{0.90\linewidth}@{\quad}p{\linewidth}@{}}
-\subfigimgone[width=0.49\linewidth]{(A)}{./Figures/downfolded_params_diffwindows_ep_3.eps}
-\subfigimgtwo[width=0.50\linewidth]{(B)}{./Figures/lowenergygaps_diffwindows_ep_3.eps}
+\subfigimgone[width=0.49\linewidth]{(A)}{downfolded_params_diffwindows_ep_3.eps}
+\subfigimgtwo[width=0.50\linewidth]{(B)}{lowenergygaps_diffwindows_ep_3.eps}
 \end{tabular}
 \caption{Dependence of the downfolding parameters on the chosen low energy manifold. (A) shows the variation of downfolded parameters $U/t$ and $t$ (inset) 
 with low energy manifolds of different energy windows (corresponding to 3,5 and 6 low energy eigenstates); 
@@ -781,14 +754,14 @@ The acquired data is then used in DMD to downfold to a one-band Hubbard Hamilton
 \renewcommand{\subfigimg}[3][,]{%
   \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
   \leavevmode\rlap{\usebox1}% Print image
-  \rlap{\hspace*{45pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-7.0\baselineskip}{#2}}% Print label
+  \rlap{\hspace*{45pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-5.5\baselineskip}{#2}}% Print label
   \phantom{\usebox1}
 }
 \begin{figure}[hbt]
 \begin{tabular}{@{}p{0.95\linewidth}@{\quad\quad}p{}@{}}
 \centering
-   \subfigimg[width=0.45\linewidth]{(A)}{{./Figures/H_chain_fit_model_length1.5_tUs_inset}.eps}
-   \subfigimg[width=0.45\linewidth]{(B)}{{./Figures/H_chain_fit_model_length2.25_tUs_inset}.eps}\\
+   \subfigimg[width=0.45\linewidth]{(A)}{{H_chain_fit_model_length1.5_tUs_inset}.eps}
+   \subfigimg[width=0.45\linewidth]{(B)}{{H_chain_fit_model_length2.25_tUs_inset}.eps}\\
  \end{tabular}
 \caption{Reconstructed model energy ($E_{eff}[\psi]$) versus DMC energy ($E[\psi]$) for the H$_{10}$ chain at (A) 1.5 \AA \: and (B) 2.25 \AA \:. 
 The energy range of excitations narrows significantly for larger interatomic separation. Insets show the intrinsic atomic orbitals which constitute the one-body space 
@@ -813,9 +786,9 @@ $t$ decreases as the interatomic distance increases, and the value of $U/t$ incr
    \centering
  \begin{tabular}{@{}p{1.00\linewidth}@{}p{\linewidth}@{}}
    \centering
-    \subfigimg[width=0.31\linewidth]{(A)}{./Figures/fitted_t_values_no_offset_h10_chain.eps}
-    \subfigimg[width=0.31\linewidth]{(B)}{./Figures/Ust_ratio_vs_separation_h_chain.eps}
-    \subfigimg[width=0.32\linewidth]{(C)}{{./Figures/r2_ut_vs_separation_h_chain}.eps}
+    \subfigimg[width=0.31\linewidth]{(A)}{fitted_t_values_no_offset_h10_chain.eps}
+    \subfigimg[width=0.31\linewidth]{(B)}{Ust_ratio_vs_separation_h_chain.eps}
+    \subfigimg[width=0.32\linewidth]{(C)}{{r2_ut_vs_separation_h_chain}.eps}
  \end{tabular}
 \caption{ (A) The one-body hopping $t$ parameter as a function of interatomic distance for the periodic H$_{10}$ chain, obtained from a fitted $U$-$t$ model. $t$ declines to zero as $r$ increases. 
 (B) The ratio $U/t$ for the fitted parameter values as a function of interatomic separation. The ratio is small at lower bond-lengths, where $t$ is more relevant in describing the system, and larger at longer bond-lengths, where inter-site hopping is less significant. 
@@ -861,14 +834,14 @@ onsite Coulomb interaction $U$ at low energy~\cite{Schuler2013, Changlani2015}.
 \renewcommand{\subfigimg}[3][,]{%
   \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
   \leavevmode\rlap{\usebox1}% Print image
-  \rlap{\hspace*{20pt}\vspace*{18pt}\raisebox{\dimexpr\ht1-1.37\baselineskip}{#2}}% Print label
+  \rlap{\hspace*{20pt}\vspace*{18pt}\raisebox{\dimexpr\ht1-1.27\baselineskip}{#2}}% Print label
   \phantom{\usebox1}
 }
 \begin{figure}[hbt]
 \centering
  \begin{tabular}{@{}p{0.90\linewidth}@{\quad}p{\linewidth}@{}}
-   \subfigimg[clip, width=0.45\textwidth]{(A)}{./Figures/c_pi.eps}
-   \subfigimg[clip, width=0.45\textwidth]{(B)}{./Figures/h_wan.eps}
+   \subfigimg[clip, width=0.45\textwidth]{(A)}{c_pi.eps}
+   \subfigimg[clip, width=0.45\textwidth]{(B)}{h_wan.eps}
  \end{tabular}
 \caption{Wannier orbitals constructed from Kohn-Sham orbitals: (A) graphene $\pi$ orbital; (B) hydrogen $s$ orbital. }
 \label{fig:honeycomb_wan}
@@ -886,15 +859,15 @@ The results from our calculations are summarized in Figure~\ref{fig:ne_aidmd_gh}
 \renewcommand{\subfigimg}[3][,]{%
   \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
   \leavevmode\rlap{\usebox1}% Print image
-  \rlap{\hspace*{42pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-1.37\baselineskip}{#2}}% Print label
+  \rlap{\hspace*{42pt}\vspace*{12pt}\raisebox{\dimexpr\ht1-1.2\baselineskip}{#2}}% Print label
   \phantom{\usebox1}
 }
 \begin{figure}[hbt]
 \centering
   \begin{tabular}{@{}p{0.95\linewidth}@{\quad}p{\linewidth}@{}}
-    \subfigimg[clip, width=0.325\linewidth]{(A)}{./Figures/grp_all_tu.eps}
-    \subfigimg[clip, width=0.325\linewidth]{(B)}{./Figures/grp_pi_tu.eps}
-    \subfigimg[clip, width=0.325\linewidth]{(C)}{./Figures/h_tu.eps}
+    \subfigimg[clip, width=0.325\linewidth]{(A)}{grp_all_tu.eps}
+    \subfigimg[clip, width=0.325\linewidth]{(B)}{grp_pi_tu.eps}
+    \subfigimg[clip, width=0.325\linewidth]{(C)}{h_tu.eps}
     \end{tabular}
 \caption{Comparison of \textit{ab initio} ($E[\psi]$) and fitted energies ($E_{eff}[\psi]$) 
 of the 3$\times$3 periodic unit cell of graphene and hydrogen lattice: (A) graphene; (B) $\pi$-only graphene; (C) hydrogen lattice.}\label{fig:ne_aidmd_gh}
@@ -919,7 +892,7 @@ Transition metal systems are challenging to describe using most electronic struc
 Fixed-node DMC has been shown to be a highly accurate method on transition metal materials in improving the description of the ground state properties and energy gaps~\cite{Foyevtsova2014, Wagner_Abbamonte, Zheng2015, Wagner2016}. In this section, we apply DMD using fixed-node DMC to quantify the importance of various interactions in a FeSe diatomic molecule with a bond length equal to that of the iron based superconductor, FeSe~\cite{kumar_crystal_2010}, in order to help identifying the descriptors that may be relevant in the bulk material.
 \begin{figure*}[htb]
   \centering
-  \includegraphics[width=0.8\textwidth]{./Figures/fese.eps}
+  \includegraphics[width=0.8\textwidth]{fese.eps}
   \caption{
     \label{fig:fese} 
     (Left) Parameter values for each fit generated in the MP algorithm, labeled at the step where they are included in the model. 

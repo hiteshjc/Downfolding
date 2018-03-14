@@ -1,0 +1,83 @@
+------------
+Reviewer #2: 
+------------
+>> What is the new method or technique presented in this manuscript?
+>>  Reviewer 2 | 31 Dec 2017 | 12:18
+#1
+>In this manuscript, the authors presented a formal theory of downfolding–extracting an effective Hamiltonian from ﬁrst-principles calculations. It is possible to perform highly accurate many-body simulations of realistic materials with all their intrinsic complications. Their new computational methods are so interesting and meaningful to further understand intrinsic physical mechanism.
+
+>> Please comment on the method. Key elements to consider:
+>> - objective errors or fundamental flaws in the methodology
+>> - purpose of new method or technique
+>> - appropriateness of context
+>> - comprehensive description of procedures
+>> - quality of figures and tables
+>>  Reviewer 2 | 31 Dec 2017 | 12:18
+>> #1
+> The methodology is appropriate and the calculations seem to be done properly. The results of the present study have sufficient degree of novelty to be published.
+
+>> Please provide your further comments and overall recommendation to the authors, including the level of revisions (minor, moderate, substantial).
+>>  Reviewer 2 | 31 Dec 2017 | 12:18
+>> #1
+> In this manuscript, the authors present a formal theory of downfolding–extracting an effective Hamiltonian from first-principles calculations. The theory maps the downfolding problem into fitting information derived from wave functions sampled from a low-energy subspace of the full Hilbert space. The methodology is appropriate and the calculations seem to be done properly. The results of the present study have sufficient degree of novelty to be published. But, some issues should be addressed before it is acceptable. 
+
+> 1. The accuracy of a new method is a very important factor. So, is there any sufficient evidences or experiment data to prove the accuracy of the authors’ method. Please provide them in the paper to make the paper more reliable.
+
+We agree with Reviewer 2 that the accuracy is very important for our method. We try to connect to the experimental data available for our studies. Quantitative experimental data are available for graphene. Our value of t (3.6eV) – the hopping parameter is close to the experiment (~3.0eV). For hydrogen chain, our results agree with previous theoretical study [Phys. Rev. B 84 (2011) 245117] that the Hubbard model describes the insulator phase very well. Based on the quality of the fitted effective model, we obtain a critical distance of the metal-insulator transition in agreement with that study. For these two system, we added these descriptions to the revised manuscript. Direct comparison is not available for other systems which are toy models for a proof of concept. 
+
+> 2. In comparison with other methods, what is main advantage of the authors’ method. This point should be stated clearly in the paper.
+
+The main advantage of our method is that we do not need the eigenstates. In other words, we do not need to exactly solve the ab initio Hamiltonian or the model Hamiltonian. Instead, we only use information from the low energy states to constrain our low energy Hamiltonian. These states are computationally cheap to generate from first principles (e.g., quantum Monte Carlo method). On the other hand, our method also provides an internal consistent check on the quality of the effective model in describing the low energy physics of the corresponding ab initio system based on how good the linear fit is.
+
+> 3. Even the most advantage first-principles method, the necessary approximations are used to make the simulation can be carried out. So, what kind of approximations are used in the authors’ method? 
+
+The formulation of our method is exact in principle. However, in our practical applications, there are two approximations on (1) the form of the low energy Hamiltonian; (2) the low energy states we used to sample the low energy manifold. We assume that the low energy Hamiltonian could be written in terms of low energy degrees of freedom (like s orbitals in hydrogen chain, pi orbitals in graphene). In our examples, we also only considered single-body and two-body terms. The low energy states we sampled to approximate the low energy manifold are single and double excitations of the ground state wave functions. Nevertheless, the quality of the downfolded Hamiltonian is quantitatively measured by the quality of the linear regression fit. We included this discussion in our revised manuscript. 
+
+> 4. The authors give some simple examples to highlight the important ingredients associated with DMD. If the systems are more complex, can the method still work accurately?
+
+These simple examples are selected for a proof of concept and a demonstration of workflow. We are working in progress to apply this framework to more complex systems (e.g., magnetic transition metal oxides, and cuprate). We believe that as long as the complex systems could be described in terms of low energy Hamiltonians, our method provides a straightforward way to determine them. 
+
+------------
+Reviewer #3
+------------
+
+>> What is the new method or technique presented in this manuscript?
+>>  Reviewer 3 | 08 Mar 2018 | 12:46
+>> #1
+> The authors present a method that allows one to obtain an effective Hamiltonian describing the low-energy spectrum of some full Hamiltonian. The method requires states of the low-energy subspace as input states, but these states do not need to be eigenstates of the full Hamiltonian.
+
+>> Please comment on the method. Key elements to consider:
+>> - objective errors or fundamental flaws in the methodology
+>> - purpose of new method or technique
+>> - appropriateness of context
+>> - comprehensive description of procedures
+>> - quality of figures and tables
+>>  Reviewer 3 | 08 Mar 2018 | 12:46
+>> #1
+> The authors present an interesting and promising approach to an important problem, namely to find an effective Hamiltonian that describes the low-energy part of some more complicated Hamiltonian. Effective Hamiltonians are important since they allow one to get better insights into to relevant physics and allow one to compute observables using a simpler model. In my opinion, the method will be a useful addition to existing techniques. My suggestions for improving the description of procedures are given below (Q7).
+
+
+>>  Is the method sufficiently described to allow others to reproduce or apply the experiment/study? If not, please list the missing elements.
+>>  Reviewer 3 | 08 Mar 2018 | 12:46
+>> #1
+> I appreciate that the authors made a strong effort to present their method in an understandable way. In my opinion, the following parts of the manuscript need to be improved such that others can apply the method:
+
+> 1) The theory section 2 would benefit from an introductory paragraph giving an outline of the proof- what is the main idea, and how are you going to show it? This would greatly enhance the readability of this section.
+
+> 2) The statement below Eq. (5) (lines 107-112) could be clearer. If I understand it correctly, you have shown that Heff coincides with H in the low energy subspace if and only if their corresponding energy functionals are equal for input states from this subspace. This result allows you to make an Ansatz for Heff and optimize the parameters in this Ansatz such that E[psi] and Eeff[psi] are equal. Is this correct?
+
+> 3) In the discussion of the descriptors around Eq. (6), I would find it helpful to mention that the proposed method includes a recipe to find those descriptors, or to move this paragraph to the subsection "Generate d[psi] and E[psi]. 
+> In this section, the sentence below Eq. (7) is missing a few words which makes it difficult to understand. Furthermore, the authors should mention explicitly that the step where the Ansatz for the effective Hamiltonian is turned into an energy functional comprised of expectation values of one-or two-particle operators refers to density matrix downfolding.
+
+> 4) The subsection "Fit optimal model" is not very clear because it does specify which set of parameters are optimized to satisfy Eq. (9). I assume that these are the parameters describing Heff, e.g., tij and Vijkl in Eq. (7), is this correct? If yes, this should be made much clearer even if it may be obvious to the authors. 
+
+> 5) In the discussion of the first example (Sec. 3.1), the authors should clarify the role of the cost function C in Eq. (14). It appears that C can be minimised separately from Eq. (9) since Eq. (14) does not contain any of the model parameters. If this is the case, it should be mentioned explicitly. The authors also talk about cost functions in the context of Eq. (9) which is confusing.
+
+Thanks to Reviewer 3 for pointing this out. The role of Eq. (14) is to find the optimal low energy orbitals for the effective Hamiltonian. These orbitals are a unitary transformation of the original atomic orbitals. Minimizing Eq. (14) helps to find the transformation matrix T. Therefore, we minimized the cost function C in Eq.(14) first and minimized Eq. (9) to get the parameters for the downfolded Hamiltonian. We clarified this in our revised manuscript. 
+
+>> Please provide your further comments and overall recommendation to the authors, including the level of revisions (minor, moderate, substantial).
+>>  Reviewer 3 | 08 Mar 2018 | 12:46
+>> #1
+> With a moderate revision taking into account my comments about the description of the method I can recommend publication of the manuscript in Frontiers.
+
+
