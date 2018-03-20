@@ -68,22 +68,22 @@ compact description of the low energy physics? and (2) given this choice what ar
 In addition, the best effective Hamiltonian description depends on the energy scale of interest. 
 All these issues will be addressed in the remainder of the section. 
 
-We begin by encoding the relationship between the bare and effective operators as a linear transformation ${\bf T}$, 
+We first determine the optimal operators $\tilde{d}_{i,\eta}$, which could be constructed by a unitary transformation of the oribital $d$ and $p$ orbitals, 
 \begin{equation}
 	\tilde{d}_{i,\eta} = \sum_{j} T_{ij} c_{j,\eta}
 \label{eq:dc}
 \end{equation}
-where $c_{j,\eta}$ is the hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals. 
+where $c_{j,\eta}$ is the hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals and $T$ is the transformation matrix. 
 Further generalizations of this relationship (for example, including higher body terms) are also possible, but have not been considered here. 
 For the $2\times2$ unit cell {\bf T} is a $4 \times 12 $ matrix, which we parameterize by 
 four distinct parameters. These correspond to mixing of a copper orbital 
 with nearest neighbor oxygens ($\alpha_1$), nearest neighbor coppers ($\alpha_2$), next-nearest neighbor oxygens ($\alpha_3$) 
 and next-nearest neighbor coppers ($\alpha_4$) as shown schematically in Figure~\ref{fig:threeband}. 
 The explicit form of ${\bf T}$ after accounting for the symmetries of the 
-lattice has been written out in the Appendix. These parameters are optimized to minimize a certain cost function, 
-which will be explained shortly. 
+lattice has been written out in the Appendix. %These parameters are optimized to minimize a certain cost function, 
+%which will be explained shortly. 
 
-All RDMs in the three-band and one-band descriptions are also related via ${\bf T}$; 
+Now we will determine the transformation matrix ${\bf T}$. All RDMs in the three-band and one-band descriptions are also related via ${\bf T}$; 
 the ones that we focus on are evaluated in eigenstate $s$ and are given by,
 \begin{subequations}
 \begin{eqnarray}
@@ -92,7 +92,7 @@ the ones that we focus on are evaluated in eigenstate $s$ and are given by,
 \label{eq:dmstransformations2}
 \end{eqnarray}
 \end{subequations}
-We optimize ${\bf T}$ by demanding two conditions be satisfied, (1) the effective orbitals ($\tilde{d}_{i,\eta}$) 
+We determine ${\bf T}$ by demanding two conditions be satisfied, (1) the effective orbitals ($\tilde{d}_{i,\eta}$) 
 are orthogonal to each other i.e. $\Big({\bf T} {\bf T}^{\dagger}\Big)_{mn} = \delta_{mn}$
 and (2) the sum of all diagonal entries (trace) of the 1-RDM of the effective orbitals for all low energy eigenstates 
 equals the number of electrons of a given spin i.e. $\sum_{i} \sum_{\eta} \langle {\tilde{d}_{i,\eta}}^{\dagger} \tilde{d}_{i,\eta} \rangle_{s} = N_{\eta}$. 
@@ -102,7 +102,7 @@ C = \sum_{s} \sum_{\eta} \Big( \sum_{i} \langle \tilde{d}_{i,\eta}^{\dagger} \ti
 \label{eq:C}
 \end{equation} 
 For the $2\times2$ cell, $N_{\uparrow}=N_{\downarrow}=2$ and $i=1,2,3,4$. 
-The number of states $s$ was varied from three to six, depending on the energy window of interest.  
+The number of states $s$ was varied from three to six, depending on the energy window of interest.  For a selecting low energy space, we optimize Eq.~\eqref{eq:C} first to determine the one-body operators and then determine the parameters by linear regression fit [Eq.~\eqref{eq:linearfit_descriptor}].
 
 Figure~\ref{fig:varyUdep} shows regimes of the three-band model where 
 the lowest six eigenstates are separated from the higher energy manifold; the 
