@@ -11,7 +11,9 @@ The criterion is that if a wave function $\ket{\Psi}$ is drawn from the low-ener
 We then use the concept of \textit{descriptors} to help parameterize the effective Hamiltonian in terms of expectation values on wave functions sampled from the low-energy space, such as hopping and double occupancy.
 
 \subsection{Theory} 
-
+In this section, we will develop a sufficient criterion for an effective Hamiltonian $H_{eff}$ to reproduce the spectrum of a first-principles Hamiltonian $H$ within a chosen low-energy space. 
+The criterion is that if a wave function $\ket{\Psi}$ is drawn from the low-energy space, then the expectation values of the effective and first principles Hamiltonian must match for that wave function.
+We then use the concept of \textit{descriptors} to help parameterize the effective Hamiltonian in terms of expectation values on wave functions sampled from the low-energy space, such as hopping and two-body interaction terms
 \subsubsection{Energy functional}
 Suppose we start with a quantum system with Hamiltonian $H$ and Hilbert space ${\mathcal H}$.
 
@@ -92,10 +94,18 @@ Such $H_{eff}$ always exists.
 Let $H_{eff} = \sum_{i}^N E_i |\Psi_i\rangle \langle \Psi_i|$ where $|\Psi_i\rangle$'s are eigenstates belong to $\mathcal{LE}(H,N)$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $\Psi$ in $\mathcal{LE}(H,N)$.  
 
 We have thus reduced the problem of finding an effective Hamiltonian $H_{eff}$ that reproduces the low-energy spectrum of $H$ to matching the corresponding energy functionals $E[\Psi]$ and $E_{eff}[\Psi]$. 
-Practically, this can be implemented by first generating an \textit{ansatz} for the effective Hamiltonian in terms of operators. 
-Then one generates wave functions $\ket{\Psi_i}$ in the low-energy subspace of the first principles Hilbert space ${\mathcal H}$.
-Then one can compute $E[\Psi]$ using the expectation value of the first principles Hamiltonian and $E_eff[\Psi]$ by taking the expectation value of the operators in the ansatz for $H_{eff}$. 
-It is not necessary to diagonalize either of the Hamiltonians; one must only be able to select wave functions from the low-energy space $\mathcal{LE}$.
+Practically, this can be implemented as follows: 
+\begin{itemize}
+\item [(1)]Generating an \textit{ansatz} for the effective Hamiltonian in terms of operators. 
+\item [(2)]Generating wave functions $\ket{\Psi_i}$ in the low-energy subspace of the first principles Hilbert space ${\mathcal H}$.
+\item [(3)]Computing $E[\Psi]$ using the expectation value of the first principles Hamiltonian and $E_{eff}[\Psi]$ by taking the expectation value of the operators in the ansatz for $H_{eff}$. 
+\end{itemize}
+In this method, it is not necessary to diagonalize either of the Hamiltonians; one must only be able to select wave functions from the low-energy space $\mathcal{LE}$.
+
+We have thus reduced the problem of finding an effective Hamiltonian $H_{eff}$ that reproduces the low-energy spectrum of $H$ to matching the corresponding energy functionals $E[\Psi]$ and $E_{eff}[\Psi]$. 
+This involves sampling the low-energy space, choosing the form of $H_{eff}$, and optimizing the parameters.
+An important implication of this is that it is not necessary to diagonalize either of the Hamiltonians; one must only be able to select wave functions from the low-energy space $\mathcal{LE}$.
+As we shall see, this can be substantially easier than attaining eigenstates.
 
 Some further notes about this derivation:
 \begin{itemize}
@@ -169,7 +179,7 @@ Simple strategies that we will use in the examples below include excitations wit
 \paragraph{Generate $d_j[\Psi_i]$ and $E[\Psi_i]$} 
 The choice of descriptor is fundamental to the success of the downfolding. 
 In the case of a second-quantized Hamiltonian
-\begin{equation}
+\begin{equation}\label{eq:Heff_ansatz}
 H_{eff} = E_0 + \sum_{ij} t_{ij} (c_i^\dagger c_j + h.c.) + \sum_{ijkl} V_{ijkl} c_i^\dagger c_j^\dagger c_k c_l,
 \end{equation}
 a set of linear descriptors can be derived by simply taking the expectation value of both sides of the equation:
@@ -199,7 +209,7 @@ For this reason it is desirable to have eigenstates or near-eigenstates in the s
 
 \paragraph{Ansatz: $E_i \simeq \sum_i  d_{ij} p_j$} 
 If the descriptors are chosen well, then the model can be written in linear form:
-\begin{equation}
+\begin{equation}\label{eq:linearfit_descriptor}
 E[\Psi_i] = \sum_j p_j d_j[\Psi_i],	
 \end{equation}
 which we shorten to 
@@ -220,3 +230,10 @@ In our tests, we have successfully used LASSO \cite{Lasso} and matching pursuit 
 A detailed example of using the latter technique is presented in Section~\ref{subsection:fese}.
 
 
+Finally, we would like to emphasize that there are several advantages of our method: 
+\begin{itemize}
+\item [(1)] Our method provides an internal consistency check on the quality of the effective model in describing the corresponding ab initio system. The quality of the linear fit tells the correctness of the model parameterization. 
+\item [(2)] The low energy space is sampled by low energy states which do not have to be the eigenstates of the system. In other words, we do not need to exactly solve the \textit{ab initio} Hamiltonian or the model Hamiltonian, to know the map that connects the two worlds. The low energy non-eigenstates are computationally cheap to generate from first principles (e.g., quantum Monte Carlo method); 
+\item [(3)] There is no ``double counting" correction compared to DFT based methods. At a conceptual level, our method restores the democracy between the kinetic and potential parts of the Hamiltonian. In practice, more work is needed to establish its possible superiority over other methods, but the present results are already very encouraging.
+\end{itemize}
+The formulation of our method is exact in principle. However, in practical applications, there are mainly two approximations on (1) the form of the low energy Hamiltonian [Eq.~\eqref{eq:Heff_ansatz}]; (2) the low energy states we used to sample the low energy manifold. We assume that the low energy Hamiltonian could be written in terms of low energy degrees of freedom ($c_i$'s ) and we also only considered single-body and two-body terms. Nevertheless, the quality of the effective Hamiltonian is quantitatively measured by the quality of the linear regression fit. 
