@@ -45,8 +45,9 @@ which was used for calculating the reduced density matrices (descriptors).
   }
 \end{figure}
 
-
-Figure~\ref{fig:fit_quality} shows the fitting results of the energy functional $E[\Psi]$ within the sampled $\mathcal{LE}$ for two representative distances (1.5 and 2.25\AA). As we can see, the model $E_{eff}[\Psi]$ reproduces the \textit{ab initio} $E[\Psi]$ up to certain error that decreases with atomic separation. That is, the fitted Hubbard model provides a more accurate description as separation distance increases, and the system becomes more atomic-like. 
+Figure~\ref{fig:fit_quality} shows the fitting results of the energy functional $E[\Psi]$ within the sampled $\mathcal{LE}$ for two representative distances (1.5 and 2.25\AA). 
+As seen in Figure~\ref{fig:fit_quality}, the model $E_{eff}[\Psi]$ reproduces the \textit{ab initio} $E[\Psi]$ up to certain error 
+that decreases with atomic separation. That is, the fitted Hubbard model provides a more accurate description as separation distance increases, and the system becomes more atomic-like. 
 
 Figure~\ref{fig:Parameters-vs-Bond-t} shows the fitted values of the downfolding parameters $t$ and $U/t$ at various distances. 
 $t$ decreases as the interatomic distance increases, and the value of $U/t$ increases. The single-band Hubbard model qualitatively captures how the system approaches the atomic limit, in which $t$ becomes zero. 
@@ -71,6 +72,6 @@ $t$ decreases as the interatomic distance increases, and the value of $U/t$ incr
 \end{figure}
 
 The R$^2$ values obtained from fitting the descriptors to the \textit{ab initio} energy [see Figure~\ref{fig:Parameters-vs-Bond-t}(C)] also show that the single-band Hubbard model is a good description of the system at large distances, but not at small distances. 
-This is primarily because the dynamics of other degrees of freedom (e.g. $2s$ and $2p$ orbitals) become important to the low energy spectrum at small distances. Other interaction terms beyond the on-site Hubbard $U$, such as nearest-neighbor Coulomb interactions and Heisenberg coupling, can also become significant. 
+This is primarily because at small distances, the low energy spectrum involves the dynamics of other degrees of freedom that are not included in the effective model (e.g. $2s$ and $2p$ orbitals). Other interaction terms beyond the on-site Hubbard $U$, such as nearest-neighbor Coulomb interactions and Heisenberg coupling, can also become significant. 
 Without including higher orbitals or additional many-body interaction terms, the model gives rise to an incorrect insulator state at small distances. 
 Conversely, at larger separations ($r>1.8$\AA), where the system is in an insulator phase \cite{Stella2011}, the model provides a better description. 

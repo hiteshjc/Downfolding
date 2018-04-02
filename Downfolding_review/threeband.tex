@@ -4,7 +4,7 @@ few orbital (or few-electron) problem, we now discuss examples which elucidate t
 The examples are as follows:
 \begin{itemize}
 \item Section~\ref{subsection:3band}: Three-band Hubbard $\rightarrow$ one-band Hubbard at half filling. Demonstrates finding a basis set for the second quantized operators and uses a set of eigenstates directly sampled from the low-energy space to find a one-band model.
-\item Section~\ref{subsection:1dhydrogen}: Hydrogen chain $\rightarrow$ one-band Hubbard model at half filling. Demonstrates basis sets for {\it ab initio} systems and the possibility to use this technique to determine the quality of a model to a given physical situation.
+\item Section~\ref{subsection:1dhydrogen}: Hydrogen chain $\rightarrow$ one-band Hubbard model at half filling. Demonstrates basis sets for {\it ab initio} systems and the possibility to use this technique to determine the quality of a model to \HJC{for? instead of to?} a given physical situation.
 \item Section~\ref{subsection:graphene}: Graphene $\rightarrow$ one-band Hubbard model with and without $\sigma$ electrons. Demonstrates using the downfolding procedure to examine the effects of screening due to core electrons. 
 \item Section~\ref{subsection:fese}: FeSe molecule $\rightarrow$ $3d,4p,4s$ system. Demonstrates the use of matching pursuit to assess the importance of terms in an effective model and to select compact effective models.
 \end{itemize}
@@ -68,7 +68,8 @@ compact description of the low energy physics? and (2) given this choice what ar
 In addition, the best effective Hamiltonian description depends on the energy scale of interest. 
 All these issues will be addressed in the remainder of the section. 
 
-We first determine the optimal operators $\tilde{d}_{i,\eta}$, which could be constructed by a unitary transformation of the oribital $d$ and $p$ orbitals, 
+We first determine the optimal operators $\tilde{d}_{i,\eta}$, which could be constructed from a linear superposition of the $d$ and $p$ orbitals, 
+%\HJC{It is not unitary, because we are truncating as well. I am blanking on the precise word} 
 \begin{equation}
 	\tilde{d}_{i,\eta} = \sum_{j} T_{ij} c_{j,\eta}
 \label{eq:dc}
@@ -83,7 +84,7 @@ The explicit form of ${\bf T}$ after accounting for the symmetries of the
 lattice has been written out in the Appendix. %These parameters are optimized to minimize a certain cost function, 
 %which will be explained shortly. 
 
-Now we will determine the transformation matrix ${\bf T}$. All RDMs in the three-band and one-band descriptions are also related via ${\bf T}$; 
+We will now determine the transformation matrix ${\bf T}$. All RDMs in the three-band and one-band descriptions are also related via ${\bf T}$; 
 the ones that we focus on are evaluated in eigenstate $s$ and are given by,
 \begin{subequations}
 \begin{eqnarray}
@@ -102,7 +103,8 @@ C = \sum_{s} \sum_{\eta} \Big( \sum_{i} \langle \tilde{d}_{i,\eta}^{\dagger} \ti
 \label{eq:C}
 \end{equation} 
 For the $2\times2$ cell, $N_{\uparrow}=N_{\downarrow}=2$ and $i=1,2,3,4$. 
-The number of states $s$ was varied from three to six, depending on the energy window of interest.  For a selecting low energy space, we optimize Eq.~\eqref{eq:C} first to determine the one-body operators and then determine the parameters by linear regression fit [Eq.~\eqref{eq:linearfit_descriptor}].
+The number of states $s$ was varied from three to six, depending on the energy window of interest. For a selected low energy space, 
+we optimize Eq.~\eqref{eq:C} first to determine the optimal one-body operators and then determine the parameters by linear regression fit [Eq.~\eqref{eq:linearfit_descriptor}].
 
 Figure~\ref{fig:varyUdep} shows regimes of the three-band model where 
 the lowest six eigenstates are separated from the higher energy manifold; the 
@@ -226,7 +228,7 @@ enabling convergence of the lowest four energies. We compared the lowest gaps wi
 corresponding calculation on the one-band model on the same square geometry, with a Hilbert space size of only 4,900, 
 using the downfolded parameters obtained from the smaller $2 \times 2$ cell. 
 
-Our results are summarized in Figure~\ref{fig:predictivity}. Panel (A) shows the six representative parameter sets 
+Our results are summarized in Figure~\ref{fig:predictivity}. Panel (A) shows six representative parameter sets 
 of the three-band model and the corresponding downfolded one-band parameters. Panels (B) and (C) show the lowest three energy 
 gaps for representative values of $U_d/t_{pd}=4,8,12$ for $\Delta/t_{pd}=3$ and $\Delta/t_{pd}=5$ respectively. 
 In all cases, the agreement between the three-band and one-band models is remarkably good. The 
@@ -310,7 +312,7 @@ described by a set of $\tilde{d}_i$ operators.
 \caption{Dependence of the downfolding parameters on the chosen low energy manifold. (A) shows the variation of downfolded parameters $U/t$ and $t$ (inset) 
 with low energy manifolds of different energy windows (corresponding to 3,5 and 6 low energy eigenstates); 
 (B) shows the energy spectra of the effective one-band model (red triangles) in comparison to the spectra of the original three-band model (black circles). 
-The three-band Hubbard model is on the $2\times 2$ cell with $U_d/t_{pd}=8$, $\Delta/t_{pd}=3$, and $t_{pd}=1.3$.
+The three-band Hubbard model is on the $2\times 2$ cell with $U_d/t_{pd}=8$, $\Delta/t_{pd}=3$, and $t_{pd}=1.3$ eV.
 }
 \label{fig:windows} 
 \end{figure}	
