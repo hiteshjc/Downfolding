@@ -8,7 +8,7 @@
 \subsection{Theory} 
 In this section, we will develop a sufficient criterion for an effective Hamiltonian $H_{eff}$ to reproduce the spectrum of a first-principles Hamiltonian $H$ within a chosen low-energy space. 
 The criterion is that if a wave function $\ket{\Psi}$ is drawn from the low-energy space, then the expectation values of the effective and first principles Hamiltonian must match for that wave function.
-We then use the concept of \textit{descriptors} to help parameterize the effective Hamiltonian in terms of expectation values on wave functions sampled from the low-energy space, such as hopping and two-body interaction terms. \HJC{Minor: Added missing period}
+We then use the concept of \textit{descriptors} to help parameterize the effective Hamiltonian in terms of expectation values on wave functions sampled from the low-energy space, such as hopping and two-body interaction terms. 
 \subsubsection{Energy functional}
 Suppose we start with a quantum system with Hamiltonian $H$ and Hilbert space ${\mathcal H}$.
 
@@ -19,7 +19,7 @@ Let the energy functional be $E[\Psi] = \frac{\bra{\Psi}H\ket{\Psi}}{\braket{\Ps
 
 \begin{theorem}
 \label{theorem:criticalpoint}
-$E[\Psi]$ has a critical point only where $\Psi$ \HJC{Should this be a ket, for consistencey with definition 1?} is an eigenstate of $H$.
+$E[\Psi]$ has a critical point only where $\ket{\Psi}$ %\HJC{Should this be a ket, for consistencey with definition 1?} is an eigenstate of $H$.
 \end{theorem}
 \begin{proof}
 \begin{eqnarray}
@@ -95,8 +95,8 @@ Practically, this can be implemented as follows:
 \item [(2)]Generating wave functions $\ket{\Psi_i}$ in the low-energy subspace of the first principles Hilbert space ${\mathcal H}$.
 \item [(3)]Computing $E[\Psi]$ using the expectation value of the first principles Hamiltonian and $E_{eff}[\Psi]$ by taking the expectation value of the operators in the ansatz for $H_{eff}$. 
 \end{itemize}
-In this method, it is not necessary to diagonalize either of the Hamiltonians; one must only be able to select wave functions from the low-energy space $\mathcal{LE}$.
-\HJC{We repeat the above idea two lines later. I know it is important to say it, but it must be said once in such a short span}
+%In this method, it is not necessary to diagonalize either of the Hamiltonians; one must only be able to select wave functions from the low-energy space $\mathcal{LE}$.
+%\HJC{We repeat the above idea two lines later. I know it is important to say it, but it must be said once in such a short span}
 We have thus reduced the problem of finding an effective Hamiltonian $H_{eff}$ that reproduces the low-energy spectrum of $H$ to matching the corresponding energy functionals $E[\Psi]$ and $E_{eff}[\Psi]$. 
 This involves sampling the low-energy space, choosing the form of $H_{eff}$, and optimizing the parameters.
 An important implication of this is that it is not necessary to diagonalize either of the Hamiltonians; one must only be able to select wave functions from the low-energy space $\mathcal{LE}$.
@@ -212,19 +212,18 @@ More complex functions of the descriptors are also possible, although at the cos
 
 \paragraph{Fit optimal model}
 Finally, one wishes to find a set of parameters such that Eq.~\eqref{eqn:EdP} is satisfied as closely as possible. 
-For the example given in Eq~\eqref{eqn:effh} \HJC{unreferenced equation?}, this would involve optimizing the parameters $E_0,t_{ij}, $ and $V_{ijkl}$. 
+For the example given in Eq~\eqref{eq:Heff_ansatz}, this would involve optimizing the parameters $E_0,t_{ij}, $ and $V_{ijkl}$. 
 In terms of the generalized formalism in Eq~\eqref{eqn:EdP}, this involves optimizing the parameters ${\bf p}$. 
 It is also possible to optimize the descriptors themselves, or to choose which descriptors to use among a set. 
 In our tests, we have successfully used LASSO \cite{Lasso} and matching pursuit techniques \cite{MP_Zhang1993} to select high quality and compact model parameters. 
 A detailed example of using the latter technique is presented in Section~\ref{subsection:fese}.
 
 
-Finally, we would like to emphasize that there are several advantages of our method: 
-\HJC{Some of the points below have been directly pasted from the response letter, but I would be careful about that. See example}
+We would like to emphasize several advantages of our method: 
+%\HJC{Some of the points below have been directly pasted from the response letter, but I would be careful about that. See example}
 \begin{itemize}
-\item [(1)] Our method provides an internal consistency check on the quality of the effective model in describing the corresponding ab initio system. The quality of the linear fit tells the correctness of the model parameterization. 
-\item [(2)] The low energy space is sampled by low energy states which do not have to be the eigenstates of the system. In other words, we do not need to exactly solve the \textit{ab initio} Hamiltonian or the model Hamiltonian, to know the map that connects the two worlds. The low energy non-eigenstates are computationally cheap to generate from first principles (e.g., quantum Monte Carlo method); 
-\item [(3)] There is no ``double counting" correction compared to DFT based methods. At a conceptual level, our method restores the democracy between the kinetic and potential parts of the Hamiltonian. In practice, more work is needed to establish its possible superiority over other methods, but the present results are already very encouraging.
-\HJC{We should not say this at all about possible superiority... this is OK for the letter not the manuscript}
+\item [(1)] Our method provides an internal consistency check on the quality of the effective model in describing the corresponding \textit{ab initio} system. The quality of the linear fit tells the correctness of the model parameterization. 
+\item [(2)] The low energy space is sampled by low energy states which do not have to be the eigenstates of the system. In other words, we do not need to exactly solve the \textit{ab initio} Hamiltonian or the model Hamiltonian, to know the map connecting the two Hamiltonians. The low energy non-eigenstates are computationally cheap to generate from first principles (e.g., quantum Monte Carlo method); 
+%\HJC{We should not say this at all about possible superiority... this is OK for the letter not the manuscript}
 \end{itemize}
-The formulation of our method is exact in principle. However, in practical applications, there are mainly two approximations on (1) the form of the low energy Hamiltonian [Eq.~\eqref{eq:Heff_ansatz}]; (2) the low energy states we used to sample the low energy manifold. We assume that the low energy Hamiltonian could be written in terms of low energy degrees of freedom ($c_i$'s ) \HJC{We have defined the ci's for the full Ham not effective one} and we also only considered single-body and two-body terms. Nevertheless, the quality of the effective Hamiltonian is quantitatively measured by the quality of the linear regression fit. \HJC{We use LASSO elsewhere, is our terminology consistent. LASSO=linear regression?} 
+The formulation of our method is exact in principle. However, in practical applications, there are mainly two approximations on (1) the form of the low energy Hamiltonian [Eq.~\eqref{eq:Heff_ansatz}]; (2) the low energy states we used to sample the low energy manifold. We assume that the low energy Hamiltonian could be written in terms of low energy degrees of freedom [$c_i$'s in Eq.~\eqref{eq:Heff_ansatz}] and we also only considered single-body and two-body terms. Nevertheless, the quality of the effective Hamiltonian is quantitatively measured by the quality of the linear regression fit. %\HJC{We use LASSO elsewhere, is our terminology consistent. LASSO=linear regression?}  % LASSO is a matching persuit method. 

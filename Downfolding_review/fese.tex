@@ -1,7 +1,7 @@
 \subsection{FeSe diatomic molecule}
 \label{subsection:fese}
 Transition metal systems are often difficult to model due to the many orbital and possibly magnetic descriptors introduced by $d$ electrons. 
-This is seen in the proliferation of models for transition metals, which include terms like spin-spin coupling, spin-orbital coupling, hopping, Hund's like coupling \HJC{Is Hund's like different from HUnd's?}, and so on. 
+This is seen in the proliferation of models for transition metals, which include terms like spin-spin coupling, spin-orbital coupling, hopping, Hund's coupling, and so on. 
 Models containing all possible descriptors are unwieldy, and it is difficult to determine which degrees of freedom are needed for a minimal model to reproduce an interesting effect. 
 Transition metal systems are challenging to describe using most electronic structure methods because of the strong electron correlations and multiple oxidation states possible in these systems. 
 Fixed-node DMC has been shown to be a highly accurate method on transition metal materials in improving the description of the ground state properties and energy gaps~\cite{Foyevtsova2014, Wagner_Abbamonte, Zheng2015, Wagner2016}. In this section, we apply DMD using fixed-node DMC to quantify the importance of various interactions in a FeSe diatomic molecule with a bond length equal to that of the iron based superconductor, FeSe~\cite{kumar_crystal_2010}, in order to help identifying the descriptors that may be relevant in the bulk material.
@@ -17,14 +17,14 @@ Fixed-node DMC has been shown to be a highly accurate method on transition metal
     The RMS error of the largest model considered was 0.61~eV.
   }
 \end{figure*}
-\HJC {Minor: We use "considered" here and "consider" in the next section}
+%\HJC {Minor: We use "considered" here and "consider" in the next section} I CHANGED THEM TO CONSIDERED -- HH
 We considered a low-energy space spanned by the Se $4p$, Fe $3d$, and Fe $4s$ orbitals. We sampled singles and doubles excitations from a reference Slater determinant 
 of Kohn-Sham orbitals taken from DFT calculations with PBE0 functional with total spin 0, 2, and 4, which were then multiplied by a Jastrow factor and further optimized using fixed-node DMC. 
 After this procedure, 241 states were within a low energy window of 8 eV. 
 Of these, eight states had a significant iron $4p$ component, which excludes them from the low-energy subspace. 
 This leaves us with 233 states in the low-energy subspace.
 
-We consider a set of 21 possible descriptors consisting of local operators on the iron $4s$, iron $3d$ states, and selenium $4p$ states, which is a total of 9 single-particle orbitals.
+We considered a set of 21 possible descriptors consisting of local operators on the iron $4s$, iron $3d$ states, and selenium $4p$ states, which is a total of 9 single-particle orbitals.
 We use the same IAO construction as Section~\ref{subsection:1dhydrogen} to generate the basis for these operators.
 At the one-body level, we consider orbital energy descriptors: 
 
@@ -89,7 +89,7 @@ The following model was produced:
               \nonumber \\
           &&+ U_d \sum_{i \in d} n_{i,\uparrow} n_{i,\downarrow} + J \sum_{\substack{i\ne j \\i,j \in d}} S_i \cdot S_j + E_0. \label{eq:fesemodel}
 \end{eqnarray}
-As before, $\eta$ is the spin index and $i$ is the orbital index, and $d$ is the set of iron $3d$ orbitals \HJC{Why not say what the p or s orbitals are?}, as above.
+%As before, $\eta$ is the spin index and $i$ is the orbital index, and $d$ is the set of iron $3d$ orbitals \HJC{Why not say what the p or s orbitals are?}, as above. %% I JUST DELETED THIS. 
 $E_0$ is an overall energy shift, also included as a fit parameter.
 The parameter values and corresponding error of each model produced by MP are shown in Figure~\ref{fig:fese}.
 Note that all parameters may change at each step because the entire model is refitted when an addition parameter is included in each iteration.
