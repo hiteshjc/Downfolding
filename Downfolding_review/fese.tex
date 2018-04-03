@@ -4,7 +4,7 @@ Transition metal systems are often difficult to model due to the many orbital an
 This is seen in the proliferation of models for transition metals, which include terms like spin-spin coupling, spin-orbital coupling, hopping, Hund's coupling, and so on. 
 Models containing all possible descriptors are unwieldy, and it is difficult to determine which degrees of freedom are needed for a minimal model to reproduce an interesting effect. 
 Transition metal systems are challenging to describe using most electronic structure methods because of the strong electron correlations and multiple oxidation states possible in these systems. 
-Fixed-node DMC has been shown to be a highly accurate method on transition metal materials in improving the description of the ground state properties and energy gaps~\cite{Foyevtsova2014, Wagner_Abbamonte, Zheng2015, Wagner2016}. In this section, we apply DMD using fixed-node DMC to quantify the importance of various interactions in a FeSe diatomic molecule with a bond length equal to that of the iron based superconductor, FeSe~\cite{kumar_crystal_2010}, in order to help identifying the descriptors that may be relevant in the bulk material.
+Fixed-node DMC has been shown to be a highly accurate method on transition metal materials in improving the description of the ground state properties and energy gaps~\cite{Foyevtsova2014, Wagner_Abbamonte, Zheng2015, Wagner2016}. In this section, we apply DMD using fixed-node DMC to quantify the importance of different terms in the effective Hamiltonian in a FeSe diatomic molecule with a bond length equal to that of the iron based superconductor, FeSe~\cite{kumar_crystal_2010}, in order to help identifying the descriptors that may be relevant in the bulk material.
 \begin{figure*}[htb]
   \centering
   \includegraphics[width=0.8\textwidth]{./Figures/fese.eps}
@@ -76,11 +76,11 @@ To generate a minimal description of the system, we employed a matching pursuit 
 MP chooses to add descriptors based on their correlation with the residual of the linear fit. 
 We started with a model that only consists of $E_0$. The Hund's coupling descriptor [first term in Eq.~\eqref{eqn:hund1}]
 has the largest correlation coefficient with the residual fit, so it is added first. The fact that the Hund's coupling is chosen first in MP 
-is consistent with the several studies in the literature, which find a prominent Hund's coupling can explain some 
+is consistent with the several studies in the literature, which find that Hund's coupling is important to explain some 
 of the properties of bulk FeSe.~\cite{demedici_hunds_2011,de_medici_janus-faced_2011,georges_strong_2013,busemeyer_competing_2016}. 
 Next, MP includes the descriptor that correlates most strongly with the residuals of this first minimal model, in this case the hopping between $d$ and $p$ $\sigma$-symmetry orbitals. 
 We repeated this procedure until the RMS error did not improve more than 0.05 eV upon adding a new parameter.
-This criterion was chosen to strike a balance between the complexity of the model and the accuracy in reproducing the sample set.
+This criterion was chosen to strike a balance between the complexity of the model and the accuracy in reproducing the data set.
 
 The following model was produced:
 \begin{eqnarray}
