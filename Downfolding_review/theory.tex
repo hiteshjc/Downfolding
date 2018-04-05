@@ -86,8 +86,7 @@ Since the derivatives are equal, setting Eq.~\eqref{eqn:psider} equal to Eq.~\eq
 \end{align}
 \end{proof}
 
-
-Theorem~\ref{theorem:matching} combined with Lemma~\ref{lemma:zeroderiv} means that the eigenstates of $H_{eff}$ are be the same as the eigenstates of $H$ if its derivatives match $H$. 
+Theorem~\ref{theorem:matching} combined with Lemma~\ref{lemma:zeroderiv} means that the eigenstates of $H_{eff}$ are the same as the eigenstates of $H$ if its derivatives match $H$. 
 Such $H_{eff}$ always exists. 
 Let $H_{eff} = \sum_{n}^N E_n |\Psi_n\rangle \langle \Psi_n|$ where $|\Psi_n\rangle$'s are eigenstates belong to $\mathcal{LE}(H,N)$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $\Psi$ in $\mathcal{LE}(H,N)$.  
 
@@ -109,7 +108,7 @@ Some further notes about this derivation:
 \item Fitting $\Psi$'s must come from $\mathcal{LE}$. It is not enough that the energy functional $E[\Psi]$ is less than some cutoff energy.
 \item In the case of sampling an approximate $\mathcal{LE}$, the error comes from non-parallelity of $E[\Psi]$ with the correct low energy manifold, up to a constant offset.
 \item While $H_{eff}$ is unique, it has many potential representations and approximations. 
-\item Our method can be applied to any manifold spanned by eigenstates
+\item Our method can be applied to any manifold spanned by eigenstates.
 \item Model fitting is finding a compact approximation to $E_{eff}[\Psi]$. This is a high-dimensional space, so we use descriptors to do this.	
 \item For operators that are not the Hamiltonian, it is possible to fit $\mathcal{O}_{eff}[\Psi] \simeq {\mathcal O}[\Psi]$ in a similar way. However, the eigenstates of ${\mathcal O}$ and ${\mathcal O}_{eff}$ will not coincide in general unless $\mathcal{O}$ commutes with the Hamiltonian.
 \end{itemize}
