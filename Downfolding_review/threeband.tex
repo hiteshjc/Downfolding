@@ -43,7 +43,7 @@ $\text{sgn}(p_i,d_j)$ is the sign of the hopping $t_{pd}$
 between nearest neighbors, shown schematically in Figure~\ref{fig:threeband}. 
 $\epsilon_d$ and $\epsilon_p$ are orbital energies, $U_d$ and $U_p$ are strengths of onsite Hubbard interactions,  
 and $V_{pd}$ is the strength of the density-density interactions between a neighboring $p$ and $d$ orbital. 
-To simplify we consider only the case where $\epsilon_p$, $U_d$ and $t_{pd}$ are non zero; $t_{pd}$ is chosen throughout this section to be the typical value of $1.3$ eV to give the reader a sense of overall energy scales. 
+To simplify, we consider only the case where $\epsilon_p$, $U_d$ and $t_{pd}$ are non zero; $t_{pd}$ is chosen throughout this section to be the typical value of $1.3$ eV to give the reader a sense of overall energy scales. 
 Since we work with fixed number of particles we set our reference zero energy to be $\epsilon_d = 0$, thus the charge transfer energy $\Delta \equiv \epsilon_p - \epsilon_d$ equals $\epsilon_p$ in our notation. 
 We work in the hole notation; half filling corresponds to two spin-up and two spin-down holes on the $2\times2$ cell.
 
@@ -68,13 +68,13 @@ compact description of the low energy physics? and (2) given this choice what ar
 In addition, the best effective Hamiltonian description depends on the energy scale of interest. 
 All these issues will be addressed in the remainder of the section. 
 
-We first determine the optimal operators $\tilde{d}_{i,\eta}$, which could be constructed from a linear superposition of the $d$ and $p$ orbitals, 
+We first determine the optimal operators $\tilde{d}_{i,\eta}$, which are constructed from a linear superposition of the $d$ and $p$ orbitals, 
 %\HJC{It is not unitary, because we are truncating as well. I am blanking on the precise word} 
 \begin{equation}
 	\tilde{d}_{i,\eta} = \sum_{j} T_{ij} c_{j,\eta}
 \label{eq:dc}
 \end{equation}
-where $c_{j,\eta}$ is the hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals and $T$ is the transformation matrix. 
+where $c_{j,\eta}$ is the hole (destruction) operator and refers to either the bare $d$ or $p$ orbitals and $\bf{T}$ is the transformation matrix. 
 Further generalizations of this relationship (for example, including higher body terms) are also possible, but have not been considered here. 
 For the $2\times2$ unit cell {\bf T} is a $4 \times 12 $ matrix, which we parameterize by 
 four distinct parameters. These correspond to mixing of a copper orbital 
@@ -84,7 +84,8 @@ The explicit form of ${\bf T}$ after accounting for the symmetries of the
 lattice has been written out in the Appendix. %These parameters are optimized to minimize a certain cost function, 
 %which will be explained shortly. 
 
-We will now determine the transformation matrix ${\bf T}$. All RDMs in the three-band and one-band descriptions are also related via ${\bf T}$; 
+%We will now determine the transformation matrix ${\bf T}$. 
+All RDMs in the three-band and one-band descriptions are also related via ${\bf T}$; 
 the ones that we focus on are evaluated in eigenstate $s$ and are given by,
 \begin{subequations}
 \begin{eqnarray}
@@ -187,7 +188,7 @@ single particle energies of the copper and oxygen orbitals makes it energeticall
 to hop between the two orbitals. When $\Delta/t_{pd}=3$ is fixed and $U_d/t_{pd}$ is increased, $U/t$ increases. 
 As one mechanism of avoiding the large $U_d$, the copper orbitals are forced to hybridize more with the oxygen ones; 
 on the other hand, hole delocalization is suppressed in a bid to maintain mostly one hole per $\tilde{d}$ due to the larger 
-$U/t$. The net result of these effects is that the $t$ also increases.%, albeit only marginally; a trend also observed in $\alpha_1$.
+$U/t$. The net result of these effects is that $t$ also increases.%, albeit only marginally; a trend also observed in $\alpha_1$.
 
 An important check for the one-band model is its ability to reproduce the low energy gaps of the three-band model; these have been compared in Figure~\ref{fig:energyfit}. 
 For the case of $\Delta/t_{pd}=3$, we observe that for all $U_d/t_{pd}$ the lowest three eigenstates were reproduced well. 
