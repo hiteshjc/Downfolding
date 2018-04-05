@@ -35,7 +35,7 @@ $\frac{\delta }{\delta \Psi^*}  E[\Psi] = 0$ if and only if $(H-E[\Psi])|\Psi\ra
 \subsubsection{Low energy space} 
 
 \begin{definition}
-Let $\mathcal{LE}(H,N)$ be a subset of ${\mathcal H}$ spanned by $N$ vectors given by the lowest energy solutions to $H\ket{\Psi_i}=E_i{\Psi_i}$. 
+Let $\mathcal{LE}(H,N)$ be a subset of ${\mathcal H}$ spanned by $N$ vectors given by the lowest energy solutions to $H\ket{\Psi_n}=E_n{\Psi_n}$. 
 \end{definition}
 
 \begin{definition}
@@ -89,7 +89,7 @@ Since the derivatives are equal, setting Eq.~\eqref{eqn:psider} equal to Eq.~\eq
 
 Theorem~\ref{theorem:matching} combined with Lemma~\ref{lemma:zeroderiv} means that the eigenstates of $H_{eff}$ are be the same as the eigenstates of $H$ if its derivatives match $H$. 
 Such $H_{eff}$ always exists. 
-Let $H_{eff} = \sum_{i}^N E_i |\Psi_i\rangle \langle \Psi_i|$ where $|\Psi_i\rangle$'s are eigenstates belong to $\mathcal{LE}(H,N)$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $\Psi$ in $\mathcal{LE}(H,N)$.  
+Let $H_{eff} = \sum_{i}^N E_n |\Psi_n\rangle \langle \Psi_n|$ where $|\Psi_i\rangle$'s are eigenstates belong to $\mathcal{LE}(H,N)$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $\Psi$ in $\mathcal{LE}(H,N)$.  
 
 We have thus reduced the problem of finding an effective Hamiltonian $H_{eff}$ that reproduces the low-energy spectrum of $H$ to matching the corresponding energy functionals $E[\Psi]$ and $E_{eff}[\Psi]$. 
 Practically, this can be implemented as follows: 
@@ -138,10 +138,10 @@ This will allow us to use techniques from statistical learning to efficiently de
 \begin{figure*}[hbt]
 \begin{tikzpicture}[scale=2,node distance = 3cm, auto]
     % Place nodes
-    \node [block] (wfs) {Generate $\ket{\Psi_i} \in \mathcal{LE}$};
-    \node [block, right of=wfs] (descriptors) {Generate $d_j[\Psi_i]$,$E[\Psi_i]$};
+    \node [block] (wfs) {Generate $\ket{\Psi_n} \in \mathcal{LE}$};
+    \node [block, right of=wfs] (descriptors) {Generate $d_j[\Psi_n]$, $E[\Psi_n]$};
     \node [block, right of=descriptors] (assess) {Assess descriptors};
-    \node [block, right of=assess] (ansatz) {Ansatz: $E_i \simeq \sum_j p_j d_{ij}$};
+    \node [block, right of=assess] (ansatz) {Ansatz: $E_n \simeq \sum_j p_j d_{j}[\Psi_n]$};
     \node [block, right of=ansatz] (fit) {Fit optimal model};
     \node [result, right of=fit] (model) {Effective model};
     % Draw edges
@@ -166,14 +166,14 @@ This will allow us to use techniques from statistical learning to efficiently de
 A practical protocol is presented in Figure~\ref{fig:protocol}. 
 In this section we go through this procedure step by step.
 
-\paragraph{Generating $\ket{\Psi_i}\in \mathcal{LE}$}
+\paragraph{Generating $\ket{\Psi_n}\in \mathcal{LE}$}
 Ideally one would be able to sample the entire low-energy space. 
 Typically, however, the space will be too large and it will need to be sampled. 
 The optimal wave functions to use depend on the models one expects to fit, which we will discuss in detail  in later steps. 
 Simple strategies that we will use in the examples below include excitations with respect to a determinant and varying spin states.
 
 
-\paragraph{Generate $d_j[\Psi_i]$ and $E[\Psi_i]$} 
+\paragraph{Generate $d_j[\Psi_n]$ and $E[\Psi_n]$} 
 The choice of descriptor is fundamental to the success of the downfolding. 
 In the case of a second-quantized Hamiltonian
 \begin{equation}\label{eq:Heff_ansatz}
@@ -181,18 +181,18 @@ H_{eff} = E_0 + \sum_{ij} t_{ij} (c_i^\dagger c_j + h.c.) + \sum_{ijkl} V_{ijkl}
 \end{equation}
 a set of linear descriptors can be derived by simply taking the expectation value of both sides of the equation:
 \begin{equation}
-E_{eff}[\Psi_i] = E_0 + 
-\sum_{ij} t_{ij} \braket{\Psi_i|(c_i^\dagger c_j + h.c.|\Psi_i}+ 
-\sum_{ijkl} V_{ijkl} \braket{\Psi_i | c_i^\dagger c_j^\dagger c_k c_l|\Psi_i}.
+E_{eff}[\Psi_n] = E_0 + 
+\sum_{ij} t_{ij} \braket{\Psi_n|(c_i^\dagger c_j + h.c.|\Psi_n}+ 
+\sum_{ijkl} V_{ijkl} \braket{\Psi_n | c_i^\dagger c_j^\dagger c_k c_l|\Psi_n}.
 \label{eqn:effh}
 \end{equation}
-Then for example, the occupation descriptor for orbital $k$ is $d_{occ(k)}[\Psi_i] = \braket{\Psi_i | c_k^\dagger c_k | \Psi_i}$; the double occupation descriptor for orbital $k$ is $d_{double(k)}[\Psi_i] = \braket{\Psi_i | n_{k\uparrow}n_{k\downarrow} | \Psi_i}$. 
+Then for example, the occupation descriptor for orbital $k$ is $d_{occ(k)}[\Psi_n] = \braket{\Psi_n| c_k^\dagger c_k | \Psi_n}$; the double occupation descriptor for orbital $k$ is $d_{double(k)}[\Psi_n] = \braket{\Psi_n | n_{k\uparrow}n_{k\downarrow} | \Psi_n}$. 
 The orbital that $c_k$ represents is part of the descriptor, and in the examples we will discuss this choice.
 One is not limited to static orbital descriptors; they may have a more complex functional dependence on the trial function to include orbital relaxation.
 
  
 \paragraph{Assess descriptors}
-At this point, one has collected the data $E_i$ and $d_{ij}$. 
+At this point, one has collected the data $E_n$ and $d_{i}[\Psi_n]$. 
 If two descriptors have a large correlation coefficient, then they are redundant in the data set. 
 This could either mean that the sampling of the low-energy Hilbert space $\mathcal{LE}$ was insufficient, or that they are both proxies for the same differences in states. 
 If two data points have the same or very similar descriptor sets, but different energies, then either the descriptor set is not enough to describe the variations in the low-energy space, or the sampling has generated states that are not in the low-energy space.
@@ -204,17 +204,17 @@ In that case, the model fitting is an extrapolation instead of an interpolation.
 For this reason it is desirable to have eigenstates or near-eigenstates in the sample set if possible; they are guaranteed to be on the corners of the descriptor space if the model is accurate.
 
 
-\paragraph{Ansatz: $E_i \simeq \sum_i  d_{ij} p_j$} 
+\paragraph{Ansatz: $E_n \simeq \sum_j p_j d_{j} [\Psi_n] $} 
 If the descriptors are chosen well, then the model can be written in linear form:
 \begin{equation}\label{eq:linearfit_descriptor}
-E[\Psi_i] = \sum_j p_j d_j[\Psi_i],	
+E[\Psi_n] = \sum_j p_j d_j[\Psi_n],	
 \end{equation}
 which we shorten to 
 \begin{equation}
-{\bf E} = D{\bf p} .
+{\bf E} = D{\bf p} ,
 \label{eqn:EdP}
 \end{equation}
-If this can be done, the fitting problem is reduced to a linear regression optimization.
+where$ D_{n i} := d_i[\Psi_n]$ and $E_n := E[\Psi_n]$. If this can be done, the fitting problem is reduced to a linear regression optimization.
 More complex functions of the descriptors are also possible, although at the cost of making the effective model more difficult to solve and complicating the fitting procedure.
 
 
