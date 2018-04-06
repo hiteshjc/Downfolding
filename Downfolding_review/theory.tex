@@ -88,7 +88,7 @@ Since the derivatives are equal, setting Eq.~\eqref{eqn:psider} equal to Eq.~\eq
 
 Theorem~\ref{theorem:matching} combined with Lemma~\ref{lemma:zeroderiv} means that the eigenstates of $H_{eff}$ are the same as the eigenstates of $H$ if its derivatives match $H$. 
 Such a $H_{eff}$ always exists. 
-Let $H_{eff} = \sum_{n}^N E_n |\Psi_n\rangle \langle \Psi_n|$ where $|\Psi_n\rangle$'s are eigenstates belong to $\mathcal{LE}(H,N)$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $\Psi$ in $\mathcal{LE}(H,N)$.  
+Let $H_{eff} = \sum_{n=1}^N E_n |\Psi_n\rangle \langle \Psi_n|$ where $|\Psi_n\rangle$'s are eigenstates belong to $\mathcal{LE}(H,N)$. This satisfies $E[\Psi] = E_{eff}[\Psi]$ and $H_{eff}|\Psi\rangle = H |\Psi \rangle$ for any $|\Psi \rangle$ in $\mathcal{LE}(H,N)$.  
 
 We have thus reduced the problem of finding an effective Hamiltonian $H_{eff}$ that reproduces the low-energy spectrum of $H$ to matching the corresponding energy functionals $E[\Psi]$ and $E_{eff}[\Psi]$. 
 Practically, this can be implemented as follows: 
@@ -116,12 +116,12 @@ Some further notes about this derivation:
 
 The theory presented above maps coarse-graining into a functional approximation problem. 
 This is still rather intimidating, since even supposing one can generate wave functions in the low-energy space, they are still complicated objects in a very large space.
-An effective way to accomplish this is through the use of descriptors, $d_i[\Psi]$, which map from ${\mathcal H} \rightarrow \mathbb{R}$.
+An effective way to accomplish this is through the use of descriptors, $d_j[\Psi]$, which map from ${\mathcal H} \rightarrow \mathbb{R}$.
 Then we can approximate the energy functional as follows
 \begin{equation}
-E_{eff}[\Psi] \simeq \sum_i f_i(d_i[\Psi]),
+E_{eff}[\Psi] \simeq \sum_i f_j(d_j[\Psi]),
 \end{equation}
-where $f_i$ are some parameterized functions.
+where $f_j$ are some parameterized functions.
 This will allow us to use techniques from statistical learning to efficiently describe $E_{eff}$. 
 \subsection{Practical protocol}
 
@@ -191,14 +191,14 @@ One is not limited to static orbital descriptors; they may have a more complex f
 
  
 \paragraph{Assess descriptors}
-At this point, one has collected the data $E_n$ and $d_{i}[\Psi_n]$. 
+At this point, one has collected the data $E_n$ and $d_{j}[\Psi_n]$. 
 If two descriptors have a large correlation coefficient, then they are redundant in the data set. 
 This could either mean that the sampling of the low-energy Hilbert space $\mathcal{LE}$ was insufficient, or that they are both proxies for the same differences in states. 
 If two data points have the same or very similar descriptor sets, but different energies, then either the descriptor set is not enough to describe the variations in the low-energy space, or the sampling has generated states that are not in the low-energy space.
 To resolve these possibilities, one should analyze the difference between the two wave functions.  
 
 In either case, when the model is accurate, the fits will be accurate.
-If descriptors values available in the reduced Hilbert space are not represented in the sampled wave functions, then intruder states can appear upon solution of the effective model. 
+If descriptor values available in the reduced Hilbert space are not represented in the sampled wave functions, then intruder states can appear upon solution of the effective model. 
 In that case, the model fitting is an extrapolation instead of an interpolation.
 For this reason it is desirable to have eigenstates or near-eigenstates in the sample set if possible; they are guaranteed to be on the corners of the descriptor space if the model is accurate.
 
@@ -213,7 +213,7 @@ which we shorten to
 {\bf E} = D{\bf p} ,
 \label{eqn:EdP}
 \end{equation}
-where$ D_{n i} := d_i[\Psi_n]$ and $E_n := E[\Psi_n]$. If this can be done, the fitting problem is reduced to a linear regression optimization.
+where $ D_{n j} := d_j[\Psi_n]$ and $E_n := E[\Psi_n]$. If this can be done, the fitting problem is reduced to a linear regression optimization.
 More complex functions of the descriptors are also possible, although at the cost of making the effective model more difficult to solve and complicating the fitting procedure.
 
 
