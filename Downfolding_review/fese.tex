@@ -22,11 +22,11 @@ We considered a low-energy space spanned by the Se $4p$, Fe $3d$, and Fe $4s$ or
 of Kohn-Sham orbitals taken from DFT calculations with PBE0 functional with total spin 0, 2, and 4, which were then multiplied by a Jastrow factor and further optimized using fixed-node DMC. 
 After this procedure, 241 states were within a low energy window of 8 eV. 
 Of these, eight states had a significant iron $4p$ component, which excludes them from the low-energy subspace. 
-This leaves us with 233 states in the low-energy subspace.
+This left us with 233 states in the low-energy subspace.
 
 We considered a set of 21 possible descriptors consisting of local operators on the iron $4s$, iron $3d$ states, and selenium $4p$ states, which is a total of 9 single-particle orbitals.
-We use the same IAO construction as Section~\ref{subsection:1dhydrogen} to generate the basis for these operators.
-At the one-body level, we consider orbital energy descriptors: 
+We used the same IAO construction as Section~\ref{subsection:1dhydrogen} to generate the basis for these operators.
+At the one-body level, we considered orbital energy descriptors: 
 
 \begin{align}
   &\epsilon_{s} n_s,&
@@ -37,8 +37,8 @@ At the one-body level, we consider orbital energy descriptors:
   &\epsilon_{\pi,\mathrm{Fe}} (n_{d_{xz}} + n_{d_{yz}}).& 
   &\epsilon_{\delta} (n_{d_{xy}} + n_{d_{x^2-y^2}}),&
 \end{align}
-
-and the symmetry-allowed hopping terms:
+The labels $\pi$ and $\delta$ signify that these are the $\pi$ and $\delta$-bonding orbitals for each atom. 
+We also considered the symmetry-allowed hopping terms:
 
 \begin{align}
   &t_{\sigma,d} \sum_{\eta} \left( c_{d_{z^2},\eta}^{\dagger} c_{p_z,\eta} + \text{h.c.} \right),&
@@ -46,7 +46,7 @@ and the symmetry-allowed hopping terms:
   &t_{\pi} \sum_{\eta} \left(c_{d_{xz},\eta}^{\dagger}  c_{p_x,\eta} + c_{d_{yz},\eta}^{\dagger}  c_{p_y,\eta} + \text{h.c.} \right).&
 \end{align}
 
-As before, $\eta$ represents the spin index. At the two-body level, we consider Hubbard interactions:
+As before, $\eta$ represents the spin index. At the two-body level, we considered Hubbard interactions:
 
 \begin{align}
   &U_p \sum_{i \in p} n_{i,\uparrow} n_{i,\downarrow},&
@@ -58,7 +58,7 @@ As before, $\eta$ represents the spin index. At the two-body level, we consider 
 \end{align}
 
 where $p$ refers to the Se-$4p$ orbitals and $d$ refers to the Fe-$3d$ orbitals. 
-Importantly, we also account for the Hund's coupling terms for the iron atom:
+Importantly, we also accounted for the Hund's coupling terms for the iron atom:
 
 \begin{align}
   &J \sum_{\substack{i\ne j \\i,j \in d}} S_i \cdot S_j,&
@@ -70,7 +70,7 @@ Importantly, we also account for the Hund's coupling terms for the iron atom:
   &J_{\pi,\delta} (S_{d_{xz}} + S_{d_{yz}}) \cdot (S_{d_{xy}} + S_{d_{x^2-y^2}}),&
 \end{align}
 
-Finally, we also add a nearest neighbor Hubbard interaction: $V \sum_{i\in p, j\in d} n_{i} n_j$.
+Finally, we also added a nearest neighbor Hubbard interaction: $V \sum_{i\in p, j\in d} n_{i} n_j$.
 
 To generate a minimal description of the system, we employed a matching pursuit (MP) method~\cite{MP_Zhang1993}.
 MP chooses to add descriptors based on their correlation with the residual of the linear fit. 
